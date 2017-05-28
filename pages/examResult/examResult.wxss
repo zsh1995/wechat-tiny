@@ -1,0 +1,27 @@
+/* examResult.wxss */
+.flex-wrp{
+    display:flex;
+    justify-content:center;
+    background-color: #FFFFFF;
+ }
+ .flex-item{
+    width: 100px;
+    height: 100px;
+}
+.flex-item.score{
+    text-align: center;
+    margin-top: 30rpx;
+    font-size: 100rpx;
+    width:100%;
+}
+.flex-item.comment{
+    margin: 50rpx 100rpx 100rpx 100rpx;
+    width: 70%;
+    height: 400rpx;
+    background: #00ff00;
+}
+.flex-item.button{
+    width: 100%;
+    align-items: center;
+    height: 100px;
+}

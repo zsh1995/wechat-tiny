@@ -1,0 +1,29 @@
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 40rpx;
+}
+
+.item_icon {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 0rpx;
+  border-radius: 50%;
+}
+
+.item_list{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.itemcontainer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0rpx 0;
+  box-sizing: border-box;
+} 

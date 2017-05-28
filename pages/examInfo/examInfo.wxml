@@ -1,0 +1,14 @@
+<import src="../template/template.wxml"/>
+<view class='swiper-lists' bindtouchend='touchEnd' bindtouchstart='setEvent'>
+    <block wx:for="{{swiper.list}}" wx:for-item="listItem" wx:for-index="idx">
+        <view  wx:if="{{idx == 0}}" class='swiper-list prev' animation="{{swiper.animationO}}">
+          <template is="exam-question" data="{{listItem,isSelect,selectdata}}"/>
+        </view>
+        <view  wx:if="{{idx == 1}}" class='swiper-list' animation="{{swiper.animationT}}">
+          <template is="exam-question" data="{{listItem,isSelect,selectdata,animationDisap}}"/>
+        </view>
+        <view  wx:if="{{idx == 2}}" class='swiper-list next' animation="{{swiper.animationS}}">
+          <template is="exam-question" data="{{listItem,isSelect,selectdata}}"/>
+        </view>
+    </block>
+</view>

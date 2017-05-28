@@ -1,0 +1,73 @@
+/* userInformation.wxss */
+page{
+  height:90%;
+}
+.mycontainer{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 20rpx;
+  height: 100%;
+}
+.userinfo {
+  display: flex;
+  flex-direction: row;
+  align-items:baseline;
+  width: 100%;
+}
+
+.userinfo-avatar {
+  float: left;
+  position:relative;
+  width: 100rpx;
+  height: 100rpx;
+  margin: 15rpx;
+  border-radius: 50%;
+}
+
+.userinfo-childcontain{
+  display: flex;
+  flex-wrap:wrap;
+  align-self: center;
+  flex-direction: column;
+  height: auto;
+  margin-top: 50rpx;
+  flex:1;
+}
+
+.userinfo-nickname{
+  font-size: 30rpx;
+}
+
+.userinfo-userinfo{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-size: 25rpx;
+  align-self: center;
+}
+.userinfo-button{
+  font-size:25rpx;
+  position: relative;
+  bottom: 15rpx;
+  align-self: flex-end;
+}
+
+.mycontainer-listitem{
+  background-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASYAAAAoCAYAAABTuVceAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAI/SURBVHhe7d0tb1RBFIfxc254qUBUIIAgEAgEBo+o5CMgME1KypJWbAIJCSENgiC6riTdYjBIRCWCD4BEIhAVhCARCEKW+2fucrLpsm8V3Zkrnl9ys3N2/ZOZ2bTr0oEMAE6RZEexHL66W8d98/PwnROo4hUATk0K0bV41ponhWo/PjoRwgRg6Zo41XV/I8aFCBOAXHalg4uxnoswAcjC3VclvYxxLsIEIJsUp420a7od40yECUBWzUW4tHMmxqkIE4Cs3O2mdHkrxqkIE4ASdqRXl2I9gTAByO7fRfjZ3RgnECYARaQj3T1pfy3GMYQJQDGST70IJ0wAiklHuhtmVx7FOEKYABQl2dO6fn01xiHCBKAod7tgVo9dhBMmAMWlI93duu7fiZEwAWiNPenNSrMgTABaIe2arpv9fjJc8x8sAbSFpF8pULfYMQFojRSllRSnPcIEoGV8lTABaA3JBmZ/tgkTgBZRv6oefiRMAFoh7Za+u59/1qwJE4CW0GP39R/NijABKE7Sh6p68DZGwgSgrObC2923YxwiTAAKU+//nw8nTACKSUe4r+6DFzGOECYABanrvvUzhhHCBKAIyd5XVeddjGMIE4Dsmj/WTfkZu/A+jjABKMB7VXX/SwwTCBOArNIR7sj93MSF93GECUBW7tZ1X09HudkIE4BsJB26bx7GOBNhApBFc+Htrm6McxEmAFm4+3P3zlGMcxEmAEuXdkufzL71YlyIMAFYmuYbuOYxqztpwzSItxcw+wvliZRqO4+j9AAAAABJRU5ErkJggg==');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  text-align: center;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+
+}
+.userinfo-info{
+  padding-left: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width:80%;
+  flex:2;
+}
+

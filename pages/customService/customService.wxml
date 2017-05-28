@@ -1,0 +1,19 @@
+<!--customService.wxml-->
+<view class="mycontainer">
+  <view class="section">
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+      <view class="picker">
+        当前选择：{{array[index]}}
+      </view>
+    </picker>
+  </view>
+  <view class="section">
+    <textarea placeholder="请输入您的意见" auto-focus />
+  </view>
+  <view>
+    <button class="submit">提交</button>
+  </view>
+  <view class="bottomview">
+    <button class="rediretowechar" open-type="contact" >转接客服微信</button>
+  </view>
+</view>

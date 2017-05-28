@@ -1,0 +1,23 @@
+<template name="exam-question">
+<view  bindtap="touchViewStart" bindtouchend="touchViewEnd">
+    <view class="header">
+            <view class="xuanz">111</view>
+            <text>{{listItem.content}}</text>
+            <view class="tips" bindtap="bindTips">提示</view>
+	</view>
+	<view class="container"  animation="{{animationDisap}}" hidden="{{isSelect}}">
+		<view wx:for="{{listItem.options}}" wx:for-index="idx">
+				<view wx:if="{{idx!=4}}" class="list" style="background:{{item.color}}" data-option="{{idx}}" catchtap="tapCheckbox">
+        </view>
+        <view wx:if="{{idx==4}}" class="list_border" style="background:{{item.color}}" data-option="{{idx}}" catchtap="tapCheckbox">
+				</view>
+		</view>
+	</view>
+	<view class="container" hidden="{{!isSelect}}">
+		<view wx:if="{{selectdata.selectedId != 4}}" class="list_sure" style="background:{{listItem.options[selectdata.selectedId].color}}" catchtap="touchInsure" >你确定选择{{selectdata.selectedId}}
+    </view>
+    <view wx:if="{{selectdata.selectedId == 4}}" class="list_sure_border" style="background:{{listItem.options[selectdata.selectedId].color}}" catchtap="touchInsure" >你确定选择{{selectdata.selectedId}}
+    </view>
+	</view>
+</view>
+</template>

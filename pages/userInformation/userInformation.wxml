@@ -1,0 +1,36 @@
+<!--userInformation.wxml-->
+
+<view class="mycontainer">
+  <view class="userinfo">
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    <view class="userinfo-childcontain">
+      <view class="userinfo-nickname" >昵称：{{userInfo.nickName}}</view>
+      <view class="userinfo-userinfo">
+        <text>星级：五星级</text>
+        <text>场次：521场</text>
+      </view>
+      <view class="userinfo-button">
+        <button style="font-size:25rpx">修改资料</button>
+      </view>
+    </view>
+  </view>
+  <view class="userinfo-info">
+    <view class="mycontainer-listitem" >
+      评价等级
+    </view>
+    <view class="mycontainer-listitem">
+      高商人才申请
+    </view>
+    <navigator url="../../pages/customService/customService">
+      <view class="mycontainer-listitem">
+        客服/意见反馈   
+      </view>
+    </navigator>
+    <view class="mycontainer-listitem">
+      活动介绍/帮助   
+    </view>
+    <view class="mycontainer-listitem">
+      联系我们
+    </view>
+  </view>
+</view>
