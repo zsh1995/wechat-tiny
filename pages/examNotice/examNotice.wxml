@@ -1,0 +1,6 @@
+<!--examNotice.wxml-->
+<view class="itemcontainer">
+  <text class="item_title">{{examData[examNumber].examTitle}}</text>
+  <text class="item_content">{{examData[examNumber].examContent}}</text>
+  <button class="weui-btn" type ="primary" plain="true" style="width:600rpx" bindtap="gotoExam">付费</button>
+  </view>

@@ -1,0 +1,22 @@
+/* examNotice.wxss */
+.item_title {
+  background: #ffffff;
+  font-size: 40rpx;
+  text-align: center;
+  margin-top: 100rpx;
+  margin-bottom: 10rpx;
+}
+
+.item_content {
+  background: #ffffff;
+  padding: 90rpx;
+  line-height: 45rpx;
+}
+
+.itemcontainer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+} 

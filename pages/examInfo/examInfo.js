@@ -1,5 +1,39 @@
+// 引入 QCloud 小程序增强 SDK
+var qcloud = require('../../bower_components/wafer-client-sdk/index');
+
+// 引入配置
+var config = require('../../config');
+
+// 显示繁忙提示
+var showBusy = text => wx.showToast({
+  title: text,
+  icon: 'loading',
+  duration: 10000
+});
+
+// 显示成功提示
+var showSuccess = text => wx.showToast({
+  title: text,
+  icon: 'success'
+});
+
+// 显示失败提示
+var showModel = (title, content) => {
+  wx.hideToast();
+
+  wx.showModal({
+    title,
+    content: JSON.stringify(content),
+    showCancel: false
+  });
+};
+
+
 Page({
     data: {
+      loginUrl: config.service.loginUrl,
+      requestUrl: config.service.requestUrl,
+      questionUrl:'https://78662138.qcloud.la/test/getQuestions',
       isSelect:false,
       selectdata:{
         isSelect:false,
@@ -10,68 +44,7 @@ Page({
       onLoadUrl:'weixin/small/1.0/?m=SmallApp&c=weixin&a=questionID',//题目号链接    
       start:0,//初始题号
       end:0,//结束题号
-     allLists: [
-        {
-         content:'1驾驶车辆进入高速公路加速车道后，应尽快将车速提高到每小时多少公里以上？驾驶车辆进入高速公路加速车道后，应尽快将车速提高到每小时多少公里以上？驾驶车辆进入高速公路加速车道后，应尽快将车速提高到每小时多少公里以上？驾驶车辆进入高速公路加速车道后，应尽快将车速提高到每小时多少公里以上？驾驶车辆进入高速公路加速车道后，应尽快将车速提高到每小时多少公里以上？\n　　123',
-        options:[
-            {tip:'A',content:'test1',color:"black"},
-            {tip:'B',content:'test2',color:"red"},
-            {tip:'C',content:'test3',color:"yellow"},
-            {tip:'D', content:'test3',color: "green" },
-            {tip:'E', content:'test3',color: "white" }
-            ]
-    },
-    {
-    content:'2驾驶车辆进入高速公路加速车道后，应尽快将车速提高到每小时多少公里以上？',
-        options:[
-          { tip: 'A', content: 'test1', color: "black" },
-          { tip: 'B', content: 'test2', color: "red" },
-          { tip: 'C', content: 'test3', color: "yellow" },
-          { tip: 'D', content: 'test3', color: "green" },
-          { tip: 'E', content: 'test3', color: "white" }
-            ]
-    },
-    {
-    content:'3驾驶车辆进入高速公路加速车道后，应尽快将车速提高到每小时多少公里以上？',
-        options:[
-          { tip: 'A', content: 'test1', color: "black" },
-          { tip: 'B', content: 'test2', color: "red" },
-          { tip: 'C', content: 'test3', color: "yellow" },
-          { tip: 'D', content: 'test3', color: "green" },
-          { tip: 'E', content: 'test3', color: "white" }
-            ]
-    },
-    {
-    content:'4驾驶车辆进入高速公路加速车道后，应尽快将车速提高到每小时多少公里以上？',
-        options:[
-          { tip: 'A', content: 'test1', color: "black" },
-          { tip: 'B', content: 'test2', color: "red" },
-          { tip: 'C', content: 'test3', color: "yellow" },
-          { tip: 'D', content: 'test3', color: "green" },
-          { tip: 'E', content: 'test3', color: "white" }
-            ]
-    },
-    {
-    content:'5驾驶车辆进入高速公路加速车道后，应尽快将车速提高到每小时多少公里以上？',
-        options:[
-          { tip: 'A', content: 'test1', color: "black" },
-          { tip: 'B', content: 'test2', color: "red" },
-          { tip: 'C', content: 'test3', color: "yellow" },
-          { tip: 'D', content: 'test3', color: "green" },
-          { tip: 'E', content: 'test3', color: "white" }
-            ]
-    },
-    {
-    content:'6驾驶车辆进入高速公路加速车道后，应尽快将车速提高到每小时多少公里以上？',
-        options:[
-          { tip: 'A', content: 'test1', color: "black" },
-          { tip: 'B', content: 'test2', color: "red" },
-          { tip: 'C', content: 'test3', color: "yellow" },
-          { tip: 'D', content: 'test3', color: "green" },
-          { tip: 'E', content: 'test3', color: "white" }
-            ]
-    }
-    ],//题号数据
+     allLists: [],//题号数据
       activeNum:0,//当前条数
       showActiveNum:0,//当前显示条数
       onceLoadLength:5,//一次向俩端加载条数
@@ -350,8 +323,44 @@ Page({
         }
       })
     },
+
+    pullQuestions : function(e){
+      var that = this;
+      qcloud.request({
+        url:this.data.questionUrl,
+        login:true,
+        method:'POST',
+        success(result) {
+          showSuccess('请求成功完成');
+          console.log('request success', result.data.data.questionlist);
+          var resultData = result.data.data.questionlist;
+          that.data.answers.allLists = resultData;
+          var cnt = 0;
+          var colors=["black","red","yellow","green","white"]
+          for(var i = 0;i< resultData.length;i++){
+            for (var j = 0; j < resultData[cnt].options.length;j++){
+              resultData[i].options[j].color = colors[j];
+            }
+              
+          }
+          that.data.answers.allLists
+          
+          that.setData(that.data);
+          that.getSubject();
+        },
+        fail(error) {
+          showModel('请求失败', error);
+          console.log('request fail', error);
+        },
+        complete() {
+          console.log('request complete');
+        }
+      })
+    },
+
     onLoad (params) {
-      this.getSubject();
+      this.pullQuestions();
+      
     },
     onReady: function () {
       // 页面渲染完成

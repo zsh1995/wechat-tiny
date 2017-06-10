@@ -10,7 +10,7 @@
         <text>场次：521场</text>
       </view>
       <view class="userinfo-button">
-        <button style="font-size:25rpx">修改资料</button>
+        <button style="font-size:25rpx" bindtap="testlogin">修改资料</button>
       </view>
     </view>
   </view>

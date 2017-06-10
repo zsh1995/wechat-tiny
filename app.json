@@ -6,7 +6,8 @@
     "pages/examInfo/examInfo",
     "pages/examResult/examResult",
     "pages/userInformation/userInformation",
-    "pages/customService/customService"
+    "pages/customService/customService",
+    "pages/examNotice/examNotice"
   ],
   "window": {
     "backgroundTextStyle": "light",

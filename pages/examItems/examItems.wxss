@@ -1,8 +1,33 @@
+page{
+  display: block;
+  box-sizing: padding-box;
+  height:100%;
+  overflow: visible;
+}
+.item_sub{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #ffffff;
+  height: 100%;
+  width:100%;
+  margin: 3rpx;
+}
+
 .item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 40rpx;
+  background: #ffffff;
+  height: 33%;
+  width:100%;
+  margin: 3rpx;
+  justify-content:center;
+}
+.item_sub_row{
+  margin-top:40rpx;
+  display: flex;
+  flex-direction: row;
 }
 
 .item_icon {
@@ -14,14 +39,16 @@
 
 .item_list{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
+    height: 100%;
     align-items: center;
 }
 
 .itemcontainer {
   height: 100%;
   display: flex;
+  background: #f8f8f8;
   flex-direction: column;
   justify-content: space-between;
   padding: 0rpx 0;

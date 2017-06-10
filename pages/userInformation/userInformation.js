@@ -1,5 +1,39 @@
 // userInformation.js
 var app = getApp()
+
+// 引入 QCloud 小程序增强 SDK
+var qcloud = require('../../bower_components/wafer-client-sdk/index');
+
+// 引入配置
+var config = require('../../config');
+
+
+// 显示成功提示
+var showSuccess = text => wx.showToast({
+  title: text,
+  icon: 'success'
+});
+
+// 显示失败提示
+var showModel = (title, content) => {
+  wx.hideToast();
+
+  wx.showModal({
+    title,
+    content: JSON.stringify(content),
+    showCancel: false
+  });
+};
+
+// 显示繁忙提示
+var showBusy = text => wx.showToast({
+  title: text,
+  icon: 'loading',
+  duration: 10000
+});
+
+
+
 Page({
 
   /**
@@ -84,5 +118,21 @@ Page({
    */
   onPullDownRefresh: function () {
   
+  },
+
+  testlogin : function (){
+    showBusy('正在登录');
+    qcloud.login({
+      success(result) {
+        showSuccess('登录成功');
+        console.log('登录成功', result);
+      },
+
+      fail(error) {
+        showModel('登录失败', error);
+        console.log('登录失败', error);
+      }
+    });
+
   }
 })

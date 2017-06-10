@@ -1,18 +1,26 @@
 <view class="itemcontainer">
     <view class="item_list">
-    <navigator url="../../pages/examInfo/examInfo">
-        <view class="item">
-            <image class="item_icon"  src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1493993095&di=5525b0982469d2a4d2c929c7d8eae313&imgtype=jpg&er=1&src=http%3A%2F%2Fpic36.photophoto.cn%2F20150715%2F0007020080742327_b.jpg" background-size="cover"></image>
-                <text >恋爱宝典</text>
+
+	<view class="item">
+			<text style="font-size:40rpx;">一 星 级 · 恋 爱 交 友</text>
+			<view class="item_sub_row">
+			<button style="margin-right:40rpx" class="weui-btn" type ="primary">练习</button>
+			<button class="weui-btn" type ="primary">考试已通过</button>
+      </view>
         </view>
-    </navigator>
         <view class="item">
-        <image class="item_icon"  src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1493993095&di=5525b0982469d2a4d2c929c7d8eae313&imgtype=jpg&er=1&src=http%3A%2F%2Fpic36.photophoto.cn%2F20150715%2F0007020080742327_b.jpg" background-size="cover"></image>
-            <text >恋爱宝典</text>
+			<text style="font-size:40rpx">一 星 级 · 恋 爱 交 友</text>
+			<view class="item_sub_row">
+			<button style="margin-right:40rpx" class="weui-btn" type ="primary" bindtap="gotoPractice">练习</button>
+			<button class="weui-btn" type ="primary" bindtap="gotoExam">考试已通过</button>
+			</view>
         </view>
        <view class="item">
-        <image class="item_icon"  src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1493993095&di=5525b0982469d2a4d2c929c7d8eae313&imgtype=jpg&er=1&src=http%3A%2F%2Fpic36.photophoto.cn%2F20150715%2F0007020080742327_b.jpg" background-size="cover"></image>
-            <text >恋爱宝典</text>
+			<text style="font-size:40rpx">一 星 级 · 恋 爱 交 友</text>
+			<view class="item_sub_row">
+			<button style="margin-right:40rpx" class="weui-btn" type ="primary">练习</button>
+			<button class="weui-btn" type ="primary">考试已通过</button>
+			</view>
         </view>
 
     </view>
