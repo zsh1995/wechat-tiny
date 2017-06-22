@@ -1,26 +1,26 @@
 <view class="itemcontainer">
     <view class="item_list">
 
-	<view class="item">
-			<text style="font-size:40rpx;">一 星 级 · 恋 爱 交 友</text>
-			<view class="item_sub_row">
-			<button style="margin-right:40rpx" class="weui-btn" type ="primary">练习</button>
-			<button class="weui-btn" type ="primary">考试已通过</button>
+  <view class="item">
+      <text style="font-size:40rpx;">一 星 级 · 恋 爱 交 友</text>
+      <view class="item_sub_row">
+      <button style="margin-right:40rpx" class="weui-btn" type ="primary" bindtap="gotoPractice" data-option="1">练习</button>
+      <button class="weui-btn" type ="primary">考试已通过</button>
       </view>
         </view>
         <view class="item">
-			<text style="font-size:40rpx">一 星 级 · 恋 爱 交 友</text>
-			<view class="item_sub_row">
-			<button style="margin-right:40rpx" class="weui-btn" type ="primary" bindtap="gotoPractice">练习</button>
-			<button class="weui-btn" type ="primary" bindtap="gotoExam">考试已通过</button>
-			</view>
+      <text style="font-size:40rpx">二 星 级 · 社 会 生 活</text>
+      <view class="item_sub_row">
+      <button style="margin-right:40rpx" class="weui-btn" type ="primary" bindtap="gotoPractice" data-option="2">练习</button>
+      <button class="weui-btn" type ="primary" bindtap="gotoExam">考试已通过</button>
+      </view>
         </view>
        <view class="item">
-			<text style="font-size:40rpx">一 星 级 · 恋 爱 交 友</text>
-			<view class="item_sub_row">
-			<button style="margin-right:40rpx" class="weui-btn" type ="primary">练习</button>
-			<button class="weui-btn" type ="primary">考试已通过</button>
-			</view>
+      <text style="font-size:40rpx">三 星 级 · 求 职 工 作</text>
+      <view class="item_sub_row">
+      <button style="margin-right:40rpx" class="weui-btn" type ="primary" bindtap="gotoPractice" data-option="3">练习</button>
+      <button class="weui-btn" type ="primary">考试已通过</button>
+      </view>
         </view>
 
     </view>

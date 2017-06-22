@@ -1,3 +1,5 @@
+// 引入算分算法
+var util = require('../../utils/score')
 // 引入 QCloud 小程序增强 SDK
 var qcloud = require('../../bower_components/wafer-client-sdk/index');
 
@@ -17,6 +19,12 @@ var showSuccess = text => wx.showToast({
   icon: 'success'
 });
 
+var chooseList=[];
+
+var groupId;
+
+var stars;
+
 // 显示失败提示
 var showModel = (title, content) => {
   wx.hideToast();
@@ -33,7 +41,7 @@ Page({
     data: {
       loginUrl: config.service.loginUrl,
       requestUrl: config.service.requestUrl,
-      questionUrl:'https://78662138.qcloud.la/test/getQuestions',
+      questionUrl:'https://78662138.qcloud.la/gslm/getQuestions',
       isSelect:false,
       selectdata:{
         isSelect:false,
@@ -300,10 +308,12 @@ Page({
     touchInsure:function(e){
       console.log("tapInsure");
       this.data.isSelect = true;
+      chooseList[this.data.answers.activeNum] = this.data.selectdata.selectedId;
+      var score = util.calculateScore('A',chooseList);
       this.setData(this.data);
       if (this.data.answers.activeNum == this.data.answers.allLists.length - 1){
         wx.redirectTo({
-          url: '../examResult/examResult'
+          url: '../examResult/examResult?score=' + score +'&group_id='+groupId+'&stars='+stars
         });
       }
       this.onSwiper('left');
@@ -311,9 +321,11 @@ Page({
     },
 
     bindTips :function(e){
+      var currentPage = this.data.answers.activeNum;
+      var that = this;
       wx.showModal({
         title: '提示',
-        content: '这是一个模态弹窗',
+        content: "tips" in that.data.answers.allLists[currentPage] ? that.data.answers.allLists[currentPage].tips : "no message",
         success: function (res) {
           if (res.confirm) {
             console.log('用户点击确定')
@@ -330,21 +342,23 @@ Page({
         url:this.data.questionUrl,
         login:true,
         method:'POST',
+        data:{
+          groupId:groupId,
+          stars:stars
+        },
         success(result) {
           showSuccess('请求成功完成');
           console.log('request success', result.data.data.questionlist);
           var resultData = result.data.data.questionlist;
-          that.data.answers.allLists = resultData;
           var cnt = 0;
           var colors=["black","red","yellow","green","white"]
           for(var i = 0;i< resultData.length;i++){
+            resultData[i].content=resultData[i].content.replace(/\\n/,"\n");
             for (var j = 0; j < resultData[cnt].options.length;j++){
               resultData[i].options[j].color = colors[j];
             }
-              
-          }
-          that.data.answers.allLists
-          
+          }          
+          that.data.answers.allLists = resultData;
           that.setData(that.data);
           that.getSubject();
         },
@@ -359,8 +373,11 @@ Page({
     },
 
     onLoad (params) {
+      console.log('1:'+params.item+";2:"+params.group);
+      chooseList=[-1,-1,-1,-1,-1,-1];
+      stars = params.item;
+      groupId = params.group;
       this.pullQuestions();
-      
     },
     onReady: function () {
       // 页面渲染完成

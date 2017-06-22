@@ -4,7 +4,7 @@
     90
   </view>
   <view class="flex-item comment">
-    自我介绍规则：
+    自我介绍规则：{{comment}}
   </view>
   <view class="flex-item button">
     <button style="align-self: center; width:300rpx" bindtap="endExam">活动结束</button>

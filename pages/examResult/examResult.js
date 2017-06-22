@@ -1,3 +1,12 @@
+
+// 引入 QCloud 小程序增强 SDK
+var qcloud = require('../../bower_components/wafer-client-sdk/index');
+
+// 引入配置
+var config = require('../../config');
+
+var utils = require('..//../utils/score');
+
 // examResult.js
 Page({
 
@@ -5,7 +14,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    comment:'',
+    uploadScore: 'https://78662138.qcloud.la/gslm/uploadScore'
   },
 
   endExam: function(e){
@@ -18,7 +28,28 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.data.comment = utils.getCommentByScore(options.score);
+    qcloud.request({
+      url: this.data.uploadScore,
+      login: true,
+      data:{
+        score:options.score,
+        groud_id:options.group_id,
+        stars:options.stars
+      },
+      method: 'POST',
+      success(result) {
+
+      },
+      fail(error) {
+        console.log('request fail', error);
+      },
+      complete() {
+        console.log('request complete');
+      }
+
+    });
+    this.setData(this.data);
   },
 
   /**

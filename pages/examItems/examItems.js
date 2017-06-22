@@ -5,9 +5,10 @@ Page({
   },
 
   gotoPractice:function(e){
+    var star = e.currentTarget.dataset.option;
     wx.navigateTo({
       //目的页面地址
-      url: '../../pages/examInfo/examInfo',
+      url: '../../pages/practiceGroup/practiceGroup?star=' + star,
       success: function (res) { },
     })
   },

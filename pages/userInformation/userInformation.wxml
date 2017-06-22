@@ -1,4 +1,4 @@
-<!--userInformation.wxml-->
+  <!--userInformation.wxml-->
 
 <view class="mycontainer">
   <view class="userinfo">
@@ -13,6 +13,10 @@
         <button style="font-size:25rpx" bindtap="testlogin">修改资料</button>
       </view>
     </view>
+  </view>
+  <view>
+     <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+     <view class="userinfo-nickname" >昵称：{{userInfo.nickName}}</view>
   </view>
   <view class="userinfo-info">
     <view class="mycontainer-listitem" >

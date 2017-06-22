@@ -1,0 +1,53 @@
+<view class="icontainer">
+
+  <view class="doc-title">{{title}}</view>
+
+  <view class="demo">
+    <view class="demo__item">
+      <view class="demo__icon zan-badge" bindtap="groupOntap" data-option="1"><view>01组</view>  <view>{{score[1]}}</view>
+
+      </view>
+    </view>
+    <view class="demo__item">
+      <view class="demo__icon zan-badge" bindtap="groupOntap" data-option="2"><view>02组</view>  <view>{{score[2]}}</view>
+
+      </view>
+    </view>
+    <view class="demo__item">
+      <view class="demo__icon zan-badge" bindtap="groupOntap" data-option="3"><view>03组</view>  <view>{{score[3]}}</view>
+
+      </view>
+    </view>
+    <view class="demo__item">
+      <view class="demo__icon zan-badge" bindtap="groupOntap" data-option="4"><view>04组</view>  <view>{{score[4]}}</view>
+
+      </view>
+    </view>
+    <view class="demo__item">
+      <view class="demo__icon zan-badge" bindtap="groupOntap" data-option="5"><view>05组</view>  <view>{{score[5]}}</view>
+
+      </view>
+    </view>
+    <view class="demo__item">
+      <view class="demo__icon zan-badge" bindtap="groupOntap" data-option="6"><view>06组</view>  <view>{{score[6]}}</view>
+
+      </view>
+    </view>
+    <view class="demo__item">
+      <view class="demo__icon zan-badge" bindtap="groupOntap" data-option="7"><view>07组</view>  <view>{{score[7]}}</view>
+
+      </view>
+    </view>
+    <view class="demo__item">
+      <view class="demo__icon zan-badge" bindtap="groupOntap" data-option="8"><view>08组</view>  <view>{{score[8]}}</view>
+
+      </view>
+    </view>
+    <view class="demo__item">
+      <view class="demo__icon zan-badge" bindtap="groupOntap" data-option="9"><view>09组</view>  <view>{{score[9]}}</view>
+
+      </view>
+    </view>
+    
+  </view>
+</view>
