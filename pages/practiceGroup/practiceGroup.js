@@ -7,6 +7,9 @@ var qcloud = require('../../bower_components/wafer-client-sdk/index');
 // 引入配置
 var config = require('../../config');
 
+var utils = require('..//../utils/score');
+
+
 
 var star = 0
 var optionsTitle = ['', '一星级 · 恋爱交友', '二星级 · 社会生活','三星级 · 求职工作']
@@ -41,7 +44,7 @@ Page({
         var recordList = result.data.data.practiceRecords;
         for(var cnt = 0; cnt < recordList.length;cnt++){
           var record = recordList[cnt];
-          that.data.score[record.questionGroup] = record.score;
+          that.data.score[record.questionGroup] = utils.getCommentByScore(record.score).score;
         }
         that.setData(that.data);
         console.log(result);
