@@ -15,6 +15,7 @@ Page({
    */
   data: {
     comment:'',
+    score:'',
     uploadScore: 'https://78662138.qcloud.la/gslm/uploadScore'
   },
 
@@ -28,7 +29,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.data.comment = utils.getCommentByScore(options.score);
+    result = utils.getCommentByScore(options.score);
+    this.data.comment = result.comment;
+    this.data.score = result.score;
     qcloud.request({
       url: this.data.uploadScore,
       login: true,

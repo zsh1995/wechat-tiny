@@ -1,7 +1,7 @@
 <!--examResult.wxml-->
 <view class="flex-wrp" style="flex-direction:column">
   <view class="flex-item score">
-    90
+    {{score}}
   </view>
   <view class="flex-item comment">
     自我介绍规则：{{comment}}

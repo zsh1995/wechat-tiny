@@ -21,6 +21,8 @@ var showSuccess = text => wx.showToast({
 
 var chooseList=[];
 
+var score = 0;
+
 var groupId;
 
 var stars;
@@ -308,8 +310,10 @@ Page({
     touchInsure:function(e){
       console.log("tapInsure");
       this.data.isSelect = true;
-      chooseList[this.data.answers.activeNum] = this.data.selectdata.selectedId;
-      var score = util.calculateScore('A',chooseList);
+      var allLists = this.data.answers.allLists;
+      var currentPage =this.data.answers.activeNum;
+      chooseList[currentPage] = this.data.selectdata.selectedId;
+      score += util.calculateScore(allLists[currentPage].type,chooseList[currentPage]);
       this.setData(this.data);
       if (this.data.answers.activeNum == this.data.answers.allLists.length - 1){
         wx.redirectTo({
