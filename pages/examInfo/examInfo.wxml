@@ -11,4 +11,18 @@
           <template is="exam-question" data="{{listItem,isSelect,selectdata}}"/>
         </view>
     </block>
+
+  <view class="footer">
+    <view class="count">
+        <view wx:for="{{chooseList}}" wx:for-item="chooseItem">
+          <view wx:if="{{chooseItem != -1}}">
+            <view class="success"></view>
+          </view>
+          <view wx:if="{{chooseItem == -1}}">
+            <view class="error"></view>
+          </view>
+      </view>
+    </view>
+  </view>
+    
 </view>

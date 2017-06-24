@@ -314,6 +314,7 @@ Page({
       var currentPage =this.data.answers.activeNum;
       chooseList[currentPage] = this.data.selectdata.selectedId;
       score += util.calculateScore(allLists[currentPage].type,chooseList[currentPage]);
+      this.data.chooseList = chooseList;
       this.setData(this.data);
       if (this.data.answers.activeNum == this.data.answers.allLists.length - 1){
         wx.redirectTo({
@@ -379,9 +380,11 @@ Page({
     onLoad (params) {
       console.log('1:'+params.item+";2:"+params.group);
       chooseList=[-1,-1,-1,-1,-1,-1];
+      this.data.chooseList = chooseList;
       stars = params.item;
       groupId = params.group;
       this.pullQuestions();
+      this.setData(this.data)
     },
     onReady: function () {
       // 页面渲染完成
