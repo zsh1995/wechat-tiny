@@ -1,10 +1,20 @@
 // examNotice.js
+
+// 引入 QCloud 小程序增强 SDK
+var qcloud = require('../../bower_components/wafer-client-sdk/index');
+
+// 引入配置
+var config = require('../../config');
+
+
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    paymentUrl:'https://78662138.qcloud.la/gslm/pay/payEncap',
     examNumber :0,
     examData:[
       {
@@ -22,10 +32,47 @@ Page({
     ]
   },
   gotoExam:function (e){
+
+    qcloud.request({
+      url: this.data.paymentUrl,
+      login: true,
+      method: 'POST',
+      success(result) {
+        this.requestPayment(result.data);
+      },
+      fail(error) {
+        console.log('request fail', error);
+      },
+      complete() {
+        console.log('request complete');
+      }
+
+    });
+
+
+
+
+
     wx.navigateTo({
       //目的页面地址
       url: '../../pages/examInfo/examInfo?type=2',
       success: function (res) { },
+    })
+  },
+
+  requestPayment:function(obj){
+    wx.requestPayment({
+      'timeStamp': obj.timeStamp,
+      'nonceStr': obj.nonceStr,
+      'package': obj.package,
+      'signType': obj.signType,
+      'paySign': obj.paySign,
+      'success':function(res){
+        console.log("success");
+      },
+      'fail':function(res){
+        console.log("fail");
+      }
     })
   },
 

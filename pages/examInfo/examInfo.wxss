@@ -159,7 +159,7 @@ page{
   box-sizing: border-box;
   top: -93rpx;
   width: 100%;
-  padding: 30rpx 60rpx;
+  padding: 30rpx 100rpx;
   background: #fff;
   font-size: 24rpx;
   overflow: hidden;

@@ -359,6 +359,7 @@ Page({
           var colors=["black","red","yellow","green","white"]
           for(var i = 0;i< resultData.length;i++){
             resultData[i].content=resultData[i].content.replace(/\\n/,"\n");
+            resultData[i].index = i;
             for (var j = 0; j < resultData[cnt].options.length;j++){
               resultData[i].options[j].color = colors[j];
             }

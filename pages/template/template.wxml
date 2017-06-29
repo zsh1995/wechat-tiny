@@ -2,7 +2,7 @@
 <view  bindtap="touchViewStart" bindtouchend="touchViewEnd">
     <view class="header">
             <view>
-				<view class="xuanz">111</view>
+				<view class="xuanz">{{listItem.index+1}}</view>
 				<text>{{listItem.content}}</text>
 			</view>
             <view class="tips" bindtap="bindTips" data-option="{{listItem}}">提示</view>
