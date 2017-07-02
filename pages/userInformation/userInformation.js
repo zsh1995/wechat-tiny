@@ -41,7 +41,11 @@ Page({
    */
   data: {
     userInfo: {},
-    requestUrl: config.service.requestUrl
+    requestUrl: config.service.requestUrl,
+    updataUserInfo: 'https://78662138.qcloud.la/gslm/userInfo/updateUserInfo', 
+    requestUserInfo:'https://78662138.qcloud.la/gslm/userInfo/getUserInfo',
+    onModify:false,
+    ourUserInfo:{}
   },
 
   /**
@@ -79,7 +83,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.requestUserInfo();
   },
 
   /**
@@ -130,6 +134,10 @@ Page({
   onPullDownRefresh: function () {
   
   },
+  onModifyBind:function(e){
+    this.data.onModify = !this.data.onModify;
+    this.setData(this.data);
+  },
 
   testlogin : function (){
     showBusy('正在登录');
@@ -147,5 +155,54 @@ Page({
       }
     });
 
+  },
+  requestUserInfo:function(e){
+    var that = this;
+    qcloud.request({
+      url: this.data.requestUserInfo,
+      login: true,
+      method: 'POST',
+      data:{
+        userName:"test"
+      },
+      success(result) {
+        console.log("success:"+result);
+        that.data.ourUserInfo = result.data.data.userInfo;
+        that.setData(that.data);
+      },
+      fail(error) {
+        that.data.ourUserInfo = {userName:"未获取到数据"};
+        that.setData(that.data);
+      },
+      complete() {
+      }
+
+    });
+  },
+
+  onSubmit :function(event){
+    showBusy('正在提交');
+    var that = this;
+    qcloud.request({
+      url: this.data.updataUserInfo,
+      login: true,
+      data: event.detail.value,
+      method: 'POST',
+      success(result) {
+        that.requestUserInfo();
+        that.data.onModify = false;
+        that.setData(that.data);
+        showSuccess('提交成功！');
+      },
+      fail(error) {
+        showModel('提交失败', error);
+        console.log('request fail', error);
+      },
+      complete() {
+        console.log('request complete');
+      }
+
+    });
+    console.log(event.detail.value)
   }
 })

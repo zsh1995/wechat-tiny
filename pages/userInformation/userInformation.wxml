@@ -1,40 +1,60 @@
   <!--userInformation.wxml-->
+<view class="itemcontainer">
+	<view class="item_list">
+		<view class="item" style="height:76%;">
+			<view class="mycontainer">
+				<image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+				<view class="userinfo-nickname" >昵称：{{userInfo.nickName}}</view>
+			</view>
 
-<view class="mycontainer">
-  <view class="userinfo">
-    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-    <view class="userinfo-childcontain">
-      <view class="userinfo-nickname" >昵称：{{userInfo.nickName}}</view>
-      <view class="userinfo-userinfo">
-        <text>星级：五星级</text>
-        <text>场次：521场</text>
-      </view>
-      <view class="userinfo-button">
-        <button style="font-size:25rpx" bindtap="testlogin">修改资料</button>
-      </view>
-    </view>
-  </view>
-  <view>
-     <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-     <view class="userinfo-nickname" >昵称：{{userInfo.nickName}}</view>
-  </view>
-  <view class="userinfo-info">
-    <view class="mycontainer-listitem" >
-      评价等级
-    </view>
-    <view class="mycontainer-listitem">
-      高商人才申请
-    </view>
-    <navigator url="../../pages/customService/customService">
-      <view class="mycontainer-listitem">
-        客服/意见反馈   
-      </view>
-    </navigator>
-    <view class="mycontainer-listitem">
-      活动介绍/帮助   
-    </view>
-    <view class="mycontainer-listitem">
-      联系我们
-    </view>
-  </view>
+			<view class="" >
+				<text style="font-size:32rpx">成长进度：二星级思维考试过关</text>
+			</view>
+
+			<view class="" >
+				<text style="font-size:32rpx">点击查看：你离内推还有多远？</text>
+			</view>
+			<view class="" style="height:50rpx"></view>
+			<view class="" style="width:448rpx">
+				<form bindsubmit="onSubmit">
+					<view>
+						<view class = "item_sub_row"><text>姓名：</text>
+							<view wx:if="{{onModify==1}}" class="zsh_input"><input type="text" name="userName" value="{{ourUserInfo.student_name}}"></input></view>
+							<view wx:if="{{onModify==0}}" style="height:1.4rem">{{ourUserInfo.student_name}}</view>
+						</view>
+						<view class = "item_sub_row"><text>手机号：</text>
+							<view wx:if="{{onModify==1}}" class="zsh_input"><input type="text" name="userMobile" value="{{ourUserInfo.phoneNumber}}"></input></view>
+							<view wx:if="{{onModify==0}}" style="height:1.4rem">{{ourUserInfo.phoneNumber}}</view>
+						</view>
+						<view class = "item_sub_row"><text>学校 / 公司：</text>
+							<view wx:if="{{onModify==1}}" class="zsh_input"><input type="text" name="school" value="{{ourUserInfo.school}}"></input></view>
+							<view wx:if="{{onModify==0}}" style="height:1.4rem">{{ourUserInfo.school}}</view>
+						</view>
+						<view class = "item_sub_row"><view>专业 / 岗位：</view>
+							<view wx:if="{{onModify==1}}" class="zsh_input"><input type="text" name="major" value="{{ourUserInfo.major}}"></input></view>
+							<view wx:if="{{onModify==0}}" style="height:1.4rem">{{ourUserInfo.major}}</view>
+						</view>
+						<view>未来想入职的公司和岗位：{{}} </view>
+					</view>
+					<view class="item_sub_row">
+						<view class="mybutton"><button class="weui-btn" type ="primary"  style="margin-right:80rpx;  font-size:32rpx;" disabled="{{!onModify}}" form-type="submit">提交</button></view>
+						<view class="mybutton" wx:if="{{onModify==false}}"><button class="weui-btn" type ="primary" style="  font-size:32rpx;" bindtap="onModifyBind">修改</button></view>
+						<view class="mybutton" wx:if="{{onModify==true}}"><button class="weui-btn" type ="primary" style="  font-size:32rpx;" bindtap="onModifyBind">取消</button></view>
+					</view>
+				</form>
+			</view>
+
+		</view>
+		<view class="item" style="height:8%;">
+		{{}} 邀请你加入了联盟
+		</view>
+		<view class="item" style="height:8%;">
+		查看付费记录
+		</view>
+		<view class="item" style="height:8%;">
+		查看付费记录
+		</view>
+	</view>
+
 </view>
+
