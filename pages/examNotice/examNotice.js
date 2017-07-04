@@ -53,11 +53,12 @@ Page({
 
 
 
-    wx.navigateTo({
+    /*wx.navigateTo({
       //目的页面地址
       url: '../../pages/examInfo/examInfo?type=2',
       success: function (res) { },
     })
+    */
   },
 
   requestPayment:function(obj){
