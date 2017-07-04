@@ -32,13 +32,13 @@ Page({
     ]
   },
   gotoExam:function (e){
-
+    var that = this;
     qcloud.request({
       url: this.data.paymentUrl,
       login: true,
       method: 'POST',
       success(result) {
-        this.requestPayment(result.data);
+        that.requestPayment(result.data);
       },
       fail(error) {
         console.log('request fail', error);
@@ -61,6 +61,7 @@ Page({
   },
 
   requestPayment:function(obj){
+	  console.log("requestPay:"+obj);
     wx.requestPayment({
       'timeStamp': obj.timeStamp,
       'nonceStr': obj.nonceStr,
