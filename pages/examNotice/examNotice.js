@@ -6,8 +6,9 @@ var qcloud = require('../../bower_components/wafer-client-sdk/index');
 // 引入配置
 var config = require('../../config');
 
-
-
+var intFunction = null;
+var execCount = 0;
+var star = 1; 
 Page({
 
   /**
@@ -15,7 +16,9 @@ Page({
    */
   data: {
     paymentUrl:'https://78662138.qcloud.la/gslm/pay/payEncap',
+	checkUrl:'https://78662138.qcloud.la/gslm/pay/payEncap',
     examNumber :0,
+	remainTimes:0,
     examData:[
       {
         examTitle: "一 星 级 · 考 试",
@@ -36,6 +39,10 @@ Page({
     qcloud.request({
       url: this.data.paymentUrl,
       login: true,
+      data:{
+        type:0,
+        star:1
+      },
       method: 'POST',
       success(result) {
         that.requestPayment(result.data);
@@ -49,10 +56,6 @@ Page({
 
     });
 
-
-
-
-
     /*wx.navigateTo({
       //目的页面地址
       url: '../../pages/examInfo/examInfo?type=2',
@@ -60,22 +63,75 @@ Page({
     })
     */
   },
+  
+  	checkUserRight:function (star,callback_success,callback_fail){
+		var that = this;
+		qcloud.request({
+		  url: this.data.checkUrl,
+		  login: true,
+		  data:{
+			type:0,
+			star:1
+		  },
+		  method: 'POST',
+		  success(result) {
+			that.data.remainTimes = result.data.remainTimes;
+			console.log('remainTimes:'+result.data.remainTimes);
+			that.setData(that.data)
+			if(result.data.remainTimes > 0) 
+				callback_success();
+			else 
+				callback_fail();
+		  },
+		  fail(error) {
+			console.log('request fail', error);
+		  },
+		  complete() {
+			console.log('request complete');
+		  }
+
+		});
+		
+	},
+  
+  
+  
+
 
   requestPayment:function(obj){
-	  console.log("requestPay:"+obj);
-    wx.requestPayment({
-      'timeStamp': obj.timeStamp,
-      'nonceStr': obj.nonceStr,
-      'package': obj.package,
-      'signType': obj.signType,
-      'paySign': obj.paySign,
-      'success':function(res){
-        console.log("success");
-      },
-      'fail':function(res){
-        console.log("fail");
-      }
-    })
+	console.log("requestPay:"+obj);
+	var that = this;
+	wx.requestPayment({
+	  'timeStamp': obj.timeStamp,
+	  'nonceStr': obj.nonceStr,
+	  'package': obj.package,
+	  'signType': obj.signType,
+	  'paySign': obj.paySign,
+	  'success':function(res){
+		console.log("success");
+		wx.showLoading({
+			title:'后台处理中',
+			mask:true
+		})
+		intFunction = setInterval(
+						that.checkUserRight(
+							star,
+							function (){
+								wx.hideLoading()
+								clearInterval(intFunction) 
+							},
+							function (){
+								execCount= execCount + 1;
+								if( examContent >=5)
+									clearInterval(intFunction)
+							}
+						)
+						,1000)
+	  },
+	  'fail':function(res){
+		console.log("fail");
+	  }
+	})
   },
 
   /**
@@ -84,6 +140,15 @@ Page({
   onLoad: function (options) {
     this.data.examNumber = options.examNum;
     console.log(options.examNum)
+	wx.showLoading({
+		title:'正在获取信息...',
+		mask:true
+	});
+	this.checkUserRight(star,function (){
+		wx.hideLoading()
+	},function (){
+		wx.hideLoading()
+	})
     this.setData(this.data);
   },
 
