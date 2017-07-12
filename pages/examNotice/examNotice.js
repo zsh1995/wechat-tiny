@@ -66,6 +66,7 @@ Page({
   
   	checkUserRight:function (star,callback_success,callback_fail){
 		var that = this;
+		console.log('is checking UserRight')
 		qcloud.request({
 		  url: this.data.checkUrl,
 		  login: true,
@@ -93,6 +94,13 @@ Page({
 		});
 		
 	},
+	
+	_checkUserRight:function (star,callback_success,callback_fail,whos){
+		return function (){
+			whos.checkUserRight(star,callback_success,callback_fail)
+		}
+	},
+
   
   
   
@@ -112,21 +120,25 @@ Page({
 		wx.showLoading({
 			title:'后台处理中',
 			mask:true
-		})
+		});
 		intFunction = setInterval(
-						that.checkUserRight(
-							star,
-							function (){
+						that._checkUserRight(star,
+						function (){
+							console.log('ss')
+							wx.hideLoading()
+							clearInterval(intFunction) 
+						},
+						function (){
+							console.log('ff'+execCount)
+							execCount= execCount + 1;
+							if( execCount >=5){
 								wx.hideLoading()
-								clearInterval(intFunction) 
-							},
-							function (){
-								execCount= execCount + 1;
-								if( examContent >=5)
-									clearInterval(intFunction)
+								console.log('stop')
+								clearInterval(intFunction)
 							}
+						},that)
+						,1000
 						)
-						,1000)
 	  },
 	  'fail':function(res){
 		console.log("fail");
