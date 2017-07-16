@@ -9,4 +9,5 @@
   <view class="flex-item button">
     <button style="align-self: center; width:300rpx" bindtap="endExam">活动结束</button>
   </view>
+  <view wx:if="{{type == 'exam'}}">剩余{{remainTimes}}次机会，已过关{{passTimes}}次，还需{{needTimes}}次</view>
 </view>

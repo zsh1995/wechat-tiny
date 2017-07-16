@@ -18,6 +18,7 @@ page{
  flex-direction: row;
  justify-content:center;
  align-items: flex-start;
+ padding: 0rpx;
  position : relative;
  flex-wrap: nowrap;
  background :#fff;

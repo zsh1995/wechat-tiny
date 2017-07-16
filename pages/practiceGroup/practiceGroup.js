@@ -26,7 +26,7 @@ Page({
     console.log(options);
     wx.navigateTo({
       //目的页面地址
-      url: '../../pages/examInfo/examInfo?group=' + options+'&item='+star,
+      url: '../../pages/examInfo/examInfo?group=' + options+'&item='+star+'&type='+'practice',
       success: function (res) { },
     })
   },

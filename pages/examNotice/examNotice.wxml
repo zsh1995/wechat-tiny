@@ -2,7 +2,7 @@
 <view class="itemcontainer">
   <text class="item_title">{{examData[examNumber].examTitle}}</text>
   <text class="item_content">{{examData[examNumber].examContent}}</text>
-  <button wx:if="{{remainTimes>0}}" class="weui-btn" type ="primary" plain="true" style="width:600rpx" bindtap="gotoExam">您还有{{remainTimes}}次考试机会，点击开始</button>
-  <button wx:if="{{remainTimes == 0}}" class="weui-btn" type ="primary" plain="true" style="width:600rpx" bindtap="gotoExam">付费</button>
+  <button wx:if="{{remainTimes>0}}" class="weui-btn" type ="primary" plain="true" style="width:600rpx" bindtap="gotoExam" data-option="goExam">您还有{{remainTimes}}次考试机会，点击开始</button>
+  <button wx:if="{{remainTimes == 0}}" class="weui-btn" type ="primary" plain="true" style="width:600rpx" bindtap="gotoExam" data-option="pay">付费</button>
 
   </view>

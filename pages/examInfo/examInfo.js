@@ -27,6 +27,9 @@ var groupId;
 
 var stars;
 
+var type;
+
+
 // 显示失败提示
 var showModel = (title, content) => {
   wx.hideToast();
@@ -44,6 +47,7 @@ Page({
       loginUrl: config.service.loginUrl,
       requestUrl: config.service.requestUrl,
       questionUrl:'https://78662138.qcloud.la/gslm/getQuestions',
+      examUrl: 'https://78662138.qcloud.la/gslm/exam/getExamQuestions',
       isSelect:false,
       selectdata:{
         isSelect:false,
@@ -318,7 +322,7 @@ Page({
       this.setData(this.data);
       if (this.data.answers.activeNum == this.data.answers.allLists.length - 1){
         wx.redirectTo({
-          url: '../examResult/examResult?score=' + score +'&group_id='+groupId+'&stars='+stars
+          url: '../examResult/examResult?score=' + score +'&group_id='+groupId+'&stars='+stars+'&type='+type
         });
       }
       this.onSwiper('left');
@@ -341,28 +345,30 @@ Page({
       })
     },
 
-    pullQuestions : function(e){
+    pullQuestions : function(e,requestType){
       var that = this;
       qcloud.request({
-        url:this.data.questionUrl,
+        url: e,
         login:true,
         method:'POST',
         data:{
           groupId:groupId,
-          stars:stars
+          stars:stars,
+          star:parseInt(stars),
+          questionId:0,
+          type: requestType
         },
         success(result) {
-          showSuccess('请求成功完成');
           console.log('request success', result.data.data.questionlist);
-          var resultData = result.data.data.questionlist;
+		  if(requestType == 0) var resultData = result.data.data.questionList;
+		  else var resultData = result.data.data.questionlist;
           var cnt = 0;
           var colors=["black","red","yellow","green","white"]
+		  var mOptions = [{color:"black"},{color:"red"},{color:"yellow"},{color:"green"},{color:"white"}]
           for(var i = 0;i< resultData.length;i++){
             resultData[i].content=resultData[i].content.replace(/\\n/,"\n");
             resultData[i].index = i;
-            for (var j = 0; j < resultData[cnt].options.length;j++){
-              resultData[i].options[j].color = colors[j];
-            }
+			resultData[i].options=mOptions
           }          
           that.data.answers.allLists = resultData;
           that.setData(that.data);
@@ -383,8 +389,14 @@ Page({
       chooseList=[-1,-1,-1,-1,-1,-1];
       this.data.chooseList = chooseList;
       stars = params.item;
-      groupId = params.group;
-      this.pullQuestions();
+      type = params.type;
+      if(params.type == 'exam'){
+        groupId = 0;
+        this.pullQuestions(this.data.examUrl,0);
+      }else{
+        groupId = params.group;
+        this.pullQuestions(this.data.questionUrl,1);
+      }      
       this.setData(this.data)
     },
     onReady: function () {

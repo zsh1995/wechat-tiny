@@ -1,5 +1,5 @@
 <template name="exam-question">
-<view  bindtap="touchViewStart" bindtouchend="touchViewEnd">
+<view  style="height:100%" bindtap="touchViewStart" bindtouchend="touchViewEnd">
     <view class="header">
             <view>
 				<view class="xuanz">{{listItem.index+1}}</view>
@@ -8,17 +8,6 @@
             <view class="tips" bindtap="bindTips" data-option="{{listItem}}">提示</view>
             <view style="clear:both"></view>
 	</view>
-	<view>
-		<view class="container"  animation="{{animationDisap}}" hidden="{{isSelect}}">
-			<view wx:for="{{listItem.options}}" wx:for-index="idx">
-					<view wx:if="{{idx!=4}}" class="list" style="background:{{item.color}}" data-option="{{idx}}" catchtap="tapCheckbox"></view>
-					<view wx:if="{{idx==4}}" class="list_border" style="background:{{item.color}}" data-option="{{idx}}" catchtap="tapCheckbox"></view>
-			</view>
-		</view>
-		<view class="container" hidden="{{!isSelect}}">
-			<view wx:if="{{selectdata.selectedId != 4}}" class="list_sure" style="background:{{listItem.options[selectdata.selectedId].color}}" catchtap="touchInsure" >你确定选择{{selectdata.selectedId}}</view>
-			<view wx:if="{{selectdata.selectedId == 4}}" class="list_sure_border" style="background:{{listItem.options[selectdata.selectedId].color}}" catchtap="touchInsure" >你确定选择{{selectdata.selectedId}}</view>
-		</view>
-	</view>
+
 </view>
 </template>

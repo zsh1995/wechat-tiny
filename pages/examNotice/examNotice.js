@@ -8,7 +8,7 @@ var config = require('../../config');
 
 var intFunction = null;
 var execCount = 0;
-var star = 1; 
+var star = 0; 
 Page({
 
   /**
@@ -16,10 +16,11 @@ Page({
    */
   data: {
     paymentUrl:'https://78662138.qcloud.la/gslm/pay/payEncap',
-	checkUrl:'https://78662138.qcloud.la/gslm/pay/payEncap',
+    checkUrl:'https://78662138.qcloud.la/gslm/pay/checkPurchRecord',
     examNumber :0,
 	remainTimes:0,
     examData:[
+      {},
       {
         examTitle: "一 星 级 · 考 试",
         examContent: "一道沟通训练思考题都由一个案例、一个观点，以及对此观点的五个选项组成，\n沟通训练思考题有如下作用：\n 1.     用于人们相互沟通，每一道题，大家都发表自己意见，听取别人意见，尽量达成积极共识。\n2.     可以作为企业面试题，用于考察应聘者的思维方式积极程度。\n3.     可以作为各类求职招聘平台和交友平台考察求职者（会员）潜力指数的考试题。"
@@ -36,25 +37,34 @@ Page({
   },
   gotoExam:function (e){
     var that = this;
-    qcloud.request({
-      url: this.data.paymentUrl,
-      login: true,
-      data:{
-        type:0,
-        star:1
-      },
-      method: 'POST',
-      success(result) {
-        that.requestPayment(result.data);
-      },
-      fail(error) {
-        console.log('request fail', error);
-      },
-      complete() {
-        console.log('request complete');
-      }
+	var options = e.currentTarget.dataset.option;
+	if(options == 'goExam'){
+		wx.navigateTo({
+		//目的页面地址
+			url: '../../pages/examInfo/examInfo?group=' + options+'&item='+star+'&type='+'exam',
+			success: function (res) { },
+		})
+	} else{
+		qcloud.request({
+		  url: this.data.paymentUrl,
+		  login: true,
+		  data:{
+			type:0,
+			star:star
+		  },
+		  method: 'POST',
+		  success(result) {
+			that.requestPayment(result.data);
+		  },
+		  fail(error) {
+			console.log('request fail', error);
+		  },
+		  complete() {
+			console.log('request complete');
+		  }
 
-    });
+		});
+	}
 
     /*wx.navigateTo({
       //目的页面地址
@@ -72,14 +82,15 @@ Page({
 		  login: true,
 		  data:{
 			type:0,
-			star:1
+			star:parseInt(star),
+      questionId:0
 		  },
 		  method: 'POST',
 		  success(result) {
-			that.data.remainTimes = result.data.remainTimes;
-			console.log('remainTimes:'+result.data.remainTimes);
+			that.data.remainTimes = result.data.data.remainTime;
+			console.log('remainTimes:'+result.data.data.remainTime);
 			that.setData(that.data)
-			if(result.data.remainTimes > 0) 
+			if(result.data.data.remainTime > 0) 
 				callback_success();
 			else 
 				callback_fail();
@@ -127,6 +138,12 @@ Page({
 							console.log('ss')
 							wx.hideLoading()
 							clearInterval(intFunction) 
+							//跳转
+							wx.navigateTo({
+							//目的页面地址
+								url: '../../pages/examInfo/examInfo?group=' +'&item='+star+'&type='+'exam',
+								success: function (res) { },
+							})
 						},
 						function (){
 							console.log('ff'+execCount)
@@ -150,17 +167,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    star = parseInt(options.examNum) ;
     this.data.examNumber = options.examNum;
     console.log(options.examNum)
-	wx.showLoading({
-		title:'正在获取信息...',
-		mask:true
-	});
-	this.checkUserRight(star,function (){
-		wx.hideLoading()
-	},function (){
-		wx.hideLoading()
-	})
+
     this.setData(this.data);
   },
 
@@ -175,7 +185,15 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    wx.showLoading({
+      title: '正在获取信息...',
+      mask: true
+    });
+    this.checkUserRight(star, function () {
+      wx.hideLoading()
+    }, function () {
+      wx.hideLoading()
+    })  
   },
 
   /**

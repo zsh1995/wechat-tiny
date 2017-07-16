@@ -16,6 +16,11 @@ Page({
   data: {
     comment:'',
     score:'',
+    type:'',
+    remainTimes:10,
+    passTimes:2,
+    needTimes:1,
+    updateExamStatus:'https://78662138.qcloud.la/gslm/exam/uploadStatus',
     uploadScore: 'https://78662138.qcloud.la/gslm/uploadScore'
   },
 
@@ -32,13 +37,24 @@ Page({
     result = utils.getCommentByScore(options.score);
     this.data.comment = result.comment;
     this.data.score = result.score;
+    this.data.type = options.type;
+    this.setData(this.data);
+    var requestUrl = this.data.uploadScore;
+    if (options.type== 'exam' && result.realScore >=54 ){
+      requestUrl = this.data.updateExamStatus;
+    }else if(options.type == 'practice'){
+      requestUrl = this.data.uploadScore;
+    }else{
+      return;
+    }
     qcloud.request({
-      url: this.data.uploadScore,
+      url: requestUrl,
       login: true,
       data:{
         score:options.score,
         groud_id:options.group_id,
-        stars:options.stars
+        stars:options.stars,
+        star:parseInt(options.stars)
       },
       method: 'POST',
       success(result) {
@@ -52,7 +68,6 @@ Page({
       }
 
     });
-    this.setData(this.data);
   },
 
   /**
