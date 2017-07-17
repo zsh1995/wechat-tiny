@@ -29,6 +29,11 @@ Page({
     });
     return false;
   },
+  gobacktoMain:function(e){
+    wx.switchTab({
+      url:'../../pages/examItems/examItems'
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载

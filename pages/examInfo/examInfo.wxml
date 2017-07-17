@@ -23,8 +23,8 @@
 			</view>
 		</view>
 		<view class="container" hidden="{{!isSelect}}">
-			<view wx:if="{{selectdata.selectedId != 4}}" class="list_sure" style="background:{{swiper.list[1].options[selectdata.selectedId].color}}" catchtap="touchInsure" >你确定选择{{selectdata.selectedId}}</view>
-			<view wx:if="{{selectdata.selectedId == 4}}" class="list_sure_border" style="background:{{swiper.list[1].options[selectdata.selectedId].color}}" catchtap="touchInsure" >你确定选择{{selectdata.selectedId}}</view>
+			<view wx:if="{{selectdata.selectedId != 4}}" class="list_sure" style="background:{{swiper.list[1].options[selectdata.selectedId].color}}" catchtap="touchInsure" ><view style="color:white">{{attitude[selectdata.selectedId]}}</view></view>
+			<view wx:if="{{selectdata.selectedId == 4}}" class="list_sure_border" style="background:{{swiper.list[1].options[selectdata.selectedId].color}}" catchtap="touchInsure" ><view>{{attitude[selectdata.selectedId]}}</view></view>
 		</view>
 	</view>
     <view class="count">

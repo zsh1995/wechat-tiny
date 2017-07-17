@@ -47,6 +47,7 @@ page{
   height: 130rpx;
   font-size: 28rpx;
   color: #333;
+  border-radius: 15rpx;
 }
 .list_border{
   Border:1px solid #40E0D0;
@@ -54,6 +55,7 @@ page{
   padding: 0rpx 0rpx 0rpx 0rpx;
   width: 129rpx;
   height: 129rpx;
+  border-radius: 15rpx;
 }
 .list_sure{
   position: relative;
@@ -63,6 +65,12 @@ page{
   font-size: 40rpx;
   text-align: center;
   color: #333;
+  border-radius: 15rpx;
+  letter-spacing:20rpx;
+  display: flex;
+  justify-content:center;
+  align-items:center;
+  
 }
 .list_sure_border{
   position: relative;
@@ -72,7 +80,12 @@ page{
   height: 129rpx;
   font-size: 40rpx;
   text-align: center;
+  letter-spacing:20rpx;
   color: #333;
+  border-radius: 15rpx;
+  display: flex;
+  justify-content:center;
+  align-items:center;
 }
 .xuanz {
   display:inline-block;

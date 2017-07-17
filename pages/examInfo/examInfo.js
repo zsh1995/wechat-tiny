@@ -49,6 +49,7 @@ Page({
       questionUrl:'https://78662138.qcloud.la/gslm/getQuestions',
       examUrl: 'https://78662138.qcloud.la/gslm/exam/getExamQuestions',
       isSelect:false,
+      attitude: ['非常支持', '比较支持', '中立/不必探讨', '比较反对','非常反对'],
       selectdata:{
         isSelect:false,
         selectedId:0
