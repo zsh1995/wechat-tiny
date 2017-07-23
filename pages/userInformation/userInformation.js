@@ -139,6 +139,15 @@ Page({
     this.setData(this.data);
   },
 
+  bindEdit:function(e){
+    wx.navigateTo({
+      url: '../../pages/detailInformation/detailInformation',
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
+  },
+
   testlogin : function (){
     showBusy('正在登录');
 

@@ -8,7 +8,9 @@
     "pages/userInformation/userInformation",
     "pages/customService/customService",
     "pages/examNotice/examNotice",
-    "pages/practiceGroup/practiceGroup"
+    "pages/practiceGroup/practiceGroup",
+    "pages/detailInformation/detailInformation",
+    "pages/schoolChoose/schoolChoose"
   ],
   "window": {
     "backgroundTextStyle": "light",

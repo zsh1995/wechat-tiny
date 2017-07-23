@@ -1,6 +1,7 @@
 /* userInformation.wxss */
 page{
   height:100%;
+  background: #f8f8f8;
 }
 .mycontainer{
   display: flex;
@@ -35,8 +36,7 @@ page{
 }
 
 .userinfo-nickname{
-  font-size: 30rpx;
-  align-self: center;
+  font-size: 35rpx;
 }
 
 .userinfo-userinfo{
@@ -80,7 +80,7 @@ page{
 }
 
 .itemcontainer {
-  height: 100%;
+  max-height: 100%;
   display: flex;
   background: #f8f8f8;
   flex-direction: column;
@@ -94,8 +94,8 @@ page{
   flex-direction: column;
   align-items: center;
   background: #ffffff;
-  height: 33%;
   width:100%;
+  padding:50rpx 0rpx 50rpx 0rpx;
   font-size: 32rpx;
   margin: 3rpx;
   justify-content:center;
@@ -113,4 +113,71 @@ page{
 .mybutton{
   margin-left:30rpx;
   margin-right:30rpx;
+}
+
+.gslm-cardbox{
+  display: flex;
+  flex-direction: column;
+  margin:10rpx;
+  /*border:1px solid #1aad19;*/
+  width:90%;
+  border-radius:20rpx;
+  background:#ffffff;
+  padding:10rpx 30rpx 10rpx 30rpx;
+  box-shadow: 3px 3px 1px #A8A8A8;
+}
+.gslm-cardbox_name{
+	display:flex;
+	flex-direction:row;
+}
+.userinfo-avatarshow {
+  position:relative;
+  width: 120rpx;
+  height: 120rpx;
+  margin: 15rpx 15rpx 15rpx 0rpx;
+  border-radius: 50%;
+}
+
+.userinfo-rightbox{
+	display:flex;
+	flex-direction:column;
+	align-self:center;
+	align-items:flex-start;
+	margin-left:20rpx;
+}
+.userinfo-bottombox{
+	display:flex;
+	flex-direction:row;
+	margin-top:6rpx;
+}
+.userinfo-major{
+	font-size:23rpx;
+	margin-left:20rpx;
+}
+.userinfo-school{
+	font-size:23rpx;
+}
+.gslm-cardbox_userinfo{
+	display:flex;
+	flex-direction:column;
+	margin-top:50rpx;
+}
+.gslm-cardbox_id{
+	margin-top:15rpx;
+	margin-left:auto;
+}
+.usermobile{
+	margin:6rpx;
+}
+.usermail{
+	margin:6rpx;
+}
+.userinfo-editor{
+	width:38rpx;
+	height:38rpx;
+	margin-left:auto;
+}
+.bottom-box{
+	width:100%;
+	margin-top:100rpx;
 }

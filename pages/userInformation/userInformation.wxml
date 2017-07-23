@@ -1,58 +1,38 @@
   <!--userInformation.wxml-->
 <view class="itemcontainer">
 	<view class="item_list">
-		<view class="item" style="height:76%;">
-			<view class="mycontainer">
-				<image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-				<view class="userinfo-nickname" >昵称：{{userInfo.nickName}}</view>
-			</view>
-
-			<view class="" >
-				<text style="font-size:32rpx">成长进度：二星级思维考试过关</text>
-			</view>
-
-			<view class="" >
-				<text style="font-size:32rpx">点击查看：你离内推还有多远？</text>
-			</view>
-			<view class="" style="height:50rpx"></view>
-			<view class="" style="width:448rpx">
-				<form bindsubmit="onSubmit">
-					<view>
-						<view class = "item_sub_row"><text>姓名：</text>
-							<view wx:if="{{onModify==1}}" class="zsh_input"><input type="text" name="userName" value="{{ourUserInfo.student_name}}"></input></view>
-							<view wx:if="{{onModify==0}}" style="height:1.4rem">{{ourUserInfo.student_name}}</view>
-						</view>
-						<view class = "item_sub_row"><text>手机号：</text>
-							<view wx:if="{{onModify==1}}" class="zsh_input"><input type="text" name="userMobile" value="{{ourUserInfo.phoneNumber}}"></input></view>
-							<view wx:if="{{onModify==0}}" style="height:1.4rem">{{ourUserInfo.phoneNumber}}</view>
-						</view>
-						<view class = "item_sub_row"><text>学校 / 公司：</text>
-							<view wx:if="{{onModify==1}}" class="zsh_input"><input type="text" name="school" value="{{ourUserInfo.school}}"></input></view>
-							<view wx:if="{{onModify==0}}" style="height:1.4rem">{{ourUserInfo.school}}</view>
-						</view>
-						<view class = "item_sub_row"><view>专业 / 岗位：</view>
-							<view wx:if="{{onModify==1}}" class="zsh_input"><input type="text" name="major" value="{{ourUserInfo.major}}"></input></view>
-							<view wx:if="{{onModify==0}}" style="height:1.4rem">{{ourUserInfo.major}}</view>
-						</view>
-						<view>未来想入职的公司和岗位：{{}} </view>
+		<view class="gslm-cardbox">
+			<view class="gslm-cardbox_name">
+				<image class="userinfo-avatarshow" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+				<view class = "userinfo-rightbox">
+					<view class="userinfo-nickname" >{{ourUserInfo.student_name==""?userInfo.nickname:ourUserInfo.student_name}}</view>
+					<view class = "userinfo-bottombox">
+						<view class="userinfo-school" >{{ourUserInfo.school}}</view>
+						<view class="userinfo-major" >{{ourUserInfo.major}}</view>
 					</view>
-					<view class="item_sub_row">
-						<view class="mybutton"><button class="weui-btn" type ="primary"  style="margin-right:80rpx;  font-size:32rpx;" disabled="{{!onModify}}" form-type="submit">提交</button></view>
-						<view class="mybutton" wx:if="{{onModify==false}}"><button class="weui-btn" type ="primary" style="  font-size:32rpx;" bindtap="onModifyBind">修改</button></view>
-						<view class="mybutton" wx:if="{{onModify==true}}"><button class="weui-btn" type ="primary" style="  font-size:32rpx;" bindtap="onModifyBind">取消</button></view>
-					</view>
-				</form>
-			</view>
+				</view>
+				<image class = "userinfo-editor" src="http://storage1.imgchr.com/koaM4.png" bindtap="bindEdit"> </image>
 
+			</view>
+			<view class="gslm-cardbox_userinfo">
+				<view class="usermobile">手机：{{ourUserInfo.phoneNumber}}</view>
+				<view class="usermail">邮箱：Cuiyongen@aliyun.com</view>
+				<view class="useradress"></view>
+			</view>
+			<view class="gslm-cardbox_id">
+				ID:0009
+			</view>
 		</view>
-		<view class="item" style="height:8%;">
-		{{}} 邀请你加入了联盟
-		</view>
-		<view class="item" style="height:8%;">
-		查看付费记录
-		</view>
-		<view class="item" style="height:8%;">
-		查看付费记录
+		<view class="bottom-box">
+			<view class="item" style="height:8%;">
+			{{}} 邀请你加入了联盟
+			</view>
+			<view class="item" style="height:8%;">
+			查看付费记录
+			</view>
+			<view class="item" style="height:8%;">
+			查看付费记录
+			</view>
 		</view>
 	</view>
 

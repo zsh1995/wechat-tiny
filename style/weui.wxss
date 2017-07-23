@@ -550,7 +550,7 @@ icon {
   margin-top: 15px;
 }
 .weui-btn:first-child {
-  margin-top: 0;
+  margin-top: 0rpx;
 }
 .weui-btn-area {
   margin: 1.17647059em 15px 0.3em;

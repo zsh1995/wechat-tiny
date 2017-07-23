@@ -1,0 +1,71 @@
+<!--detailInformation.wxml-->
+<page>
+	<form bindsubmit="onSubmit">
+		<view class="">
+			<view class="detail-head">
+				<picker name="type" mode = "selector" range="{{identities}}" value="{{identityId}}" bindchange="chooseIdentity">当前身份 - {{identities[identityId]}}</picker>
+			</view>
+			<view class="weui-cells weui-cells_after-title">
+				<view class="weui-cell weui-cell_access">
+					<view class="weui-cell__bd">真实姓名</view>
+					<input name="userName" class="weui-cell__ft" style="color:black" placeholder="请输入你的姓名">说明文字</input>
+				</view>
+				<view class="weui-cell weui-cell_access">
+					<view class="weui-cell__bd">性别</view>
+					<picker name="gender" mode = "selector" class="weui-cell__ft weui-cell__ft_in-access" bindchange="chooseGender" range="{{genders}}" value="{{genderId}}">{{genders[genderId]}}</picker>
+				</view>
+				
+				
+				<view wx:if="{{identityId==0}}" class="weui-cell weui-cell_access">
+					<view class="weui-cell__bd">企业</view>
+					<input name="company" class="weui-cell__ft" style="color:black" placeholder="请填写你所在企业">说明文字</input>
+				</view>
+				
+				
+				<view wx:if="{{identityId==1}}" class="weui-cell weui-cell_access">
+					<view class="weui-cell__bd">学校</view>
+					<input name="school" class="weui-cell__ft weui-cell__ft_in-access" value="{{schoolName}}" bindtap="chooseSchool" disabled="true"></input>
+				</view>
+				
+				<view wx:if="{{identityId==0}}" class="weui-cell weui-cell_access">
+					<view class="weui-cell__bd">岗位</view>
+					<input name="post" class="weui-cell__ft" style="color:black" placeholder="请填写你的岗位">说明文字</input>
+				</view>
+				<view wx:if="{{identityId==1}}" class="weui-cell weui-cell_access">
+					<view class="weui-cell__bd">专业</view>
+					<input name="major" class="weui-cell__ft" style="color:black" placeholder="请填写你所学专业">说明文字</input>
+				</view>
+				
+				<view class="weui-cell weui-cell_access" style="padding:0rpx">
+				　　
+				</view>
+				
+				<view class="weui-cell weui-cell_access">
+					<view class="weui-cell__bd">手机号</view>
+					<input name="userMobile" class="weui-cell__ft" style="color:black" type="number" placeholder="请填写你的手机号">说明文字</input>
+				</view>
+				
+				<view class="weui-cell weui-cell_access" style="padding:0rpx">
+				　　
+				</view>
+				
+				<view class="weui-cell weui-cell_access">
+					<view class="weui-cell__bd">想发展的城市</view>
+					<view class="weui-cell__ft weui-cell__ft_in-access">
+					<picker name="city" mode="region" bindchange="bindRegionChange" value="{{region}}">
+						<view class="picker">
+						  {{region[1]}}
+						</view>
+					</picker>
+					</view>
+				</view>
+				<view class="weui-cell weui-cell_access">
+					<view class="weui-cell__bd">想内推的企业</view>
+					<input name="wanted_company" class="weui-cell__ft"  style="color:black" placeholder="请填写你想内推的企业">说明文字</input>
+				</view>
+				
+			</view>
+			<view style="display:flex;margin-top:50rpx"><button class="weui-btn" type ="primary"  data-option="2" style="width:auto;padding:1rpx 42rpx 1rpx 42rpx; align-self:center" form-type="submit">提 交</button></view>
+		</view>
+	</form>
+</page>
