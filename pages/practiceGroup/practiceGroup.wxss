@@ -15,14 +15,14 @@
   z-index: 5;
 }
 .demo {
-  padding: 40px 0;
+  padding: 0px 0;
   display: flex;
   flex-flow:row wrap;
   justify-content: center;
 }
 .demo__item {
   flex: 0 0 30%;
-  padding-top: 40rpx;
+  padding-top: 60rpx;
 }
 .demo__icon {
   margin: 0 auto;
@@ -63,4 +63,14 @@
   z-index: 10;
   box-shadow: 0 0 0 1px #fff;
   box-sizing: border-box;
+}
+
+.cynsytle{
+	display:flex;
+	background:transparent;
+	flex-direction:column;
+	align-items:center;
+	justify-content:center;
+	border:1px solid #000000;
+
 }

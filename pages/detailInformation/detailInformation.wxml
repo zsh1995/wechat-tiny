@@ -24,7 +24,8 @@
 				
 				<view wx:if="{{identityId==1}}" class="weui-cell weui-cell_access">
 					<view class="weui-cell__bd">学校</view>
-					<input name="school" class="weui-cell__ft weui-cell__ft_in-access" value="{{schoolName}}" bindtap="chooseSchool" disabled="true"></input>
+					<view class="weui-cell__ft weui-cell__ft_in-access"  bindtap="chooseSchool">{{schoolName}}</view>
+					<input name="school"  style="display:none"></input>
 				</view>
 				
 				<view wx:if="{{identityId==0}}" class="weui-cell weui-cell_access">
@@ -43,6 +44,11 @@
 				<view class="weui-cell weui-cell_access">
 					<view class="weui-cell__bd">手机号</view>
 					<input name="userMobile" class="weui-cell__ft" style="color:black" type="number" placeholder="请填写你的手机号">说明文字</input>
+				</view>
+				
+				<view class="weui-cell weui-cell_access">
+					<view class="weui-cell__bd">邮箱</view>
+					<input name="emailAddr" class="weui-cell__ft" style="color:black" placeholder="请填写你的邮箱">说明文字</input>
 				</view>
 				
 				<view class="weui-cell weui-cell_access" style="padding:0rpx">

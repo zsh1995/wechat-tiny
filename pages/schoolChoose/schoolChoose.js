@@ -6,6 +6,7 @@ Page({
    */
 	data: {
 		inputShowed: false,
+    isSearch:false,
 		inputVal: "",
 		schoolInfoList:[{school:"北京大学",avaUrl:"http://r.photo.store.qq.com/psb?/V10A0ubi2HlTG2/wHV2E4RoYPG0JXhNGcBic1Twf.vtxdXjTrHPBb*mgs4!/r/dB4BAAAAAAAA"},
 						{school:"中国人民大学",avaUrl:"http://r.photo.store.qq.com/psb?/V10A0ubi2HlTG2/SOzqssG5VvSkSncgy2D7c..8YBm4C*ihhcK4kRhS3K4!/r/dPcAAAAAAAAA"},
@@ -26,16 +27,18 @@ Page({
 					]
 	},
 	inputSchool: function(e){
-		this.showInput();
 		this.setData({
       scrollTop:0,
+      isSearch:false,
+      inputShowed: true,
 			inputVal: e.currentTarget.dataset.options
 		});
 		
 	},
 	showInput: function () {
 		this.setData({
-			inputShowed: true
+			inputShowed: true,
+      isSearch: true,
 		});
 	},
 	hideInput: function () {

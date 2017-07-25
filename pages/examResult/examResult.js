@@ -6,7 +6,7 @@ var qcloud = require('../../bower_components/wafer-client-sdk/index');
 var config = require('../../config');
 
 var utils = require('..//../utils/score');
-
+var stars ;
 // examResult.js
 Page({
 
@@ -21,7 +21,10 @@ Page({
     passTimes:2,
     needTimes:1,
     updateExamStatus:'https://78662138.qcloud.la/gslm/exam/uploadStatus',
-    uploadScore: 'https://78662138.qcloud.la/gslm/uploadScore'
+    uploadScore: 'https://78662138.qcloud.la/gslm/uploadScore',
+    examUrl: 'https://78662138.qcloud.la/gslm/exam/getExamStatus',
+    checkUrl: 'https://78662138.qcloud.la/gslm/pay/checkPurchRecord',
+
   },
 
   endExam: function(e){
@@ -35,10 +38,75 @@ Page({
     })
   },
 
+  getExamStatus: function () {
+    var that = this;
+    qcloud.request({
+      url: this.data.examUrl,
+      login: true,
+      data: {
+        stars: stars
+      },
+      method: 'POST',
+      success(result) {
+        if (result.data.code == 0) {
+          var passTimes = result.data.data.examStatus;
+          var needTimes = 0;
+          switch (star) {
+            case 1: needTimes = 3 - passTimes; break;
+            case 2: needTimes = 4 - passTimes; break;
+            case 3: needTimes = 5 - passTimes; break;
+          }
+        }
+        that.setData({
+          passTimes: passTimes,
+          needTimes: needTimes
+        });
+      },
+      fail(error) {
+        console.log('request fail', error);
+      },
+      complete() {
+        console.log('request complete');
+      }
+    });
+
+
+  },
+
+
+  checkUserRight: function () {
+    var that = this;
+    console.log('is checking UserRight')
+    qcloud.request({
+      url: this.data.checkUrl,
+      login: true,
+      data: {
+        type: 0,
+        star: parseInt(stars),
+        questionId: 0
+      },
+      method: 'POST',
+      success(result) {
+        that.data.remainTimes = result.data.data.remainTime;
+        console.log('remainTimes:' + result.data.data.remainTime);
+        that.setData(that.data)
+      },
+      fail(error) {
+        console.log('request fail', error);
+      },
+      complete() {
+        console.log('request complete');
+      }
+
+    });
+
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    stars = options.stars;
     result = utils.getCommentByScore(options.score);
     this.data.comment = result.comment;
     this.data.score = result.score;
@@ -86,7 +154,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    console.log();
+    this.getExamStatus();
+    this.checkUserRight();
+
   },
 
   /**

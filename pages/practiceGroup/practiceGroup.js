@@ -17,7 +17,8 @@ Page({
   data: {
     getScoreUrl: 'https://78662138.qcloud.la/gslm/getScores',
     title:'',
-    score: ['-','-','-','-','-','-','-','-','-','-']
+    score: ['-','-','-','-','-','-','-','-','-','-'],
+    color: ['', '', '', '', '', '', '', '', '', '']
   },
 
   groupOntap:function(e){
@@ -44,7 +45,13 @@ Page({
         var recordList = result.data.data.practiceRecords;
         for(var cnt = 0; cnt < recordList.length;cnt++){
           var record = recordList[cnt];
-          that.data.score[record.questionGroup] = utils.getCommentByScore(record.score).score;
+          var showRecord = utils.getCommentByScore(record.score).score;
+          that.data.score[record.questionGroup] = showRecord;
+          if (record.score  >=54){
+            that.data.color[record.questionGroup]="green";
+          }else{
+            that.data.color[record.questionGroup] = "black";
+          }
         }
         that.setData(that.data);
         console.log(result);

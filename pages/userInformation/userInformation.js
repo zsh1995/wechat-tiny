@@ -56,6 +56,9 @@ Page({
       content: 'Tip：你还没有填写邀请人',
       success: function (res) {
         if (res.confirm) {
+          wx.navigateTo({
+            url: '../../pages/invitorPage/invitorPage',
+          })
           console.log('用户点击确定')
         } else if (res.cancel) {
           console.log('用户点击取消')

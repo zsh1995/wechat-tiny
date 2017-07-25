@@ -10,7 +10,8 @@
     "pages/examNotice/examNotice",
     "pages/practiceGroup/practiceGroup",
     "pages/detailInformation/detailInformation",
-    "pages/schoolChoose/schoolChoose"
+    "pages/schoolChoose/schoolChoose",
+    "pages/invitorPage/invitorPage"
   ],
   "window": {
     "backgroundTextStyle": "light",

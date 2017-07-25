@@ -21,7 +21,7 @@
     width:100%;
 }
 .flex-item.comment{
-    margin: 50rpx 100rpx 100rpx 100rpx;
+    margin: 50rpx 100rpx 50rpx 100rpx;
     width: 80%;
     height: 400rpx;
     align-self:center;
@@ -33,12 +33,11 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    height: 100px;
+    height: 80px;
 }
 .flex-item.examInfo{
     width: auto;
     justify-content: center;
     align-self:center;
-    height: 100px;
     display: flex;
 }
