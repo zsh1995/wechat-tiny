@@ -76,16 +76,17 @@ page{
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
+    max-width: 100%;
     align-items: center;
 }
 
 .itemcontainer {
-  max-height: 100%;
+  height: 100%;
+  max-width: 100%;
   display: flex;
-  background: #f8f8f8;
+  background: #f0f0f0;
   flex-direction: column;
   justify-content: space-between;
-  padding: 0rpx 0;
   box-sizing: border-box;
 } 
 
@@ -93,13 +94,13 @@ page{
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin:5rpx;
   background: #ffffff;
-  width:100%;
   padding:50rpx 0rpx 50rpx 0rpx;
   font-size: 32rpx;
-  margin: 3rpx;
   justify-content:center;
 }
+
 .item_sub_row{
   margin-top:10rpx;
   display: flex;
@@ -118,9 +119,9 @@ page{
 .gslm-cardbox{
   display: flex;
   flex-direction: column;
-  margin:10rpx;
+  margin-top:80rpx;
   /*border:1px solid #1aad19;*/
-  width:90%;
+  width:87%;
   border-radius:20rpx;
   background:#ffffff;
   padding:10rpx 30rpx 10rpx 30rpx;
@@ -178,6 +179,6 @@ page{
 	margin-left:auto;
 }
 .bottom-box{
-	width:100%;
+  width: 100%;
 	margin-top:100rpx;
 }

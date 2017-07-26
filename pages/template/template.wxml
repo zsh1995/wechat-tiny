@@ -1,8 +1,8 @@
 <template name="exam-question">
-<view  style="height:100%" bindtap="touchViewStart" bindtouchend="touchViewEnd">
+<view  style="height:100%;padding:0 25rpx 0 25rpx" bindtap="touchViewStart" bindtouchend="touchViewEnd">
     <view class="header">
             <view>
-				<view class="xuanz">{{listItem.index+1}}</view>
+				<view class="xuanz">{{listItem.index+1}}.</view>
 				<text>{{listItem.content}}</text>
 			</view>
             <view class="tips" bindtap="bindTips" data-option="{{listItem}}">提示</view>

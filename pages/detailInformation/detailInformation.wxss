@@ -1,4 +1,10 @@
 /* detailInformation.wxss */
+page{
+  max-height: 100%;
+}
+.contain_gslm{
+  height: 100%;
+}
 .detail-head{
 	display:flex;
 	justify-content:center;

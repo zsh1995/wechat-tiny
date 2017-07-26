@@ -50,11 +50,14 @@ page{
   border-radius: 15rpx;
 }
 .list_border{
-  Border:1px solid #40E0D0;
+  Border:2rpx solid #343B41;
   position: relative;
   padding: 0rpx 0rpx 0rpx 0rpx;
-  width: 129rpx;
-  height: 129rpx;
+  width: 127rpx;
+  height: 127rpx;
+  font-size: 28rpx;
+  margin-left: 2px;
+  margin-right: 2px;
   border-radius: 15rpx;
 }
 .list_sure{
@@ -74,7 +77,7 @@ page{
 }
 .list_sure_border{
   position: relative;
-  Border:1px solid #40E0D0;
+  border:2rpx solid #343B41;
   padding: 0rpx 00rpx 0rpx 0rpx;
   width: 649rpx;
   height: 129rpx;
@@ -88,17 +91,12 @@ page{
   align-items:center;
 }
 .xuanz {
-  display:inline-block;
-  width: 80rpx;
+  display:block;
+  margin-bottom: 20rpx;
   height: 34rpx;
-  margin: -5rpx 0 0;
-  border-radius: 5rpx;
-  background: #00bcd5;
-  font-size: 24rpx;
-  color: #fff;
-  text-align: center;
+  font-size: 34rpx;
   line-height: 36rpx;
-  vertical-align: middle;  
+
 }
 .tips {
   display:block;
@@ -107,13 +105,13 @@ page{
   height: 34rpx;
   margin: 5rpx 0 0;
   border-radius: 5rpx;
-  background: #ffbcd5;
-  font-size: 24rpx;
-  color: #fff;
+  font-size: 30rpx;
+  color: #33CC33;
   text-align: center;
   line-height: 36rpx;
-  vertical-align: middle;  
-}
+  border-bottom:2px solid #33CC33;
+  padding-bottom:5px;  /*这里设置你要空的距离*/
+  }
 
 .mask{
   position: absolute;

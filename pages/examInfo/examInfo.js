@@ -364,8 +364,8 @@ Page({
 		  if(requestType == 0) var resultData = result.data.data.questionList;
 		  else var resultData = result.data.data.questionlist;
           var cnt = 0;
-          var colors=["black","red","yellow","green","white"]
-		  var mOptions = [{color:"black"},{color:"red"},{color:"yellow"},{color:"green"},{color:"white"}]
+          var colors=["#ffffff","#18BC9B","#F1C40F","#E97053","#343B41"]
+          var mOptions = [{ color: "#ffffff" }, { color: "#18BC9B" }, { color: "#F1C40F" }, { color: "#E97053" }, { color:"#343B41"}]
           for(var i = 0;i< resultData.length;i++){
             resultData[i].content=resultData[i].content.replace(/\\n/,"\n");
             resultData[i].index = i;
