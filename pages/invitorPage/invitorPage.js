@@ -16,8 +16,8 @@ Page({
     inputShowed: false,
     inputVal: "",
     invitor_avator:"",
-    updataUserInfo: 'https://78662138.qcloud.la/gslm/userInfo/setInvitor',
-    requestUserInfo: 'https://78662138.qcloud.la/gslm/userInfo/getInvitor'
+    updataUserInfo: 'https://74043727.qcloud.la/gslm/userInfo/setInvitor',
+    requestUserInfo: 'https://74043727.qcloud.la/gslm/userInfo/getInvitor'
 
   },
   showInput: function () {

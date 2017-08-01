@@ -20,19 +20,19 @@
 				<view class="useradress"></view>
 			</view>
 			<view class="gslm-cardbox_id">
-				ID:{{ourUserInfo.id}}
+				ID : {{ourUserInfo.id}}
 			</view>
 		</view>
 		<view class="bottom-box">
-			<view class="item" style="height:8%;">
+			<button class="item_no_border" style="height:8%;">
 			{{ourUserInfo.invitor}} 邀请你加入了联盟
-			</view>
-			<view class="item" style="height:8%;">
+			</button>
+			<button class="item" style="height:8%;">
 			查看付费记录
-			</view>
-			<view class="item" style="height:8%;">
-			查看付费记录
-			</view>
+			</button>
+			<button class="item_no_border" open-type="contact" style="height:8%;">
+			「任何」问题反馈
+			</button>
 		</view>
 	</view>
 

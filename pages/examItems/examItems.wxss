@@ -28,6 +28,7 @@ page{
   margin-top:40rpx;
   display: flex;
   flex-direction: row;
+  margin-bottom:10px;
 }
 
 .item_icon {
@@ -55,6 +56,18 @@ page{
   box-sizing: border-box;
 } 
 
-.weui-btn.cyn{
-  border:1px solid #000000
+.mbutton{
+margin-right:10rpx;
+margin-left:10rpx;
+color:black;
+border:1px solid #000000;
+line-height:2.00000006;
+border-radius:6px;
+padding-left:15px;
+padding-right:15px;
+font-size:17px;
+}
+.pass{
+	color:#00C775 !important;
+	border:1px solid #00C775 !important;
 }

@@ -10,8 +10,8 @@ Page({
     data: {
     motto: 'Hello World',
     color: 'green',
-    examUrl:'https://78662138.qcloud.la/gslm/exam/getExamStatus',
-    passExam:[0,0,0,0]
+    examUrl:'https://74043727.qcloud.la/gslm/exam/getExamStatus',
+    passExam:[1,1,1,1]
   },
 
   gotoPractice:function(e){

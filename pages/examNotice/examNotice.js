@@ -15,8 +15,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    paymentUrl:'https://78662138.qcloud.la/gslm/pay/payEncap',
-    checkUrl:'https://78662138.qcloud.la/gslm/pay/checkPurchRecord',
+    paymentUrl:'https://74043727.qcloud.la/gslm/pay/payEncap',
+    checkUrl:'https://74043727.qcloud.la/gslm/pay/checkPurchRecord',
     examNumber :0,
 	  remainTimes:0,
     examData:[

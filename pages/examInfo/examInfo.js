@@ -46,8 +46,8 @@ Page({
     data: {
       loginUrl: config.service.loginUrl,
       requestUrl: config.service.requestUrl,
-      questionUrl:'https://78662138.qcloud.la/gslm/getQuestions',
-      examUrl: 'https://78662138.qcloud.la/gslm/exam/getExamQuestions',
+      questionUrl:'https://74043727.qcloud.la/gslm/getQuestions',
+      examUrl: 'https://74043727.qcloud.la/gslm/exam/getExamQuestions',
       isSelect:false,
       attitude: ['非常支持', '比较支持', '中立/不必探讨', '比较反对','非常反对'],
       selectdata:{
@@ -299,18 +299,9 @@ Page({
       var tapId = e.currentTarget.dataset.option;
     console.log("tapCheckbox"+tapId);
       var options = this.data.swiper.list[1].options;
-      this.animationDisap.opacity(0.1).step();
-      setTimeout(function () {
-        this.data.isSelect = true;
-        this.animationDisap.opacity(1).step();
-        this.data.animationDisap = this.animationDisap.export();
-        this.data.selectdata.selectedId = tapId;
-        this.setData(this.data);
-      }.bind(this), 300);
-      this.setData({
-        //输出动画
-        animationDisap: this.animationDisap.export()
-      });
+      this.data.isSelect = true;
+      this.data.selectdata.selectedId = tapId;
+      this.setData(this.data);
     },
     touchInsure:function(e){
       console.log("tapInsure");
@@ -334,7 +325,9 @@ Page({
       var currentPage = this.data.answers.activeNum;
       var that = this;
       wx.showModal({
-        title: '提示',
+        title: ' ',
+        showCancel:false,
+        confirmText:"关 闭",
         content: "tips" in that.data.answers.allLists[currentPage] ? that.data.answers.allLists[currentPage].tips : "no message",
         success: function (res) {
           if (res.confirm) {
@@ -387,6 +380,7 @@ Page({
 
     onLoad (params) {
       console.log('1:'+params.item+";2:"+params.group);
+      console.log('Debug score:'+score);
       chooseList=[-1,-1,-1,-1,-1,-1];
       this.data.chooseList = chooseList;
       stars = params.item;
@@ -400,12 +394,16 @@ Page({
       }      
       this.setData(this.data)
     },
+
+    onShow:function(e){
+      score = 0;
+    },
     onReady: function () {
       // 页面渲染完成
       //实例化一个动画
       this.animationDisap = wx.createAnimation({
         // 动画持续时间，单位ms，默认值 400
-        duration: 300,
+        duration: 200,
         /**
          * http://cubic-bezier.com/#0,0,.58,1  
          *  linear  动画一直较为均匀

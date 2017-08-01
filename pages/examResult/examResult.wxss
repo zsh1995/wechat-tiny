@@ -3,6 +3,7 @@
     display:flex;
     justify-content:center;
     background-color: #FFFFFF;
+    flex-direction: column;
  }
  .flex-item{
     width: 100px;
@@ -21,11 +22,12 @@
     width:100%;
 }
 .flex-item.comment{
-    margin: 50rpx 100rpx 50rpx 100rpx;
-    width: 80%;
-    height: 400rpx;
+    margin: 50rpx 110rpx 50rpx 110rpx;
+    height:400rpx;
+    width: auto;
     align-self:center;
-    line-height:65rpx;
+    line-height:1.8;
+    letter-spacing: 0.1em;
 }
 .flex-item.button{
     width: 100%;
@@ -33,11 +35,27 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    height: 80px;
 }
 .flex-item.examInfo{
     width: auto;
     justify-content: center;
     align-self:center;
+    color:#CCCCCC;
     display: flex;
+    margin-top:30rpx;
+    letter-spacing: 0.1em;
+}
+
+.mbutton{
+margin-right:5rpx;
+margin-left:5rpx;
+color:black;
+border:1px solid #000000;
+line-height:2.00000006;
+border-radius:6px;
+font-size:17px;
+}
+.pass{
+	color:#00C775 !important;
+	border:1px solid #00C775 !important;
 }

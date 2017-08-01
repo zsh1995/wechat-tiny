@@ -16,14 +16,15 @@ Page({
   data: {
     comment:'',
     score:'',
+    scoreColor:'#DDDDDD',
     type:'',
     remainTimes:10,
-    passTimes:2,
-    needTimes:1,
-    updateExamStatus:'https://78662138.qcloud.la/gslm/exam/uploadStatus',
-    uploadScore: 'https://78662138.qcloud.la/gslm/uploadScore',
-    examUrl: 'https://78662138.qcloud.la/gslm/exam/getExamStatus',
-    checkUrl: 'https://78662138.qcloud.la/gslm/pay/checkPurchRecord',
+    passTimes:0,
+    needTimes:0,
+    updateExamStatus:'https://74043727.qcloud.la/gslm/exam/uploadStatus',
+    uploadScore: 'https://74043727.qcloud.la/gslm/uploadScore',
+    examUrl: 'https://74043727.qcloud.la/gslm/exam/getExamStatus',
+    checkUrl: 'https://74043727.qcloud.la/gslm/pay/checkPurchRecord',
 
   },
 
@@ -51,11 +52,12 @@ Page({
         if (result.data.code == 0) {
           var passTimes = result.data.data.examStatus;
           var needTimes = 0;
-          switch (star) {
+          switch ( parseInt(stars) ) {
             case 1: needTimes = 3 - passTimes; break;
             case 2: needTimes = 4 - passTimes; break;
             case 3: needTimes = 5 - passTimes; break;
           }
+          needTimes = needTimes < 0 ? 0 :needTimes;
         }
         that.setData({
           passTimes: passTimes,
@@ -111,6 +113,11 @@ Page({
     this.data.comment = result.comment;
     this.data.score = result.score;
     this.data.type = options.type;
+    if(result.realScore >= 54 ){
+      this.data.scoreColor = '#00C775';
+    } else {
+      this.data.scoreColor = '#DDDDDD';
+    }
     this.setData(this.data);
     var requestUrl = this.data.uploadScore;
     if (options.type== 'exam' && result.realScore >=54 ){
@@ -154,7 +161,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log();
     this.getExamStatus();
     this.checkUserRight();
 

@@ -3,9 +3,12 @@
     <view class="header">
             <view>
 				<view class="xuanz">{{listItem.index+1}}.</view>
-				<text>{{listItem.content}}</text>
+          <view>
+            <scroll-view scroll-y style="max-height:520rpx">
+              <view class="maincontent"><text>{{listItem.content}}</text></view>
+            </scroll-view>
+          </view>
 			</view>
-            <view class="tips" bindtap="bindTips" data-option="{{listItem}}">提示</view>
             <view style="clear:both"></view>
 	</view>
 

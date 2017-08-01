@@ -1,8 +1,9 @@
 .icontainer {
-  background: #F9F9F9;
+  background: #FFFFFF;
   overflow: hidden;
   min-height: 100vh;
   box-sizing: border-box;
+  color:#343B41;
 }
 .icontainer::before {
   position: fixed;
@@ -17,27 +18,27 @@
 .demo {
   padding: 0px 0;
   display: flex;
-  flex-flow:row wrap;
+  flex-flow:column wrap;
   justify-content: center;
 }
 .demo__item {
-  flex: 0 0 30%;
-  padding-top: 60rpx;
+  margin-left:15rpx;
+  margin-right:15rpx;
 }
 .demo__icon {
   margin: 0 auto;
-  width: 68px;
-  height: 68px;
+  width: 72px;
+  height: 72px;
   background: #ddd;
-  border-radius: 4px;
+  border-radius: 8px;
 }
 .doc-title {
-  font-size: 25px;
+  font-size: 23px;
   line-height: 25px;
-  color: #666;
-  padding: 15px 0;
-  margin: 20px 15px;
-  border-bottom: 1rpx solid #e5e5e5;
+  color: #343B41;
+  padding: 30px 0;
+  margin: 30px 15px 20px 15px;
+  text-align:center;
 }
 
 .zan-badge {
@@ -55,13 +56,13 @@
   font-family: tahoma;
   border-radius: .8em;
   background: #FF4444;
-  color: #fff;
+  color: #343B41;
   text-align: center;
   white-space: nowrap;
   transform: translateX(50%);
   transform-origin: -10% center;
   z-index: 10;
-  box-shadow: 0 0 0 1px #fff;
+  box-shadow: 0 0 0 1px #343B41;
   box-sizing: border-box;
 }
 
@@ -73,4 +74,20 @@
 	justify-content:center;
 	border:1px solid #000000;
 
+}
+.oneline{
+	display: flex;
+	margin-top:30rpx;
+}
+.alarm{
+  display: flex;
+  margin-top: 30rpx;
+  color:#DDDDDD;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+}
+.alarmTips{
+  letter-spacing: 0.1em;
+  padding-left: 16rpx;
 }

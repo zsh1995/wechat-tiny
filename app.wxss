@@ -4,6 +4,7 @@
 page{
     font-size: 32rpx;
     font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
+    color:#343B41;
 }
 .container {
   height: 100%;

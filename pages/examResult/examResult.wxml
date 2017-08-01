@@ -1,17 +1,15 @@
 <!--examResult.wxml-->
-<view class="flex-wrp" style="flex-direction:column">
+<view class="flex-wrp">
   <view class="flex-item head">忘记分数吧</view>
-  <view class="flex-item score">
+  <view class="flex-item score" style="color:{{scoreColor}}">
     {{score}}
   </view>
-  <view class="flex-item comment">
-    自我介绍规则：{{comment}}
-  </view>
+  <view class="flex-item comment"><scroll-view scroll-y style="height:100%;width:auto"><text>自我介绍规则：{{comment}}</text></scroll-view></view>
   <view class="flex-item button">
-    <button wx:if="{{type == 'practice'}}" class="weui-btn" type ="primary" plain="true" style="align-self: center; width:550rpx" bindtap="endExam">不管了，下一组</button>
-    <button wx:if="{{type == 'exam'}}" class="weui-btn" type ="primary" plain="true" style="margin:20rpx;color:black;border-color:black;align-self: center; width:auto" bindtap="gobacktoMain">返</button>
-    <button wx:if="{{type == 'exam'}}" class="weui-btn" type ="primary" plain="true" style="margin:20rpx;align-self: center; width:450rpx" bindtap="endExam">继续考试</button>
+    <button wx:if="{{type == 'practice'}}" class="weui-btn mbutton pass" plain="true" style="align-self: center; width:550rpx" bindtap="endExam">返 回</button>
+    <button wx:if="{{type == 'exam'}}" class="weui-btn mbutton" plain="true" style="margin:10rpx;color:black;border-color:black;align-self: center; width:auto" bindtap="gobacktoMain">←</button>
+    <button wx:if="{{type == 'exam'}}" class="weui-btn mbutton pass"  plain="true" style="margin:10rpx;align-self: center; width:420rpx" bindtap="endExam">继 续 考 试</button>
 
   </view>
-  <view class="flex-item examInfo"wx:if="{{type == 'exam'}}">剩余<view style="color:green">{{remainTimes}}</view>次机会，已过关<view style="color:green">{{passTimes}}</view>次，还需<view style="color:green">{{needTimes}}</view>次</view>
+  <view class="flex-item examInfo"wx:if="{{type == 'exam'}}">剩余<view style="color:#00C775">{{remainTimes}}</view>次机会，已过关<view style="color:#00C775">{{passTimes}}</view>次，还需<view style="color:#00C775">{{needTimes}}</view>次</view>
 </view>

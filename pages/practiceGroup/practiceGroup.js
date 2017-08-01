@@ -12,13 +12,14 @@ var utils = require('..//../utils/score');
 
 
 var star = 0
-var optionsTitle = ['', '一星级 · 恋爱交友', '二星级 · 社会生活','三星级 · 求职工作']
+var optionsTitle = ['', '一 星 级 · 恋 爱 交 友', '二 星 级 · 社 会 生 活','三 星 级 · 求 职 工 作']
 Page({
   data: {
-    getScoreUrl: 'https://78662138.qcloud.la/gslm/getScores',
+    getScoreUrl: 'https://74043727.qcloud.la/gslm/getScores',
     title:'',
     score: ['-','-','-','-','-','-','-','-','-','-'],
-    color: ['', '', '', '', '', '', '', '', '', '']
+    color: ['', '', '', '', '', '', '', '', '', ''],
+    star:1
   },
 
   groupOntap:function(e){
@@ -48,9 +49,9 @@ Page({
           var showRecord = utils.getCommentByScore(record.score).score;
           that.data.score[record.questionGroup] = showRecord;
           if (record.score  >=54){
-            that.data.color[record.questionGroup]="green";
+            that.data.color[record.questionGroup] ="#00C775";
           }else{
-            that.data.color[record.questionGroup] = "black";
+            that.data.color[record.questionGroup] = "#343B41";
           }
         }
         that.setData(that.data);
@@ -72,6 +73,7 @@ Page({
     //从后端拉取分数
     this.getScore();
     this.data.title = optionsTitle[star];
+    this.data.star= star;
     this.setData(this.data);
   },
 

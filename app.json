@@ -6,7 +6,6 @@
     "pages/examInfo/examInfo",
     "pages/examResult/examResult",
     "pages/userInformation/userInformation",
-    "pages/customService/customService",
     "pages/examNotice/examNotice",
     "pages/practiceGroup/practiceGroup",
     "pages/detailInformation/detailInformation",
@@ -23,15 +22,19 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "首页"
+        "text": "首页",
+        "iconPath":"iconSource/home.png",
+        "selectedIconPath":"iconSource/home.png"
       },
       {
         "pagePath": "pages/examItems/examItems",
-        "text": "测试"
+        "text": "加盟训练",
+        "iconPath":"iconSource/exam.png",
+        "selectedIconPath": "iconSource/exam.png"
       },
       {
         "pagePath": "pages/userInformation/userInformation",
-        "text": "用户"
+        "text": "我"
       }
     ]
   }
