@@ -26,6 +26,7 @@ function calculateZ(choose){
      break;
    case 4: score = 3;
      break;
+   default:break;
   }
    return score;
 }
@@ -60,6 +61,7 @@ function calculateA(choose) {
       break;
     case 4: score = 9;
       break;
+    default:break;
   }
   return score;
 }
@@ -77,6 +79,7 @@ function calculateM(choose) {
       break;
     case 4: score = 1;
       break;
+    default:break;
   }
   return score;
 }

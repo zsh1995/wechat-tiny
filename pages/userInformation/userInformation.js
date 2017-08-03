@@ -42,8 +42,8 @@ Page({
   data: {
     userInfo: {},
     requestUrl: config.service.requestUrl,
-    updataUserInfo: 'https://78662138.qcloud.la/gslm/userInfo/updateUserInfo', 
-    requestUserInfo:'https://78662138.qcloud.la/gslm/userInfo/getUserInfo',
+    updataUserInfo: 'https://74043727.qcloud.la/gslm/userInfo/updateUserInfo', 
+    requestUserInfo:'https://74043727.qcloud.la/gslm/userInfo/getUserInfo',
     onModify:false,
     ourUserInfo:{}
   },
@@ -56,6 +56,9 @@ Page({
       content: 'Tip：你还没有填写邀请人',
       success: function (res) {
         if (res.confirm) {
+          wx.navigateTo({
+            url: '../../pages/invitorPage/invitorPage',
+          })
           console.log('用户点击确定')
         } else if (res.cancel) {
           console.log('用户点击取消')
@@ -177,6 +180,14 @@ Page({
       success(result) {
         console.log("success:"+result);
         that.data.ourUserInfo = result.data.data.userInfo;
+        var tempZero = '';
+        that.data.ourUserInfo.id = that.data.ourUserInfo.id.toString();
+        var len = that.data.ourUserInfo.id.length;
+        for(var cnt = 0 ;cnt < 8 - len;cnt++){
+          tempZero = tempZero.concat('0');
+        }
+        console.log('debug id');
+        that.data.ourUserInfo.id = tempZero.concat(that.data.ourUserInfo.id)
         that.setData(that.data);
       },
       fail(error) {

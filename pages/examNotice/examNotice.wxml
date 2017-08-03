@@ -1,8 +1,8 @@
 <!--examNotice.wxml-->
 <view class="itemcontainer">
-  <text class="item_title">{{examData[examNumber].examTitle}}</text>
-  <text class="item_content">{{examData[examNumber].examContent}}</text>
-  <button wx:if="{{remainTimes>0}}" class="weui-btn" type ="primary" plain="true" style="width:600rpx" bindtap="gotoExam" data-option="goExam">您还有{{remainTimes}}次考试机会，点击开始</button>
-  <button wx:if="{{remainTimes == 0}}" class="weui-btn" type ="primary" plain="true" style="width:600rpx" bindtap="gotoExam" data-option="pay">付费</button>
-
+  <view  class="item_title"><text>{{examData[examNumber].examTitle}}</text></view>
+  <scroll-view scroll-y class="item_content"><text>{{examData[examNumber].examContent}}</text></scroll-view>
+  <view class="button-item"><button wx:if="{{remainTimes>0}}" class="weui-btn mbutton pass"  plain="true" style="margin:0rpx 110rpx 0rpx 110rpx" bindtap="gotoExam" data-option="goExam">继 续 考 试</button>
+  <button wx:if="{{remainTimes == 0}}" class="weui-btn mbutton pass" plain="true" style="margin:0rpx 110rpx 0rpx 110rpx" bindtap="gotoExam" data-option="pay">购 买 6 次 测 试 机 会</button>
+  </view>
   </view>

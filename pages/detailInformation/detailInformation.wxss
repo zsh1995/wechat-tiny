@@ -1,7 +1,44 @@
 /* detailInformation.wxss */
+page{
+  max-height: 100%;
+}
+.contain_gslm{
+  height: 100%;
+
+}
 .detail-head{
 	display:flex;
 	justify-content:center;
+  font-size:36rpx;
 	margin:40rpx 0rpx 40rpx 0rpx;
 	color:#7A7A7A;
+}
+
+.cellinput{
+	word-break:keep-all;
+	white-space:nowrap;
+}
+.mbutton{
+margin-right:10rpx;
+margin-left:10rpx;
+color:black;
+border:1px solid #000000;
+line-height:2.00000006;
+border-radius:6px;
+padding-left:15px;
+padding-right:15px;
+font-size:17px;
+}
+.pass{
+	color:#00C775 !important;
+	border:1px solid #00C775 !important;
+  background:#FFFFFF;
+}
+
+.weui-cells {
+  position: relative;
+  margin-top: 1.17647059em;
+  background-color: #FFFFFF;
+  line-height: 1.41176471;
+  font-size: 32rpx;
 }

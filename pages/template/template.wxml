@@ -1,11 +1,14 @@
 <template name="exam-question">
-<view  style="height:100%" bindtap="touchViewStart" bindtouchend="touchViewEnd">
+<view  style="height:100%;padding:0 25rpx 0 25rpx" bindtap="touchViewStart" bindtouchend="touchViewEnd">
     <view class="header">
             <view>
-				<view class="xuanz">{{listItem.index+1}}</view>
-				<text>{{listItem.content}}</text>
+				<view class="xuanz">{{listItem.index+1}}.</view>
+          <view>
+            <scroll-view scroll-y style="max-height:520rpx">
+              <view class="maincontent"><text>{{listItem.content}}</text></view>
+            </scroll-view>
+          </view>
 			</view>
-            <view class="tips" bindtap="bindTips" data-option="{{listItem}}">提示</view>
             <view style="clear:both"></view>
 	</view>
 

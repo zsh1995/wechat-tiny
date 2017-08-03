@@ -1,5 +1,5 @@
 <import src="../template/template.wxml"/>
-<view class='swiper-lists' bindtouchend='touchEnd' bindtouchstart='setEvent'>
+<view class='swiper-lists' bindtouchend='touchEnd' bindtouchstart='setEvent' bindtap="touchViewStart">
     <block wx:for="{{swiper.list}}" wx:for-item="listItem" wx:for-index="idx">
         <view  wx:if="{{idx == 0}}" class='swiper-list prev' animation="{{swiper.animationO}}">
           <template is="exam-question" data="{{listItem,isSelect,selectdata}}"/>
@@ -15,16 +15,17 @@
 
   <view class="footer">
 
-  	<view style="position:absolute;bottom:150rpx;width:100%">
-		<view class="container"  animation="{{animationDisap}}" hidden="{{isSelect}}">
+  	<view style="position:absolute;bottom:120rpx;width:100%">
+    <view class="tips" bindtap="bindTips" data-option="{{listItem}}"><view style="">提示</view></view>
+		<view class="container" hidden="{{isSelect}}">
 			<view wx:for="{{swiper.list[1].options}}" wx:for-index="idx">
-					<view wx:if="{{idx!=4}}" class="list" style="background:{{item.color}}" data-option="{{idx}}" catchtap="tapCheckbox"></view>
-					<view wx:if="{{idx==4}}" class="list_border" style="background:{{item.color}}" data-option="{{idx}}" catchtap="tapCheckbox"></view>
+					<view wx:if="{{idx!=0}}" class="list" style="background:{{item.color}}" data-option="{{idx}}" catchtap="tapCheckbox"></view>
+					<view wx:if="{{idx==0}}" class="list_border" style="background:{{item.color}}" data-option="{{idx}}" catchtap="tapCheckbox"></view>
 			</view>
 		</view>
 		<view class="container" hidden="{{!isSelect}}">
-			<view wx:if="{{selectdata.selectedId != 4}}" class="list_sure" style="background:{{swiper.list[1].options[selectdata.selectedId].color}}" catchtap="touchInsure" ><view style="color:white">{{attitude[selectdata.selectedId]}}</view></view>
-			<view wx:if="{{selectdata.selectedId == 4}}" class="list_sure_border" style="background:{{swiper.list[1].options[selectdata.selectedId].color}}" catchtap="touchInsure" ><view>{{attitude[selectdata.selectedId]}}</view></view>
+			<view wx:if="{{selectdata.selectedId != 0}}" class="list_sure" style="background:{{swiper.list[1].options[selectdata.selectedId].color}}" catchtap="touchInsure" ><view style="color:white">{{attitude[selectdata.selectedId]}}</view></view>
+			<view wx:if="{{selectdata.selectedId == 0}}" class="list_sure_border" style="background:{{swiper.list[1].options[selectdata.selectedId].color}}" catchtap="touchInsure" ><view>{{attitude[selectdata.selectedId]}}</view></view>
 		</view>
 	</view>
     <view class="count">

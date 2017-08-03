@@ -1,52 +1,51 @@
 <!--detailInformation.wxml-->
 <page>
 	<form bindsubmit="onSubmit">
-		<view class="">
+		<view class="contain_gslm">
 			<view class="detail-head">
 				<picker name="type" mode = "selector" range="{{identities}}" value="{{identityId}}" bindchange="chooseIdentity">当前身份 - {{identities[identityId]}}</picker>
 			</view>
 			<view class="weui-cells weui-cells_after-title">
+				<view class="weui-cell">
+					<view class="weui-cell__bd cellinput">真实姓名</view>
+					<view class="weui-cell__ft"><input name="userName" style="color:black" placeholder="请输入你的姓名"></input></view>
+				</view>				
+				
 				<view class="weui-cell weui-cell_access">
-					<view class="weui-cell__bd">真实姓名</view>
-					<input name="userName" class="weui-cell__ft" style="color:black" placeholder="请输入你的姓名">说明文字</input>
-				</view>
-				<view class="weui-cell weui-cell_access">
-					<view class="weui-cell__bd">性别</view>
+					<view class="weui-cell__bd ">性别</view>
 					<picker name="gender" mode = "selector" class="weui-cell__ft weui-cell__ft_in-access" bindchange="chooseGender" range="{{genders}}" value="{{genderId}}">{{genders[genderId]}}</picker>
 				</view>
 				
 				
-				<view wx:if="{{identityId==0}}" class="weui-cell weui-cell_access">
-					<view class="weui-cell__bd">企业</view>
+				<view wx:if="{{identityId==0}}" class="weui-cell">
+					<view class="weui-cell__bd cellinput">企业</view>
 					<input name="company" class="weui-cell__ft" style="color:black" placeholder="请填写你所在企业">说明文字</input>
 				</view>
 				
 				
 				<view wx:if="{{identityId==1}}" class="weui-cell weui-cell_access">
 					<view class="weui-cell__bd">学校</view>
-					<input name="school" class="weui-cell__ft weui-cell__ft_in-access" value="{{schoolName}}" bindtap="chooseSchool" disabled="true"></input>
+					<view class="weui-cell__ft weui-cell__ft_in-access"  bindtap="chooseSchool">{{schoolName}}</view>
+					<input name="school"  style="display:none"></input>
 				</view>
 				
-				<view wx:if="{{identityId==0}}" class="weui-cell weui-cell_access">
-					<view class="weui-cell__bd">岗位</view>
+				<view wx:if="{{identityId==0}}" class="weui-cell">
+					<view class="weui-cell__bd cellinput">岗位</view>
 					<input name="post" class="weui-cell__ft" style="color:black" placeholder="请填写你的岗位">说明文字</input>
 				</view>
-				<view wx:if="{{identityId==1}}" class="weui-cell weui-cell_access">
-					<view class="weui-cell__bd">专业</view>
+				<view wx:if="{{identityId==1}}" class="weui-cell">
+					<view class="weui-cell__bd cellinput">专业</view>
 					<input name="major" class="weui-cell__ft" style="color:black" placeholder="请填写你所学专业">说明文字</input>
 				</view>
-				
-				<view class="weui-cell weui-cell_access" style="padding:0rpx">
-				　　
-				</view>
-				
-				<view class="weui-cell weui-cell_access">
-					<view class="weui-cell__bd">手机号</view>
+								
+				<view class="weui-cell">
+					<view class="weui-cell__bd cellinput">手机号</view>
 					<input name="userMobile" class="weui-cell__ft" style="color:black" type="number" placeholder="请填写你的手机号">说明文字</input>
 				</view>
 				
-				<view class="weui-cell weui-cell_access" style="padding:0rpx">
-				　　
+				<view class="weui-cell">
+					<view class="weui-cell__bd cellinput">邮箱</view>
+					<input name="emailAddr" class="weui-cell__ft" style="color:black" placeholder="请填写你的邮箱">说明文字</input>
 				</view>
 				
 				<view class="weui-cell weui-cell_access">
@@ -60,12 +59,12 @@
 					</view>
 				</view>
 				<view class="weui-cell weui-cell_access">
-					<view class="weui-cell__bd">想内推的企业</view>
+					<view class="weui-cell__bd cellinput">想内推的企业</view>
 					<input name="wanted_company" class="weui-cell__ft"  style="color:black" placeholder="请填写你想内推的企业">说明文字</input>
 				</view>
 				
 			</view>
-			<view style="display:flex;margin-top:50rpx"><button class="weui-btn" type ="primary"  data-option="2" style="width:auto;padding:1rpx 42rpx 1rpx 42rpx; align-self:center" form-type="submit">提 交</button></view>
+			<view style="display:flex;margin-top:40rpx;justify-content:center"><button class="weui-btn mbutton pass" plain="true" data-option="2" style="width:70%;padding:1rpx 42rpx 1rpx 42rpx; align-self:center" form-type="submit">提　交</button></view>
 		</view>
 	</form>
 </page>

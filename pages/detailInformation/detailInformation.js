@@ -12,8 +12,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    updataUserInfo: 'https://78662138.qcloud.la/gslm/userInfo/updateUserInfo',
-    requestUserInfo: 'https://78662138.qcloud.la/gslm/userInfo/getUserInfo',
+    updataUserInfo: 'https://74043727.qcloud.la/gslm/userInfo/updateUserInfo',
+    requestUserInfo: 'https://74043727.qcloud.la/gslm/userInfo/getUserInfo',
     region: ['广东省', '广州市', '海珠区'],
     identities:["在职","学生"],
     genders:['女生','男生'],
