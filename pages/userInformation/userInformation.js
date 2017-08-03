@@ -44,6 +44,7 @@ Page({
     requestUrl: config.service.requestUrl,
     updataUserInfo: 'https://74043727.qcloud.la/gslm/userInfo/updateUserInfo', 
     requestUserInfo:'https://74043727.qcloud.la/gslm/userInfo/getUserInfo',
+    payrecordurl: "https://74043727.qcloud.la/gslm/pay/getPurchRecord",
     onModify:false,
     ourUserInfo:{}
   },
@@ -151,23 +152,13 @@ Page({
     })
   },
 
-  testlogin : function (){
-    showBusy('正在登录');
 
-    // 登录之前需要调用 qcloud.setLoginUrl() 设置登录地址，不过我们在 app.js 的入口里面已经调用过了，后面就不用再调用了
-    qcloud.login({
-      success(result) {
-        showSuccess('登录成功');
-        console.log('登录成功', result);
-      },
-
-      fail(error) {
-        showModel('登录失败', error);
-        console.log('登录失败', error);
-      }
-    });
-
+  getPayRecord:function(e){
+    wx.navigateTo({
+      url: '../../pages/purchRecord/purchRecord',
+    })
   },
+  
   requestUserInfo:function(e){
     var that = this;
     qcloud.request({
