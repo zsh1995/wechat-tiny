@@ -10,7 +10,8 @@
     "pages/practiceGroup/practiceGroup",
     "pages/detailInformation/detailInformation",
     "pages/schoolChoose/schoolChoose",
-    "pages/invitorPage/invitorPage"
+    "pages/invitorPage/invitorPage",
+    "pages/purchRecord/purchRecord"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -23,13 +24,13 @@
       {
         "pagePath": "pages/index/index",
         "text": "首页",
-        "iconPath":"iconSource/home.png",
-        "selectedIconPath":"iconSource/home.png"
+        "iconPath": "iconSource/home.png",
+        "selectedIconPath": "iconSource/home.png"
       },
       {
         "pagePath": "pages/examItems/examItems",
         "text": "加盟训练",
-        "iconPath":"iconSource/exam.png",
+        "iconPath": "iconSource/exam.png",
         "selectedIconPath": "iconSource/exam.png"
       },
       {

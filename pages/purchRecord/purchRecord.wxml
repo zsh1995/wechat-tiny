@@ -1,0 +1,18 @@
+<!--detailInformation.wxml-->
+<page>
+	<form bindsubmit="onSubmit">
+		<view class="contain_gslm">
+			<view class="detail-head">
+				<view>购买记录</view>
+			</view>
+			<view class="weui-cells weui-cells_after-title">
+				<view wx:for="{{purchList}}">
+          <view class="weui-cell">
+            <view class="weui-cell__bd cellinput">{{item.purchStar}}</view>
+            <view class="weui-cell__ft"><text>{{item.date}}</text></view>
+          </view>				
+        </view>
+		</view>
+    </view>
+	</form>
+</page>

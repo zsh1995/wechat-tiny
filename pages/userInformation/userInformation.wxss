@@ -72,18 +72,19 @@ page{
 }
 
 .item_list{
+    height:100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100%;
     max-width: 100%;
     align-items: center;
     padding-left: 30rpx;
     padding-right: 30rpx;
+
 }
 
 .itemcontainer {
-  height: 100%;
+  height:100%;
   max-width: 100%;
   display: flex;
   background: #ffffff;
@@ -210,8 +211,6 @@ page{
 }
 .bottom-box{
   width: 100%;
-	margin-top:100rpx;
-  padding-bottom: 20rpx;
 }
 
 .cellinput{
