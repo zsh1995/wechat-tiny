@@ -20,22 +20,27 @@
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
+    "backgroundColor":"white",
+    "selectedColor": "#1BBC9B",
+
     "list": [
       {
         "pagePath": "pages/index/index",
         "text": "首页",
-        "iconPath": "iconSource/home.png",
-        "selectedIconPath": "iconSource/home.png"
+        "iconPath": "iconSource/index-default.png",
+        "selectedIconPath": "iconSource/index-selected.png"
       },
       {
         "pagePath": "pages/examItems/examItems",
         "text": "加盟训练",
-        "iconPath": "iconSource/exam.png",
-        "selectedIconPath": "iconSource/exam.png"
+        "iconPath": "iconSource/training-default.png",
+        "selectedIconPath": "iconSource/training-selected.png"
       },
       {
         "pagePath": "pages/userInformation/userInformation",
-        "text": "我"
+        "text": "我",
+        "iconPath": "iconSource/user-default.png",
+        "selectedIconPath": "iconSource/user-selected.png"
       }
     ]
   }
