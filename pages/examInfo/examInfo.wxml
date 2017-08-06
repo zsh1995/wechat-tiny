@@ -2,13 +2,13 @@
 <view class='swiper-lists' bindtouchend='touchEnd' bindtouchstart='setEvent' bindtap="touchViewStart">
     <block wx:for="{{swiper.list}}" wx:for-item="listItem" wx:for-index="idx">
         <view  wx:if="{{idx == 0}}" class='swiper-list prev' animation="{{swiper.animationO}}">
-          <template is="exam-question" data="{{listItem,isSelect,selectdata}}"/>
+          <template is="exam-question" data="{{listItem,isSelect,selectdata,idx}}"/>
         </view>
         <view  wx:if="{{idx == 1}}" class='swiper-list' animation="{{swiper.animationT}}">
-          <template is="exam-question" data="{{listItem,isSelect,selectdata,animationDisap}}"/>
+          <template is="exam-question" data="{{listItem,isSelect,selectdata,animationDisap,toView,idx,showPullTips}}"/>
         </view>
         <view  wx:if="{{idx == 2}}" class='swiper-list next' animation="{{swiper.animationS}}">
-          <template is="exam-question" data="{{listItem,isSelect,selectdata}}"/>
+          <template is="exam-question" data="{{listItem,isSelect,selectdata,toView,idx}}"/>
         </view>
     </block>
 

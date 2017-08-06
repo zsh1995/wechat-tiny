@@ -10,7 +10,7 @@ var config = require('../../config');
 var showBusy = text => wx.showToast({
   title: text,
   icon: 'loading',
-  duration: 10000
+  duration: 10000,
 });
 
 // 显示成功提示
@@ -28,6 +28,7 @@ var groupId;
 var stars;
 
 var type;
+var screenWidth = wx.getSystemInfoSync().screenWidth ;
 
 
 // 显示失败提示
@@ -44,6 +45,7 @@ var showModel = (title, content) => {
 
 Page({
     data: {
+      showPullTips: false,
       loginUrl: config.service.loginUrl,
       requestUrl: config.service.requestUrl,
       questionUrl:'https://74043727.qcloud.la/gslm/getQuestions',
@@ -54,6 +56,7 @@ Page({
         isSelect:false,
         selectedId:0
       },
+      toView:'gold',
       answers:{
       isShowRemove:false,//是否显示移除按钮
       onLoadUrl:'weixin/small/1.0/?m=SmallApp&c=weixin&a=questionID',//题目号链接    
@@ -170,9 +173,15 @@ Page({
         y = endEvent.changedTouches[0].clientY - startEvent.changedTouches[0].clientY,
         pi=360*Math.atan(y/x)/(2*Math.PI);
         if(pi<30 && pi>-30 && x>0 && Math.abs(x) > 20){
+          this.setData({
+            showPullTips: false
+          })
           return 'right';
         }
         if(pi<30 && pi>-30 && x<0 && Math.abs(x) > 20){
+          this.setData({
+            showPullTips:false
+          })
           return 'left';
         }
         if((pi<-60 || pi>60) && y>0 && Math.abs(y) > 20){
@@ -184,6 +193,11 @@ Page({
   },
    //修改页面至正常位置
   setHtmlsetHtml:function(active){
+    var that = this
+    setTimeout(function () {
+      console.log("debug:")
+      that.getFields()
+    }, 200)
     var animationO = wx.createAnimation({
           transformOrigin: "50% 50%",
           duration: 0,
@@ -222,6 +236,7 @@ Page({
   },
   //切换题目逻辑
   getSubject:function(callBack){
+    var that = this;
     var that=this,start = this.data.answers.activeNum - this.data.answers.onceLoadLength,end = this.data.answers.activeNum + this.data.answers.onceLoadLength,params;
     start = start > 0 ? start : 0 ;
     end = end+1 >= this.data.answers.allLists.length ? this.data.answers.allLists.length : end ;
@@ -257,7 +272,12 @@ Page({
       this.data.answers.start = start;
       this.data.answers.end = end;
       this.setSwiperList();
-      this.setData(this.data);      
+      this.setData(this.data);
+      var that = this;
+      setTimeout(function (){
+        console.log("debug:")
+        that.getFields()
+      },200)
   },
   setSwiperList(){
       var oldStar = this.data.answers.activeNum-1,
@@ -272,6 +292,7 @@ Page({
       if(oldEnd > this.data.answers.allLists.length){
         this.data.swiper.list.push({});
       }
+      this.setData(this.data)
   },
   //错误的回调
   callBackError:function(e){
@@ -320,6 +341,11 @@ Page({
       this.onSwiper('left');
       return false;
     },
+    onScroll:function(e){
+      this.setData({
+        showPullTips:false
+      })
+    },
 
     bindTips :function(e){
       var currentPage = this.data.answers.activeNum;
@@ -337,6 +363,28 @@ Page({
           }
         }
       })
+    },
+
+    getFields: function () {
+      var that = this;
+      wx.createSelectorQuery().select('#mainContent1').boundingClientRect(function (rect) {
+        console.log("debug:height" + rect.height + "width" + rect.width)
+        rect.id      // 节点的ID
+        rect.dataset // 节点的dataset
+        rect.left    // 节点的左边界坐标
+        rect.right   // 节点的右边界坐标
+        rect.top     // 节点的上边界坐标
+        rect.bottom  // 节点的下边界坐标
+        rect.width   // 节点的宽度
+        rect.height  // 节点的高度
+        if (rect.height *750 /screenWidth > 530){
+          console.log("debug:true!")
+
+          that.setData({
+            showPullTips:true
+          })
+        }
+      }).exec()
     },
 
     pullQuestions : function(e,requestType){
@@ -392,6 +440,8 @@ Page({
         groupId = params.group;
         this.pullQuestions(this.data.questionUrl,1);
       }      
+      var res = wx.getSystemInfoSync()
+      screenWidth = res.screenWidth;
       this.setData(this.data)
     },
 

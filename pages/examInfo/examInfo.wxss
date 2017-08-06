@@ -239,3 +239,8 @@ page{
   line-height:1.6;
   letter-spacing: 0.1em;
 }
+.tipEnd{
+  margin-top: 36rpx;
+  align-self: center;
+  color: #aaa;
+}

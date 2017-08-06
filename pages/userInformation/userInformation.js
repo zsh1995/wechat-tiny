@@ -53,19 +53,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.showModal({
-      content: 'Tip：你还没有填写邀请人',
-      success: function (res) {
-        if (res.confirm) {
-          wx.navigateTo({
-            url: '../../pages/invitorPage/invitorPage',
-          })
-          console.log('用户点击确定')
-        } else if (res.cancel) {
-          console.log('用户点击取消')
-        }
-      }
-    })
     var that = this
     //调用应用实例的方法获取全局数据
     app.getUserInfo(function (userInfo) {
@@ -87,7 +74,24 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.requestUserInfo();
+    this.requestUserInfo('invitor', function (userdata) {
+      console.log("debugger_userInformation:userdata.invitor" + userdata.invitor)
+      if (userdata.invitor == null || userdata.invitor == '') {
+        wx.showModal({
+          content: 'Tip：你还没有填写邀请人',
+          success: function (res) {
+            if (res.confirm) {
+              wx.navigateTo({
+                url: '../../pages/invitorPage/invitorPage',
+              })
+              console.log('用户点击确定')
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
+        })
+      }
+    })
   },
 
   /**
@@ -159,7 +163,7 @@ Page({
     })
   },
   
-  requestUserInfo:function(e){
+  requestUserInfo:function(e,callback){
     var that = this;
     qcloud.request({
       url: this.data.requestUserInfo,
@@ -180,6 +184,9 @@ Page({
         console.log('debug id');
         that.data.ourUserInfo.id = tempZero.concat(that.data.ourUserInfo.id)
         that.setData(that.data);
+        if(callback){
+          callback(result.data.data.userInfo);
+        }
       },
       fail(error) {
         that.data.ourUserInfo = {userName:"未获取到数据"};
