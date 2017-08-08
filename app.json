@@ -21,12 +21,13 @@
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
-    "backgroundColor": "white",
+    "backgroundColor":"white",
+    "color": "#BBBBBB",
     "selectedColor": "#1BBC9B",
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "首页",
+        "text": "高商联盟",
         "iconPath": "iconSource/index-default.png",
         "selectedIconPath": "iconSource/index-selected.png"
       },
