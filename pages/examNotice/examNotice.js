@@ -37,7 +37,7 @@ Page({
   },
   gotoExam:function (e){
     var that = this;
-	var options = e.currentTarget.dataset.option;
+	  var options = e.currentTarget.dataset.option;
 	if(options == 'goExam'){
 		wx.navigateTo({
 		//目的页面地址
@@ -81,9 +81,9 @@ Page({
 		  url: this.data.checkUrl,
 		  login: true,
 		  data:{
-			type:0,
-			star:parseInt(star),
-      questionId:0
+        type:0,
+        star:parseInt(star),
+        questionId:0
 		  },
 		  method: 'POST',
 		  success(result) {
@@ -96,10 +96,10 @@ Page({
 				callback_fail();
 		  },
 		  fail(error) {
-			console.log('request fail', error);
+			  console.log('request fail', error);
 		  },
 		  complete() {
-			console.log('request complete');
+			  console.log('request complete');
 		  }
 
 		});

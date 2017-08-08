@@ -1,0 +1,6 @@
+<!--analysePage.wxml-->
+<view class="analysecontainer">
+  <text class="contentAnalyse">
+    {{analyse}}
+  </text>
+</view>

@@ -99,21 +99,25 @@ page{
   line-height: 36rpx;
 
 }
+.tipsContain{
+  display: flex;
+  flex-direction: row;
+  margin-left: auto;
+  justify-content:flex-end;
+}
 .tips {
   display:flex;
-  width: 80rpx;
-  height: 80rpx;
-  margin-left: auto;
+  padding:0rpx 15rpx 0rpx 15rpx;
+  height: 60rpx;
   font-size: 30rpx;
   color: #00C775;
   text-align: center;
-  border:2px solid #00C775;
-  border-radius: 50%;
+  border-bottom:2px solid #00C775;
+  /*border-radius: 50%;*/
   justify-content:center;
   align-items: center;
   margin-right:55rpx;
   margin-bottom: 50rpx;
-
   }
 
 .mask{

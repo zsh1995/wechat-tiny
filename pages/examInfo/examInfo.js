@@ -28,6 +28,12 @@ var groupId;
 var stars;
 
 var type;
+
+var execCount = 0;
+
+var intFunction = null;
+
+
 var screenWidth = wx.getSystemInfoSync().screenWidth ;
 
 
@@ -45,24 +51,26 @@ var showModel = (title, content) => {
 
 Page({
     data: {
+      type:"",
       showPullTips: false,
       loginUrl: config.service.loginUrl,
       requestUrl: config.service.requestUrl,
       questionUrl:'https://74043727.qcloud.la/gslm/getQuestions',
       examUrl: 'https://74043727.qcloud.la/gslm/exam/getExamQuestions',
+      paymentUrl: 'https://74043727.qcloud.la/gslm/pay/payEncap',
+      checkUrl: 'https://74043727.qcloud.la/gslm/pay/checkPurchRecord',
       isSelect:false,
       attitude: ['非常支持', '比较支持', '中立/不必探讨', '比较反对','非常反对'],
       selectdata:{
         isSelect:false,
         selectedId:0
       },
-      toView:'gold',
       answers:{
       isShowRemove:false,//是否显示移除按钮
       onLoadUrl:'weixin/small/1.0/?m=SmallApp&c=weixin&a=questionID',//题目号链接    
       start:0,//初始题号
       end:0,//结束题号
-     allLists: [],//题号数据
+      allLists: [],//题号数据
       activeNum:0,//当前条数
       showActiveNum:0,//当前显示条数
       onceLoadLength:5,//一次向俩端加载条数
@@ -347,6 +355,152 @@ Page({
       })
     },
 
+    
+
+
+
+    checkUserRight: function (star, callback_success, callback_fail) {
+      var that = this;
+      var currentPage = this.data.answers.activeNum;
+      var currentItem = this.data.answers.allLists[currentPage];
+      var questionId = currentItem.questionId
+      
+      console.log('is checking UserRight')
+      qcloud.request({
+        url: this.data.checkUrl,
+        login: true,
+        data: {
+          type: 1,
+          star: parseInt(star),
+          questionId: questionId
+        },
+        method: 'POST',
+        success(result) {
+          that.data.remainTimes = result.data.data.remainTime;
+          console.log('remainTimes:' + result.data.data.remainTime);
+          that.setData(that.data)
+          if (result.data.data.remainTime > 0)
+            callback_success();
+          else
+            callback_fail();
+        },
+        fail(error) {
+          console.log('request fail', error);
+        },
+        complete() {
+          console.log('request complete');
+        }
+
+      });
+
+    },
+
+    _checkUserRight: function (star, callback_success, callback_fail, whos) {
+      return function () {
+        whos.checkUserRight(star, callback_success, callback_fail)
+      }
+    },
+
+
+
+
+    requestPayment: function (obj) {
+      console.log("requestPay:" + obj);
+      var currentPage = this.data.answers.activeNum;
+      var currentItem = this.data.answers.allLists[currentPage];
+      var questionId = currentItem.questionId
+      var that = this;
+      wx.requestPayment({
+        'timeStamp': obj.timeStamp,
+        'nonceStr': obj.nonceStr,
+        'package': obj.package,
+        'signType': obj.signType,
+        'paySign': obj.paySign,
+        'success': function (res) {
+          console.log("success");
+          wx.showLoading({
+            title: '后台处理中',
+            mask: true
+          });
+          intFunction = setInterval(
+            that._checkUserRight(stars,
+              function () {
+                console.log('ss')
+                wx.hideLoading()
+                clearInterval(intFunction)
+                that.data.answers.allLists[currentPage].isPurchAnalyse = 1;
+                that.setData(that.data)
+                //跳转
+                wx.navigateTo({
+                  url: '../analysePage/analysePage?star=' + stars + '&questionId=' + questionId,
+                })
+              },
+              function () {
+                console.log('ff' + execCount)
+                execCount = execCount + 1;
+                if (execCount >= 5) {
+                  wx.hideLoading()
+                  console.log('stop')
+                  clearInterval(intFunction)
+                }
+              }, that)
+            , 1000
+          )
+        },
+        'fail': function (res) {
+          console.log("fail");
+        }
+      })
+    },
+
+
+
+    bindAnalyse:function(e){
+      var currentPage = this.data.answers.activeNum;
+      var currentItem = this.data.answers.allLists[currentPage];
+      var questionId = currentItem.questionId
+      var that = this;
+      if (currentItem.isPurchAnalyse != 0){
+        wx.navigateTo({
+          url: '../analysePage/analysePage?star='+stars+'&questionId='+questionId,
+        })
+      } else{
+        wx.showModal({
+          title: '解析尚未购买',
+          content: '您尚未购买解析，不能查看，点击确定进行购买',
+          success:function(res){
+            if(res.confirm){
+
+              qcloud.request({
+                url: that.data.paymentUrl,
+                login: true,
+                data: {
+                  type: 1,
+                  star: parseInt(stars),
+                  questionId: questionId
+                },
+                method: 'POST',
+                success(result) {
+                  that.requestPayment(result.data);
+                },
+                fail(error) {
+                  console.log('request fail', error);
+                },
+                complete() {
+                  console.log('request complete');
+                }
+
+              });
+
+
+            }
+            
+          }
+        })
+      }
+    },
+
+
     bindTips :function(e){
       var currentPage = this.data.answers.activeNum;
       var that = this;
@@ -401,7 +555,7 @@ Page({
           type: requestType
         },
         success(result) {
-          console.log('request success', result.data.data.questionlist);
+      
 		  if(requestType == 0) var resultData = result.data.data.questionList;
 		  else var resultData = result.data.data.questionlist;
           var cnt = 0;
@@ -410,7 +564,7 @@ Page({
           for(var i = 0;i< resultData.length;i++){
             resultData[i].content=resultData[i].content.replace(/\\n/,"\n");
             resultData[i].index = i;
-			resultData[i].options=mOptions
+			      resultData[i].options=mOptions
           }          
           that.data.answers.allLists = resultData;
           that.setData(that.data);
@@ -433,6 +587,7 @@ Page({
       this.data.chooseList = chooseList;
       stars = params.item;
       type = params.type;
+      this.data.type = params.type;
       if(params.type == 'exam'){
         groupId = 0;
         this.pullQuestions(this.data.examUrl,0);

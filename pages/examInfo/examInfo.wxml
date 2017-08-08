@@ -16,7 +16,10 @@
   <view class="footer">
 
   	<view style="position:absolute;bottom:120rpx;width:100%">
-    <view class="tips" bindtap="bindTips" data-option="{{listItem}}"><view style="">提示</view></view>
+    <view class="tipsContain">
+      <view wx:if="{{type != 'exam' && answers.allLists[answers.activeNum].analyse != ''}}" class="tips" bindtap="bindAnalyse" data-option="{{listItem}}"><view>解析<view wx:if="{{answers.allLists[answers.activeNum].isPurchAnalyse == 1}}"  style="display:inline-block">(已购买)</view></view></view>
+      <view class="tips"  bindtap="bindTips" data-option="{{listItem}}"><view style="">提示</view></view>
+    </view>
 		<view class="container" hidden="{{isSelect}}">
 			<view wx:for="{{swiper.list[1].options}}" wx:for-index="idx">
 					<view wx:if="{{idx!=0}}" class="list" style="background:{{item.color}}" data-option="{{idx}}" catchtap="tapCheckbox"></view>

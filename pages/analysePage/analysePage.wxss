@@ -1,0 +1,14 @@
+/* analysePage.wxss */
+
+.analysecontainer{
+
+  display: flex;
+  flex-direction: column;
+
+}
+
+.contentAnalyse{
+  padding:30rpx 80rpx 60rpx 80rpx;
+  line-height:1.6;
+  letter-spacing: 0.1em;
+}

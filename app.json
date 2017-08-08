@@ -11,7 +11,8 @@
     "pages/detailInformation/detailInformation",
     "pages/schoolChoose/schoolChoose",
     "pages/invitorPage/invitorPage",
-    "pages/purchRecord/purchRecord"
+    "pages/purchRecord/purchRecord",
+    "pages/analysePage/analysePage"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -20,9 +21,8 @@
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
-    "backgroundColor":"white",
+    "backgroundColor": "white",
     "selectedColor": "#1BBC9B",
-
     "list": [
       {
         "pagePath": "pages/index/index",
