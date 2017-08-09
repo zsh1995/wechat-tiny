@@ -42,3 +42,13 @@ font-size:17px;
   line-height: 1.41176471;
   font-size: 32rpx;
 }
+.wholecontainer{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding:10px 30px;
+}
+.item_style{
+  padding:10px 0px;
+  text-align: center;
+}

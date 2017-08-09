@@ -1,19 +1,32 @@
 <!--detailInformation.wxml-->
 <page>
-	<form bindsubmit="onSubmit">
-		<view class="contain_gslm">
-			<view class="detail-head">
-				<view>购买记录</view>
-			</view>
-			<view class="weui-cells weui-cells_after-title">
-        <view wx:for="{{purchList}}">
-          <view class="weui-cell">
-            <view class="weui-cell__bd cellinput">考试</view>
-            <view class="weui-cell__bd cellinput">{{item.purchStar}}</view>
-            <view class="weui-cell__ft"><text>{{item.date}}</text></view>
-          </view>				
+  <form bindsubmit="onSubmit">
+    <view class="contain_gslm">
+      <view class="detail-head">
+        <view>购买记录</view>
+      </view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="wholecontainer">
+          <view class="zui-column">
+            <view class="item_style">项目名称</view>
+            <view wx:for="{{purchList}}">
+              <view class="item_style">{{item.type != null && item.type=='analyse' ?'解析':'考试'}}</view>
+            </view>
+          </view>
+          <view class="zui-column">
+          <view class="item_style">编号</view>
+            <view wx:for="{{purchList}}">
+              <view class="item_style">{{item.purchStar}}星级{{item.questionId != 0 && item.questionId != null ? '，'+item.questionId+'题' :''}}</view>
+            </view>
+          </view>
+          <view class="zui-column">
+            <view class="item_style">购买日期</view>
+            <view wx:for="{{purchList}}">
+              <view class="item_style" style="color:#aaa">{{item.date}}</view>
+            </view>
+          </view>
         </view>
-		</view>
+      </view>
     </view>
-	</form>
+  </form>
 </page>

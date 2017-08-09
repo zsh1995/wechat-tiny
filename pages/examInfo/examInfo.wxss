@@ -245,6 +245,7 @@ page{
 }
 .tipEnd{
   margin-top: 36rpx;
-  align-self: center;
+  
   color: #aaa;
+  font-size: 24rpx;
 }

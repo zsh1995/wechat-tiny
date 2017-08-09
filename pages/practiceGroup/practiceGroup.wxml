@@ -50,7 +50,7 @@
 			  </view>
 			</view>
 			<view class="demo__item">
-			  <view class="demo__icon zan-badge cynsytle" bindtap="groupOntap" data-option="9"><view>09组</view>  <view style="color:{{color[9]}}">{{score[9]}}</view>
+			  <view class="demo__icon zan-badge cynsytle" bindtap="groupOntap" data-option="9"><view>09</view>  <view style="color:{{color[9]}}">{{score[9]}}</view>
 
 			  </view>
 			</view>

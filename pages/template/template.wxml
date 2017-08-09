@@ -9,7 +9,7 @@
                 <view id = "mainContent{{idx}}"><text>{{listItem.content}}</text></view>
               </view>
             </scroll-view>
-            <view class="tipEnd" style="visibility:{{showPullTips?'':'hidden'}}">下拉完整试题</view>
+            <view class="tipEnd" style="visibility:{{showPullTips?'':'hidden'}}">滑动完整试题</view>
           </view>
 			</view>
             <view style="clear:both"></view>
