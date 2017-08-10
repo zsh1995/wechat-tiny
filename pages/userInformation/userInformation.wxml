@@ -24,7 +24,7 @@
 			</view>
 		</view>
 		<view class="bottom-box">
-			<button class="item_no_border" style="height:8%;">
+			<button class="item_no_border" style="height:8%;" bindtap="bindInvitor">
 			{{ourUserInfo.invitor}} 邀请你加入了联盟
 			</button>
 			<button class="item" style="height:8%;" bindtap="getPayRecord">

@@ -1,0 +1,23 @@
+/* invitorList.wxss */
+.searchbar-result{
+    margin-top: 0;
+    font-size: 14px;
+}
+.searchbar-result:before{
+    display: none;
+}
+.schoolAva{
+	height:40px;
+	width:40px;
+  border-radius: 50%;
+}
+.detail-head{
+	display:flex;
+  padding-left:10px;	
+  font-size:36rpx;
+	margin:40rpx 0rpx 40rpx 0rpx;
+	color:#7A7A7A;
+}
+.weui-cell {
+    margin:0rpx 15px 0rpx 15px;
+}

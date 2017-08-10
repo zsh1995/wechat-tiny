@@ -198,6 +198,15 @@ Page({
     });
   },
 
+  bindInvitor :function(e){
+    wx.navigateTo({
+      url: '../../pages/invitorList/invitorList',
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
+  },
+
   onSubmit :function(event){
     showBusy('正在提交');
     var that = this;
