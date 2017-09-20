@@ -1,8 +1,6 @@
 page{
   display: block;
-  box-sizing: padding-box;
   height:100%;
-  overflow: visible;
 }
 .item_sub{
   display: flex;
@@ -21,9 +19,18 @@ page{
   background: #ffffff;
   height: 33%;
   width:100%;
-  margin: 3rpx;
+  margin-top: 3rpx;
+  margin-bottom: 3rpx;
   justify-content:center;
 }
+
+.item_head{
+  display: flex;
+  letter-spacing: 0.1em;
+  color: #aaa;
+  margin: 10px 18px 10px 18px;
+}
+
 .item_sub_row{
   margin-top:40rpx;
   display: flex;
@@ -48,11 +55,11 @@ page{
 
 .itemcontainer {
   height: 100%;
+  max-width:100%;
   display: flex;
   background: #f8f8f8;
   flex-direction: column;
   justify-content: space-between;
-  padding: 0rpx 0;
   box-sizing: border-box;
 } 
 
@@ -70,4 +77,15 @@ font-size:17px;
 .pass{
 	color:#00C775 !important;
 	border:1px solid #00C775 !important;
+}
+
+.title-content{
+  display: block;
+  height: auto;
+}
+
+@-webkit-keyframes disappear{
+  100%{
+    height: 0
+  }
 }

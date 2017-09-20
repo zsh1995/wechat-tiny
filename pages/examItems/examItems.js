@@ -5,13 +5,14 @@ var qcloud = require('../../bower_components/wafer-client-sdk/index');
 var config = require('../../config');
 //
 var passExam = [0,0,0]
+var title_height = 0;
 
 Page({
     data: {
     motto: 'Hello World',
     color: 'green',
-    examUrl:'https://74043727.qcloud.la/gslm/exam/getExamStatus',
-    passExam:[1,1,1,1]
+    examUrl:`https://${config.service.host}/gslm/exam/getExamStatus`,
+    passExam:[1,1,1,1],
   },
 
   gotoPractice:function(e){
@@ -74,12 +75,73 @@ Page({
     console.log("examItems onLoad")
 
   },
+
+  bindtouchstart: function(e){
+    this.setData({
+      touchstartEvent: e
+    })
+  },
+  bindtouchmove: function(e){
+    if(this.getDirection(this.data.touchstartEvent,e) == 'top'){
+      this.getFields();
+    }
+  },
+  getDirection: function (startEvent, endEvent) {
+    var x = endEvent.changedTouches[0].clientX - startEvent.changedTouches[0].clientX,
+      y = endEvent.changedTouches[0].clientY - startEvent.changedTouches[0].clientY,
+      pi = 360 * Math.atan(y / x) / (2 * Math.PI);
+    if (pi < 30 && pi > -30 && x > 0 && Math.abs(x) > 20) {
+      this.setData({
+        showPullTips: false
+      })
+      return 'right';
+    }
+    if (pi < 30 && pi > -30 && x < 0 && Math.abs(x) > 20) {
+      this.setData({
+        showPullTips: false
+      })
+      return 'left';
+    }
+    if ((pi < -60 || pi > 60) && y > 0 && Math.abs(y) > 20) {
+      return 'bottom';
+    }
+    if ((pi < -60 || pi > 60) && y < 0 && Math.abs(y) > 20) {
+      return 'top';
+    }
+  },
+
+  getFields: function () {
+    wx.createSelectorQuery().select('#title-tips').fields({
+      dataset: true,
+      size: true,
+      scrollOffset: true,
+      properties: ['scrollX', 'scrollY']
+    }, function (res) {
+      title_height = res.height     // 节点的高度
+      setTimeout(
+      function () {
+        this.setData({
+          titleStyle: 'height:'+res.height+'px;animation:disappear .5s linear;animation-fill-mode:forwards;',
+        })
+      }.bind(this), 100
+    )
+    }.bind(this)).exec()
+  },
   onShow: function () {
     var that = this;
     console.log("examItems onShow")
     for (var cnt = 0; cnt < 3; cnt++) {
       this.getExamStatus(cnt + 1);
     }
+    /*
+    setTimeout(
+      function(){
+        this.setData({
+          titleStyle:'animation:disappear .5s ease-in-out;animation-fill-mode:forwards;'
+        })
+      }.bind(this),10000
+    )
+    */
   },
 
 })

@@ -6,51 +6,51 @@
 	  <view class="demo">
 		<view class="oneline">
 			<view class="demo__item">
-			  <view class="demo__icon zan-badge cynsytle" bindtap="groupOntap" data-option="1"><view>01</view>  <view style="color:{{color[1]}}">{{score[1]}}</view>
+			  <view class="demo__icon zan-badge cynsytle" bindtap="groupOntap" data-option="1"><view>01组</view>  <view style="color:{{color[1]}}">{{score[1]}}</view>
 
 			  </view>
 			</view>
 			<view class="demo__item">
-			  <view class="demo__icon zan-badge cynsytle" bindtap="groupOntap" data-option="2"><view>02</view>  <view style="color:{{color[2]}}">{{score[2]}}</view>
+			  <view class="demo__icon zan-badge cynsytle" bindtap="groupOntap" data-option="2"><view>02组</view>  <view style="color:{{color[2]}}">{{score[2]}}</view>
 
 			  </view>
 			</view>
 			<view class="demo__item">
-			  <view class="demo__icon zan-badge cynsytle" bindtap="groupOntap" data-option="3"><view>03</view>  <view style="color:{{color[3]}}">{{score[3]}}</view>
+			  <view class="demo__icon zan-badge cynsytle" bindtap="groupOntap" data-option="3"><view>03组</view>  <view style="color:{{color[3]}}">{{score[3]}}</view>
 
 			  </view>
 			</view>
 		</view>
 		<view class="oneline">
 			<view class="demo__item">
-			  <view class="demo__icon zan-badge cynsytle" bindtap="groupOntap" data-option="4"><view>04</view>  <view style="color:{{color[4]}}">{{score[4]}}</view>
+			  <view class="demo__icon zan-badge cynsytle" bindtap="groupOntap" data-option="4"><view>04组</view>  <view style="color:{{color[4]}}">{{score[4]}}</view>
 
 			  </view>
 			</view>
 			<view class="demo__item">
-			  <view class="demo__icon zan-badge cynsytle" bindtap="groupOntap" data-option="5"><view>05</view>  <view style="color:{{color[5]}}">{{score[5]}}</view>
+			  <view class="demo__icon zan-badge cynsytle" bindtap="groupOntap" data-option="5"><view>05组</view>  <view style="color:{{color[5]}}">{{score[5]}}</view>
 
 			  </view>
 			</view>
 			<view class="demo__item">
-			  <view class="demo__icon zan-badge cynsytle" bindtap="groupOntap" data-option="6"><view>06</view>  <view style="color:{{color[6]}}">{{score[6]}}</view>
+			  <view class="demo__icon zan-badge cynsytle" bindtap="groupOntap" data-option="6"><view>06组</view>  <view style="color:{{color[6]}}">{{score[6]}}</view>
 
 			  </view>
 			</view>
 		</view>
 		<view class="oneline" wx:if="{{star == 1}}">
 			<view class="demo__item">
-			  <view class="demo__icon zan-badge cynsytle" bindtap="groupOntap" data-option="7"><view>07</view>  <view style="color:{{color[7]}}">{{score[7]}}</view>
+			  <view class="demo__icon zan-badge cynsytle" bindtap="groupOntap" data-option="7"><view>07组</view>  <view style="color:{{color[7]}}">{{score[7]}}</view>
 
 			  </view>
 			</view>
 			<view class="demo__item">
-			  <view class="demo__icon zan-badge cynsytle" bindtap="groupOntap" data-option="8"><view>08</view>  <view style="color:{{color[8]}}">{{score[8]}}</view>
+			  <view class="demo__icon zan-badge cynsytle" bindtap="groupOntap" data-option="8"><view>08组</view>  <view style="color:{{color[8]}}">{{score[8]}}</view>
 
 			  </view>
 			</view>
 			<view class="demo__item">
-			  <view class="demo__icon zan-badge cynsytle" bindtap="groupOntap" data-option="9"><view>09</view>  <view style="color:{{color[9]}}">{{score[9]}}</view>
+			  <view class="demo__icon zan-badge cynsytle" bindtap="groupOntap" data-option="9"><view>09组</view>  <view style="color:{{color[9]}}">{{score[9]}}</view>
 
 			  </view>
 			</view>

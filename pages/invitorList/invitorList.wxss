@@ -21,3 +21,7 @@
 .weui-cell {
     margin:0rpx 15px 0rpx 15px;
 }
+.listContainer{
+  display: flex;
+  flex-direction: column;
+}

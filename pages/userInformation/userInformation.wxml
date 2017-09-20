@@ -1,7 +1,8 @@
   <!--userInformation.wxml-->
 <view class="itemcontainer">
 	<view class="item_list">
-		<view class="gslm-cardbox">
+		<view class="card-container">
+		<view class="gslm-cardbox" style="{{cardboxStyle}}" bindtap='turnOver'>
 			<view class="gslm-cardbox_name">
 				<image class="userinfo-avatarshow" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
 				<view class = "userinfo-rightbox">
@@ -11,7 +12,7 @@
 						<view class="userinfo-major" >{{ourUserInfo.major}}</view>
 					</view>
 				</view>
-				<image class = "userinfo-editor" src="http://storage1.imgchr.com/koaM4.png" bindtap="bindEdit"> </image>
+				<view class = "userinfo-editor"  catchtap="bindEdit"> </view>
 
 			</view>
 			<view class="gslm-cardbox_userinfo">
@@ -23,9 +24,33 @@
 				ID : {{ourUserInfo.id}}
 			</view>
 		</view>
+		
+		<view class="gslm-cardbox-back" style="{{cardboxStyleAnti}}" bindtap='turnBack'>
+			<view class="gslm-cardbox_name">
+				<image class="userinfo-avatarshow" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+				<view class = "userinfo-rightbox">
+					<view class="userinfo-nickname" >{{ourUserInfo.student_name==""||ourUserInfo.student_name==null?userInfo.nickName:ourUserInfo.student_name}}</view>
+					<view class = "userinfo-bottombox">
+						<view class="userinfo-school" >{{ourUserInfo.school}}</view>
+						<view class="userinfo-major" >{{ourUserInfo.major}}</view>
+					</view>
+				</view>
+
+			</view>
+			<view class="gslm-cardbox_userinfo">
+				<view class="usermobile">手机(back)：{{ourUserInfo.phoneNumber}}</view>
+				<view class="usermail">邮箱：{{ourUserInfo.emailAddr}}</view>
+				<view class="useradress"></view>
+			</view>
+			<view class="gslm-cardbox_id">
+				ID : {{ourUserInfo.id}}
+			</view>
+		</view>
+		
+		</view>
 		<view class="bottom-box">
 			<button class="item_no_border" style="height:8%;" bindtap="bindInvitor">
-			{{ourUserInfo.invitor}} 邀请你加入了联盟
+			邀请关系
 			</button>
 			<button class="item" style="height:8%;" bindtap="getPayRecord">
 			查看付费记录

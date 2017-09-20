@@ -12,8 +12,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    updataUserInfo: 'https://74043727.qcloud.la/gslm/userInfo/updateUserInfo',
-    requestUserInfo: 'https://74043727.qcloud.la/gslm/userInfo/getUserInfo',
+    updataUserInfo: `https://${config.service.host}/gslm/userInfo/updateUserInfo`,
+    requestUserInfo: `https://${config.service.host}/gslm/userInfo/getUserInfo`,
     region: ['广东省', '广州市', '海珠区'],
     identities:["在职","学生"],
     genders:['女生','男生'],
@@ -24,7 +24,6 @@ Page({
   },
 
   bindRegionChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       region: e.detail.value
     })
@@ -46,7 +45,7 @@ Page({
     userInfo.gender = this.data.genders[parseInt(userInfo.gender)]
     userInfo.type = this.data.identities[parseInt(userInfo.identity)]
     var mSchool = this.data.schoolName
-    mSchool = mSchool == '选择您的学校'?null:mSchool
+    mSchool = mSchool == '选择您的学校'?'':mSchool
     userInfo.school = mSchool
     userInfo.city = userInfo.city[1]
     console.log('提交：' + userInfo)

@@ -1,10 +1,18 @@
 <!--index.wxml-->
 <view class="container">
-  <view navigator url="../pages/examInfo/examInfo" class="userinfo">
-    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-  </view>
-  <view bindtap="bindViewTap" class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+  <view class="textcontent">
+    <text class="text-title">
+      前一千名学员特权
+    </text>
+    <text class="text-body">
+      点击“我 – 编辑”
+填写期望的在京企业，
+达到一星级承诺三星级后，
+该企业如有合适岗位，
+即保证内推面试！
+一星级考试两次免费！
+（免费功能在开发中）
+更多详情“高商联盟”订阅号！
+    </text>
   </view>
 </view>

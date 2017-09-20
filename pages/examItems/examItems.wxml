@@ -1,36 +1,37 @@
-<view class="itemcontainer">
-    <view class="item_list">
+<view class="itemcontainer" bindtouchstart='bindtouchstart' bindtouchmove='bindtouchmove'>
+  <view class="item title-content" style="{{titleStyle}}" id='title-tips' ><text class="item_head">以下练习、考试话题供交流思考，可提高实用智商、情商、逆商。考试结果反映实用智商。</text></view>
 
-  <view class="item">
+  <view class="item_list">
+    <view class="item">
       <text style="font-size:46rpx;">一 星 级 · 恋 爱 交 友</text>
       <view class="item_sub_row">
-      <view><button  class="mbutton weui-btn" plain="true" bindtap="gotoPractice" data-option="1"><view>练 习</view></button></view>
-      <view>
-        <view wx:if="{{passExam[0] == 1}}"><button class="weui-btn mbutton" plain="true" bindtap="gotoExam" data-option="1">考 试 未 通 过</button></view>
-        <view wx:if="{{passExam[0] == 0}}"><button class="weui-btn mbutton pass" plain="true" bindtap="gotoExam" data-option="1">考 试 已 通 过</button></view>
-      </view>
-      </view>
+        <view><button class="mbutton weui-btn" plain="true" bindtap="gotoPractice" data-option="1"><view>练 习</view></button></view>
+        <view>
+          <view wx:if="{{passExam[0] == 1}}"><button class="weui-btn mbutton" plain="true" bindtap="gotoExam" data-option="1">考 试 <text style="font-size:15px">未 通 过</text></button></view>
+          <view wx:if="{{passExam[0] == 0}}"><button class="weui-btn mbutton pass" plain="true" bindtap="gotoExam" data-option="1">考 试 已 通 过</button></view>
         </view>
-        <view class="item">
+      </view>
+    </view>
+    <view class="item">
       <text style="font-size:46rpx">二 星 级 · 社 会 生 活</text>
       <view class="item_sub_row">
-      <view><button class="weui-btn mbutton" plain="true" bindtap="gotoPractice" data-option="2">练 习</button></view>
-      <view>
-        <view wx:if="{{passExam[1] == 1}}"><button class="weui-btn mbutton" plain="true" bindtap="gotoExam" data-option="2">考 试 未 通 过</button></view>
-        <view wx:if="{{passExam[1] == 0}}"><button class="weui-btn mbutton pass" plain="true" bindtap="gotoExam" data-option="2">考 试 已 通 过</button></view>
-      </view>
-      </view>
+        <view><button class="weui-btn mbutton" plain="true" bindtap="gotoPractice" data-option="2">练 习</button></view>
+        <view>
+          <view wx:if="{{passExam[1] == 1}}"><button class="weui-btn mbutton" plain="true" bindtap="gotoExam" data-option="2">考 试 <text style="font-size:15px">未 通 过</text></button></view>
+          <view wx:if="{{passExam[1] == 0}}"><button class="weui-btn mbutton pass" plain="true" bindtap="gotoExam" data-option="2">考 试 已 通 过</button></view>
         </view>
-       <view class="item">
+      </view>
+    </view>
+    <view class="item">
       <text style="font-size:46rpx">三 星 级 · 求 职 工 作</text>
       <view class="item_sub_row">
-      <view><button class="weui-btn mbutton" plain="true" bindtap="gotoPractice" data-option="3">练 习</button></view>
-      <view>
-        <view wx:if="{{passExam[2] == 1}}"><button class="weui-btn mbutton" plain="true" bindtap="gotoExam" data-option="3">考 试 未 通 过</button></view>
-        <view wx:if="{{passExam[2] == 0}}"><button class="weui-btn mbutton pass" plain="true" bindtap="gotoExam" data-option="3">考 试 已 通 过</button></view>
-      </view>
-      </view>
+        <view><button class="weui-btn mbutton" plain="true" bindtap="gotoPractice" data-option="3">练 习</button></view>
+        <view>
+          <view wx:if="{{passExam[2] == 1}}"><button class="weui-btn mbutton" plain="true" bindtap="gotoExam" data-option="3">考 试 <text style="font-size:15px">未 通 过</text></button></view>
+          <view wx:if="{{passExam[2] == 0}}"><button class="weui-btn mbutton pass" plain="true" bindtap="gotoExam" data-option="3">考 试 已 通 过</button></view>
         </view>
-
+      </view>
     </view>
+
+  </view>
 </view>

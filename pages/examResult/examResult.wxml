@@ -4,7 +4,7 @@
   <view class="flex-item score" style="color:{{scoreColor}}">
     {{score}}
   </view>
-  <view class="flex-item comment"><scroll-view scroll-y style="height:100%;width:auto"><text>自我介绍规则：{{comment}}</text></scroll-view></view>
+  <view class="flex-item comment"><scroll-view scroll-y style="height:100%;width:auto"><text>{{comment}}</text></scroll-view></view>
   <view class="flex-item button">
     <button wx:if="{{type == 'practice'}}" class="weui-btn mbutton pass" plain="true" style="align-self: center; width:550rpx" bindtap="endExam">返 回</button>
     <button wx:if="{{type == 'exam'}}" class="weui-btn mbutton" plain="true" style="margin:10rpx;color:black;border-color:black;align-self: center; width:auto" bindtap="gobacktoMain">←</button>

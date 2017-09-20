@@ -14,6 +14,7 @@ Page({
    */
   data: {
     invitorList:[],
+    myInvitor:{},
     invitorListUrl: `https://${config.service.host}/gslm/userInfo/getInvitedList`
   },
 
@@ -30,7 +31,8 @@ Page({
       success(result) {
         console.log("success:" + result);
         that.setData({
-          invitorList:result.data.data
+          invitorList:result.data.data.invitedList,
+          myInvitor: result.data.data.myInvitor
         })
         
       },

@@ -1,11 +1,21 @@
 <!--invitorList.wxml-->
-
-<view class="detail-head">
-  <view>我邀请的朋友</view>
-</view>
-<view class="weui-cells weui-cells_after-title">
-  <view wx:for="{{invitorList}}" class="weui-cell">
-    <image class="schoolAva" src="{{item.avatar_url}}"></image>
-    <view style="margin-left:20rpx">{{item.name}}</view>
+<view class="listContainer">
+  <view class="detail-head">
+    <view>邀请我的朋友</view>
+  </view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell">
+      <image class="schoolAva" src="{{myInvitor.avatar_url}}"></image>
+      <view style="margin-left:20rpx">{{myInvitor.name}}</view>
+    </view>
+  </view>
+  <view class="detail-head">
+    <view>我邀请的朋友</view>
+  </view>
+  <view class="weui-cells weui-cells_after-title">
+    <view wx:for="{{invitorList}}" class="weui-cell">
+      <image class="schoolAva" src="{{item.avatar_url}}"></image>
+      <view style="margin-left:20rpx">{{item.name}}</view>
+    </view>
   </view>
 </view>

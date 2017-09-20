@@ -21,10 +21,10 @@ Page({
     remainTimes:10,
     passTimes:0,
     needTimes:0,
-    updateExamStatus:'https://74043727.qcloud.la/gslm/exam/uploadStatus',
-    uploadScore: 'https://74043727.qcloud.la/gslm/uploadScore',
-    examUrl: 'https://74043727.qcloud.la/gslm/exam/getExamStatus',
-    checkUrl: 'https://74043727.qcloud.la/gslm/pay/checkPurchRecord',
+    updateExamStatus:`https://${config.service.host}/gslm/exam/uploadStatus`,
+    uploadScore: `https://${config.service.host}/gslm/uploadScore`,
+    examUrl: `https://${config.service.host}/gslm/exam/getExamStatus`,
+    checkUrl: `https://${config.service.host}/gslm/pay/checkPurchRecord`,
 
   },
 
@@ -109,7 +109,7 @@ Page({
    */
   onLoad: function (options) {
     stars = options.stars;
-    result = utils.getCommentByScore(options.score);
+    var result = utils.getCommentByScore(options.score);
     this.data.comment = result.comment;
     this.data.score = result.score;
     this.data.type = options.type;

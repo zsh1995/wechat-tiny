@@ -42,12 +42,38 @@ Page({
   data: {
     userInfo: {},
     requestUrl: config.service.requestUrl,
-    updataUserInfo: 'https://74043727.qcloud.la/gslm/userInfo/updateUserInfo', 
-    requestUserInfo:'https://74043727.qcloud.la/gslm/userInfo/getUserInfo',
-    payrecordurl: "https://74043727.qcloud.la/gslm/pay/getPurchRecord",
+    updataUserInfo: `https://${config.service.host}/gslm/userInfo/updateUserInfo`, 
+    requestUserInfo:`https://${config.service.host}/gslm/userInfo/getUserInfo`,
+    payrecordurl: `https://${config.service.host}/gslm/pay/getPurchRecord`,
     onModify:false,
     ourUserInfo:{}
   },
+  turnOver: function(event){
+    setTimeout((function () {
+      this.setData({
+        cardboxStyle: 'opacity:0;transform: rotateX(180deg);',
+        cardboxStyleAnti: 'opacity: 1;transform: rotateX(0);'
+      })
+    }).bind(this), 600)
+
+    this.setData({
+      cardboxStyle: 'animation:turnover .5s ease-in-out;animation-fill-mode:forwards;',
+      cardboxStyleAnti: 'animation:turnback .5s ease-in-out;animation-fill-mode:forwards;'
+    })
+  },
+  turnBack: function (event) {
+    this.setData({
+      cardboxStyle: this.data.cardboxStyle+'animation:turnback .5s ease-in-out;animation-fill-mode:forwards;',
+      cardboxStyleAnti: this.data.cardboxStyleAnti+'animation:turnover .5s ease-in-out;animation-fill-mode:forwards;'
+    })
+    setTimeout((function () {
+      this.setData({
+        cardboxStyle: '',
+        cardboxStyleAnti: ''
+      })
+    }).bind(this), 600)
+  },
+
 
   /**
    * 生命周期函数--监听页面加载

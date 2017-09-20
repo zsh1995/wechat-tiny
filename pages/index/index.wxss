@@ -19,3 +19,22 @@
 .usermotto {
   margin-top: 200px;
 }
+
+.textcontent{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+.text-title{
+  letter-spacing: 0.2em;
+  font-size: 35rpx;
+  font-weight: bold;
+  text-align: center;
+}
+.text-body{
+  letter-spacing: 0.1em;
+  line-height: 2;
+  font-size: 32rpx;
+  text-align: center;
+}

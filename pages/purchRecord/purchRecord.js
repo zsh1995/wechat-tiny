@@ -66,8 +66,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    payrecordurl: "https://74043727.qcloud.la/gslm/pay/getPurchRecord",
-    purchList:[]
+    payrecordurl: `https://${config.service.host}/gslm/pay/getPurchRecord`,
+    purchList:[],
+    recordTypes:['全部','考试','解析'],
+    typeId:0
   },
 
   /**
@@ -100,6 +102,11 @@ Page({
 
     });
 
+  },
+  chooseType: function (e) {
+    this.setData({
+      typeId: e.detail.value
+    })
   },
 
   /**

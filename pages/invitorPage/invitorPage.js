@@ -16,8 +16,8 @@ Page({
     inputShowed: false,
     inputVal: "",
     invitor_avator:"",
-    updataUserInfo: 'https://74043727.qcloud.la/gslm/userInfo/setInvitor',
-    requestUserInfo: 'https://74043727.qcloud.la/gslm/userInfo/getInvitor'
+    updataUserInfo: `https://${config.service.host}/gslm/userInfo/setInvitor`,
+    requestUserInfo: `https://${config.service.host}/gslm/userInfo/getInvitor`
 
   },
   showInput: function () {
@@ -49,9 +49,15 @@ Page({
       },
       success(result) {
         console.log("success:" + result);
-        wx.navigateBack({
-          
-        })
+        if (result.data.code == 0) { 
+          wx.navigateBack({})
+        }else{
+          wx.showToast({
+            title: result.data.message,
+            mask:true
+          })
+        }
+        
         
       },
       fail(error) {

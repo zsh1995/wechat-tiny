@@ -2,7 +2,8 @@
 var util = require('../../utils/score')
 // 引入 QCloud 小程序增强 SDK
 var qcloud = require('../../bower_components/wafer-client-sdk/index');
-
+//
+var coupond = require('../../utils/coupon');
 // 引入配置
 var config = require('../../config');
 
@@ -51,14 +52,17 @@ var showModel = (title, content) => {
 
 Page({
     data: {
-      type:"",
+      type:"交流基地",
+      commBaseMessage:"以下交流基地在每周一至六14:00 – 15:30都有交流会，建议你一周来一次，可以认识很多高质量朋友（含异性朋友）。需喝一瓶水或一杯茶（咖啡）\n 参加六次可申请教育部“职业沟通能力证书”（详情请看高商联盟简介 – 加盟训练）。 \n 1、北京 \n 1）学院路地区：清华大学观畴园地下一层紫荆书咖 \n 2）回龙观地区：（待定）",
       showPullTips: false,
       loginUrl: config.service.loginUrl,
       requestUrl: config.service.requestUrl,
-      questionUrl:'https://74043727.qcloud.la/gslm/getQuestions',
-      examUrl: 'https://74043727.qcloud.la/gslm/exam/getExamQuestions',
-      paymentUrl: 'https://74043727.qcloud.la/gslm/pay/payEncap',
-      checkUrl: 'https://74043727.qcloud.la/gslm/pay/checkPurchRecord',
+      questionUrl:`https://${config.service.host}/gslm/getQuestions`,
+      examUrl: `https://${config.service.host}/gslm/exam/getExamQuestions`,
+      paymentUrl: `https://${config.service.host}/gslm/pay/payEncap`,
+      checkUrl: `https://${config.service.host}/gslm/pay/checkPurchRecord`,
+      couponInfoUrl: `https://${config.service.host}/gslm/coupon/userCoupon`,
+      couponUseUrl: `https://${config.service.host}/gslm/coupon/useCoupon`,
       isSelect:false,
       attitude: ['非常支持', '比较支持', '中立/不必探讨', '比较反对','非常反对'],
       selectdata:{
@@ -84,6 +88,21 @@ Page({
     
     color: 'green'
   },
+    bindCommBase:function(e){
+      wx.showModal({
+        title: ' ',
+        showCancel: false,
+        confirmText: "关 闭",
+        content: this.data.commBaseMessage,
+        success: function (res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+    },
     bindViewTap: function() {
         this.setData({
             color:'blue'
@@ -341,10 +360,19 @@ Page({
       score += util.calculateScore(allLists[currentPage].type,chooseList[currentPage]);
       this.data.chooseList = chooseList;
       this.setData(this.data);
-      if (this.data.answers.activeNum == this.data.answers.allLists.length - 1){
+      var itemNoChoose = this.checkIsAllChoose(chooseList)
+      if (itemNoChoose.length == 0){
         wx.redirectTo({
-          url: '../examResult/examResult?score=' + score +'&group_id='+groupId+'&stars='+stars+'&type='+type
+          url: '../examResult/examResult?score=' + score + '&group_id=' + groupId + '&stars=' + stars + '&type=' + type
         });
+      }
+      if (this.data.answers.activeNum == this.data.answers.allLists.length - 1){
+        if(itemNoChoose.length > 0){
+          wx.showModal({
+            content: '还有未完成的题目（' + itemNoChoose +'）',
+            showCancel:false
+          })
+        }
       }
       this.onSwiper('left');
       return false;
@@ -354,7 +382,16 @@ Page({
         showPullTips:false
       })
     },
-
+    
+    checkIsAllChoose:function (chooseList){
+      var noChooseList =[]
+      for(var item in chooseList){
+        if(chooseList[item] == -1){
+          noChooseList.push(parseInt(item)+1)
+        }
+      }
+      return noChooseList
+    },
     
 
 
@@ -465,23 +502,53 @@ Page({
           url: '../analysePage/analysePage?star='+stars+'&questionId='+questionId,
         })
       } else{
+
+        var analyseTimes = 0;
+
+        try {
+          analyseTimes = wx.getStorageSync('couponInfos').analyseTimes
+
+        } catch (e) {
+          console.log("analyseTims erro")
+        }
+
+        var countString =""
+        var url ;
+        if(analyseTimes > 0){
+          //countString = "但您有" + analyseTimes +"次免费机会，点击确定使用。"
+          url = this.data.couponUseUrl
+        }else{
+          //countString = '点击确定进行购买'
+          url = this.data.paymentUrl
+        }
+
+
         wx.showModal({
-          title: '解析尚未购买',
-          content: '您尚未购买解析，不能查看，点击确定进行购买',
+          title: '温馨提示',
+          content: '前三个解析免费（您当前还有' + analyseTimes +'次免费机会），之后收费5元/个，鼓励共享！此收入捐赠给佛山启智和北京美新路公益机构。你本人或身边的人需要资助，也可以联系我们！',
           success:function(res){
             if(res.confirm){
-
               qcloud.request({
-                url: that.data.paymentUrl,
+                url: url,
                 login: true,
                 data: {
                   type: 1,
                   star: parseInt(stars),
-                  questionId: questionId
+                  questionId: questionId,
+                  couponId:1
                 },
                 method: 'POST',
                 success(result) {
-                  that.requestPayment(result.data);
+                  if(analyseTimes > 0 ){
+                    that.data.answers.allLists[currentPage].isPurchAnalyse = 1;
+                    that.setData(that.data)
+                    wx.setStorageSync('couponInfos', {
+                      analyseTimes: analyseTimes - 1
+                    })
+                    wx.navigateTo({
+                      url: '../analysePage/analysePage?star=' + stars + '&questionId=' + questionId,
+                    })
+                  }else that.requestPayment(result.data);
                 },
                 fail(error) {
                   console.log('request fail', error);
@@ -580,11 +647,31 @@ Page({
       })
     },
 
+    getCoupons(){
+      qcloud.request({
+        url: this.data.couponInfoUrl,
+        login: true,
+        method: 'POST',
+        data: {
+        },
+        success(result) {
+          wx.setStorage({
+            key: 'couponInfos',
+            data: {
+             analyseTimes: coupond.calculateAnalyseTimes(result.data.data)
+            }
+          })
+        }
+      });
+
+    },
+
     onLoad (params) {
       console.log('1:'+params.item+";2:"+params.group);
       console.log('Debug score:'+score);
       chooseList=[-1,-1,-1,-1,-1,-1];
       this.data.chooseList = chooseList;
+      this.getCoupons();
       stars = params.item;
       type = params.type;
       this.data.type = params.type;

@@ -1,6 +1,5 @@
 page{
   display: block;
-  box-sizing: padding-box;
   height:100%;
   overflow: visible;
 }
@@ -102,8 +101,7 @@ page{
 .tipsContain{
   display: flex;
   flex-direction: row;
-  margin-left: auto;
-  justify-content:flex-end;
+  padding: 0 60rpx 0 70rpx;
 }
 .tips {
   display:flex;
@@ -116,7 +114,7 @@ page{
   /*border-radius: 50%;*/
   justify-content:center;
   align-items: center;
-  margin-right:55rpx;
+  margin-left:55rpx;
   margin-bottom: 50rpx;
   }
 
@@ -244,8 +242,11 @@ page{
   letter-spacing: 0.1em;
 }
 .tipEnd{
-  margin-top: 36rpx;
-  
+  margin-top: 7rpx;
   color: #aaa;
   font-size: 24rpx;
+}
+.secondBox{
+  margin-left: auto;
+  display: flex;
 }
