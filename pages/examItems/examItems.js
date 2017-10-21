@@ -118,13 +118,9 @@ Page({
       properties: ['scrollX', 'scrollY']
     }, function (res) {
       title_height = res.height     // 节点的高度
-      setTimeout(
-      function () {
-        this.setData({
-          titleStyle: 'height:'+res.height+'px;animation:disappear .5s linear;animation-fill-mode:forwards;',
+      this.setData({
+          titleStyle: 'height:' + res.height + 'px;animation:disappear .3s linear;animation-fill-mode:forwards;',
         })
-      }.bind(this), 100
-    )
     }.bind(this)).exec()
   },
   onShow: function () {

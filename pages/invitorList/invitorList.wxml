@@ -5,14 +5,19 @@
   </view>
   <view class="weui-cells weui-cells_after-title">
     <view class="weui-cell">
-      <image class="schoolAva" src="{{myInvitor.avatar_url}}"></image>
-      <view style="margin-left:20rpx">{{myInvitor.name}}</view>
+      <view wx:if="{{myInvitor.avatar_url != null}}"><image class="schoolAva" src="{{myInvitor.avatar_url}}"></image></view>
+      <view wx:if="{{myInvitor.avatar_url == null}}" style="margin-left:auto;margin-right:auto;color:#7A7A7A">{{myInvitor.name}}</view>
+      <view wx:if="{{myInvitor.avatar_url != null}}" style="margin-left:20rpx">{{myInvitor.name}}</view>
     </view>
   </view>
   <view class="detail-head">
     <view>我邀请的朋友</view>
   </view>
   <view class="weui-cells weui-cells_after-title">
+    <view wx:if="{{invitorList.length == 0}}" class="weui-cell">
+      <view style="margin-left:auto;margin-right:auto;color:#7A7A7A">无</view>
+
+    </view>
     <view wx:for="{{invitorList}}" class="weui-cell">
       <image class="schoolAva" src="{{item.avatar_url}}"></image>
       <view style="margin-left:20rpx">{{item.name}}</view>

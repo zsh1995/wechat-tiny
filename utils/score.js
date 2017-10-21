@@ -1,6 +1,6 @@
 function calculateScore(questionType,choose){
   var score = 0;
-  switch(questionType){
+  switch(questionType.toUpperCase()){
     case 'Z': score =calculateZ(choose);
     break;
     case 'S': score =calculateS(choose);
@@ -98,7 +98,7 @@ function getCommentByScore(score){
     return { comment: '　　恭喜！分数在91 – 94分之间，过关！\n　　如果全都如此（含考试）并知其所以然，就说明你在工作和生活中的实用智商（对很多事情的判断能力和解决问题的思维能力）很好！\n　　建议你和他人交流，确认自己知其所以然。这样可以提高情商、逆商。\n　　如与他人交流无果可看解析（正在编辑中）！', score: '91-94', realScore: score};
   }
   if(score> 56){
-    return { comment: '　　非常好，分数在95分以上！\n　　非常好，分数在95分以上！\n　　如果全部都如此（含“潜力评估”里的考试题）并知其所以然，就说明你对工作和生活很多事情的判断能力和解决问题的思维能力非常好，几本上没有什么问题可以难倒你！\n　　自己是否知其所以然，可以购买解析看看！\n　　建议你和他人交流，确认自己知其所以然。这样可以提高情商、逆商。\n　　如与他人交流无果可看解析（正在编辑中）！', score: '95+', realScore: score};
+    return { comment: '　　非常好，分数在95分以上！\n　　如果全部都如此（含“潜力评估”里的考试题）并知其所以然，就说明你对工作和生活很多事情的判断能力和解决问题的思维能力非常好，几本上没有什么问题可以难倒你！\n　　自己是否知其所以然，可以购买解析看看！\n　　建议你和他人交流，确认自己知其所以然。这样可以提高情商、逆商。\n　　如与他人交流无果可看解析（正在编辑中）！', score: '95+', realScore: score};
   }
 }
 

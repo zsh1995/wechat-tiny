@@ -1,18 +1,17 @@
 <!--index.wxml-->
-<view class="container">
+<view style="padding-top:80rpx;" class="container">
   <view class="textcontent">
     <text class="text-title">
       前一千名学员特权
     </text>
     <text class="text-body">
-      点击“我 – 编辑”
-填写期望的在京企业，
-达到一星级承诺三星级后，
-该企业如有合适岗位，
-即保证内推面试！
-一星级考试两次免费！
-（免费功能在开发中）
-更多详情“高商联盟”订阅号！
+      点击“我 – 编辑”，填写期望内推的在京企业，保证内推面试！
+      
+要求：学员达到一星级，并承诺达到三星级；企业有实际招聘需求。
+
+一星级考试前两次免费(开发中)
+
+详情搜索“高商联盟”服务号！
     </text>
   </view>
 </view>

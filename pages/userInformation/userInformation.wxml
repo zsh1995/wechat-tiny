@@ -12,12 +12,12 @@
 						<view class="userinfo-major" >{{ourUserInfo.major}}</view>
 					</view>
 				</view>
-				<view class = "userinfo-editor"  catchtap="bindEdit"> </view>
+				<view class = "userinfo-editor"  catchtap="bindEdit"><view>编 辑</view></view>
 
 			</view>
 			<view class="gslm-cardbox_userinfo">
-				<view class="usermobile">手机：{{ourUserInfo.phoneNumber}}</view>
-				<view class="usermail">邮箱：{{ourUserInfo.emailAddr}}</view>
+				<view class="usermobile">手机：<view wx:if="{{ourUserInfo.phoneNumber==''}}" style="color:#7A7A7A">未填写</view><view wx:if="{{ourUserInfo.phoneNumber!=''}}">{{ourUserInfo.phoneNumber}}</view></view>
+				<view class="usermail">邮箱：<view wx:if="{{ourUserInfo.emailAddr==''}}" style="color:#7A7A7A">未填写</view><view wx:if="{{ourUserInfo.emailAddr!=''}}">{{ourUserInfo.emailAddr}}</view></view>
 				<view class="useradress"></view>
 			</view>
 			<view class="gslm-cardbox_id">
@@ -26,24 +26,10 @@
 		</view>
 		
 		<view class="gslm-cardbox-back" style="{{cardboxStyleAnti}}" bindtap='turnBack'>
-			<view class="gslm-cardbox_name">
-				<image class="userinfo-avatarshow" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-				<view class = "userinfo-rightbox">
-					<view class="userinfo-nickname" >{{ourUserInfo.student_name==""||ourUserInfo.student_name==null?userInfo.nickName:ourUserInfo.student_name}}</view>
-					<view class = "userinfo-bottombox">
-						<view class="userinfo-school" >{{ourUserInfo.school}}</view>
-						<view class="userinfo-major" >{{ourUserInfo.major}}</view>
-					</view>
-				</view>
-
-			</view>
 			<view class="gslm-cardbox_userinfo">
-				<view class="usermobile">手机(back)：{{ourUserInfo.phoneNumber}}</view>
-				<view class="usermail">邮箱：{{ourUserInfo.emailAddr}}</view>
+				<view class="usermobile">身份：{{ourUserInfo.type}}</view>
+				<view class="usermail">公司：{{ourUserInfo.wanted_company}}</view>
 				<view class="useradress"></view>
-			</view>
-			<view class="gslm-cardbox_id">
-				ID : {{ourUserInfo.id}}
 			</view>
 		</view>
 		

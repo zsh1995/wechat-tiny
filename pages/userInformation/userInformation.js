@@ -49,6 +49,8 @@ Page({
     ourUserInfo:{}
   },
   turnOver: function(event){
+    // 暂不启用
+    /*
     setTimeout((function () {
       this.setData({
         cardboxStyle: 'opacity:0;transform: rotateX(180deg);',
@@ -60,6 +62,7 @@ Page({
       cardboxStyle: 'animation:turnover .5s ease-in-out;animation-fill-mode:forwards;',
       cardboxStyleAnti: 'animation:turnback .5s ease-in-out;animation-fill-mode:forwards;'
     })
+    */
   },
   turnBack: function (event) {
     this.setData({

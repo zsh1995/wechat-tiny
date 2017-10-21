@@ -30,6 +30,12 @@ Page({
       data: {},
       success(result) {
         console.log("success:" + result);
+        if (result.data.data.myInvitor.name == null && result.data.data.myInvitor.avatar_url == null){
+          result.data.data.myInvitor={
+            name:'无',
+            avatar_url:null
+          }
+        }
         that.setData({
           invitorList:result.data.data.invitedList,
           myInvitor: result.data.data.myInvitor

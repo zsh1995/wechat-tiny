@@ -54,6 +54,7 @@ Page({
         }else{
           wx.showToast({
             title: result.data.message,
+            icon: 'loading',
             mask:true
           })
         }

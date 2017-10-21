@@ -11,6 +11,6 @@
 
 }
 .schoolAva{
-	height:20px;
-	width:20px;
+	height:80px;
+	width:80px;
 }

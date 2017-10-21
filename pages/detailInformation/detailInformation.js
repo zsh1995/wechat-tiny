@@ -13,14 +13,15 @@ Page({
    */
   data: {
     updataUserInfo: `https://${config.service.host}/gslm/userInfo/updateUserInfo`,
-    requestUserInfo: `https://${config.service.host}/gslm/userInfo/getUserInfo`,
-    region: ['广东省', '广州市', '海珠区'],
+    requestUserInfoURL: `https://${config.service.host}/gslm/userInfo/getUserInfo`,
+    region: ['', '广州市', ''],
     identities:["在职","学生"],
     genders:['女生','男生'],
     mIdentity:"",
     identityId:0,
     genderId:0,
-    schoolName:"选择您的学校"
+    schoolName:"选择您的学校",
+    subUserInfo:{name:''},
   },
 
   bindRegionChange: function (e) {
@@ -43,20 +44,27 @@ Page({
   onSubmit:function(e){
     var userInfo = e.detail.value;
     userInfo.gender = this.data.genders[parseInt(userInfo.gender)]
-    userInfo.type = this.data.identities[parseInt(userInfo.identity)]
+    console.log(userInfo.identityId)
+    userInfo.type = this.data.identities[parseInt(userInfo.type)]
     var mSchool = this.data.schoolName
     mSchool = mSchool == '选择您的学校'?'':mSchool
     userInfo.school = mSchool
-    userInfo.city = userInfo.city[1]
-    console.log('提交：' + userInfo)
+    userInfo.city = this.data.region[1]
     var that = this;
+    //
+    console.log(userInfo.student_name)
+    for (var attr in userInfo){
+      if (userInfo[attr] == ''){
+        userInfo[attr] = this.data.subUserInfo[attr] == null ? '' : this.data.subUserInfo[attr]
+      }
+    }
     qcloud.request({
       url: this.data.updataUserInfo,
       login: true,
       data: userInfo,
       method: 'POST',
       success(result) {
-        that.requestUserInfo();
+        //that.requestUserInfo();
         that.data.onModify = false;
         that.setData(that.data);
         showSuccess('提交成功！');
@@ -80,11 +88,49 @@ Page({
       complete: function(res) {},
     })
   },
+
+  requestUserInfo: function (a) {
+    var that = this;
+    qcloud.request({
+      url: this.data.requestUserInfoURL,
+      login: true,
+      method: 'POST',
+      data: {
+        userName: "test1"
+      },
+      success(result) {
+        if (result.data.data.userInfo.type == '学生'){
+          that.data.identityId = 1;
+        }
+        if (result.data.data.userInfo.gender == '男生')
+            that.data.genderId = 1;
+        that.data.schoolName = result.data.data.userInfo.school == '' ? '选择您的学校' : result.data.data.userInfo.school;
+        if (result.data.data.userInfo.city != ''){
+          that.data.region[1] = result.data.data.userInfo.city
+        }
+        that.data.subUserInfo = result.data.data.userInfo
+        that.data.subUserInfo.userName = result.data.data.userInfo.student_name
+        that.data.subUserInfo.userMobile = result.data.data.userInfo.phoneNumber
+        that.setData(that.data);
+      },
+      fail(error) {
+        that.data.ourUserInfo = { userName: "未获取到数据" };
+        that.setData(that.data);
+      },
+      complete() {
+      }
+
+    });
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+      // todo pull userinfo
+      this.requestUserInfo();
+
+      // todo fill data
   },
 
   /**

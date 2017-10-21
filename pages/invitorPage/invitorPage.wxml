@@ -6,22 +6,22 @@
             <view class="weui-search-bar__form">
                 <view class="weui-search-bar__box">
                     <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-                    <input type="text" class="weui-search-bar__input" placeholder="查找" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+                    <input type="text" class="weui-search-bar__input" placeholder="填写好友8位ID" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
                     <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
                         <icon type="clear" size="14"></icon>
                     </view>
                 </view>
                 <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
                     <icon class="weui-icon-search" type="search" size="14"></icon>
-                    <view class="weui-search-bar__text">查找</view>
+                    <view class="weui-search-bar__text">填写好友8位ID</view>
                 </label>
             </view>
             <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
         </view>
         <view class="weui-cells searchbar-result" wx:if="{{invitor_avator!=''}}">
-							<view class="weui-cell__bd" style="display:flex;align-items:center;padding:30rpx 0rpx 30rpx 40rpx" bindtap="chooseInvitor">
+							<view class="weui-cell__bd" style="display:flex;flex-direction:column;align-items:center;padding:80rpx 0rpx 80rpx 0rpx" bindtap="chooseInvitor">
 								<image class="schoolAva" src="{{invitor_avator}}"></image>
-								<view style="margin-left:20rpx">{{invitor_name}}</view>
+								<view style="margin-top:30rpx">{{invitor_name}}</view>
 							</view>
         </view>
     </view>
