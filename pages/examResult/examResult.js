@@ -7,6 +7,10 @@ var config = require('../../config');
 
 var utils = require('..//../utils/score');
 var stars ;
+
+// 当前操作类型
+
+var curType = '';
 // examResult.js
 Page({
 
@@ -120,6 +124,7 @@ Page({
     }
     this.setData(this.data);
     var requestUrl = this.data.uploadScore;
+
     if (options.type== 'exam' && result.realScore >=54 ){
       requestUrl = this.data.updateExamStatus;
     }else if(options.type == 'practice'){
@@ -127,6 +132,9 @@ Page({
     }else{
       return;
     }
+    wx.showLoading({
+      title: '正在提交',
+    })
     qcloud.request({
       url: requestUrl,
       login: true,
@@ -138,7 +146,10 @@ Page({
       },
       method: 'POST',
       success(result) {
-
+        console.log('POST SUCCESS')
+        wx.hideLoading();
+        this.getExamStatus();
+        this.checkUserRight();
       },
       fail(error) {
         console.log('request fail', error);
@@ -161,9 +172,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getExamStatus();
-    this.checkUserRight();
-
+    if(this.data.type == 'exam'){
+      this.getExamStatus();
+      this.checkUserRight();
+    }
   },
 
   /**
