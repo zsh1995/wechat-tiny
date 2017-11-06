@@ -25,10 +25,10 @@ Page({
     remainTimes:10,
     passTimes:0,
     needTimes:0,
-    updateExamStatus:`https://${config.service.host}/gslm/exam/uploadStatus`,
-    uploadScore: `https://${config.service.host}/gslm/uploadScore`,
-    examUrl: `https://${config.service.host}/gslm/exam/getExamStatus`,
-    checkUrl: `https://${config.service.host}/gslm/pay/checkPurchRecord`,
+    updateExamStatus:`https://${config.service.host}/exam/uploadStatus`,
+    uploadScore: `https://${config.service.host}/uploadScore`,
+    examUrl: `https://${config.service.host}/exam/getExamStatus`,
+    checkUrl: `https://${config.service.host}/pay/checkPurchRecord`,
 
   },
 

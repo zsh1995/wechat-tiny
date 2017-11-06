@@ -13,6 +13,13 @@ Page({
       url: '../examItems/examItems'
     })
   },
+
+  onClick:function(){
+    wx.navigateTo({
+      url: '../enterpriseList/enterpriseList',
+    })
+  },
+
   onLoad: function () {
     console.log('onLoad')
     var that = this

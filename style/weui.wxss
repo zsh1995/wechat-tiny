@@ -729,7 +729,7 @@ icon {
   position: relative;
   top: -0.9em;
   padding: 0 .55em;
-  background-color: #FFFFFF;
+  background-color: #F8F8F8;
   color: #999999;
 }
 .weui-loadmore__tips_in-dot {

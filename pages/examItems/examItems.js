@@ -11,7 +11,7 @@ Page({
     data: {
     motto: 'Hello World',
     color: 'green',
-    examUrl:`https://${config.service.host}/gslm/exam/getExamStatus`,
+    examUrl:`https://${config.service.host}/exam/getExamStatus`,
     passExam:[1,1,1,1],
   },
 

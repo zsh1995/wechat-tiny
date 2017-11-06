@@ -15,8 +15,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    paymentUrl:`https://${config.service.host}/gslm/pay/payEncap`,
-    checkUrl:`https://${config.service.host}/gslm/pay/checkPurchRecord`,
+    paymentUrl:`https://${config.service.host}/pay/payEncap`,
+    checkUrl:`https://${config.service.host}/pay/checkPurchRecord`,
     examNumber :0,
 	  remainTimes:0,
     examData:[

@@ -40,3 +40,8 @@
   margin: 0 60px;
   /*text-align: center;*/
 }
+.clickable{
+  font-size: 40rpx;
+  text-align: center;
+  
+}

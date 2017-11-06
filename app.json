@@ -13,7 +13,8 @@
     "pages/invitorPage/invitorPage",
     "pages/purchRecord/purchRecord",
     "pages/analysePage/analysePage",
-    "pages/invitorList/invitorList"
+    "pages/invitorList/invitorList",
+    "pages/enterpriseList/enterpriseList"
   ],
   "window": {
     "backgroundTextStyle": "light",

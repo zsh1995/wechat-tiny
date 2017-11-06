@@ -1,0 +1,118 @@
+/* pages/enterpriseList/enterpriseList.wxss */
+
+page {
+  background: #f8f8f8;
+}
+
+.searchbar-result {
+  margin-top: 0;
+  font-size: 16px;
+}
+
+.searchbar-result:before {
+  display: none;
+}
+
+.weui-cell {
+  padding: 12px 15px 12px 15px;
+}
+
+.schoolAva {
+  height: 20px;
+  width: 20px;
+}
+
+.maincontain {
+}
+
+.bottom-item {
+}
+
+.refreshFlag {
+  text-align: center;
+  width: 100%;
+}
+
+.managerIcon {
+  font-size: 11px;
+  line-height: 11px;
+  height: 11px;
+  border: 1rpx #f44 solid;
+  padding: 0 1px;
+  border-radius: 2px;
+  background: #f44;
+  color: #fff;
+}
+
+.normalIcon {
+  font-size: 11px;
+  line-height: 11px;
+  height: 11px;
+  border: 1rpx #f44 solid;
+  padding: 0 1px;
+  border-radius: 2px;
+  color: #343b41;
+}
+
+.hrIcon {
+  font-size: 11px;
+  line-height: 11px;
+  height: 11px;
+  border: 1rpx blue solid;
+  padding: 0 1px;
+  border-radius: 2px;
+  background: blue;
+  color: #fff;
+}
+
+.waitIcon {
+  margin-left:18rpx;
+  font-size: 11px;
+  line-height: 16px;
+  height: 16px;
+  border: 1rpx #aaa solid;
+  padding: 0 1px;
+  border-radius: 2px;
+  color: #aaa;
+}
+
+.successIcon {
+  margin-left:18rpx;
+  font-size: 11px;
+  line-height: 16px;
+  height: 16px;
+  border: 1rpx #343b41 solid;
+  padding: 0 1px;
+  border-radius: 2px;
+  color: #343b41;
+}
+
+
+#state {
+  margin-left: 10rpx;
+}
+
+.shade {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+  opacity: 0.2;
+  background-color: #000;
+}
+
+.floatImg {
+  position: fixed;
+  z-index: 11;
+  width: 80%;
+  left: 10%;
+  top: 20%;
+}
+
+.iconArray {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+

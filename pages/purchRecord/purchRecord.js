@@ -66,7 +66,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    payrecordurl: `https://${config.service.host}/gslm/pay/getPurchRecord`,
+    payrecordurl: `https://${config.service.host}/pay/getPurchRecord`,
     purchList:[],
     recordTypes:['全部','考试','解析'],
     typeId:0

@@ -42,9 +42,9 @@ Page({
   data: {
     userInfo: {},
     requestUrl: config.service.requestUrl,
-    updataUserInfo: `https://${config.service.host}/gslm/userInfo/updateUserInfo`, 
-    requestUserInfo:`https://${config.service.host}/gslm/userInfo/getUserInfo`,
-    payrecordurl: `https://${config.service.host}/gslm/pay/getPurchRecord`,
+    updataUserInfo: `https://${config.service.host}/userInfo/updateUserInfo`, 
+    requestUserInfo:`https://${config.service.host}/userInfo/getUserInfo`,
+    payrecordurl: `https://${config.service.host}/pay/getPurchRecord`,
     onModify:false,
     ourUserInfo:{}
   },

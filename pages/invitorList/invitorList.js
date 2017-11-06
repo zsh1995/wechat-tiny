@@ -15,7 +15,7 @@ Page({
   data: {
     invitorList:[],
     myInvitor:{},
-    invitorListUrl: `https://${config.service.host}/gslm/userInfo/getInvitedList`
+    invitorListUrl: `https://${config.service.host}/userInfo/getInvitedList`
   },
 
   /**

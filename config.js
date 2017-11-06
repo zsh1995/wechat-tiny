@@ -3,7 +3,7 @@
  */
 
 // 此处主机域名修改成腾讯云解决方案分配的域名
-var host = '74043727.qcloud.la';
+var host = '74043727.qcloud.la/gslmTest';
 
 var config = {
 
@@ -12,13 +12,13 @@ var config = {
     host,
 
     // 登录地址，用于建立会话
-    loginUrl: `https://${host}/gslm/login`,
+    loginUrl: `https://${host}/login`,
 
     // 测试的请求地址，用于测试会话
-    requestUrl: `https://${host}/gslm/user`,
+    requestUrl: `https://${host}/user`,
 
     // 测试的信道服务地址
-    tunnelUrl: `https://${host}/gslm/tunnel`,
+    tunnelUrl: `https://${host}/tunnel`,
   }
 };
 

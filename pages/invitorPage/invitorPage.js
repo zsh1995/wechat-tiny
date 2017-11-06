@@ -16,8 +16,8 @@ Page({
     inputShowed: false,
     inputVal: "",
     invitor_avator:"",
-    updataUserInfo: `https://${config.service.host}/gslm/userInfo/setInvitor`,
-    requestUserInfo: `https://${config.service.host}/gslm/userInfo/getInvitor`
+    updataUserInfo: `https://${config.service.host}/userInfo/setInvitor`,
+    requestUserInfo: `https://${config.service.host}/userInfo/getInvitor`
 
   },
   showInput: function () {

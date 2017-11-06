@@ -13,5 +13,6 @@
 
 详情搜索“高商联盟”服务号！
     </text>
+    <view class="clickable" bindtap='onClick'>查看企业列表</view>
   </view>
 </view>

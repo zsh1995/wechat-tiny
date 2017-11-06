@@ -15,7 +15,7 @@ var star = 0
 var optionsTitle = ['', '一 星 级 · 恋 爱 交 友', '二 星 级 · 社 会 生 活','三 星 级 · 求 职 工 作']
 Page({
   data: {
-    getScoreUrl: `https://${config.service.host}/gslm/getScores`,
+    getScoreUrl: `https://${config.service.host}/getScores`,
     title:'',
     score: ['-','-','-','-','-','-','-','-','-','-'],
     color: ['', '', '', '', '', '', '', '', '', ''],

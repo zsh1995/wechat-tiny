@@ -12,8 +12,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    updataUserInfo: `https://${config.service.host}/gslm/userInfo/updateUserInfo`,
-    requestUserInfoURL: `https://${config.service.host}/gslm/userInfo/getUserInfo`,
+    updataUserInfo: `https://${config.service.host}/userInfo/updateUserInfo`,
+    requestUserInfoURL: `https://${config.service.host}/userInfo/getUserInfo`,
     region: ['', '广州市', ''],
     identities:["在职","学生"],
     genders:['女生','男生'],

@@ -12,7 +12,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    analyseUrl:`https://${config.service.host}/gslm/question/getAnalyse`,
+    analyseUrl:`https://${config.service.host}/question/getAnalyse`,
     analyse:''
   },
 
