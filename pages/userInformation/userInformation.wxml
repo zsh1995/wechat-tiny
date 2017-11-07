@@ -1,5 +1,6 @@
   <!--userInformation.wxml-->
 <view class="itemcontainer">
+  <view class='title-content' wx:if="{{showTips}}" bindtap="fillInvitor"><text>您尚未填写邀请人！</text></view>
 	<view class="item_list">
 		<view class="card-container">
 		<view class="gslm-cardbox" style="{{cardboxStyle}}" bindtap='turnOver'>

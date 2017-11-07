@@ -83,8 +83,14 @@ Page({
   },
   bindtouchmove: function(e){
     if(this.getDirection(this.data.touchstartEvent,e) == 'top'){
-      this.getFields();
+      this.getFields(false);
+      return;
     }
+    if (this.getDirection(this.data.touchstartEvent, e) == 'bottom') {
+      this.getFields(true);
+      return;
+    }
+
   },
   getDirection: function (startEvent, endEvent) {
     var x = endEvent.changedTouches[0].clientX - startEvent.changedTouches[0].clientX,
@@ -110,18 +116,27 @@ Page({
     }
   },
 
-  getFields: function () {
-    wx.createSelectorQuery().select('#title-tips').fields({
-      dataset: true,
-      size: true,
-      scrollOffset: true,
-      properties: ['scrollX', 'scrollY']
-    }, function (res) {
-      title_height = res.height     // 节点的高度
+  getFields: function (show) {
+    if(!show){
       this.setData({
-          titleStyle: 'height:' + res.height + 'px;animation:disappear .3s linear;animation-fill-mode:forwards;',
+        //titleStyle: 'height:' + 0 + 'px;animation:appear .3s linear;animation-fill-mode:forwards;',
+        titleStyle: "",
+      })
+    }else{
+      wx.createSelectorQuery().select('#title-tips').fields({
+        dataset: true,
+        size: true,
+        scrollOffset: true,
+        properties: ['scrollX', 'scrollY']
+      }, function (res) {
+        title_height = res.height     // 节点的高度
+        this.setData({
+          //titleStyle: 'height:' + res.height + 'px;animation:disappear .3s linear;animation-fill-mode:forwards;',
+          titleStyle:"content--disappear"
         })
-    }.bind(this)).exec()
+      }.bind(this)).exec()
+    }
+    
   },
   onShow: function () {
     var that = this;
@@ -129,6 +144,9 @@ Page({
     for (var cnt = 0; cnt < 3; cnt++) {
       this.getExamStatus(cnt + 1);
     }
+    setTimeout(function(){
+      that.getFields(true);
+    },1000);
     /*
     setTimeout(
       function(){

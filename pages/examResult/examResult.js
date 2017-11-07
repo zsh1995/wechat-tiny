@@ -112,6 +112,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
     stars = options.stars;
     var result = utils.getCommentByScore(options.score);
     this.data.comment = result.comment;
@@ -148,8 +149,8 @@ Page({
       success(result) {
         console.log('POST SUCCESS')
         wx.hideLoading();
-        this.getExamStatus();
-        this.checkUserRight();
+        that.getExamStatus();
+        that.checkUserRight();
       },
       fail(error) {
         console.log('request fail', error);

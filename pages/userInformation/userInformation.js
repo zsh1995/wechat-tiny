@@ -21,7 +21,7 @@ var showModel = (title, content) => {
   wx.showModal({
     title,
     content: JSON.stringify(content),
-    showCancel: false
+    showCancel: false,
   });
 };
 
@@ -46,7 +46,8 @@ Page({
     requestUserInfo:`https://${config.service.host}/userInfo/getUserInfo`,
     payrecordurl: `https://${config.service.host}/pay/getPurchRecord`,
     onModify:false,
-    ourUserInfo:{}
+    ourUserInfo:{},
+    showTips:false,
   },
   turnOver: function(event){
     // 暂不启用
@@ -103,23 +104,19 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    var that = this;
     this.requestUserInfo('invitor', function (userdata) {
       console.log("debugger_userInformation:userdata.invitor" + userdata.invitor)
       if (userdata.invitor == null || userdata.invitor == '') {
-        wx.showModal({
-          content: 'Tip：你还没有填写邀请人',
-          success: function (res) {
-            if (res.confirm) {
-              wx.navigateTo({
-                url: '../../pages/invitorPage/invitorPage',
-              })
-              console.log('用户点击确定')
-            } else if (res.cancel) {
-              console.log('用户点击取消')
-            }
-          }
+        that.setData({
+          showTips: true,
         })
       }
+    })
+  },
+  fillInvitor:function(){
+    wx.navigateTo({
+      url: '../../pages/invitorPage/invitorPage',
     })
   },
 

@@ -1,5 +1,5 @@
 <view class="itemcontainer" bindtouchstart='bindtouchstart' bindtouchmove='bindtouchmove'>
-  <view class="item title-content" style="{{titleStyle}}" id='title-tips' ><text class="item_head">以下练习、考试话题供交流思考，可提高实用智商、情商、逆商。考试结果反映实用智商。</text></view>
+  <view class="item title-content {{titleStyle}}" style="{{}}" id='title-tips' ><text class="item_head">以下练习、考试话题供交流思考，可提高实用智商、情商、逆商。考试结果反映实用智商。</text></view>
 
   <view class="item_list">
     <view class="item">

@@ -357,7 +357,9 @@ Page({
       var allLists = this.data.answers.allLists;
       var currentPage =this.data.answers.activeNum;
       chooseList[currentPage] = this.data.selectdata.selectedId;
-      score += util.calculateScore(allLists[currentPage].type,chooseList[currentPage]);
+      var temp = util.calculateScore(allLists[currentPage].type, chooseList[currentPage]);
+      score += temp;
+      console.log("score:" + score + ",temp:" + temp + "\ntype:" + allLists[currentPage].type + ",number:" + chooseList[currentPage]);
       this.data.chooseList = chooseList;
       this.setData(this.data);
       var itemNoChoose = this.checkIsAllChoose(chooseList)
