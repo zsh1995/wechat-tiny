@@ -357,15 +357,22 @@ Page({
       var allLists = this.data.answers.allLists;
       var currentPage =this.data.answers.activeNum;
       chooseList[currentPage] = this.data.selectdata.selectedId;
+      /*
       var temp = util.calculateScore(allLists[currentPage].type, chooseList[currentPage]);
       score += temp;
       console.log("score:" + score + ",temp:" + temp + "\ntype:" + allLists[currentPage].type + ",number:" + chooseList[currentPage]);
+      */
       this.data.chooseList = chooseList;
       this.setData(this.data);
       var itemNoChoose = this.checkIsAllChoose(chooseList)
       if (itemNoChoose.length == 0){
+        var mScore = 0;
+        for (var index in chooseList){
+          mScore += util.calculateScore(allLists[index].type, chooseList[index]);
+        }
+
         wx.redirectTo({
-          url: '../examResult/examResult?score=' + score + '&group_id=' + groupId + '&stars=' + stars + '&type=' + type
+          url: '../examResult/examResult?score=' + mScore + '&group_id=' + groupId + '&stars=' + stars + '&type=' + type
         });
       }
       if (this.data.answers.activeNum == this.data.answers.allLists.length - 1){
