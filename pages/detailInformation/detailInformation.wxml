@@ -47,38 +47,7 @@
 					<view class="weui-cell__bd cellinput">邮箱</view>
 					<input name="emailAddr" class="weui-cell__ft" style="color:black" placeholder="{{subUserInfo.emailAddr ==''?'请填写你的邮箱':subUserInfo.emailAddr}}">说明文字</input>
 				</view>
-				
-				<view class="weui-cell weui-cell_access">
-					<view class="weui-cell__bd">想发展的城市</view>
-					<view class="weui-cell__ft weui-cell__ft_in-access">
-					<picker name="city" mode="region" bindchange="bindRegionChange" value="{{region}}">
-						<view class="picker">
-						  {{region[1]}}
-						</view>
-					</picker>
-					</view>
-				</view>
-				<view class="weui-cell weui-cell_access">
-					<view class="weui-cell__bd cellinput">想内推的企业 #1</view>
-					<input name="wanted_company1" class="weui-cell__ft"  style="color:black" placeholder="{{subUserInfo.wanted_company1 == ''?'填写企业名称':subUserInfo.wanted_company1}}">说明文字</input>
-				</view>
-				<view class="weui-cell weui-cell_access">
-					<view class="weui-cell__bd cellinput">　　　　　　 #2</view>
-					<input name="wanted_company2" class="weui-cell__ft"  style="color:black" placeholder="{{subUserInfo.wanted_company2 == ''?'填写企业名称':subUserInfo.wanted_company2}}">说明文字</input>
-				</view>
-				<view class="weui-cell weui-cell_access">
-					<view class="weui-cell__bd cellinput">　　　　　　 #3</view>
-					<input name="wanted_company3" class="weui-cell__ft"  style="color:black" placeholder="{{subUserInfo.wanted_company3 == ''?'填写企业名称':subUserInfo.wanted_company3}}">说明文字</input>
-				</view>
-				<view class="weui-cell weui-cell_access">
-					<view class="weui-cell__bd cellinput">　　　　　　 #4</view>
-					<input name="wanted_company4" class="weui-cell__ft"  style="color:black" placeholder="{{subUserInfo.wanted_company4 == ''?'填写企业名称':subUserInfo.wanted_company4}}">说明文字</input>
-				</view>
-				<view class="weui-cell weui-cell_access">
-					<view class="weui-cell__bd cellinput">　　　　　　 #5</view>
-					<input name="wanted_company5" class="weui-cell__ft"  style="color:black" placeholder="{{subUserInfo.wanted_company5 == ''?'填写企业名称':subUserInfo.wanted_company5}}">说明文字</input>
-				</view>
-        
+				        
 				
 			</scroll-view>
 			<view style="display:flex;margin-top:40rpx;justify-content:center"><button class="weui-btn mbutton pass" plain="true" data-option="2" style="width:70%;padding:1rpx 42rpx 1rpx 42rpx; align-self:center" form-type="submit">提　交</button></view>

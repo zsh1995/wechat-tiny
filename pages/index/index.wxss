@@ -1,9 +1,36 @@
 /**index.wxss**/
-
+@import '/style/float-pic.wxss';
+.icontainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width:100%;
+}
 .userinfo {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.company-icom{
+  width: 160px;
+  height: 160px;
+}
+.name{
+  font-size: 40rpx;
+  font-weight: 900;
+  text-align: center;
+  letter-spacing: 0.1em;
+}
+.slogan{
+  font-size: 40rpx;
+  font-weight: 900;
+  text-align: center;
+  letter-spacing: 0.1em;
+  margin-top: 20rpx;
+  padding-bottom:120rpx;
+
 }
 
 .userinfo-avatar {
@@ -42,6 +69,16 @@
 }
 .clickable{
   font-size: 40rpx;
-  text-align: center;
-  
+  text-align: center;  
+}
+.pic{
+  -webkit-transform: translateZ(0) translateY(-110%);
+  transition: all 0.2s ease-in-out;
+}
+.pic-hidden{
+  -webkit-transform: translateZ(0) translateY(0%);
+}
+image{
+  height: 85%;
+  width: 100%;
 }

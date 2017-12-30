@@ -129,7 +129,6 @@ Page({
         scrollOffset: true,
         properties: ['scrollX', 'scrollY']
       }, function (res) {
-        title_height = res.height     // 节点的高度
         this.setData({
           //titleStyle: 'height:' + res.height + 'px;animation:disappear .3s linear;animation-fill-mode:forwards;',
           titleStyle:"content--disappear"

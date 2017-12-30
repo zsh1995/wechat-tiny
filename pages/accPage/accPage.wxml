@@ -1,0 +1,21 @@
+<!--pages/accPage/accPage.wxml-->
+<view>
+  <view class="floatImg" hidden='{{!showToast}}' bindtap='closePic'>
+    <view class='close'></view>
+     <view class='shade'></view>
+    <image class="" mode='aspectFit' src='http://i4.bvimg.com/619221/532e156d607285d7.jpg' bindtap='cancelShow'></image>
+  </view>
+  <view hidden="{{state != 1}}">
+    <view class='content'>
+      我是介绍，我是介绍我是介绍，我是介绍我是介绍，我是介绍我是介绍，我是介绍我是介绍，我是介绍我是介绍，我是介绍我是介绍，我是介绍我是介绍，我是介绍
+    </view>
+    <button bindtap='goHurry'>现在去加急</button>
+  </view>
+  <view hidden="{{state != 2 }}">
+    <view class='content'>
+      我是介绍加急我是介绍加急我是介绍加急我是介绍加急我是介绍加急我是介绍加急我是介绍加急我是介绍加急我是介绍加急
+    </view>
+    <button bindtap='payHurry'>现在去付费</button>
+  </view>
+  <button bindtap='onClick'>企业列表</button>
+</view>

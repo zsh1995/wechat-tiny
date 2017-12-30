@@ -1,15 +1,46 @@
 <!--examResult.wxml-->
 <view class="flex-wrp">
-  <view class="flex-item head">忘记分数吧</view>
+  <view class="exam-title" wx:if="{{type == 'exam'}}">认证测评为「开卷」形式，可以通过和朋友交流，网络搜索等方式，了解更多人的不同意见，帮助你作出最好的选择。</view>
+  <view class="flex-item head">你看待这6个问题的积极程度：</view>
+
   <view class="flex-item score" style="color:{{scoreColor}}">
     {{score}}
   </view>
-  <view class="flex-item comment"><scroll-view scroll-y style="height:100%;width:auto"><text>{{comment}}</text></scroll-view></view>
+  <view wx:if="{{type!='exam'}}" class="flex-item comment">
+    <scroll-view scroll-y style="height:100%;width:auto">
+      <text>{{comment}}</text>
+    </scroll-view>
+  </view>
+  <view class='pass-flag' wx:if="{{type == 'exam'}}">
+    <view class='pass-text' style="color:{{scoreColor}}">
+      <view class='vertical-before' style="background:{{scoreColor}}"></view>
+      <text>{{passed?'通过':'未通过'}}</text>
+      <view class='vertical-after' style="background:{{scoreColor}}"></view>
+    </view>
+  </view>
+  <view class="flex-item examInfo" wx:if="{{type == 'exam'}}">剩余
+    <view style="color:{{scoreColor}}">{{remainTimes}}</view>次机会，已过关
+    <view style="color:{{scoreColor}}">{{passTimes}}</view>次，还需
+    <view style="color:{{scoreColor}}">{{needTimes}}</view>次</view>
   <view class="flex-item button">
-    <button wx:if="{{type == 'practice'}}" class="weui-btn mbutton pass" plain="true" style="align-self: center; width:550rpx" bindtap="endExam">返 回</button>
-    <button wx:if="{{type == 'exam'}}" class="weui-btn mbutton" plain="true" style="margin:10rpx;color:black;border-color:black;align-self: center; width:auto" bindtap="gobacktoMain">←</button>
-    <button wx:if="{{type == 'exam'}}" class="weui-btn mbutton pass"  plain="true" style="margin:10rpx;align-self: center; width:420rpx" bindtap="endExam">继 续 考 试</button>
+    <button wx:if="{{type == 'practice'}}" class="mbutton" plain="true" style="color: #BBBBBB;border-color:#BBBBBB;margin:20rpx;align-self: center; width:250rpx" bindtap="reWatch">← 回 看</button>
+    <button wx:if="{{type == 'practice'}}" class="mbutton" plain="true" style="color:{{scoreColor}};border-color:{{scoreColor}};margin:20rpx;align-self: center; width:250rpx" bindtap="endExam">下 一 组 →</button>
+    <button wx:if="{{type == 'exam'}}" hidden="{{ remainTimes < needTimes || passExam}}" class="weui-btn mbutton" plain="true" style="color: #BBBBBB;border-color:#BBBBBB;margin:20rpx;align-self: center; width:250rpx" bindtap="gobacktoMain">← 返 回</button>
+    <button wx:if="{{type == 'exam'}}" hidden="{{remainTimes < needTimes || passExam}}" class="mbutton pass" plain="true" style="color:{{scoreColor}};border-color:{{scoreColor}};margin:20rpx;align-self: center; width:250rpx" bindtap="endExam">继 续 认 证</button>
+    <button wx:if="{{type == 'enroll'}}" class="weui-btn mbutton" plain="true" style="color:{{scoreColor}};border-color:{{scoreColor}};align-self: center; width:550rpx" bindtap="nextStep">下一步：填写目标企业</button>
 
   </view>
-  <view class="flex-item examInfo"wx:if="{{type == 'exam'}}">剩余<view style="color:#00C775">{{remainTimes}}</view>次机会，已过关<view style="color:#00C775">{{passTimes}}</view>次，还需<view style="color:#00C775">{{needTimes}}</view>次</view>
+  <view wx:if="{{ type == 'exam' && remainTimes < needTimes}}" class="flex-item" style="color:{{scoreColor}}">
+    <view class='bottom-text'>
+      <text>这次认证无法完成了。</text>
+    </view>
+    <view class='bottom-text' bindtap="gotoPractice">
+      <view>先尝试几组话题再来吧 >>></view>
+    </view>
+  </view>
+  <view wx:if="{{ type == 'exam' && passExam}}" class="flex-item" style="color:{{scoreColor}}">
+    <view class='bottom-text'>思维测试完成!</view>
+    <view class='bottom-text'>企业在等你!看看还需要什么 >>></view>
+  </view>
+
 </view>

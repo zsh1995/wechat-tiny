@@ -7,6 +7,8 @@ var qcloud = require('../../bower_components/wafer-client-sdk/index');
 // 引入配置
 var config = require('../../config');
 
+var util = require('../../utils/util.js')
+
 Page({
 
   /**
@@ -23,6 +25,9 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    wx.showLoading({
+      title: '正在加载',
+    })
     qcloud.request({
       url: this.data.invitorListUrl,
       login: true,
@@ -36,6 +41,11 @@ Page({
             avatar_url:null
           }
         }
+        var invitedList = result.data.data.invitedList;
+        for (var index in invitedList){
+          var curItem = invitedList[index]
+          curItem.create_time = util.Format(new Date(curItem.create_time),'yyyy-MM-dd')
+        }
         that.setData({
           invitorList:result.data.data.invitedList,
           myInvitor: result.data.data.myInvitor
@@ -46,6 +56,7 @@ Page({
         
       },
       complete() {
+        wx.hideLoading();
       }
 
     });

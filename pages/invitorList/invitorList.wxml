@@ -21,6 +21,7 @@
     <view wx:for="{{invitorList}}" class="weui-cell">
       <image class="schoolAva" src="{{item.avatar_url}}"></image>
       <view style="margin-left:20rpx">{{item.name}}</view>
+      <view class='date-set'>{{item.create_time}}</view>
     </view>
   </view>
 </view>

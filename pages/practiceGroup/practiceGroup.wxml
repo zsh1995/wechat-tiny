@@ -1,77 +1,184 @@
 <view class="icontainer">
+  <view class='top-title'>
+    <view class="doc-title">
+      <text>{{title}}</text>
+    </view>
 
-  <view class="doc-title">{{title}}</view>
-  
-  <view style="display:flex;justify-content:center;align-items:center">
-	  <view class="demo">
-		<view class="oneline">
-			<view class="demo__item">
-			  <view class="demo__icon zan-badge cynsytle" bindtap="groupOntap" data-option="1"><view>01组</view>  <view style="color:{{color[1]}}">{{score[1]}}</view>
-
-			  </view>
-			</view>
-			<view class="demo__item">
-			  <view class="demo__icon zan-badge cynsytle" bindtap="groupOntap" data-option="2"><view>02组</view>  <view style="color:{{color[2]}}">{{score[2]}}</view>
-
-			  </view>
-			</view>
-			<view class="demo__item">
-			  <view class="demo__icon zan-badge cynsytle" bindtap="groupOntap" data-option="3"><view>03组</view>  <view style="color:{{color[3]}}">{{score[3]}}</view>
-
-			  </view>
-			</view>
-		</view>
-		<view class="oneline">
-			<view class="demo__item">
-			  <view class="demo__icon zan-badge cynsytle" bindtap="groupOntap" data-option="4"><view>04组</view>  <view style="color:{{color[4]}}">{{score[4]}}</view>
-
-			  </view>
-			</view>
-			<view class="demo__item">
-			  <view class="demo__icon zan-badge cynsytle" bindtap="groupOntap" data-option="5"><view>05组</view>  <view style="color:{{color[5]}}">{{score[5]}}</view>
-
-			  </view>
-			</view>
-			<view class="demo__item">
-			  <view class="demo__icon zan-badge cynsytle" bindtap="groupOntap" data-option="6"><view>06组</view>  <view style="color:{{color[6]}}">{{score[6]}}</view>
-
-			  </view>
-			</view>
-		</view>
-		<view class="oneline" wx:if="{{star == 1}}">
-			<view class="demo__item">
-			  <view class="demo__icon zan-badge cynsytle" bindtap="groupOntap" data-option="7"><view>07组</view>  <view style="color:{{color[7]}}">{{score[7]}}</view>
-
-			  </view>
-			</view>
-			<view class="demo__item">
-			  <view class="demo__icon zan-badge cynsytle" bindtap="groupOntap" data-option="8"><view>08组</view>  <view style="color:{{color[8]}}">{{score[8]}}</view>
-
-			  </view>
-			</view>
-			<view class="demo__item">
-			  <view class="demo__icon zan-badge cynsytle" bindtap="groupOntap" data-option="9"><view>09组</view>  <view style="color:{{color[9]}}">{{score[9]}}</view>
-
-			  </view>
-			</view>
-		</view>
-		
-	  </view>
+    <view class="sub-title" style='margin-left:12rpx;'>
+      <text>{{detailTitle}}</text>
+    </view>
   </view>
 
-	<view class="alarm">
-		<view class="demo__icon zan-badge cynsytle" bindtap="groupOntap" style="margin:0;border:1px solid #DDDDDD" data-option="1">
-			<view></view>  <view style="color:{{color[1]}}"></view>
-		</view>
-		<view class="alarmTips">
-			<view class="">
-				←组号
-			</view>
-			<view style="visibility:hidden">test</view>
-			<view class="">
-				←最后一次成绩
-			</view>
-		</view>
-   </view>
+  <view style="display:flex;justify-content:center;flex-direction:column;max-height:40vh;">
+    <view class='process-column'>
+      <view>思维测试</view>
+      <view>·</view>
+      <view>模拟</view>
+      <view class='d-push-link' wx:if='{{isCompleteConfirm}}'>企业直推</view>
+    </view>
+    <view class="demo">
+      <view class="oneline">
+        <view class="demo__item">
+          <view class="demo__icon zan-badge cynsytle group-bar" bindtap="groupOntap" data-option="1">
+            <view>01组</view>
+            <view class='score-bar' style="color:{{color[1]}}">{{score[1]}}</view>
+
+          </view>
+        </view>
+        <view class="demo__item">
+          <view class="demo__icon zan-badge cynsytle group-bar" bindtap="groupOntap" data-option="2">
+            <view>02组</view>
+            <view class='score-bar' style="color:{{color[2]}}">{{score[2]}}</view>
+
+          </view>
+        </view>
+        <view class="demo__item">
+          <view class="demo__icon zan-badge cynsytle group-bar" bindtap="groupOntap" data-option="3">
+            <view>03组</view>
+            <view class='score-bar' style="color:{{color[3]}}">{{score[3]}}</view>
+
+          </view>
+        </view>
+      </view>
+      <view class="oneline">
+        <view class="demo__item">
+          <view class="demo__icon zan-badge cynsytle group-bar" bindtap="groupOntap" data-option="4">
+            <view>04组</view>
+            <view class='score-bar' style="color:{{color[4]}}">{{score[4]}}</view>
+
+          </view>
+        </view>
+        <view class="demo__item">
+          <view class="demo__icon zan-badge cynsytle group-bar" bindtap="groupOntap" data-option="5">
+            <view>05组</view>
+            <view class='score-bar' style="color:{{color[5]}}">{{score[5]}}</view>
+
+          </view>
+        </view>
+        <view class="demo__item">
+          <view class="demo__icon zan-badge cynsytle group-bar" bindtap="groupOntap" data-option="6">
+            <view>06组</view>
+            <view class='score-bar' style="color:{{color[6]}}">{{score[6]}}</view>
+
+          </view>
+        </view>
+      </view>
+      <view class="oneline" wx:if="{{star == 1}}">
+        <view class="demo__item">
+          <view class="demo__icon zan-badge cynsytle group-bar" bindtap="groupOntap" data-option="7">
+            <view>07组</view>
+            <view class='score-bar' style="color:{{color[7]}}">{{score[7]}}</view>
+
+          </view>
+        </view>
+        <view class="demo__item">
+          <view class="demo__icon zan-badge cynsytle group-bar" bindtap="groupOntap" data-option="8">
+            <view>08组</view>
+            <view class='score-bar' style="color:{{color[8]}}">{{score[8]}}</view>
+
+          </view>
+        </view>
+        <view class="demo__item">
+          <view class="demo__icon zan-badge cynsytle group-bar" bindtap="groupOntap" data-option="9">
+            <view>09组</view>
+            <view class='score-bar' style="color:{{color[9]}}">{{score[9]}}</view>
+
+          </view>
+        </view>
+      </view>
+
+    </view>
+  </view>
+
+  <view class=''>
+
+    <view style='display:flex;flex-direction:column;max-height:25vh;'>
+      <view class='process-column'>
+        <view>认证进度</view>
+        <view>·</view>
+        <view class="{{isCompleteConfirm?'complete-style':'no-complete-style'}}">未完成</view>
+        <view class='d-push-link' wx:if='{{isCompleteConfirm}}'>企业直推</view>
+      </view>
+      <view class='column-flex'>
+        <view class="{{isPassed?'green-box':'gray-box'}}" data-option="{{star}}" bindtap="gotoExam">
+          <text>思维测试</text>
+        </view>
+        <view wx:if='{{remainTimes == 0 && !isPassed && preExamPass}}' class='box-hint'>
+          <text>开始新的测试</text>
+        </view>
+        <view wx:if='{{remainTimes == 0 && !isPassed && !preExamPass}}' class='box-hint'>
+          <text>请先完成上一星级测试</text>
+        </view>
+        <view wx:if='{{remainTimes >0 && !isPassed}}' class='box-hint'>
+          <text>剩余{{remainTimes}}次，已通过{{passedTimes}}/{{needTimes}}次</text>
+        </view>
+        <view wx:if='{{isPassed}}' class='box-hint'>
+          已达到标准
+        </view>
+      </view>
+      <view class='column-flex'>
+        <view class="{{invitor.count>invitor.needInvitor?'green-box':'gray-box'}}" bindtap="navigatoInvitor">
+          <text>人际关系</text>
+        </view>
+        <view class='box-hint'>
+          已邀请
+          <view style='color:#2BB675;'>　{{invitor.count}}/{{invitor.needInvitor}}　</view>个好友
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+  <view class=''>
+
+    <view style='display:flex;flex-direction:column;max-height:25vh;'>
+      <view class='process-column' style='padding-top:34rpx;'>
+        <view>附加项</view>
+        <view>·</view>
+        <view wx:if="{{!practiceFlag||!exerciseFlag}}" class='no-complete-style'>
+          <text>未完成</text>
+          <view style='letter-space:0rpx;font-size:28rpx'>
+            <text>（完成后为1.5星级）</text>
+          </view>
+        </view>
+        <view wx:if='{{practiceFlag&&exerciseFlag}}' class='complete-style'>已完成</view>
+      </view>
+      <view class='column-flex'>
+        <view class="{{exerciseFlag?'green-box':'gray-box'}}" bindtap="">
+          <text>锻炼情况</text>
+        </view>
+        <view class='box-hint'>
+          {{exerciseFlag ? '已达到标准':'未达到标准'}}
+        </view>
+      </view>
+      <view class='column-flex' hidden='{{star==1}}'>
+        <view class="{{practiceFlag?'green-box':'gray-box'}}" bindtap="">
+          <text>实践情况</text>
+        </view>
+        <view class='box-hint'>
+          {{exerciseFlag ? '已达到标准':'未达到标准'}}
+        </view>
+      </view>
+
+
+    </view>
+  </view>
+
+
+  <view class="alarm">
+    <view class="demo__icon zan-badge cynsytle" bindtap="groupOntap" style="margin:0;border:1px solid #DDDDDD" data-option="1">
+      <view></view>
+      <view style="color:{{color[1]}}"></view>
+    </view>
+    <view class="alarmTips">
+      <view class="">
+        ←组号
+      </view>
+      <view style="visibility:hidden">test</view>
+      <view class="">
+        ←最后一次成绩
+      </view>
+    </view>
+  </view>
 
 </view>

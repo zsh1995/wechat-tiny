@@ -2,6 +2,7 @@
 page{
   height:100%;
   background: #FFFFFF;
+  max-width: 100%;
 }
 .mycontainer{
   display: flex;
@@ -75,7 +76,6 @@ page{
     height:100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     max-width: 100%;
     align-items: center;
     padding-left: 30rpx;
@@ -97,9 +97,8 @@ page{
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin:15rpx;
   background: #ffffff;
-  padding:50rpx 0rpx 50rpx 0rpx;
+  padding:50rpx 20rpx 50rpx 20rpx;
   font-size: 36rpx;
   justify-content:center;
   border-top:1px solid #f0f0f0;
@@ -115,13 +114,13 @@ page{
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin:15rpx;
   background: #ffffff;
-  padding:50rpx 0rpx 50rpx 0rpx;
+  padding:50rpx 80rpx 50rpx 80rpx;
   font-size: 36rpx;
   justify-content:center;
   letter-spacing: 0.1em;
   line-height:1;
+  font-weight: 600;
 }
 .item_no_border::after{
 	border:0px solid #f0f0f0;
@@ -143,7 +142,6 @@ page{
   margin-right:30rpx;
 }
 .card-container{
-  position:relative;
   width:87%;
   display: flex;
   align-items: center;
@@ -152,11 +150,10 @@ page{
 
 .gslm-cardbox{
   z-index: 10;
-  position: absolute;
   display: flex;
   flex-direction: column;
-  margin-top:80rpx;
-  border:3rpx solid #343B41;
+  margin-top:100rpx;
+  border:1px solid #343B41;
   width:100%;
   border-radius:25rpx;
   background:#ffffff;
@@ -170,11 +167,11 @@ page{
 
 .gslm-cardbox-back{
   display: flex;
-  position: absolute;
+  
   opacity:0;
   flex-direction: column;
   margin-top:80rpx;
-  border:3rpx solid #343B41;
+  border:1px solid #343B41;
   width:100%;
   border-radius:25rpx;
   background:#ffffff;
@@ -183,7 +180,6 @@ page{
   transform:rotateX(-180deg);
   backface-visibility:hidden;
   height:50vw;
-  
  /* box-shadow: 3px 3px 1px #A8A8A8;*/
 }
 @-webkit-keyframes turnover {
@@ -238,9 +234,13 @@ page{
 }
 .gslm-cardbox_id{
 	margin-top:15rpx;
-	margin-left:auto;
+  margin-left:6rpx;
   font-weight: bold;
   letter-spacing: 1px;
+}
+.gslm-cardbox_confirm{
+  margin-top:15rpx;
+	margin-left:auto;
 }
 .usermobile{
   display: flex;
@@ -267,7 +267,9 @@ page{
   color: white;
 }
 .bottom-box{
-  width: 100%;
+  display:flex;
+  flex-direction: column;
+  width: auto;
 }
 
 .cellinput{
@@ -296,4 +298,12 @@ page{
 
 .content--disappear{
   -webkit-transform: translateZ(0) translateY(0);
+}
+.column-p{
+  display: flex;
+  flex-basis:100%;
+}
+.bottom-hold{
+  margin-top:108rpx;
+
 }

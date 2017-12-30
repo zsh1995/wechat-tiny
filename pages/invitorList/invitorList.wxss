@@ -25,3 +25,8 @@
   display: flex;
   flex-direction: column;
 }
+.date-set{
+  color: #7A7A7A;
+  margin-left: auto;
+  font-size:28rpx;
+}

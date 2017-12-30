@@ -14,7 +14,9 @@
     "pages/purchRecord/purchRecord",
     "pages/analysePage/analysePage",
     "pages/invitorList/invitorList",
-    "pages/enterpriseList/enterpriseList"
+    "pages/enterpriseList/enterpriseList",
+    "pages/enrollDetailInfo/enrollDetailInfo",
+    "pages/accPage/accPage"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -29,13 +31,13 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "高商联盟",
+        "text": "高商苑",
         "iconPath": "iconSource/index-default.png",
         "selectedIconPath": "iconSource/index-selected.png"
       },
       {
         "pagePath": "pages/examItems/examItems",
-        "text": "加盟训练",
+        "text": "星级认证",
         "iconPath": "iconSource/training-default.png",
         "selectedIconPath": "iconSource/training-selected.png"
       },

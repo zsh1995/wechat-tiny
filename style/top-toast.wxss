@@ -1,0 +1,20 @@
+.toast-box{
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  width: 100%;
+  position: fixed;
+  background-color: #FEFEFE;
+  z-index: 11;
+  box-shadow: 0 3px 2px #aaa;
+  -webkit-transform: translateZ(0) translateY(-125%);
+  transition: all 0.4s ease;
+  padding:20rpx 32rpx 20rpx 32rpx;
+}
+.content-disappear{
+  -webkit-transform: translateZ(0) translateY(0);
+}
+.toast-box > text{
+  margin: 10px 18px 10px 18px;
+  letter-spacing:0.1em;
+}

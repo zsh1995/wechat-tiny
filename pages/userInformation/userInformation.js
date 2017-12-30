@@ -45,12 +45,14 @@ Page({
     updataUserInfo: `https://${config.service.host}/userInfo/updateUserInfo`, 
     requestUserInfo:`https://${config.service.host}/userInfo/getUserInfo`,
     payrecordurl: `https://${config.service.host}/pay/getPurchRecord`,
+    starRankUrl: `https://${config.service.host}/star/getRank`,
     onModify:false,
     ourUserInfo:{},
     showTips:false,
   },
   turnOver: function(event){
     // 暂不启用
+
     /*
     setTimeout((function () {
       this.setData({
@@ -63,9 +65,12 @@ Page({
       cardboxStyle: 'animation:turnover .5s ease-in-out;animation-fill-mode:forwards;',
       cardboxStyleAnti: 'animation:turnback .5s ease-in-out;animation-fill-mode:forwards;'
     })
+
+    //====
     */
   },
   turnBack: function (event) {
+    /*
     this.setData({
       cardboxStyle: this.data.cardboxStyle+'animation:turnback .5s ease-in-out;animation-fill-mode:forwards;',
       cardboxStyleAnti: this.data.cardboxStyleAnti+'animation:turnover .5s ease-in-out;animation-fill-mode:forwards;'
@@ -76,6 +81,39 @@ Page({
         cardboxStyleAnti: ''
       })
     }).bind(this), 600)
+    */
+  },
+  getStarRank:function(){
+    var that = this;
+    qcloud.request({
+      url: this.data.starRankUrl,
+      login: true,
+      method: 'POST',
+      data: {
+        userName: "test"
+      },
+      success(result) {
+        var rank = result.data.data;
+        that.setData({
+          rank:rank,
+        })
+      },
+      fail(error) {
+        console.log(e);
+      },
+      complete() {
+      }
+
+    });
+
+  },
+  gotoConfirm:function(){
+    var rank = this.data.rank;
+    rank = parseFloat(rank);
+    rank = Math.floor(rank)+1;
+    wx.navigateTo({
+      url: '../../pages/practiceGroup/practiceGroup?star=' + rank,
+    })
   },
 
 
@@ -83,7 +121,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this
+    var that = this;
+    this.getStarRank();
     //调用应用实例的方法获取全局数据
     app.getUserInfo(function (userInfo) {
       //更新数据
@@ -179,6 +218,12 @@ Page({
       success: function(res) {},
       fail: function(res) {},
       complete: function(res) {},
+    })
+  },
+
+  doAccelarate:function(){
+    wx.navigateTo({
+      url: '../../pages/accPage/accPage',
     })
   },
 

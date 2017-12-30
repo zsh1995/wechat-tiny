@@ -1,0 +1,45 @@
+.shade {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  opacity: 0.2;
+  background-color: #000;
+}
+
+.floatImg {
+  position: fixed;
+  z-index: 11;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 0;
+}
+.floatImg > image{
+  margin-top:36px;
+  height: 85%;
+  width: 100%;
+  z-index: 12;
+
+}
+
+ .close {
+    color: white;
+    border: 2px solid #FFF;
+    border-radius: 100%;
+    line-height: 20px;
+    text-align: center;
+    height: 20px;
+    width: 20px;
+    font-size: 13px;
+    padding: 1px;
+    top: 10px;
+    right: 10px;
+    position: absolute;
+    z-index: 12;
+}
+.close::before {
+    content: "\2716";
+
+}

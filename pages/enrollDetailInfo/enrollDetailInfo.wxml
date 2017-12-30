@@ -1,0 +1,50 @@
+<view class="icontainer">
+  <view class='floatImg central' hidden='{{showToast}}'>
+    <image mode='aspectFit' src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1511256309652&di=d30705546409d2be9a5df2e05c33cf17&imgtype=0&src=http%3A%2F%2Fpic35.nipic.com%2F20131121%2F2531170_145358633000_2.jpg'></image>
+    <view class='navigator' bindtap='navigator'> 现在去练习 >>></view>
+  </view>
+  <view class='shade' hidden='{{showToast}}'></view>
+
+
+  <form bindsubmit="onSubmit">
+    <view class="zan-form column" hidden="{{steps != 1}}">
+      <view class="zan-cell zan-form__item">
+        <text class="zan-form__title">企业1</text>
+        <input name='wanted_company1' class="zan-form__input zan-cell__bd" placeholder="第一个企业" />
+      </view>
+      <view class="zan-cell zan-form__item">
+        <text class="zan-form__title">企业2</text>
+        <input name='wanted_company2' class="zan-form__input zan-cell__bd" placeholder="第二个企业" />
+      </view>
+      <view class="zan-cell zan-form__item">
+        <text class="zan-form__title">企业3</text>
+        <input name='wanted_company3' class="zan-form__input zan-cell__bd" placeholder="第三个企业" />
+      </view>
+    </view>
+    <view class="zan-form column" hidden="{{steps != 2}}">
+      <view class="zan-cell zan-form__item">
+        <text class="zan-form__title">姓名</text>
+        <input name='userName' class="zan-form__input zan-cell__bd" placeholder="名字" />
+      </view>
+      <view class="zan-cell zan-form__item">
+        <text class="zan-form__title">手机号</text>
+        <input name='userMobile' class="zan-form__input zan-cell__bd" type="number" maxlength="20" placeholder="手机" />
+      </view>
+      <view class="zan-cell zan-form__item">
+        <view class="zan-form__title">学校</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access" bindtap="chooseSchool">{{schoolName}}</view>
+        <input name="school" style="display:none"></input>
+      </view>
+
+      <view class="zan-cell zan-form__item">
+        <text class="zan-form__title">专业</text>
+        <input name='major' class="zan-form__input zan-cell__bd" placeholder="所学专业" />
+      </view>
+    </view>
+    <view class='column' style='display:flex;align-items:center;flex-direction:column;'>
+      <button class="weui-btn mbutton pass" plain="true" style="align-self: center; width:550rpx" bindtap="nextStep" form-type='submit'>{{nextStepText}}</button>
+    </view>
+  </form>
+
+
+</view>

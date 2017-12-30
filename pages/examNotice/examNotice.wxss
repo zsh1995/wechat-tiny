@@ -45,3 +45,8 @@ font-size:17px;
 .button-item{
   width: 100%;
 }
+
+.navigator{
+  align-self:flex-end;
+  margin-right:20px;
+}

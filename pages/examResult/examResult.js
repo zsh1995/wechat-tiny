@@ -6,6 +6,8 @@ var qcloud = require('../../bower_components/wafer-client-sdk/index');
 var config = require('../../config');
 
 var utils = require('..//../utils/score');
+
+var examTimesUtil = require('../../utils/userRight.js');
 var stars ;
 
 // 当前操作类型
@@ -28,7 +30,7 @@ Page({
     updateExamStatus:`https://${config.service.host}/exam/uploadStatus`,
     uploadScore: `https://${config.service.host}/uploadScore`,
     examUrl: `https://${config.service.host}/exam/getExamStatus`,
-    checkUrl: `https://${config.service.host}/pay/checkPurchRecord`,
+    checkUrl: `https://${config.service.host}/product/getExamAvaliableTime`,
 
   },
 
@@ -36,6 +38,12 @@ Page({
     wx.navigateBack({
     });
     return false;
+  },
+
+  nextStep:function(e){
+    wx.navigateTo({
+      url: '../../pages/enrollDetailInfo/enrollDetailInfo',
+    })
   },
   gobacktoMain:function(e){
     wx.switchTab({
@@ -53,20 +61,25 @@ Page({
       },
       method: 'POST',
       success(result) {
+        var passTimes = 0;
         if (result.data.code == 0) {
           var passTimes = result.data.data.examStatus;
-          var needTimes = 0;
-          switch ( parseInt(stars) ) {
-            case 1: needTimes = 3 - passTimes; break;
-            case 2: needTimes = 4 - passTimes; break;
-            case 3: needTimes = 5 - passTimes; break;
-          }
-          needTimes = needTimes < 0 ? 0 :needTimes;
         }
+        var needTimes = 0;
+        switch (parseInt(stars)) {
+          case 1: needTimes = 3 - passTimes; break;
+          case 2: needTimes = 4 - passTimes; break;
+          case 3: needTimes = 5 - passTimes; break;
+        }
+        needTimes = needTimes < 0 ? 0 : needTimes;
+        if(needTimes == 0) that.setData({
+          passExam:true,
+        })
         that.setData({
           passTimes: passTimes,
-          needTimes: needTimes
+          needTimes: needTimes,
         });
+        that.checkUserRight();
       },
       fail(error) {
         console.log('request fail', error);
@@ -93,8 +106,10 @@ Page({
       },
       method: 'POST',
       success(result) {
-        that.data.remainTimes = result.data.data.remainTime;
-        console.log('remainTimes:' + result.data.data.remainTime);
+        that.data.remainTimes = result.data.data.remainTimes;
+        if (that.data.remainTimes < that.data.needTimes){
+          //todo
+        }
         that.setData(that.data)
       },
       fail(error) {
@@ -107,59 +122,85 @@ Page({
     });
 
   },
+  reWatch:function(){
+    var options = this.data.groudId;
+    var star = this.data.star;
+    var list = this.data.chooseList;
+    wx.redirectTo({
+      url: '../../pages/examInfo/examInfo?group=' + options + '&item=' + star + '&type=' + 'practice' + '&chooseList=' + list,
+    })
+  },
+  getStarString:function(star){
+    var str = '';
+    switch(star){
+      case 1:str =  '一星级';break;
+      case 2: str = '二星级'; break;
+      case 3: str = '三星级'; break;
+    }
+    return str;
+
+  },
+  gotoPractice:function(){
+    wx.redirectTo({
+      url: '../../pages/practiceGroup/practiceGroup?star=' + stars,
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     var that = this;
-    stars = options.stars;
+    stars = parseInt(options.stars);
     var result = utils.getCommentByScore(options.score);
+    wx.setNavigationBarTitle({
+      title: this.getStarString(stars) + '·0' + options.group_id+'组'
+    })
     this.data.comment = result.comment;
+    this.data.star = options.stars;
+    this.data.groudId = options.group_id;
+    this.data.chooseList = options.chooseList;
     this.data.score = result.score;
     this.data.type = options.type;
-    if(result.realScore >= 54 ){
-      this.data.scoreColor = '#00C775';
-    } else {
-      this.data.scoreColor = '#DDDDDD';
-    }
+    this.data.scoreColor = result.color 
     this.setData(this.data);
     var requestUrl = this.data.uploadScore;
 
-    if (options.type== 'exam' && result.realScore >=54 ){
+    if (options.type== 'exam' ){
       requestUrl = this.data.updateExamStatus;
+      if (result.realScore >= 54) {
+        options.score = 1;
+        this.setData({
+          passed: true,
+        })
+      }else{
+        options.score = 0;
+      }
+      wx.showLoading({
+        title: '正在提交',
+      })
+      examTimesUtil.getExamStatus(stars, p => {
+        var pt = options.score == 1 ? p.passTimes + 1 : p.passTimes;
+        var rt = p.remainTimes;
+        var nt = examTimesUtil.calcNeedTimes(stars, pt);
+        that.setData({
+          passTimes:pt,
+          remainTimes:rt,
+          needTimes:nt,
+        })
+        examTimesUtil.uploadExamStatue(stars, options.score, p => (wx.hideLoading()))     })
     }else if(options.type == 'practice'){
       requestUrl = this.data.uploadScore;
+      wx.showLoading({
+        title: '正在提交',
+      })
+      examTimesUtil.uploadScore(stars, parseInt(options.group_id), options.score, p => (wx.hideLoading()) )
     }else{
+      wx.setNavigationBarTitle({
+        title: '报名·基础测试'
+      })
       return;
     }
-    wx.showLoading({
-      title: '正在提交',
-    })
-    qcloud.request({
-      url: requestUrl,
-      login: true,
-      data:{
-        score:options.score,
-        groud_id:options.group_id,
-        stars:options.stars,
-        star:parseInt(options.stars)
-      },
-      method: 'POST',
-      success(result) {
-        console.log('POST SUCCESS')
-        wx.hideLoading();
-        that.getExamStatus();
-        that.checkUserRight();
-      },
-      fail(error) {
-        console.log('request fail', error);
-      },
-      complete() {
-        console.log('request complete');
-      }
-
-    });
   },
 
   /**
@@ -174,8 +215,8 @@ Page({
    */
   onShow: function () {
     if(this.data.type == 'exam'){
-      this.getExamStatus();
-      this.checkUserRight();
+      //this.getExamStatus();
+      //this.checkUserRight();
     }
   },
 

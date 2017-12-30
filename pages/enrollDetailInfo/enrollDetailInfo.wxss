@@ -1,0 +1,139 @@
+/* pages/enrollDetailInfo/enrollDetailInfo.wxss */
+@import '/style/float-pic.wxss';
+.icontainer{
+    overflow:hidden;
+    min-height:100vh;
+    box-sizing:border-box;
+}
+.column{
+  padding-top:100rpx;
+}
+.pass{
+	color:#00C775 !important;
+	border:1px solid #00C775 !important;
+}
+.zan-cell {
+  position: relative;
+  padding: 12px 15px;
+  display: flex;
+  align-items: center;
+  line-height: 1.4;
+  font-size: 14px;
+}
+
+.zan-cell::after {
+  position: absolute;
+  left: 15px;
+  right: 0;
+  bottom: 0;
+  border-top: 1rpx solid #e5e5e5;
+  background: #e5e5e5;
+  content: ' ';
+}
+.zan-cell__bd {
+  flex: 1;
+}
+.zan-cell__ft {
+  position: relative;
+  text-align: right;
+  color: #666;
+}
+
+.zan-cell--last-child::after,
+.zan-cell:last-child::after {
+  display: none;
+}
+
+.zan-cell--access .zan-cell__ft {
+  padding-right: 13px;
+}
+
+.zan-cell--access .zan-cell__ft::after {
+  position: absolute;
+  top: 50%;
+  right: 2px;
+  content: " ";
+  display: inline-block;
+  height: 6px;
+  width: 6px;
+  border-width: 2px 2px 0 0;
+  border-color: #c8c8c8;
+  border-style: solid;
+  transform: translateY(-50%) matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+}
+.zan-cell--switch {
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.zan-form {
+  background-color: #fff;
+  border-top: 1rpx solid #e5e5e5;
+  border-bottom: 1rpx solid #e5e5e5;
+}
+
+.zan-form__item {
+  line-height: 26px;
+}
+
+.zan-form__title {
+  float: left;
+  width: 80px;
+  font-size: 14px;
+}
+
+.zan-form__title--top {
+  align-self: flex-start;
+}
+
+.zan-form__input, .zan-form__textarea {
+  min-height: 26px;
+}
+
+.zan-form__input input {
+  min-height: 26px;
+}
+
+.zan-form__textarea {
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+}
+
+.zan-form__textarea textarea {
+  width: auto;
+  flex: 1;
+}
+
+.central{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.navigator{
+  align-self:flex-end;
+  margin-right:40px;
+  margin-top:20px;
+  font-weight:bold;
+
+}
+.shade {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+  opacity: 0.2;
+  background-color: #000;
+}
+image{
+  height: 70% !important;
+}
+.mbutton{
+margin-right:5rpx;
+margin-left:5rpx;
+color:black;
+border:1px solid #000000;
+line-height:2.00000006;
+border-radius:6px;
+font-size:32rpx;
+}

@@ -6,7 +6,8 @@ var qcloud = require('../../bower_components/wafer-client-sdk/index');
 
 // 引入配置
 var config = require('../../config');
-
+var product = ['', '解析', '认证', '认证', '认证','加急押金'];
+var toCN = ['', '一星级','二星级','三星级']
 
 function ge_time_format(timestamp = false) {
   if (timestamp) {
@@ -35,7 +36,9 @@ function ge_time_format(timestamp = false) {
   if (s < 10) {
     s = '0' + s;
   }
-  var t = Y + '-' + m + '-' + d + ' ' + H + ':' + i + ':' + s;
+  //var t = Y + '-' + m + '-' + d + ' ' + H + ':' + i + ':' + s;
+  var t = Y + '-' + m + '-' + d;
+
   return t;
 }
 /**
@@ -68,7 +71,7 @@ Page({
   data: {
     payrecordurl: `https://${config.service.host}/pay/getPurchRecord`,
     purchList:[],
-    recordTypes:['全部','考试','解析'],
+    recordTypes:['全部','认证','解析','押金'],
     typeId:0
   },
 
@@ -89,6 +92,14 @@ Page({
         that.data.purchList = result.data.data;
         for(var cnt = 0;cnt < that.data.purchList.length;cnt++){
           var item = that.data.purchList[cnt]
+          if(item.channel != 1) item.price = 0;
+          item.product_name = product[item.product_id];
+          if (item.product_id != 5){
+            item.product_name += '·' +toCN[item.purchStar];
+            if(item.product_id == 1){
+              item.product_name += '0' + item.group + '组' + '0' +item.fe_question_id+'题'
+            }
+          }
           item.date = ge_time_format(parseInt(item.date) *1000)
         }
         that.setData(that.data);

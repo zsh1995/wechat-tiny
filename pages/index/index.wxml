@@ -1,18 +1,13 @@
 <!--index.wxml-->
-<view style="padding-top:80rpx;" class="container">
+<view class="icontainer">
+  <view class="floatImg" hidden='{{!showToast}}' bindtap='closePic'>
+      <view class='shade'></view>
+      <view id="closePic" class='close' ></view>
+      <image id="pic" class="pic {{showPicStyle}}" mode='aspectFit' src='http://i2.bvimg.com/619221/e1debd963d38ff75.jpg' bindtap='cancelShow'></image>
+  </view>
   <view class="textcontent">
-    <text class="text-title">
-      前一千名学员特权
-    </text>
-    <text class="text-body">
-      点击“我 – 编辑”，填写期望内推的在京企业，保证内推面试！
-      
-要求：学员达到一星级，并承诺达到三星级；企业有实际招聘需求。
-
-一星级考试前两次免费(开发中)
-
-详情搜索“高商联盟”服务号！
-    </text>
-    <view class="clickable" bindtap='onClick'>查看企业列表</view>
+    <view class='company-icom'><image src='http://i4.bvimg.com/619221/ebb6c675845cdd09.jpg' mode='aspectFit'></image></view>
+    <view class='name'>高商苑</view>
+    <view class='slogan'>让你拥有成长型思维</view>
   </view>
 </view>

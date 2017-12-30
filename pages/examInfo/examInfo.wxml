@@ -1,5 +1,20 @@
 <import src="../template/template.wxml"/>
 <view class='swiper-lists' bindtouchend='touchEnd' bindtouchstart='setEvent' bindtap="touchViewStart">
+    <view class="count" >
+        <view wx:for="{{chooseList}}" wx:for-item="chooseItem">
+          <view wx:if="{{chooseItem != -1}}">
+            <view class="success"></view>
+          </view>
+          <view wx:if="{{chooseItem == -1}}">
+            <view class="error"></view>
+          </view>
+      </view>
+    </view>
+  <view wx:if="{{type !='exam'}}" class="toast-box {{titleStyle}}" style="{{}}" id='title-tips' ><text class="">{{answers.allLists[answers.activeNum].tips}}</text>
+          <view wx:if="{{type != 'exam' && answers.allLists[answers.activeNum].analyse != '' && type !='enroll'}}" class="tips" bindtap="bindAnalyse" style="color:{{answers.allLists[answers.activeNum].isPurchAnalyse == 1 ? '#00C775':'#aaa'}};border-color:{{answers.allLists[answers.activeNum].isPurchAnalyse == 1 ? '#00C775':'#aaa'}}"><view >解析</view></view>
+
+  </view>
+
     <block wx:for="{{swiper.list}}" wx:for-item="listItem" wx:for-index="idx">
         <view  wx:if="{{idx == 0}}" class='swiper-list prev' animation="{{swiper.animationO}}">
           <template is="exam-question" data="{{listItem,isSelect,selectdata,idx}}"/>
@@ -17,33 +32,19 @@
 
   	<view style="position:absolute;bottom:120rpx;width:100%">
     <view class="tipsContain">
-      <view class="tips"  style="margin-left:0;color:#aaa;border-color:#aaa;" bindtap="bindCommBase"><view style="">交流基地</view></view>
-      <view class="secondBox">
-        <view wx:if="{{type != 'exam' && answers.allLists[answers.activeNum].analyse != ''}}" class="tips" bindtap="bindAnalyse" style="color:{{answers.allLists[answers.activeNum].isPurchAnalyse == 1 ? '#00C775':'#aaa'}};border-color:{{answers.allLists[answers.activeNum].isPurchAnalyse == 1 ? '#00C775':'#aaa'}}"><view >解析</view></view>
-        <view class="tips"  bindtap="bindTips" data-option="{{listItem}}"><view style="">提示</view></view>
-      </view>
     </view>
-		<view class="container" hidden="{{isSelect}}">
+		<view class="container" hidden="{{false}}">
 			<view wx:for="{{swiper.list[1].options}}" wx:for-index="idx">
-					<view wx:if="{{idx!=0}}" class="list" style="background:{{item.color}}" data-option="{{idx}}" catchtap="tapCheckbox"></view>
-					<view wx:if="{{idx==0}}" class="list_border" style="background:{{item.color}}" data-option="{{idx}}" catchtap="tapCheckbox"></view>
+					<view wx:if="{{false}}" class="list" style="background:{{item.color}}" data-option="{{idx}}" catchtap="tapCheckbox"></view>
+					<view class="list_border" style="box-shadow:{{ selectdata.selectedId == idx && isSelect? '0 0 10rpx'+item.color : ''}};background:{{selectdata.selectedId == idx && isSelect? item.color : ''}};border-color:{{item.color}};color:{{selectdata.selectedId == idx && isSelect? item.font : '#BBBBBB'}}" data-option="{{idx}}" catchtap="tapCheckbox"><text>{{item.text}}</text></view>
 			</view>
 		</view>
-		<view class="container" hidden="{{!isSelect}}">
+		<view class="container" hidden="{{true}}">
 			<view wx:if="{{selectdata.selectedId != 0}}" class="list_sure" style="background:{{swiper.list[1].options[selectdata.selectedId].color}}" catchtap="touchInsure" ><view style="color:white">{{attitude[selectdata.selectedId]}}</view></view>
 			<view wx:if="{{selectdata.selectedId == 0}}" class="list_sure_border" style="background:{{swiper.list[1].options[selectdata.selectedId].color}}" catchtap="touchInsure" ><view>{{attitude[selectdata.selectedId]}}</view></view>
 		</view>
 	</view>
-    <view class="count">
-        <view wx:for="{{chooseList}}" wx:for-item="chooseItem">
-          <view wx:if="{{chooseItem != -1}}">
-            <view class="success"></view>
-          </view>
-          <view wx:if="{{chooseItem == -1}}">
-            <view class="error"></view>
-          </view>
-      </view>
-    </view>
+
   </view>
     
 </view>
