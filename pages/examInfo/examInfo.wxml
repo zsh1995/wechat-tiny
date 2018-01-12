@@ -10,7 +10,7 @@
           </view>
       </view>
     </view>
-  <view wx:if="{{type !='exam'}}" class="toast-box {{titleStyle}}" style="{{}}" id='title-tips' ><text class="">{{answers.allLists[answers.activeNum].tips}}</text>
+  <view wx:if="{{type !='exam'}}" class="toast-box-bottom {{titleStyle}}" style="{{}}" id='title-tips' ><text class="">{{answers.allLists[answers.activeNum].tips}}</text>
           <view wx:if="{{type != 'exam' && answers.allLists[answers.activeNum].analyse != '' && type !='enroll'}}" class="tips" bindtap="bindAnalyse" style="color:{{answers.allLists[answers.activeNum].isPurchAnalyse == 1 ? '#00C775':'#aaa'}};border-color:{{answers.allLists[answers.activeNum].isPurchAnalyse == 1 ? '#00C775':'#aaa'}}"><view >解析</view></view>
 
   </view>

@@ -74,6 +74,7 @@ Page({
       isSelect: false,
       selectedId: 0
     },
+    titleStyle:'bottom-disappear',
     answers: {
       isShowRemove: false,//是否显示移除按钮
       onLoadUrl: 'weixin/small/1.0/?m=SmallApp&c=weixin&a=questionID',//题目号链接    
@@ -179,7 +180,7 @@ Page({
         animationT.translate3d('100%', 0, 0).step();
         if (this.data.answers.activeNum > this.data.answers.start) {
           active = - 1;
-          this.onPullUp();
+          this.onPullDown();
         } else {
           this.$isLock = false;
           return;
@@ -357,7 +358,7 @@ callBackError: function (e) {
 },
 onPullDown: function () {
   this.setData({
-    titleStyle: 'content-disappear'
+    titleStyle: 'bottom-disappear'
   });
 },
 onPullUp: function () {
