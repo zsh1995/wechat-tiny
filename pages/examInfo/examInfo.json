@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": ""
+  "navigationBarTitleText": "",
+  "usingComponents":{
+    "upper-slider":"../../components/upperSlider/upperSlider"
+  }
 }

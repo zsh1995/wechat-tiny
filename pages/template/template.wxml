@@ -4,8 +4,8 @@
             <view>
 				<view class="xuanz">{{listItem.index+1}}.</view>
           <view style="display:flex;flex-direction:column">
-            <scroll-view scroll-y style="height:520rpx" bindscroll="onScroll">
-              <view class="maincontent" id = "black">
+            <scroll-view scroll-y style="height:520rpx" bindscroll="onScroll" >
+              <view class="maincontent" id = "black" bindtouchmove='onmove'>
                 <view id = "mainContent{{idx}}"><text>{{listItem.content}}</text></view>
               </view>
             </scroll-view>

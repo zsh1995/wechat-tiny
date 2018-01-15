@@ -1,5 +1,5 @@
 <import src="../template/template.wxml"/>
-<view class='swiper-lists' bindtouchend='touchEnd' bindtouchstart='setEvent' bindtap="touchViewStart">
+<view class='swiper-lists' bindtouchend='touchEnd' bindtouchstart='setEvent' bindtap="touchViewStart" bindtouchmove='onmove'>
     <view class="count" >
         <view wx:for="{{chooseList}}" wx:for-item="chooseItem">
           <view wx:if="{{chooseItem != -1}}">
@@ -10,10 +10,19 @@
           </view>
       </view>
     </view>
+    <!--
   <view wx:if="{{type !='exam'}}" class="toast-box-bottom {{titleStyle}}" style="{{}}" id='title-tips' ><text class="">{{answers.allLists[answers.activeNum].tips}}</text>
           <view wx:if="{{type != 'exam' && answers.allLists[answers.activeNum].analyse != '' && type !='enroll'}}" class="tips" bindtap="bindAnalyse" style="color:{{answers.allLists[answers.activeNum].isPurchAnalyse == 1 ? '#00C775':'#aaa'}};border-color:{{answers.allLists[answers.activeNum].isPurchAnalyse == 1 ? '#00C775':'#aaa'}}"><view >解析</view></view>
 
   </view>
+  -->
+  <upper-slider id='us'>
+  <view style='padding:20rpx 32rpx 20rpx 32rpx;'>
+    <view style='margin: 10px 18px 10px 18px;'><text class="">{{answers.allLists[answers.activeNum].tips}}</text></view>
+    <view wx:if="{{type != 'exam' && answers.allLists[answers.activeNum].analyse != '' && type !='enroll'}}" class="tips" bindtap="bindAnalyse" style="color:{{answers.allLists[answers.activeNum].isPurchAnalyse == 1 ? '#00C775':'#aaa'}};border-color:{{answers.allLists[answers.activeNum].isPurchAnalyse == 1 ? '#00C775':'#aaa'}}"><view >解析</view></view>
+    </view>
+  </upper-slider>
+  
 
     <block wx:for="{{swiper.list}}" wx:for-item="listItem" wx:for-index="idx">
         <view  wx:if="{{idx == 0}}" class='swiper-list prev' animation="{{swiper.animationO}}">

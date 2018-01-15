@@ -8,6 +8,7 @@ var coupond = require('../../utils/coupon');
 var config = require('../../config');
 
 var internalList = new Array();
+var upperSlider = null;
 
 // 显示繁忙提示
 var showBusy = text => wx.showToast({
@@ -117,13 +118,19 @@ Page({
   //swiper切换
   setEvent: function (e) {
     console.log('setEvent');
+    upperSlider.ontouch(e);
     this.data.swiper.touchstartEvent = e;
     this.setData(this.data);
     return false;
   },
+  onmove:function(e){
+    console.log('onmove')
+    upperSlider.onmove(e);
+  },
   //滑动结束
   touchEnd: function (e) {
     console.log('touchEnd');
+    upperSlider.onend(e);
     this.onSwiper(this.getDirection(this.data.swiper.touchstartEvent, e));
     return false;
   },
@@ -191,7 +198,7 @@ Page({
         animationS.translate3d('0', 0, 0).step();
         if (this.data.answers.activeNum < this.data.answers.end) {
           active = 1;
-          this.onPullUp();
+          this.onPullDown();
         } else {
           this.$isLock = false;
           return;
@@ -360,6 +367,7 @@ onPullDown: function () {
   this.setData({
     titleStyle: 'bottom-disappear'
   });
+  upperSlider.hide();
 },
 onPullUp: function () {
   this.setData({
@@ -731,6 +739,7 @@ onLoad(params) {
       screenHeight = res.screenHeight;
     }
   })
+  upperSlider = this.selectComponent('#us');
   chooseList = params.chooseList == null ? [-1, -1, -1, -1, -1, -1] : this.strToArray(params.chooseList);
   this.data.chooseList = chooseList;
   this.data.isSelect = (params.chooseList != null);

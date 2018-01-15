@@ -4,10 +4,11 @@
 		"urlCheck": true,
 		"es6": true,
 		"postcss": false,
-		"minified": true
+		"minified": true,
+		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "1.5.3",
+	"libVersion": "1.7.2",
 	"appid": "wx8ef1d7f4f0591754",
 	"projectname": "gslm",
 	"condition": {

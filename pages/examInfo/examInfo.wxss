@@ -244,6 +244,7 @@ page{
 .maincontent{
   line-height:1.6;
   letter-spacing: 0.1em;
+  height:100%;
 }
 .tipEnd{
   margin-top: 7rpx;
