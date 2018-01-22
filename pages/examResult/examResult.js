@@ -8,7 +8,7 @@ var config = require('../../config');
 var utils = require('..//../utils/score');
 
 var examTimesUtil = require('../../utils/userRight.js');
-var stars ;
+var stars;
 
 // 当前操作类型
 
@@ -20,34 +20,34 @@ Page({
    * 页面的初始数据
    */
   data: {
-    comment:'',
-    score:'',
-    scoreColor:'#DDDDDD',
-    type:'',
-    remainTimes:10,
-    passTimes:0,
-    needTimes:0,
-    updateExamStatus:`https://${config.service.host}/exam/uploadStatus`,
+    comment: '',
+    score: '',
+    scoreColor: '#DDDDDD',
+    type: '',
+    remainTimes: 10,
+    passTimes: 0,
+    needTimes: 0,
+    updateExamStatus: `https://${config.service.host}/exam/uploadStatus`,
     uploadScore: `https://${config.service.host}/uploadScore`,
     examUrl: `https://${config.service.host}/exam/getExamStatus`,
     checkUrl: `https://${config.service.host}/product/getExamAvaliableTime`,
 
   },
 
-  endExam: function(e){
+  endExam: function (e) {
     wx.navigateBack({
     });
     return false;
   },
 
-  nextStep:function(e){
+  nextStep: function (e) {
     wx.navigateTo({
       url: '../../pages/enrollDetailInfo/enrollDetailInfo',
     })
   },
-  gobacktoMain:function(e){
+  gobacktoMain: function (e) {
     wx.switchTab({
-      url:'../../pages/examItems/examItems'
+      url: '../../pages/examItems/examItems'
     })
   },
 
@@ -72,8 +72,8 @@ Page({
           case 3: needTimes = 5 - passTimes; break;
         }
         needTimes = needTimes < 0 ? 0 : needTimes;
-        if(needTimes == 0) that.setData({
-          passExam:true,
+        if (needTimes == 0) that.setData({
+          passExam: true,
         })
         that.setData({
           passTimes: passTimes,
@@ -107,7 +107,7 @@ Page({
       method: 'POST',
       success(result) {
         that.data.remainTimes = result.data.data.remainTimes;
-        if (that.data.remainTimes < that.data.needTimes){
+        if (that.data.remainTimes < that.data.needTimes) {
           //todo
         }
         that.setData(that.data)
@@ -122,7 +122,7 @@ Page({
     });
 
   },
-  reWatch:function(){
+  reWatch: function () {
     var options = this.data.groudId;
     var star = this.data.star;
     var list = this.data.chooseList;
@@ -130,17 +130,17 @@ Page({
       url: '../../pages/examInfo/examInfo?group=' + options + '&item=' + star + '&type=' + 'practice' + '&chooseList=' + list,
     })
   },
-  getStarString:function(star){
+  getStarString: function (star) {
     var str = '';
-    switch(star){
-      case 1:str =  '一星级';break;
+    switch (star) {
+      case 1: str = '一星级'; break;
       case 2: str = '二星级'; break;
       case 3: str = '三星级'; break;
     }
     return str;
 
   },
-  gotoPractice:function(){
+  gotoPractice: function () {
     wx.redirectTo({
       url: '../../pages/practiceGroup/practiceGroup?star=' + stars,
     })
@@ -154,7 +154,7 @@ Page({
     stars = parseInt(options.stars);
     var result = utils.getCommentByScore(options.score);
     wx.setNavigationBarTitle({
-      title: this.getStarString(stars) + '·0' + options.group_id+'组'
+      title: this.getStarString(stars) + '·0' + options.group_id + '组'
     })
     this.data.comment = result.comment;
     this.data.star = options.stars;
@@ -162,18 +162,19 @@ Page({
     this.data.chooseList = options.chooseList;
     this.data.score = result.score;
     this.data.type = options.type;
-    this.data.scoreColor = result.color 
+    this.data.scoreColor = result.color
     this.setData(this.data);
     var requestUrl = this.data.uploadScore;
+    console.log('options.type' + options.type)
 
-    if (options.type== 'exam' ){
+    if (options.type == 'exam') {
       requestUrl = this.data.updateExamStatus;
       if (result.realScore >= 54) {
         options.score = 1;
         this.setData({
           passed: true,
         })
-      }else{
+      } else {
         options.score = 0;
       }
       wx.showLoading({
@@ -184,18 +185,19 @@ Page({
         var rt = p.remainTimes;
         var nt = examTimesUtil.calcNeedTimes(stars, pt);
         that.setData({
-          passTimes:pt,
-          remainTimes:rt,
-          needTimes:nt,
+          passTimes: pt,
+          remainTimes: rt,
+          needTimes: nt,
         })
-        examTimesUtil.uploadExamStatue(stars, options.score, p => (wx.hideLoading()))     })
-    }else if(options.type == 'practice'){
+        examTimesUtil.uploadExamStatue(stars, options.score, p => (wx.hideLoading()))
+      })
+    } else if (options.type == 'practice') {
       requestUrl = this.data.uploadScore;
       wx.showLoading({
         title: '正在提交',
       })
-      examTimesUtil.uploadScore(stars, parseInt(options.group_id), options.score, p => (wx.hideLoading()) )
-    }else{
+      examTimesUtil.uploadScore(stars, options.group_id, options.score, p => (wx.hideLoading()))
+    } else {
       wx.setNavigationBarTitle({
         title: '报名·基础测试'
       })
@@ -207,14 +209,14 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if(this.data.type == 'exam'){
+    if (this.data.type == 'exam') {
       //this.getExamStatus();
       //this.checkUserRight();
     }
@@ -224,48 +226,48 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+
   }
 })

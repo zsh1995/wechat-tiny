@@ -1,0 +1,9 @@
+<!--components/swipperPage/swipperPage.wxml-->
+<view class='swipper-page'>
+  <swiper current='{{settedCurrentId}}' current-item-id	='{{currentItemId}}' bindchange='bindchange' bindanimationfinish='bindanimationfinish'>
+    <swiper-item wx:for='{{arrayLen}}' wx:key='id'>
+      <slot name='{{index}}'>
+      </slot>
+    </swiper-item>
+  </swiper>
+</view>

@@ -1,3 +1,6 @@
+var qcloud = require('../bower_components/wafer-client-sdk/index');
+var config = require('../config');
+
 function formatTime(date) {
   var year = date.getFullYear()
   var month = date.getMonth() + 1
@@ -32,7 +35,29 @@ function Format (data,fmt) { //author: meizz
   return fmt;
 }
 
+function ajax_promise(url,data,){
+  return new Promise((resolve,reject)=>{
+    qcloud.request({
+      url: url,
+      login: true,
+      data: data,
+      method: 'POST',
+      success(result) {
+        resolve(result);
+      },
+      fail(error) {
+        reject(new Error(error))
+      },
+      complete() {
+        console.log('request complete');
+      }
+
+    });
+  })
+}
+
 module.exports = {
   formatTime: formatTime,
   Format: Format,
+  ajax_promise: ajax_promise,
 }

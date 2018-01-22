@@ -1,32 +1,27 @@
 var qcloud = require('../bower_components/wafer-client-sdk/index');
 var config = require('../config');
-
-
-function uploadScore(stars,groupId,score,callback){
-
-  qcloud.request({
-    url: `https://${config.service.host}/exam/uploadStatus`,
-    login: true,
-    data: {
-      score: score,
-      groud_id: groupId,
-      stars: stars,
-      star: parseInt(stars),
-    },
-    method: 'POST',
-    success(result) {
-      if (callback != undefined) callback();
-    },
-    fail(error) {
-      console.log('request fail', error);
-    },
-    complete() {
-      console.log('request complete');
-    }
-
-  });
+var util = require('./util.js')
+var urlMap = {
+  uploadScoreUrl: `https://${config.service.host}/uploadScore`,
 }
-function calcNeedTimes(stars, passTimes){
+
+
+function uploadScore(stars, groupId, score, callback) {
+  var data = {
+    score: score,
+    groud_id: groupId,
+    stars: stars,
+    star: parseInt(stars),
+  }
+  util.ajax_promise(urlMap.uploadScoreUrl, data)
+    .then(result => {
+      if (callback != undefined) callback();
+    })
+    .catch(erro=>{
+      console.log(erro);
+    })
+}
+function calcNeedTimes(stars, passTimes) {
   var needTimes = 0;
   switch (parseInt(stars)) {
     case 1: needTimes = 3 - passTimes; break;
@@ -36,18 +31,18 @@ function calcNeedTimes(stars, passTimes){
   needTimes = needTimes < 0 ? 0 : needTimes;
   return needTimes;
 }
-function getExamStatus(stars,callback){
-  getExamRemaintimes(stars,remaintimes=>{
+function getExamStatus(stars, callback) {
+  getExamRemaintimes(stars, remaintimes => {
     var x = remaintimes;
-    getExamPasstimes(stars,passtimes=>{
-      if(callback != undefined) callback({
-        passTimes:passtimes,
-        remainTimes:x,
+    getExamPasstimes(stars, passtimes => {
+      if (callback != undefined) callback({
+        passTimes: passtimes,
+        remainTimes: x,
       })
     })
   })
 }
-function getExamRemaintimes(stars,callback){
+function getExamRemaintimes(stars, callback) {
   var that = this;
   qcloud.request({
     url: `https://${config.service.host}/product/getExamAvaliableTime`,
@@ -71,7 +66,7 @@ function getExamRemaintimes(stars,callback){
 
 }
 
-function getExamPasstimes(stars,callback) {
+function getExamPasstimes(stars, callback) {
   var that = this;
   qcloud.request({
     url: `https://${config.service.host}/exam/getExamStatus`,
@@ -97,7 +92,7 @@ function getExamPasstimes(stars,callback) {
 
 }
 
-function uploadExamStatue(stars, score,callback) {
+function uploadExamStatue(stars, score, callback) {
   wx.showLoading({
     title: '正在提交',
   })
@@ -111,7 +106,7 @@ function uploadExamStatue(stars, score,callback) {
     method: 'POST',
     success(result) {
       wx.hideLoading();
-      if(callback != undefined ) callback();
+      if (callback != undefined) callback();
     },
     fail(error) {
       console.log('request fail', error);

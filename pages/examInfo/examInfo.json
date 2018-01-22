@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "",
   "usingComponents":{
-    "upper-slider":"../../components/upperSlider/upperSlider"
+    "upper-slider":"../../components/upperSlider/upperSlider",
+    "swipper-page": "../../components/swipperPage/swipperPage"
   }
 }

@@ -55,7 +55,7 @@ Component({
       this.setData({
         animation:true,
       })
-      if (this.data.old_offset == 0 && move_offset > 10) {
+      if (this.data.old_offset == 0 && move_offset >= 10) {
         this.setData({
           move_offset: 100,
         })
