@@ -145,6 +145,12 @@ Page({
       url: '../../pages/practiceGroup/practiceGroup?star=' + stars,
     })
   },
+  strToArray: function (str) {
+    var temp = str.split(',');
+    temp.forEach(function (value, index, array) { array[index] = parseInt(value) })
+    return temp;
+
+  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -159,7 +165,7 @@ Page({
     this.data.comment = result.comment;
     this.data.star = options.stars;
     this.data.groudId = options.group_id;
-    this.data.chooseList = options.chooseList;
+    this.data.chooseList = this.strToArray(options.chooseList);
     this.data.score = result.score;
     this.data.type = options.type;
     this.data.scoreColor = result.color
@@ -189,7 +195,7 @@ Page({
           remainTimes: rt,
           needTimes: nt,
         })
-        examTimesUtil.uploadExamStatue(stars, options.score, p => (wx.hideLoading()))
+        examTimesUtil.uploadExamStatue(stars, options.score,this.data.chooseList,p => (wx.hideLoading()))
       })
     } else if (options.type == 'practice') {
       requestUrl = this.data.uploadScore;

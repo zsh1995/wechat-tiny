@@ -1,0 +1,10 @@
+/* pages/summaryPage/summaryPage.wxss */
+image{
+  width: 100vw;
+}
+swiper{
+  height: 100vh;
+}
+scroll-view{
+  height: 100vh;
+}

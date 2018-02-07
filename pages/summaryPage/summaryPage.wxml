@@ -1,0 +1,10 @@
+<!--pages/summaryPage/summaryPage.wxml-->
+<view>
+  <swiper>
+  <block wx:for="{{desList}}">
+    <swiper-item>
+      <scroll-view scroll-y	><image mode="widthFix" src='{{desList[index]}}'></image></scroll-view>
+    </swiper-item>
+    </block>
+  </swiper>
+</view>

@@ -16,7 +16,8 @@
     "pages/invitorList/invitorList",
     "pages/enterpriseList/enterpriseList",
     "pages/enrollDetailInfo/enrollDetailInfo",
-    "pages/accPage/accPage"
+    "pages/accPage/accPage",
+    "pages/summaryPage/summaryPage"
   ],
   "window": {
     "backgroundTextStyle": "light",

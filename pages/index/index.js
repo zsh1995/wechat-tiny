@@ -69,6 +69,11 @@ Page({
       url: '../enterpriseList/enterpriseList',
     })
   },
+  navToSmr:function(){
+    wx.navigateTo({
+      url: '../summaryPage/summaryPage',
+    })
+  },
 
   onShow: function () {
     var that = this;

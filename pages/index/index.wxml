@@ -1,13 +1,16 @@
 <!--index.wxml-->
 <view class="icontainer">
   <view class="floatImg" hidden='{{!showToast}}' bindtap='closePic'>
-      <view class='shade'></view>
-      <view id="closePic" class='close' ></view>
-      <image id="pic" class="pic {{showPicStyle}}" mode='aspectFit' src='http://i2.bvimg.com/619221/e1debd963d38ff75.jpg' bindtap='cancelShow'></image>
+    <view class='shade'></view>
+    <view id="closePic" class='close'></view>
+    <image id="pic" class="pic {{showPicStyle}}" mode='aspectFit' src='http://i2.bvimg.com/619221/e1debd963d38ff75.jpg' bindtap='cancelShow'></image>
   </view>
   <view class="textcontent">
-    <view class='company-icom'><image src='http://i4.bvimg.com/619221/ebb6c675845cdd09.jpg' mode='aspectFit'></image></view>
+    <view class='company-icom'>
+      <image src='http://i4.bvimg.com/619221/ebb6c675845cdd09.jpg' mode='aspectFit'></image>
+    </view>
     <view class='name'>高商苑</view>
     <view class='slogan'>让你拥有成长型思维</view>
+    <view class='slogan gray' bindtap='navToSmr'>查看介绍→</view>
   </view>
 </view>

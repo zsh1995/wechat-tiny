@@ -92,7 +92,7 @@ function getExamPasstimes(stars, callback) {
 
 }
 
-function uploadExamStatue(stars, score, callback) {
+function uploadExamStatue(stars, score, chooseList,callback) {
   wx.showLoading({
     title: '正在提交',
   })
@@ -102,6 +102,7 @@ function uploadExamStatue(stars, score, callback) {
     data: {
       score: score,
       star: parseInt(stars),
+      chooseList:chooseList,
     },
     method: 'POST',
     success(result) {
