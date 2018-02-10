@@ -7,15 +7,14 @@
   </view>
   <view hidden="{{state != 1}}">
     <view class='content'>
-      我是介绍，我是介绍我是介绍，我是介绍我是介绍，我是介绍我是介绍，我是介绍我是介绍，我是介绍我是介绍，我是介绍我是介绍，我是介绍我是介绍，我是介绍
+      	<form bindsubmit="onSubmit">
+          	<view class='input'><input name="wantedCompany1" style="color:black" placeholder="目标企业-1"></input></view>
+            <view class='input'><input name="wantedCompany2" style="color:black" placeholder="目标企业-2"></input></view>
+            <view class='input'><input name="wantedCompany3" style="color:black" placeholder="目标企业-3"></input></view>
+
+            			<view style="display:flex;margin-top:200rpx;justify-content:center"><button class="weui-btn mbutton pass" plain="true" data-option="2" style="width:90%;padding:1rpx 42rpx 1rpx 42rpx; align-self:center" form-type="submit">填完了，不改了</button></view>
+        </form>
     </view>
-    <button bindtap='goHurry'>现在去加急</button>
   </view>
-  <view hidden="{{state != 2 }}">
-    <view class='content'>
-      我是介绍加急我是介绍加急我是介绍加急我是介绍加急我是介绍加急我是介绍加急我是介绍加急我是介绍加急我是介绍加急
-    </view>
-    <button bindtap='payHurry'>现在去付费</button>
-  </view>
-  <button bindtap='onClick'>企业列表</button>
+  <view class='bottom-view' bindtap='onClick'><view><text>查看企业列表</text></view></view>
 </view>

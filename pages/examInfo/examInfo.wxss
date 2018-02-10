@@ -262,3 +262,23 @@ page{
   display:block;
   line-height:26rpx;
 }
+.tip-tip{
+
+  /*height: 100%;*/
+  text-align:center;
+  display:block;
+  line-height:26rpx;
+}
+.tip-tip{
+  height: 120rpx;
+  line-height: 120rpx;
+  font-size: 36rpx;
+}
+.top-tips{
+  position: absolute;
+  top: 15px;
+  height: auto;
+  text-align: center;
+  width: 100%;
+  z-index: 19;
+}

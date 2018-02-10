@@ -6,16 +6,18 @@ var config = require('../../config');
 //
 var passExam = [0,0,0]
 var title_height = 0;
-
+var letter = '<就业推荐信>'
 Page({
     data: {
     motto: 'Hello World',
     color: 'green',
     examUrl:`https://${config.service.host}/exam/getExamStatus`,
     passExam:[1,1,1,1],
+    letter: letter,
   },
 
   gotoPractice:function(e){
+    console.log(e)
     var star = e.currentTarget.dataset.option;
     wx.navigateTo({
       //目的页面地址
@@ -73,7 +75,6 @@ Page({
    */
   onLoad: function (options) {
     console.log("examItems onLoad")
-
   },
 
   bindtouchstart: function(e){
@@ -156,5 +157,20 @@ Page({
     )
     */
   },
+  toSee:function(e){
+    console.log('toSee:'+e)
+    var id = parseInt(e.target.dataset.id);
+    this.setData({
+      showToast:true,
+      showPic:{
+        url:'http://i4.bvimg.com/619221/ebb6c675845cdd09.jpg',
+      }
+    })
+  },
+  closePic:function(){
+    this.setData({
+      showToast:false,
+    })
+  }
 
 })

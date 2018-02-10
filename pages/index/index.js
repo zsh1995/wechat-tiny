@@ -7,12 +7,16 @@ var qcloud = require('../../bower_components/wafer-client-sdk/index');
 // 引入配置
 var config = require('../../config');
 
+//
+var introdoce = "";
+
 Page({
   data: {
     motto: '欢迎进入高商联盟',
     userInfo: {},
     showPicStyle: '',
     showToast: false,
+    introdoce: introdoce,
     requestUserInfo: `https://${config.service.host}/userInfo/getUserInfo`,
   },
 
@@ -56,11 +60,25 @@ Page({
   },
 
   cancelShow: function (e) {
+    console.log(e)
+    if(e.target.id!='enroll'){
+      return;
+    }
     this.setData({
       showToast: false,
     })
     wx.navigateTo({
       url: '../examInfo/examInfo?type=enroll&item=1&group=1',
+    })
+  },
+  toSee:function(){
+    this.setData({
+      showPic: {
+        url: 'http://i4.bvimg.com/619221/ebb6c675845cdd09.jpg',
+        id:'letter',
+      },
+      showPicStyle: 'pic-hidden',
+      showToast:true,
     })
   },
 
@@ -85,12 +103,17 @@ Page({
         showToast: false,
       })
     }
-
   },
 
   onLoad: function () {
     console.log('onLoad')
     var that = this
+    this.setData({
+      showPic: {
+        url: 'http://i4.bvimg.com/619221/ebb6c675845cdd09.jpg',
+        id: 'enroll',
+      },
+    });
     //调用应用实例的方法获取全局数据
     app.getUserInfo(function (userInfo) {
       //更新数据

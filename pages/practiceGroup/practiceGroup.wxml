@@ -13,7 +13,7 @@
     <view class='process-column'>
       <view>思维测试</view>
       <view>·</view>
-      <view>模拟</view>
+      <view>模拟（免费）</view>
       <view class='d-push-link' wx:if='{{isCompleteConfirm}}'>企业直推</view>
     </view>
     <view class="demo">
@@ -94,7 +94,7 @@
 
     <view style='display:flex;flex-direction:column;max-height:25vh;'>
       <view class='process-column'>
-        <view>认证进度</view>
+        <view>星级认证</view>
         <view>·</view>
         <view class="{{isCompleteConfirm?'complete-style':'no-complete-style'}}">未完成</view>
         <view class='d-push-link' wx:if='{{isCompleteConfirm}}'>企业直推</view>
@@ -104,7 +104,7 @@
           <text>思维测试</text>
         </view>
         <view wx:if='{{remainTimes == 0 && !isPassed && preExamPass}}' class='box-hint'>
-          <text>开始新的测试</text>
+          <text>未过关(点击开始）</text>
         </view>
         <view wx:if='{{remainTimes == 0 && !isPassed && !preExamPass}}' class='box-hint'>
           <text>请先完成上一星级测试</text>
@@ -113,16 +113,16 @@
           <text>剩余{{remainTimes}}次，已通过{{passedTimes}}/{{needTimes}}次</text>
         </view>
         <view wx:if='{{isPassed}}' class='box-hint'>
-          已达到标准
+          已完成（点击开始）
         </view>
       </view>
       <view class='column-flex'>
         <view class="{{invitor.count>invitor.needInvitor?'green-box':'gray-box'}}" bindtap="navigatoInvitor">
-          <text>人际关系</text>
+          <text>邀请好友交流</text>
         </view>
         <view class='box-hint'>
           已邀请
-          <view style='color:#2BB675;'>　{{invitor.count}}/{{invitor.needInvitor}}　</view>个好友
+          <view style='color:#2BB675'> {{invitor.count}}/{{invitor.needInvitor}}</view>位好友交流
         </view>
       </view>
     </view>
@@ -144,19 +144,19 @@
         <view wx:if='{{practiceFlag&&exerciseFlag}}' class='complete-style'>已完成</view>
       </view>
       <view class='column-flex'>
-        <view class="{{exerciseFlag?'green-box':'gray-box'}}" bindtap="">
-          <text>锻炼情况</text>
+        <view class="{{exerciseFlag?'green-box':'gray-box'}}" bindtap="clickExercise">
+          <text>坚持跑步</text>
         </view>
         <view class='box-hint'>
-          {{exerciseFlag ? '已达到标准':'未达到标准'}}
+          {{exerciseFlag ? '已达标':'未达标'}}
         </view>
       </view>
-      <view class='column-flex' hidden='{{star==1}}'>
-        <view class="{{practiceFlag?'green-box':'gray-box'}}" bindtap="">
+      <view class='column-flex'>
+        <view class="{{practiceFlag?'green-box':'gray-box'}}" bindtap="clickPractice">
           <text>实践情况</text>
         </view>
         <view class='box-hint'>
-          {{exerciseFlag ? '已达到标准':'未达到标准'}}
+          {{exerciseFlag ? '已达标':'未达标'}}
         </view>
       </view>
 
