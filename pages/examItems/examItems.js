@@ -74,6 +74,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
+    wx.getStorage({
+      key: 'picUrls',
+      success: function(res) {
+        that.setData({
+          picUrls:res.data,
+        })
+      },
+    })
     console.log("examItems onLoad")
   },
 
@@ -158,13 +167,21 @@ Page({
     */
   },
   toSee:function(e){
-    console.log('toSee:'+e)
     var id = parseInt(e.target.dataset.id);
+   /*
+    console.log('toSee:'+e)
+    
     this.setData({
       showToast:true,
       showPic:{
-        url:'http://i4.bvimg.com/619221/ebb6c675845cdd09.jpg',
+        url: this.data.picUrls['rcmd-star-'+id],
       }
+    })
+    */
+    wx.previewImage({
+      urls: [
+        this.data.picUrls['rcmd-star-' + id]
+      ],
     })
   },
   closePic:function(){

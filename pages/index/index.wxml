@@ -7,7 +7,7 @@
   </view>
   <view class="textcontent">
     <view class='company-icom'>
-      <image src='http://i4.bvimg.com/619221/ebb6c675845cdd09.jpg' mode='aspectFit'></image>
+      <image src='{{picUrls["index-icon"]}}' mode='aspectFit'></image>
     </view>
     <view id="introduce"><text>就业优势
 1、提高智商、情商、逆商，提高工作业绩和满意度

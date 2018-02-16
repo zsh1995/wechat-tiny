@@ -1,34 +1,20 @@
 var qcloud = require('../bower_components/wafer-client-sdk/index');
 var config = require('../config');
+var util = require('../utils/util')
+var userRightUtil = require('../utils/userRight')
 
-function checkUserRight(star, questionId, callback_success, callback_fail, successFunc) {
+var urlMap = {
+  'payAnalyse':`https://${config.service.host}/weixinpay/payAnalyse`,
+  'payExam':`https://${config.service.host}/weixinpay/payExam`,
+}
+
+function checkUserRight(star) {
   var that = this;
-  console.log('is checking UserRight')
-  qcloud.request({
-    url: `https://${config.service.host}/product/getExamAvaliableTime`,
-    login: true,
-    data: {
-      type: 0,
-      star: parseInt(star),
-      questionId: parseInt(questionId),
-    },
-    method: 'POST',
-    success(result) {
-      if (successFunc(result))
-        callback_success(result);
-      else
-        callback_fail(result);
-    },
-    fail(error) {
-      console.log('request fail', error);
-    },
-    complete() {
-      console.log('request complete');
-    }
-
-  });
+  console.log('is checking UserRight');
+  return userRightUtil.getExamRemaintimes(star);
 
 }
+
 
 function _checkUserRight(star, questionId, callback_success, callback_fail, successFunc, whos) {
   return function () {
@@ -46,35 +32,38 @@ function getExamNeedTimes(star) {
   return needTimes
 }
 
-function getPassedTimes(star, doWithData) {
+function getPassedTimes(star) {
   var that = this;
-  qcloud.request({
-    url: `https://${config.service.host}/exam/getExamStatus`,
-    login: true,
-    data: {
-      stars: star
-    },
-    method: 'POST',
-    success(result) {
-      var passTimes = 0
-      if (result.data.code == 0) {
-        passTimes = result.data.data.examStatus;
-      }
-      doWithData(passTimes)
-
-    },
-    fail(error) {
-      console.log('request fail', error);
-    },
-    complete() {
-      console.log('request complete');
-    }
-  });
+  return util.ajax_promise(`https://${config.service.host}/ajax/exam/getExamPassTime`,{
+    star:star
+  })
 }
 
-function getExamStatus(star, doAfterGet) {
-  getPassedTimes(star, p => (doAfterGet(getExamNeedTimes(star) - p)>0)
-  )
+function getExamStatus(star) {
+  return getPassedTimes(star)
+          .then(p => {
+            return Promise.resolve((getExamNeedTimes(star) - p)>0);
+          })
+}
+
+function checkProductBuy(productId){
+  return util.ajax_promise(`https://${config.service.host}/ajax/user/checkPurchedReturnable`,{
+    productId:productId,
+  })
+}
+function doPayExam(star){
+  return util.ajax_promise(urlMap.payExam,{
+    star:star,
+  })
+  
+}
+function doPayAnalyse(star,questionId,feQuestionId,groupId){
+  return util.ajax_promise(urlMap.payAnalyse,{
+            star:star,
+            questionId:questionId,
+            feQuestionId:feQuestionId,
+            groupId:groupId,
+          })
 }
 
 
@@ -82,10 +71,12 @@ function getExamStatus(star, doAfterGet) {
 
 
 module.exports = {
-  _checkUserRight: _checkUserRight,
+  _checkUserRight: checkUserRight,
   checkUserRight: checkUserRight,
+  checkProductBuy:checkProductBuy,
   getExamNeedTimes: getExamNeedTimes,
   getExamStatus: getExamStatus,
   getPassedTimes: getPassedTimes,
-
+  doPayExam:doPayExam,
+  doPayAnalyse:doPayAnalyse,
 }

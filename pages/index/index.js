@@ -7,6 +7,13 @@ var qcloud = require('../../bower_components/wafer-client-sdk/index');
 // 引入配置
 var config = require('../../config');
 
+var picUrls = {
+  'rcmd-star-1':'http://i4.bvimg.com/619221/05a8288729dc6aed.jpg',
+  'rcmd-star-2':'http://i4.bvimg.com/619221/5d7e385849879e1f.jpg',
+  'rcmd-star-3':'http://i4.bvimg.com/619221/ebd6874393f02a4a.jpg',
+  'index-icon':'https://s1.ax1x.com/2018/02/14/9YGa59.jpg',
+}
+
 //
 var introdoce = "";
 
@@ -72,6 +79,7 @@ Page({
     })
   },
   toSee:function(){
+    /*
     this.setData({
       showPic: {
         url: 'http://i4.bvimg.com/619221/ebb6c675845cdd09.jpg',
@@ -79,6 +87,13 @@ Page({
       },
       showPicStyle: 'pic-hidden',
       showToast:true,
+    })
+    */
+    var picUrls = wx.getStorageSync('picUrls');
+    wx.previewImage({
+      urls: [
+        picUrls['rcmd-star-1']
+        ],
     })
   },
 
@@ -108,6 +123,13 @@ Page({
   onLoad: function () {
     console.log('onLoad')
     var that = this
+    wx.setStorage({
+      key: 'picUrls',
+      data: picUrls,
+    })
+    that.setData({
+      picUrls: picUrls
+    })
     this.setData({
       showPic: {
         url: 'http://i4.bvimg.com/619221/ebb6c675845cdd09.jpg',
