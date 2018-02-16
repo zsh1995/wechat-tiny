@@ -1,5 +1,6 @@
 var qcloud = require('../bower_components/wafer-client-sdk/index');
 var config = require('../config');
+var utils = require('./util.js');
 
 var couponIdArray = new Map();
 var COUPON_KEY = "couponInfos"
@@ -7,7 +8,6 @@ couponIdArray['exam'] = 2;
 couponIdArray['analyse'] = 1;
 
 function calculateAnalyseTimes(dataList) {
-
   var base = {
     analyTime: 0,
     calcTimes: function (item) {
@@ -36,7 +36,7 @@ function calculateExamTimes(dataList) {
 
 function ajaxCoupons(callback) {
   qcloud.request({
-    url: `https://${config.service.host}/coupon/userCoupon`,
+    url: `https://${config.service.host}/ajax/coupon/getAllCoupon`,
     login: true,
     method: 'POST',
     data: {
@@ -50,7 +50,7 @@ function ajaxCoupons(callback) {
 function ajaxCouponsSync(callback) {
   var flag = 0;
   qcloud.request({
-    url: `https://${config.service.host}/coupon/userCoupon`,
+    url: `https://${config.service.host}/ajax/coupon/getAllCoupon`,
     login: true,
     method: 'POST',
     data: {
@@ -70,30 +70,18 @@ function ajaxCouponsSync(callback) {
 
 }
 
-function useCoupon(star, question, couponType, successCall) {
-  qcloud.request({
-    url: `https://${config.service.host}/coupon/useCoupon`,
-    login: true,
-    data: {
-      star: star,
-      questionId: question,
-      couponId: couponIdArray[couponType],
-    },
-    method: 'POST',
-    success(result) {
-      if (result.data.code == 0) {
-        successCall();
-      }
-    },
-    fail(error) {
-      console.log('request fail', error);
-    },
-    complete() {
-      console.log('request complete');
-    }
-
-  });
-
+function useExamCoupon(star) {
+  return utils.ajax_promise(`https://${config.service.host}/ajax/coupon/useExam`,{
+            star:star
+          })
+}
+function useAnalyseCoupon(star,questionId,feQuestionId,groupId){
+  return utils.ajax_promise(`https://${config.service.host}/ajax/coupon/useAnalyse`,{
+    star:star,
+    questionId:questionId,
+    feQuestionId:feQuestionId,
+    groupId:groupId,
+  })
 }
 
 function getTimes(couponType,callback) {
@@ -154,6 +142,7 @@ module.exports = {
   calculateExamTimes: calculateExamTimes,
   storeCoupons: storeCoupons,
   ajaxCoupons: ajaxCoupons,
-  useCoupon: useCoupon,
+  useExamCoupon: useExamCoupon,
+  useAnalyseCoupon:useAnalyseCoupon,
   getTimes: getTimes,
 }

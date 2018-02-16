@@ -3,6 +3,7 @@ var qcloud = require('../../bower_components/wafer-client-sdk/index');
 
 // 引入配置
 var config = require('../../config');
+var payUtils = require('../../utils/payUtils')
 //
 var passExam = [0,0,0]
 var title_height = 0;
@@ -11,7 +12,7 @@ Page({
     data: {
     motto: 'Hello World',
     color: 'green',
-    examUrl:`https://${config.service.host}/exam/getExamStatus`,
+    examUrl:`https://${config.service.host}/ajax/exam/getExamPassTime`,
     passExam:[1,1,1,1],
   },
 
@@ -34,37 +35,9 @@ Page({
 
   getExamStatus:function(star){
     var that = this;
-    qcloud.request({
-      url: this.data.examUrl,
-      login: true,
-      data: {
-        stars: star
-      },
-      method: 'POST',
-      success(result) {
-        if(result.data.code == 0){
-          var passTimes = result.data.data.examStatus;
-          var isPass = 1;
-          switch(star){
-            case 1:if(passTimes >=3) isPass = 0 ;break;
-            case 2:if(passTimes >=4) isPass = 0;break;
-            case 3:if(passTimes >=5) isPass = 0;;break;
-          }
-          that.data.passExam[star - 1] = isPass;
-        }
-        else
-          that.data.passExam[star - 1] = 1;
-        that.setData(that.data);
-      },
-      fail(error) {
-        console.log('request fail', error);
-      },
-      complete() {
-        console.log('request complete');
-      }
-
-    });
-
+    payUtils.getExamStatus(star).then(p=>{
+      that.data.passExam[star - 1] = p;
+    })
 
   },
 

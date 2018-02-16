@@ -5,6 +5,8 @@ var qcloud = require('../../bower_components/wafer-client-sdk/index');
 // 引入配置
 var config = require('../../config');
 
+var companyUtil=require('../../utils/company')
+
 var currentPage = 0;
 var searchName = null;
 var allCount = 0;
@@ -51,6 +53,15 @@ Page({
       enableShowPic: false,
     })
   },
+
+  bindblur:function(e){
+    var inputVal = this.data.inputVal;
+    console.log('blur:'+inputVal)
+    if (inputVal == null || inputVal ==''){
+      this.searchAction('')
+    }
+    
+  },
   showSelfPic: function (e) {
     var index = e.target.dataset.set;
     if (typeof (index) == "undefined") {
@@ -95,6 +106,7 @@ Page({
       
       schoolInfoList: [],
       isSearch: false,
+      oneMore: false,
     })
   },
   clearInput: function () {
@@ -112,13 +124,9 @@ Page({
     })
 
   },
-  doSearch: function (e) {
-    if (this.data.inputVal == null || this.data.inputVal == '') {
-      currentPage = 0;
-      searchName = null;
-    }
+  searchAction:function(seachName){
     currentPage = 0;
-    searchName = this.data.inputVal;
+    searchName = seachName;
     var that = this;
     this.getPages(0, 15, function (dataList) {
       that.setData({
@@ -128,10 +136,19 @@ Page({
       })
     })
   },
+  doSearch: function (e) {
+    if (this.data.inputVal == null || this.data.inputVal == '') {
+      currentPage = 0;
+      
+    }
+    searchName = this.data.inputVal;
+    this.searchAction(searchName)
+  },
   inputTyping: function (e) {
     this.setData({
       inputVal: e.detail.value
     });
+    this.searchAction(e.detail.value)
   },
   onBottom: function (e) {
     console.log("onBottom")
@@ -224,51 +241,13 @@ Page({
     });
   },
   getPages: function (page, count, doSome) {
-    if (searchName == null) {
-      qcloud.request({
-        url: this.data.companyUrl,
-        login: true,
-        data: {
-          page: page,
-          count: count,
-        },
-        method: 'POST',
-        success(result) {
-          allCount = result.data.data.companyCount
-          var dataList = result.data.data.dataList;
-          doSome(dataList)
-        },
-        fail(error) {
-          console.log('request fail', error);
-        },
-        complete() {
-          console.log('request complete');
-        }
-      });
-    } else {
-      qcloud.request({
-        url: this.data.companyUrl,
-        login: true,
-        data: {
-          page: page,
-          count: count,
-          enterpriseName: searchName,
-        },
-        method: 'POST',
-        success(result) {
-          allCount = result.data.data.companyCount
-          var dataList = result.data.data.dataList;
-          doSome(dataList)
-        },
-        fail(error) {
-          console.log('request fail', error);
-        },
-        complete() {
-          console.log('request complete');
-        }
-      });
-    }
-
+    companyUtil.getCompanyList(searchName,page,count)
+      .then(result=>{
+        allCount = result.data.data.allCount
+        var dataList = result.data.data.list;
+        doSome(dataList)
+      })
+    
   },
 
   /**

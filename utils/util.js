@@ -1,6 +1,29 @@
 var qcloud = require('../bower_components/wafer-client-sdk/index');
 var config = require('../config');
 
+String.prototype.format = function (args) {
+  var result = this;
+  if (arguments.length > 0) {
+    if (arguments.length == 1 && typeof (args) == "object") {
+      for (var key in args) {
+        if (args[key] != undefined) {
+          var reg = new RegExp("({" + key + "})", "g");
+          result = result.replace(reg, args[key]);
+        }
+      }
+    }
+    else {
+      for (var i = 0; i < arguments.length; i++) {
+        if (arguments[i] != undefined) {
+          var reg = new RegExp("({[" + i + "]})", "g");
+          result = result.replace(reg, arguments[i]);
+        }
+      }
+    }
+  }
+  return result;
+}
+
 function formatTime(date) {
   var year = date.getFullYear()
   var month = date.getMonth() + 1
@@ -40,6 +63,30 @@ function ajax_promise(url,data,){
     qcloud.request({
       url: url,
       login: true,
+      data: urlEncode(data),
+      method: 'POST',
+      header:{
+        'Content-Type':'application/x-www-form-urlencoded',
+      },
+      success(result) {
+        resolve(result);
+      },
+      fail(error) {
+        reject(new Error(error))
+      },
+      complete() {
+        console.log('request complete');
+      }
+
+    });
+  })
+}
+
+function ajax_promise_json(url,data,){
+  return new Promise((resolve,reject)=>{
+    qcloud.request({
+      url: url,
+      login: true,
       data: data,
       method: 'POST',
       success(result) {
@@ -56,8 +103,17 @@ function ajax_promise(url,data,){
   })
 }
 
+function urlEncode(data){
+  var urlencode = '';
+  for (var key in data) {
+    if(data[key]==null) data[key] = '';
+    urlencode += '&{0}={1}'.format(key, data[key])
+  }
+  return urlencode.substr(1);
+}
 module.exports = {
   formatTime: formatTime,
   Format: Format,
   ajax_promise: ajax_promise,
+  ajax_promise_json:ajax_promise_json,
 }

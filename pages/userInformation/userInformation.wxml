@@ -9,7 +9,7 @@
         <view class="gslm-cardbox_name">
           <image class="userinfo-avatarshow" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
           <view class="userinfo-rightbox">
-            <view class="userinfo-nickname">{{ourUserInfo.student_name==""||ourUserInfo.student_name==null?userInfo.nickName:ourUserInfo.student_name}}</view>
+            <view class="userinfo-nickname">{{ourUserInfo.studentName==""||ourUserInfo.studentName==null?userInfo.nickName:ourUserInfo.studentName}}</view>
             <view class="userinfo-bottombox">
               <view class="userinfo-school">{{ourUserInfo.school}}</view>
               <view class="userinfo-major">{{ourUserInfo.major}}</view>

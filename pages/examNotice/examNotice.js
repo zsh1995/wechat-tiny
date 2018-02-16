@@ -5,8 +5,10 @@ var qcloud = require('../../bower_components/wafer-client-sdk/index');
 
 // 引入配置
 var config = require('../../config');
+var payUtils = require('../../utils/payUtils')
 
 var couponUtil = require('../../utils/coupon.js');
+var userRightUtil = require('../../utils/userRight')
 
 var intFunction = null;
 var execCount = 0;
@@ -54,32 +56,11 @@ Page({
         success: function (res) { },
       })
     } else {
-      qcloud.request({
-        url: this.data.paymentUrl,
-        login: true,
-        data: {
-          type: 0,
-          star: star
-        },
-        method: 'POST',
-        success(result) {
+      payUtils.doPayExam(star)
+        .then(p => {
           that.requestPayment(result.data);
-        },
-        fail(error) {
-          console.log('request fail', error);
-        },
-        complete() {
-          console.log('request complete');
-        }
-
-      });
+        })
     }
-    /*wx.navigateTo({
-      //目的页面地址
-      url: '../../pages/examInfo/examInfo?type=2',
-      success: function (res) { },
-    })
-    */
   },
 
   accessEnsure: function (e) {
@@ -112,6 +93,8 @@ Page({
   checkProductBuy: function (productId, callback_success, callback_fail) {
     var that = this;
     console.log('is check productBuy')
+    //保证金 暂不启用
+    return;
     qcloud.request({
       url: this.data.checkProductUrl,
       login: true,
@@ -140,34 +123,15 @@ Page({
 
   checkUserRight: function (star, callback_success, callback_fail) {
     var that = this;
-    console.log('is checking UserRight')
-    qcloud.request({
-      url: this.data.checkUrl,
-      login: true,
-      data: {
-        type: 0,
-        star: parseInt(star),
-        questionId: 0
-      },
-      method: 'POST',
-      success(result) {
-        that.data.remainTimes = result.data.data.remainTimes;
-        console.log('remainTimes:' + result.data.data.remainTimes);
-        that.setData(that.data)
-        if (result.data.data.remainTimes > 0)
-          callback_success();
-        else
-          callback_fail();
-      },
-      fail(error) {
-        console.log('request fail', error);
-      },
-      complete() {
-        console.log('request complete');
-      }
-
-    });
-
+    userRightUtil.getExamRemaintimes(star).then(result=>{
+      that.data.remainTimes = result.data.data;
+      console.log('remainTimes:' + result.data.data);
+      that.setData(that.data)
+      if (result.data.data > 0)
+        callback_success();
+      else
+        callback_fail();
+    })
   },
 
   _checkUserRight: function (star, callback_success, callback_fail, whos) {
@@ -181,10 +145,6 @@ Page({
       whos.checkProductBuy(productId, callback_success, callback_fail)
     }
   },
-
-
-
-
 
   checkUserPayment:function(){
     var that = this;
@@ -300,13 +260,11 @@ Page({
     wx.showLoading({
       title: '正在使用优惠券',
     })
-    couponUtil.useCoupon(
-      star,0,'exam',
-      p=>{
+    couponUtil.useExamCoupon(star)
+      .then(p => {
         wx.hideLoading();
         that.checkUserPayment();
-      }
-    );
+      });
   },
 
   /**

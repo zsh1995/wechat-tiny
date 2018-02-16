@@ -152,57 +152,60 @@ Page({
 
   },
 
+  loadCommentDataByScore:function(score){
+    var result = utils.getCommentByScore(score);
+    this.data.comment = result.comment;
+    this.data.score = result.score;
+    this.data.scoreColor = result.color;
+    this.data.passed = score >= 54;
+    this.setData(this.data);
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     var that = this;
     stars = parseInt(options.stars);
-    var result = utils.getCommentByScore(options.score);
     wx.setNavigationBarTitle({
       title: this.getStarString(stars) + '·0' + options.group_id + '组'
     })
-    this.data.comment = result.comment;
     this.data.star = options.stars;
     this.data.groudId = options.group_id;
     this.data.chooseList = this.strToArray(options.chooseList);
-    this.data.score = result.score;
     this.data.type = options.type;
-    this.data.scoreColor = result.color
     this.setData(this.data);
     var requestUrl = this.data.uploadScore;
     console.log('options.type' + options.type)
 
     if (options.type == 'exam') {
-      requestUrl = this.data.updateExamStatus;
-      if (result.realScore >= 54) {
-        options.score = 1;
-        this.setData({
-          passed: true,
-        })
-      } else {
-        options.score = 0;
-      }
       wx.showLoading({
         title: '正在提交',
       })
-      examTimesUtil.getExamStatus(stars, p => {
-        var pt = options.score == 1 ? p.passTimes + 1 : p.passTimes;
-        var rt = p.remainTimes;
-        var nt = examTimesUtil.calcNeedTimes(stars, pt);
-        that.setData({
-          passTimes: pt,
-          remainTimes: rt,
-          needTimes: nt,
+      examTimesUtil.uploadExamStatue(stars, this.data.chooseList)
+        .then(p=>{
+          that.loadCommentDataByScore(p.data.data);
+          return examTimesUtil.getExamStatus(stars);
         })
-        examTimesUtil.uploadExamStatue(stars, options.score,this.data.chooseList,p => (wx.hideLoading()))
-      })
+        .then(p=>{
+          var pt = p.passTimes;
+          var rt = p.remainTimes;
+          var nt = examTimesUtil.calcNeedTimes(stars, pt);
+          that.setData({
+            passTimes: pt,
+            remainTimes: rt,
+            needTimes: nt,
+          })
+          wx.hideLoading();
+        })
     } else if (options.type == 'practice') {
-      requestUrl = this.data.uploadScore;
       wx.showLoading({
         title: '正在提交',
       })
-      examTimesUtil.uploadScore(stars, options.group_id, options.score, p => (wx.hideLoading()))
+      examTimesUtil.uploadScore(stars, options.group_id, options.score)
+                    .then(p=>{
+                      wx.hideLoading();
+                    })
     } else {
       wx.setNavigationBarTitle({
         title: '报名·基础测试'

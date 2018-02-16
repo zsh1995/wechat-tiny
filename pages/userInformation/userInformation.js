@@ -6,7 +6,7 @@ var qcloud = require('../../bower_components/wafer-client-sdk/index');
 
 // 引入配置
 var config = require('../../config');
-
+var userUtil =require('../../utils/user')
 
 // 显示成功提示
 var showSuccess = text => wx.showToast({
@@ -85,27 +85,14 @@ Page({
   },
   getStarRank:function(){
     var that = this;
-    qcloud.request({
-      url: this.data.starRankUrl,
-      login: true,
-      method: 'POST',
-      data: {
-        userName: "test"
-      },
-      success(result) {
-        var rank = result.data.data;
+    userUtil.getRank()
+      .then(p=>{
+        var rank = p.data.data;
         that.setData({
-          rank:rank,
+          rank: rank,
         })
-      },
-      fail(error) {
-        console.log(e);
-      },
-      complete() {
-      }
-
-    });
-
+      })
+    
   },
   gotoConfirm:function(){
     var rank = this.data.rank;
@@ -236,37 +223,21 @@ Page({
   
   requestUserInfo:function(e,callback){
     var that = this;
-    qcloud.request({
-      url: this.data.requestUserInfo,
-      login: true,
-      method: 'POST',
-      data:{
-        userName:"test"
-      },
-      success(result) {
-        console.log("success:"+result);
-        that.data.ourUserInfo = result.data.data.userInfo;
+    userUtil.getUserInfo()
+      .then(result=>{
+        that.data.ourUserInfo = result.data.data;
         var tempZero = '';
         that.data.ourUserInfo.id = that.data.ourUserInfo.id.toString();
         var len = that.data.ourUserInfo.id.length;
-        for(var cnt = 0 ;cnt < 8 - len;cnt++){
+        for (var cnt = 0; cnt < 8 - len; cnt++) {
           tempZero = tempZero.concat('0');
         }
-        console.log('debug id');
         that.data.ourUserInfo.id = tempZero.concat(that.data.ourUserInfo.id)
         that.setData(that.data);
-        if(callback){
-          callback(result.data.data.userInfo);
+        if (callback) {
+          callback(result.data.data);
         }
-      },
-      fail(error) {
-        that.data.ourUserInfo = {userName:"未获取到数据"};
-        that.setData(that.data);
-      },
-      complete() {
-      }
-
-    });
+      })
   },
 
   bindInvitor :function(e){

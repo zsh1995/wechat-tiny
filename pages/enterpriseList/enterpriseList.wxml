@@ -9,7 +9,7 @@
           <view class="weui-search-bar__form">
             <view class="weui-search-bar__box">
               <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-              <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{isSearch}}" bindinput="inputTyping" bindfocus="onFocus"></input>
+              <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{}}" bindblur="bindblur" bindinput="inputTyping" bindfocus="onFocus"></input>
               <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
                 <icon type="clear" size="14"></icon>
               </view>
@@ -34,7 +34,7 @@
                 <view style="margin-left:20rpx">{{item.enterpriseName}}</view>
                 <view class="iconArray">
                 <view wx:for="{{item.iconArray}}" >
-                  <view id="state" class="normalIcon" wx:if="{{item.labelText !='' }}" style="border-color:{{item.labelBorderColor}};color:{{item.labelColor}};background-color:{{item.labelBackgroundcolor}}" data-set="{{index}}" >{{item.labelText}}</view>
+                  <view id="state" class="normalIcon" wx:if="{{item.labelText !='' &&item.labelText != undefine }}" style="border-color:{{item.labelBorderColor}};color:{{item.labelColor}};background-color:{{item.labelBackgroundcolor}}" data-set="{{index}}" >{{item.labelText}}</view>
                 </view>
                 <view wx:if="{{item.state == 1}}" class="successIcon">已签约</view>
                 <view wx:if="{{item.state == 0}}" class="waitIcon">跟进中</view>

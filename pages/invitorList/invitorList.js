@@ -9,6 +9,8 @@ var config = require('../../config');
 
 var util = require('../../utils/util.js')
 
+var userUtils = require('../../utils/user')
+
 Page({
 
   /**
@@ -28,38 +30,31 @@ Page({
     wx.showLoading({
       title: '正在加载',
     })
-    qcloud.request({
-      url: this.data.invitorListUrl,
-      login: true,
-      method: 'POST',
-      data: {},
-      success(result) {
-        console.log("success:" + result);
-        if (result.data.data.myInvitor.name == null && result.data.data.myInvitor.avatar_url == null){
-          result.data.data.myInvitor={
-            name:'无',
-            avatar_url:null
+    userUtils.getInvitor()
+      .then(result=>{
+        if (result.data.data.nickName == null && result.data.data.avatar_url == null) {
+          result.data.data = {
+            nickName: '无',
+            avatarUrl: null
           }
         }
-        var invitedList = result.data.data.invitedList;
-        for (var index in invitedList){
+        that.setData({
+          myInvitor: result.data.data
+        })
+      })
+    userUtils.getInvitedUser()
+      .then(result=>{
+        var invitedList = result.data.data;
+        wx.hideLoading()
+        for (var index in invitedList) {
           var curItem = invitedList[index]
-          curItem.create_time = util.Format(new Date(curItem.create_time),'yyyy-MM-dd')
+          curItem.createTime = curItem.createTime.substr(0,10)
         }
         that.setData({
-          invitorList:result.data.data.invitedList,
-          myInvitor: result.data.data.myInvitor
+          invitorList: result.data.data,
         })
-        
-      },
-      fail(error) {
-        
-      },
-      complete() {
-        wx.hideLoading();
-      }
-
-    });
+      })
+    
   },
 
   /**

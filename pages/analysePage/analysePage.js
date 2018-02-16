@@ -5,6 +5,8 @@ var qcloud = require('../../bower_components/wafer-client-sdk/index');
 // 引入配置
 var config = require('../../config');
 
+var examUtils = require('../../utils/exam')
+
 
 Page({
 
@@ -24,20 +26,12 @@ Page({
     var star = options.star;
     var questionId = options.questionId;
     var that = this
-    qcloud.request({
-      url: this.data.analyseUrl,
-      login: true,
-      method: 'POST',
-      data: {
-        star:parseInt(star),
-        id: parseInt(questionId)
-      },
-      success(result) {
+    examUtils.getAnalyse(star,questionId)
+      .then(p=>{
         that.setData({
-          analyse:result.data.data
+          analyse: p.data.data
         })
-      }
-    })
+      });
   },
 
   /**

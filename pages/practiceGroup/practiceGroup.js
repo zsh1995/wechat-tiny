@@ -7,9 +7,12 @@ var qcloud = require('../../bower_components/wafer-client-sdk/index');
 // 引入配置
 var config = require('../../config');
 
-var utils = require('..//../utils/score');
+var userRightUtils = require('../../utils/userRight');
+
+var scoreUtils =require('../../utils/score.js');
 
 var payUtil = require('..//../utils/payUtils');
+var userUtils = require('../../utils/user')
 
 
 var star = 0
@@ -17,12 +20,7 @@ var optionsTitle = ['', '一 星 级', '二 星 级', '三 星 级']
 var describeTitle = ['', '人际关系、团队协作、恋爱观', '社会现象、社会热点', '职场案例、工作思维']
 Page({
   data: {
-    getScoreUrl: `https://${config.service.host}/getScores`,
-    checkPurched: `https://${config.service.host}/product/returnable/checkPurched`,
-    examUrl: `https://${config.service.host}/exam/getExamStatus`,
-    practiceUrl: `https://${config.service.host}/star/practice`,
-    exerciseUrl: `https://${config.service.host}/star/exercise`,
-    invitorUrl: `https://${config.service.host}/invitor/getcount`,
+    checkPurched: `https://${config.service.host}/ajax/user/checkPurchedReturnable`,
     title: '',
     score: ['-', '-', '-', '-', '-', '-', '-', '-', '-', '-'],
     color: ['', '', '', '', '', '', '', '', '', ''],
@@ -47,51 +45,22 @@ Page({
 
   getExercies: function (e) {
     var that = this;
-    qcloud.request({
-      url: this.data.exerciseUrl,
-      login: true,
-      data: {
-        stars: star
-      },
-      method: 'POST',
-      success(result) {
-        var exerciseFlag = result.data.data;
-        that.setData({
-          exerciseFlag: exerciseFlag,
-        });
-      },
-      fail(error) {
-        console.log('request fail', error);
-      },
-      complete() {
-        console.log('request complete');
-      }
-
-    });
+    userUtils.getExerciseFlag().then(result=>{
+      var exerciseFlag = result.data.data;
+      that.setData({
+        exerciseFlag: exerciseFlag,
+      });
+    })  
   },
 
   getPractice: function (e) {
     var that = this;
-    qcloud.request({
-      url: this.data.practiceUrl,
-      login: true,
-      data: {
-        stars: star
-      },
-      method: 'POST',
-      success(result) {
-        var practiceFlag = result.data.data;
-        that.setData({
-          practiceFlag: practiceFlag,
-        });
-      },
-      fail(error) {
-        console.log('request fail', error);
-      },
-      complete() {
-        console.log('request complete');
-      }
-    });
+    userUtils.getPracticeFlag().then(result => {
+      var practiceFlag = result.data.data;
+      that.setData({
+        practiceFlag: practiceFlag,
+      });
+    })  
   },
   navigatoInvitor:function(e){
     wx.navigateTo({
@@ -104,55 +73,27 @@ Page({
 
   getInvitorCount: function (e) {
     var that = this;
-    qcloud.request({
-      url: this.data.invitorUrl,
-      login: true,
-      data: {
-        star: star
-      },
-      method: 'POST',
-      success(result) {
-        var invitor = result.data.data;
-        that.setData({
-          invitor: invitor,
-        });
-      },
-      fail(error) {
-        console.log('request fail', error);
-      },
-      complete() {
-        console.log('request complete');
-      }
-    });
+    userRightUtils.getInvitedCount(star)
+    .then(result=>{
+      var invitor = result.data.data;
+      that.setData({
+        invitor: invitor,
+      });
+    })
   },
 
   getScore: function (e) {
     var that = this;
-    qcloud.request({
-      url: this.data.getScoreUrl,
-      login: true,
-      data: {
-        stars: star
-      },
-      method: 'POST',
-      success(result) {
-        var recordList = result.data.data.practiceRecords;
-        for (var cnt = 0; cnt < recordList.length; cnt++) {
-          var record = recordList[cnt];
-          var showRecord = utils.getCommentByScore(record.score);
-          that.data.score[record.questionGroup] = showRecord.titleScore;
-          that.data.color[record.questionGroup] = showRecord.color;
-        }
-        that.setData(that.data);
-        console.log(result);
-      },
-      fail(error) {
-        console.log('request fail', error);
-      },
-      complete() {
-        console.log('request complete');
+    userRightUtils.getPracticeScores(star).then(result=>{
+      var recordList = result.data.data;
+      for (var cnt = 0; cnt < recordList.length; cnt++) {
+        var record = recordList[cnt];
+        var showRecord = scoreUtils.getCommentByScore(record.score);
+        that.data.score[record.questionGroup] = showRecord.titleScore;
+        that.data.color[record.questionGroup] = showRecord.color;
       }
-
+      that.setData(that.data);
+      console.log(result);
     });
   },
   checkIsPurched: function (e) {
@@ -187,23 +128,21 @@ Page({
     this.getExercies();
     this.getPractice();
     this.getInvitorCount();
-    payUtil.checkUserRight(star, 0,
-      p => (that.data.remainTimes = p.data.data.remainTimes),
-      p => that.data.remainTimes = 0,
-      function (result) {
-        return result.data.data.remainTimes > 0
-      }
-    );
-    payUtil.getPassedTimes(star,
-      p => (
+    payUtil.checkUserRight(star)
+      .then(p=>{
+        that.data.remainTimes = p.data.data;
+      })
+    payUtil.getPassedTimes(star)
+      .then(p => {
         that.setData({
-          passedTimes: p,
+          passedTimes: p.data.data,
           needTimes: payUtil.getExamNeedTimes(star),
-          isPassed: (payUtil.getExamNeedTimes(star) - p) <= 0,
+          isPassed: (payUtil.getExamNeedTimes(star) - p.data.data) <= 0,
         })
-      ))
+      })
     if(star > 1){
-      payUtil.getExamStatus(star - 1,p=>(!p ?that.setData({preExamPass:true}):0));
+      payUtil.getExamStatus(star-1)
+        .then(p => (p ? that.setData({ preExamPass: true }) : 0))
     }else{
       that.setData({ preExamPass: true })
     }

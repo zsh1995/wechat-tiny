@@ -5,6 +5,8 @@ var qcloud = require('../../bower_components/wafer-client-sdk/index');
 // 引入配置
 var config = require('../../config');
 
+var userUtils = require('../../utils/user')
+
 
 Page({
 
@@ -52,32 +54,19 @@ Page({
     userInfo.city = this.data.region[1]
     var that = this;
     //
-    console.log(userInfo.student_name)
+    console.log(userInfo)
     for (var attr in userInfo){
       if (userInfo[attr] == ''){
         userInfo[attr] = this.data.subUserInfo[attr] == null ? '' : this.data.subUserInfo[attr]
       }
     }
-    qcloud.request({
-      url: this.data.updataUserInfo,
-      login: true,
-      data: userInfo,
-      method: 'POST',
-      success(result) {
-        //that.requestUserInfo();
+
+    userUtils.uploadUserInfo(userInfo)
+      .then(result=>{
         that.data.onModify = false;
         that.setData(that.data);
         showSuccess('提交成功！');
-      },
-      fail(error) {
-        showModel('提交失败', error);
-        console.log('request fail', error);
-      },
-      complete() {
-        console.log('request complete');
-      }
-
-    });
+      })
     wx.navigateBack()
   },
   chooseSchool:function(e){
@@ -91,36 +80,22 @@ Page({
 
   requestUserInfo: function (a) {
     var that = this;
-    qcloud.request({
-      url: this.data.requestUserInfoURL,
-      login: true,
-      method: 'POST',
-      data: {
-        userName: "test1"
-      },
-      success(result) {
-        if (result.data.data.userInfo.type == '学生'){
+    userUtils.getUserInfo()
+      .then(result=>{
+        if (result.data.data.type == '学生') {
           that.data.identityId = 1;
         }
-        if (result.data.data.userInfo.gender == '男生')
-            that.data.genderId = 1;
-        that.data.schoolName = result.data.data.userInfo.school == '' ? '选择您的学校' : result.data.data.userInfo.school;
-        if (result.data.data.userInfo.city != ''){
-          that.data.region[1] = result.data.data.userInfo.city
+        if (result.data.data.gender == '男生')
+          that.data.genderId = 1;
+        that.data.schoolName = result.data.data.school == '' ? '选择您的学校' : result.data.data.school;
+        if (result.data.data.city != '') {
+          that.data.region[1] = result.data.data.city
         }
-        that.data.subUserInfo = result.data.data.userInfo
-        that.data.subUserInfo.userName = result.data.data.userInfo.student_name
-        that.data.subUserInfo.userMobile = result.data.data.userInfo.phoneNumber
+        that.data.subUserInfo = result.data.data
+        that.data.subUserInfo.userName = result.data.data.student_name
+        that.data.subUserInfo.userMobile = result.data.data.phoneNumber
         that.setData(that.data);
-      },
-      fail(error) {
-        that.data.ourUserInfo = { userName: "未获取到数据" };
-        that.setData(that.data);
-      },
-      complete() {
-      }
-
-    });
+      })
   },
 
   /**

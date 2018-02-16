@@ -8,6 +8,7 @@ var gsy_gray =   "#999999"
 
 function calculateScore(questionType, choose) {
   var score = 0;
+  if(typeof questionType != 'string') return;
   switch (questionType.toUpperCase()) {
     case 'Z': score = calculateZ(choose);
       break;

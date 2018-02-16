@@ -19,9 +19,9 @@
 
     </view>
     <view wx:for="{{invitorList}}" class="weui-cell">
-      <image class="schoolAva" src="{{item.avatar_url}}"></image>
-      <view style="margin-left:20rpx">{{item.name}}</view>
-      <view class='date-set'>{{item.create_time}}</view>
+      <image class="schoolAva" src="{{item.avatarUrl}}"></image>
+      <view style="margin-left:20rpx">{{item.nickName}}</view>
+      <view class='date-set'>{{item.createTime}}</view>
     </view>
   </view>
 </view>

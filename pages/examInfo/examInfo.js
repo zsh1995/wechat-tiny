@@ -4,8 +4,11 @@ var util = require('../../utils/score')
 var qcloud = require('../../bower_components/wafer-client-sdk/index');
 //
 var coupond = require('../../utils/coupon');
+var payUtils = require('../../utils/payUtils');
 // 引入配置
 var config = require('../../config');
+//exam
+var examAjax = require('../../utils/exam')
 
 var internalList = new Array();
 var upperSlider = null;
@@ -70,7 +73,7 @@ Page({
     showPullTips: false,
     loginUrl: config.service.loginUrl,
     requestUrl: config.service.requestUrl,
-    questionUrl: `https://${config.service.host}/getQuestions`,
+    questionUrl: `https://${config.service.host}/ajax/exam/getQuestions`,
     examUrl: `https://${config.service.host}/exam/getExamQuestions`,
     paymentUrl: `https://${config.service.host}/pay/payEncap`,
     checkUrl: `https://${config.service.host}/pay/analyse/checkPurchRecord`,
@@ -244,38 +247,19 @@ Page({
 
   checkUserRight: function (star, callback_success, callback_fail) {
     var that = this;
-    var currentPage = this.data.answers.activeNum;
+    var currentPage = this.data.currentPage;
     var currentItem = this.data.answers.allLists[currentPage];
     var questionId = currentItem.questionId
-
     console.log('is checking UserRight')
-    qcloud.request({
-      url: this.data.checkUrl,
-      login: true,
-      data: {
-        type: 1,
-        star: parseInt(star),
-        questionId: questionId,
-        productId: 1,
-      },
-      method: 'POST',
-      success(result) {
+    examAjax.checkAnalysePurched(star,questionId)
+      .then(result=>{
         that.data.isPurched = result.data.data.isPurched;
         that.setData(that.data)
         if (result.data.data.isPurched)
           callback_success();
         else
           callback_fail();
-      },
-      fail(error) {
-        console.log('request fail', error);
-      },
-      complete() {
-        console.log('request complete');
-      }
-
-    });
-
+      })
   },
 
   _checkUserRight: function (star, callback_success, callback_fail, whos) {
@@ -289,14 +273,14 @@ Page({
 
   requestPayment: function (obj) {
     console.log("requestPay:" + obj);
-    var currentPage = this.data.answers.activeNum;
+    var currentPage = this.data.currentPage;
     var currentItem = this.data.answers.allLists[currentPage];
     var questionId = currentItem.questionId
     var that = this;
     wx.requestPayment({
       'timeStamp': obj.timeStamp,
       'nonceStr': obj.nonceStr,
-      'package': obj.package,
+      'package': obj.repay_id,
       'signType': obj.signType,
       'paySign': obj.paySign,
       'success': function (res) {
@@ -346,8 +330,9 @@ Page({
 
 
   bindAnalyse: function (e) {
-    var currentPage = this.data.answers.activeNum;
+    var currentPage = this.data.currentPage;
     var currentItem = this.data.answers.allLists[currentPage];
+    if (currentItem.isPurchAnalyse == null) currentItem.isPurchAnalyse = 0
     var questionId = currentItem.questionId
     var that = this;
     if (currentItem.isPurchAnalyse != 0) {
@@ -355,7 +340,6 @@ Page({
         url: '../analysePage/analysePage?star=' + stars + '&questionId=' + questionId,
       })
     } else {
-
       var analyseTimes = 0;
 
       try {
@@ -367,38 +351,17 @@ Page({
 
       var countString = ""
       var url;
-      if (analyseTimes > 0) {
-        //countString = "但您有" + analyseTimes +"次免费机会，点击确定使用。"
-        url = this.data.couponUseUrl
-      } else {
-        //countString = '点击确定进行购买'
-        url = this.data.paymentUrl
-      }
-
+  
 
       wx.showModal({
         title: '温馨提示',
         content: '前三个解析免费（您当前还有' + analyseTimes + '次免费机会），之后收费5元/个，鼓励共享！此收入捐赠给佛山启智和北京美新路公益机构。你本人或身边的人需要资助，也可以联系我们！',
         success: function (res) {
           if (res.confirm) {
-            qcloud.request({
-              url: url,
-              login: true,
-              data: {
-                type: 1,
-                star: parseInt(stars),
-                questionId: questionId,
-                couponId: 1,
-                productId: 1,
-                group: parseInt(groupId),
-                groupId: parseInt(groupId),
-                feQuestion: currentPage + 1,
-                feQuestionId: currentPage + 1,
-
-              },
-              method: 'POST',
-              success(result) {
-                if (analyseTimes > 0) {
+            if (analyseTimes > 0) {
+              //countString = "但您有" + analyseTimes +"次免费机会，点击确定使用。"
+              coupond.useAnalyseCoupon(stars, questionId, currentPage + 1, groupId)
+                .then(p => {
                   that.data.answers.allLists[currentPage].isPurchAnalyse = 1;
                   that.setData(that.data)
                   wx.setStorageSync('couponInfos', {
@@ -407,28 +370,22 @@ Page({
                   wx.navigateTo({
                     url: '../analysePage/analysePage?star=' + stars + '&questionId=' + questionId,
                   })
-                } else that.requestPayment(result.data);
-              },
-              fail(error) {
-                console.log('request fail', error);
-              },
-              complete() {
-                console.log('request complete');
-              }
-
-            });
-
-
+                })
+            } else {
+              //countString = '点击确定进行购买'
+              payUtils.doPayAnalyse(stars, questionId, currentPage + 1, groupId)
+                .then(p=>{
+                  that.requestPayment(p.data)
+                })
+            }          
           }
-
         }
       })
     }
   },
 
-
   bindTips: function (e) {
-    var currentPage = this.data.answers.activeNum;
+    var currentPage = this.data.currentPage;
     var that = this;
     wx.showModal({
       title: ' ',
@@ -448,66 +405,55 @@ Page({
   getFields: function () {
     var that = this;
     var worker = setInterval(p => {
-        wx.createSelectorQuery().select('#mainContent' + swipperPage.getCurrentPageId()).boundingClientRect(function (rect) {
-          if(rect == null) return;
-          console.log("debug:height" + rect.height + "width" + rect.width + "screenWidth:" + screenWidth + "screenHeight:" + screenHeight + "canIuse:" + wx.canIUse("getSystemInfoSync.return.screenWidth"))
-          if (rect.height * 750 / screenWidth > 530) {
-            that.setData({
-              showPullTips: true
-            })
-          }
-          clearInterval(intervalList.pop())
-        }).exec()
+      wx.createSelectorQuery().select('#mainContent' + swipperPage.getCurrentPageId()).boundingClientRect(function (rect) {
+        if (rect == null) return;
+        console.log("debug:height" + rect.height + "width" + rect.width + "screenWidth:" + screenWidth + "screenHeight:" + screenHeight + "canIuse:" + wx.canIUse("getSystemInfoSync.return.screenWidth"))
+        if (rect.height * 750 / screenWidth > 530) {
+          that.setData({
+            showPullTips: true
+          })
+        }
+        clearInterval(intervalList.pop())
+      }).exec()
     }, 200)
     intervalList.push(worker);
   },
 
-  _pullQuestions: function (e, requestType) {
+  _pullQuestions: function () {
     var that = this;
-    return new Promise((resolve, reject) => {
-      qcloud.request({
-        url: e,
-        login: true,
-        method: 'POST',
-        data: {
-          groupId: groupId,
-          stars: stars,
-          star: parseInt(stars),
-          questionId: 0,
-          type: requestType
-        },
-        success(result) {
-          resolve(result);
-        },
-        fail(error) {
-          showModel('请求失败', error);
-          console.log('request fail', error);
-        },
-        complete() {
-          console.log('request complete');
-        }
+    return examAjax.getPraciceQuestions(parseInt(stars), groupId)
+  },
+  _decorateQuestionList: function (data) {
+    var resultData = data;
+    var cnt = 0;
+    var colors = ["#999999", "#2BB675", "#FFE51A", "#ED662C", "#6A6869"]
+    var mOptions = [{ color: "#999999", font: "black", text: '非常\n支持' }, { color: "#2BB675", font: "white", text: '比较\n支持' }, { color: "#FFE51A", font: "black", text: '中立' }, { color: "#ED662C", font: "white", text: '比较\n反对' }, { color: "#6A6869", font: "white", text: '非常\n反对' }]
+    for (var i = 0; i < resultData.length; i++) {
+      resultData[i].content = resultData[i].content.replace(/\\n/, "\n");
+      resultData[i].index = i;
+      resultData[i].options = mOptions
+    }
+    return resultData;
+  },
+  getExam: function () {
+    var that = this;
+    examAjax.getExamQuestions(parseInt(stars))
+      .then(
+      result => {
+        that.data.answers.allLists = this._decorateQuestionList(result.data.data);
+        that.setData(that.data);
       })
-    })
+      .then(value => wx.hideLoading())
   },
 
-  pullQuestions: function (e, requestType) {
+  pullQuestions: function () {
     var that = this;
     wx.showLoading({
       title: '正在加载',
     })
-    this._pullQuestions(e, requestType)
+    this._pullQuestions()
       .then(result => {
-        if (requestType == 0) var resultData = result.data.data.questionList;
-        else var resultData = result.data.data.questionlist;
-        var cnt = 0;
-        var colors = ["#999999", "#2BB675", "#FFE51A", "#ED662C", "#6A6869"]
-        var mOptions = [{ color: "#999999", font: "black", text: '非常\n支持' }, { color: "#2BB675", font: "white", text: '比较\n支持' }, { color: "#FFE51A", font: "black", text: '中立' }, { color: "#ED662C", font: "white", text: '比较\n反对' }, { color: "#6A6869", font: "white", text: '非常\n反对' }]
-        for (var i = 0; i < resultData.length; i++) {
-          resultData[i].content = resultData[i].content.replace(/\\n/, "\n");
-          resultData[i].index = i;
-          resultData[i].options = mOptions
-        }
-        that.data.answers.allLists = resultData;
+        that.data.answers.allLists = this._decorateQuestionList(result.data.data);
         that.setData(that.data);
       })
       .then(value => wx.hideLoading())
@@ -550,6 +496,7 @@ Page({
       that.data.isSelect = true;
       that.data.showPullTips = false;
       that.data.currentPage = swipperPage.getCurrentPageId();
+      console.log('currentPage:' + swipperPage.getCurrentPageId())
       that.data.selectdata.selectedId = that.data.chooseList[swipperPage.getCurrentPageId()]
       that.setData(that.data);
       that.onPullDown();
@@ -574,19 +521,19 @@ Page({
       wx.setNavigationBarTitle({
         title: this.getStarString(stars) + '·认证'
       })
-      this.pullQuestions(this.data.examUrl, 0);
+      this.getExam();
     } else if (params.type == 'practice') {
       groupId = params.group;
       wx.setNavigationBarTitle({
         title: this.getStarString(stars) + '·0' + params.group + '组'
       })
-      this.pullQuestions(this.data.questionUrl, 1);
+      this.pullQuestions();
     } else if (params.type == 'enroll') {
       groupId = params.group;
       wx.setNavigationBarTitle({
         title: '报名·基础测试'
       })
-      this.pullQuestions(this.data.questionUrl, 1);
+      this.pullQuestions(this.data.questionUrl);
 
     }
     var res = wx.getSystemInfoSync()

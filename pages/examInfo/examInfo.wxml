@@ -16,7 +16,7 @@
       <view style='margin: 10px 18px 10px 18px;'>
         <text class="">{{answers.allLists[currentPage].tips}}</text>
       </view>
-      <view wx:if="{{type != 'exam' && answers.allLists[currentPage].analyse != '' && type !='enroll'}}" class="tips" bindtap="bindAnalyse" style="color:{{answers.allLists[currentPage].isPurchAnalyse == 1 ? '#00C775':'#aaa'}};border-color:{{answers.allLists[currentPage].isPurchAnalyse == 1 ? '#00C775':'#aaa'}}">
+      <view wx:if="{{type != 'exam' && answers.allLists[currentPage].analyse != '' && type !='enroll'}}" class="tips" bindtap="bindAnalyse" style="color:{{answers.allLists[currentPage].isPurchAnalyse > 0 ? '#00C775':'#aaa'}};border-color:{{answers.allLists[currentPage].isPurchAnalyse > 0 ? '#00C775':'#aaa'}}">
         <view>解析</view>
       </view>
     </view>

@@ -3,6 +3,7 @@ var app = getApp()
 
 // 引入 QCloud 小程序增强 SDK
 var qcloud = require('../../bower_components/wafer-client-sdk/index');
+var userUtils = require('../../utils/user')
 
 // 引入配置
 var config = require('../../config');
@@ -80,38 +81,23 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    qcloud.request({
-      url: this.data.payrecordurl,
-      login: true,
-      method: 'POST',
-      data: {
-        userName: "test"
-      },
-      success(result) {
-        console.log("success:" + result);
+    userUtils.getPurchRecord()
+      .then(result=>{
         that.data.purchList = result.data.data;
-        for(var cnt = 0;cnt < that.data.purchList.length;cnt++){
+        for (var cnt = 0; cnt < that.data.purchList.length; cnt++) {
           var item = that.data.purchList[cnt]
-          if(item.channel != 1) item.price = 0;
+          if (item.channel != 1) item.price = 0;
           item.product_name = product[item.product_id];
-          if (item.product_id != 5){
-            item.product_name += '·' +toCN[item.purchStar];
-            if(item.product_id == 1){
-              item.product_name += '0' + item.group + '组' + '0' +item.fe_question_id+'题'
+          if (item.product_id != 5) {
+            item.product_name += '·' + toCN[parseInt(item.star)];
+            if (item.product_id == 1) {
+              item.product_name += '0' + item.group + '组' + '0' + item.fe_question_id + '题'
             }
           }
-          item.date = ge_time_format(parseInt(item.date) *1000)
+          item.date = ge_time_format(parseInt(item.date) * 1000)
         }
         that.setData(that.data);
-      },
-      fail(error) {
-        that.data.ourUserInfo = { userName: "未获取到数据" };
-        that.setData(that.data);
-      },
-      complete() {
-      }
-
-    });
+      })
 
   },
   chooseType: function (e) {

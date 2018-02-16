@@ -8,7 +8,7 @@
 			<scroll-view scroll-y="true" class="weui-cells weui-cells_after-title input-pannel">
 				<view class="weui-cell">
 					<view class="weui-cell__bd cellinput">真实姓名</view>
-					<view class="weui-cell__ft"><input name="userName" style="color:black" placeholder="{{subUserInfo.userName ==''?'请输入你的姓名':subUserInfo.userName}}"></input></view>
+					<view class="weui-cell__ft"><input name="studentName" style="color:black" placeholder="{{subUserInfo.studentName ==''?'请输入你的姓名':subUserInfo.studentName}}"></input></view>
 				</view>				
 				
 				<view class="weui-cell weui-cell_access">
@@ -17,30 +17,30 @@
 				</view>
 				
 				
-				<view wx:if="{{identityId==0}}" class="weui-cell">
+				<view hidden="{{identityId==1}}" class="weui-cell">
 					<view class="weui-cell__bd cellinput">企业</view>
 					<input name="company" class="weui-cell__ft" style="color:black" placeholder="{{subUserInfo.company==''?'请填写你所在企业':subUserInfo.company}}">说明文字</input>
 				</view>
 				
 				
-				<view wx:if="{{identityId==1}}" class="weui-cell weui-cell_access">
+				<view hidden="{{identityId==0}}" class="weui-cell weui-cell_access">
 					<view class="weui-cell__bd">学校</view>
 					<view class="weui-cell__ft weui-cell__ft_in-access"  bindtap="chooseSchool">{{schoolName}}</view>
 					<input name="school"  style="display:none"></input>
 				</view>
 				
-				<view wx:if="{{identityId==0}}" class="weui-cell">
+				<view hidden="{{identityId==1}}" class="weui-cell">
 					<view class="weui-cell__bd cellinput">岗位</view>
 					<input name="post" class="weui-cell__ft" style="color:black" placeholder="{{subUserInfo.post == ''?'请填写你的岗位':subUserInfo.post}}">说明文字</input>
 				</view>
-				<view wx:if="{{identityId==1}}" class="weui-cell">
+				<view hidden="{{identityId==0}}" class="weui-cell">
 					<view class="weui-cell__bd cellinput">专业</view>
 					<input name="major" class="weui-cell__ft" style="color:black" placeholder="{{subUserInfo.major == ''?'请填写你所学专业':subUserInfo.major}}">说明文字</input>
 				</view>
 								
 				<view class="weui-cell">
 					<view class="weui-cell__bd cellinput">手机号</view>
-					<input name="userMobile" class="weui-cell__ft" style="color:black" type="number" placeholder="{{subUserInfo.phoneNumber ==''?'请填写你的手机号' : subUserInfo.phoneNumber}}">说明文字</input>
+					<input name="phoneNumber" class="weui-cell__ft" style="color:black" type="number" placeholder="{{subUserInfo.phoneNumber ==''?'请填写你的手机号' : subUserInfo.phoneNumber}}">说明文字</input>
 				</view>
 				
 				<view class="weui-cell">
