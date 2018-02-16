@@ -3,14 +3,20 @@
   <view class="floatImg" hidden='{{!showToast}}' bindtap='closePic'>
     <view class='shade'></view>
     <view id="closePic" class='close'></view>
-    <image id="pic" class="pic {{showPicStyle}}" mode='aspectFit' src='http://i2.bvimg.com/619221/e1debd963d38ff75.jpg' bindtap='cancelShow'></image>
+    <image id="{{showPic.id}}" class="pic {{showPicStyle}}" mode='aspectFit' src='{{showPic.url}}' bindtap='cancelShow'></image>
   </view>
   <view class="textcontent">
     <view class='company-icom'>
-      <image src='http://i4.bvimg.com/619221/ebb6c675845cdd09.jpg' mode='aspectFit'></image>
+      <image src='{{picUrls["index-icon"]}}' mode='aspectFit'></image>
     </view>
-    <view class='name'>高商苑</view>
-    <view class='slogan'>让你拥有成长型思维</view>
-    <view class='slogan gray' bindtap='navToSmr'>查看介绍→</view>
+    <view id="introduce"><text>就业优势
+1、提高智商、情商、逆商，提高工作业绩和满意度
+2、如果求职，有以下优势！ 
+1）获得推荐信，面试有的说！</text><view style='display:inline-block;text-decoration:underline;' bindtap='toSee'>（ 点击查看推荐信）</view> <text>
+2）向名企优企直推内推！ 
+点击“我 - 企业直推”指定目标企业，我们帮你建立直推或内推渠道！ 
+3）打造优秀人才品牌形象！ 
+向企业宣传“高商苑学员，值得优先面试”。</text></view>
+    <view class='slogan gray' bindtap='navToSmr'>查看完整介绍→</view>
   </view>
 </view>

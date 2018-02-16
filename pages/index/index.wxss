@@ -24,13 +24,14 @@
   letter-spacing: 0.1em;
 }
 .slogan{
-  font-size: 40rpx;
+  font-size: 36rpx;
   font-weight: 900;
   text-align: center;
   letter-spacing: 0.1em;
   margin-top: 20rpx;
   padding-bottom:120rpx;
-
+  margin-left:auto;
+  margin-right: 110rpx;
 }
 
 .userinfo-avatar {
@@ -51,7 +52,7 @@
 .textcontent{
   display: flex;
   flex-direction: column;
-  align-content: center;
+  align-items: center;
 }
 
 .text-title{
@@ -84,4 +85,8 @@ image{
 }
 .gray{
 	color:#999999;
+}
+#introduce{
+  color:#999999;
+  margin: 80rpx 110rpx 0 110rpx;
 }

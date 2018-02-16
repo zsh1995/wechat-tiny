@@ -1,4 +1,5 @@
 <import src="../template/template.wxml" />
+<view class='top-tips'><text>与朋友交流，达成共识， 知其所以然！</text></view>
 <view class='swiper-lists' bindtouchend='touchEnd' bindtouchstart='setEvent' bindtap="touchViewStart" bindtouchmove='onmove'>
   <view class="count">
     <view wx:for="{{chooseList}}" wx:for-item="chooseItem">
@@ -36,9 +37,8 @@
 
   <view class="footer">
 
-    <view style="position:absolute;bottom:120rpx;width:100%">
-      <view class="tipsContain">
-      </view>
+    <view style="position:absolute;bottom:0;width:100%">
+
       <view class="container" hidden="{{false}}">
         <view wx:for="{{answers.allLists[0].options}}" wx:for-index="idx">
           <view wx:if="{{false}}" class="list" style="background:{{item.color}}" data-option="{{idx}}" catchtap="tapCheckbox"></view>
@@ -48,6 +48,7 @@
           </view>
         </view>
       </view>
+      <view class='tip-tip'><text class='tip-tip'>上滑查看提示</text></view>
     </view>
 
   </view>

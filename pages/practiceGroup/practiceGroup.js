@@ -13,6 +13,7 @@ var scoreUtils =require('../../utils/score.js');
 
 var payUtil = require('..//../utils/payUtils');
 var userUtils = require('../../utils/user')
+var requireCdt = ['','无要求','指定机构200H志愿者','100H实习证明']
 
 
 var star = 0
@@ -159,6 +160,34 @@ Page({
     this.data.title = optionsTitle[star];
     this.data.detailTitle = describeTitle[star];
     this.setData(this.data);
+  },
+  clickExercise:function(e){
+    wx.showModal({
+      title: '坚持跑步',
+      content: '下载“悦跑圈”， 搜素并加入“高商苑”跑团！',
+      showCancel:false,
+    })
+  },
+  clickPractice:function(e){
+    
+    if (!String.prototype.format) {
+      String.prototype.format = function () {
+        var str = this.toString();
+        if (!arguments.length)
+          return str;
+        var args = typeof arguments[0],
+          args = (("string" == args || "number" == args) ? arguments : arguments[0]);
+        for (var arg in args)
+          str = str.replace(RegExp("\\{" + arg + "\\}", "gi"), args[arg]);
+        return str;
+      }
+    }
+
+    wx.showModal({
+      title: '完成标准',
+      content: '在校生：{0}\n往届生： 需工作表现证明'.format(requireCdt[star]),
+      showCancel:false,
+    })
   },
   gotoExam: function (e) {
     var star = e.currentTarget.dataset.option;

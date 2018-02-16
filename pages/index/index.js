@@ -7,6 +7,16 @@ var qcloud = require('../../bower_components/wafer-client-sdk/index');
 // 引入配置
 var config = require('../../config');
 
+var picUrls = {
+  'rcmd-star-1':'http://i4.bvimg.com/619221/05a8288729dc6aed.jpg',
+  'rcmd-star-2':'http://i4.bvimg.com/619221/5d7e385849879e1f.jpg',
+  'rcmd-star-3':'http://i4.bvimg.com/619221/ebd6874393f02a4a.jpg',
+  'index-icon':'https://s1.ax1x.com/2018/02/14/9YGa59.jpg',
+}
+
+//
+var introdoce = "";
+
 Page({
   data: {
     motto: '欢迎进入高商联盟',
@@ -14,6 +24,7 @@ Page({
     showPicStyle: '',
     showToast: false,
     requestUserInfo: `https://${config.service.host}/ajax/user/detailInfo`,
+    introdoce: introdoce,
   },
 
   //
@@ -56,11 +67,33 @@ Page({
   },
 
   cancelShow: function (e) {
+    console.log(e)
+    if(e.target.id!='enroll'){
+      return;
+    }
     this.setData({
       showToast: false,
     })
     wx.navigateTo({
       url: '../examInfo/examInfo?type=enroll&item=1&group=1',
+    })
+  },
+  toSee:function(){
+    /*
+    this.setData({
+      showPic: {
+        url: 'http://i4.bvimg.com/619221/ebb6c675845cdd09.jpg',
+        id:'letter',
+      },
+      showPicStyle: 'pic-hidden',
+      showToast:true,
+    })
+    */
+    var picUrls = wx.getStorageSync('picUrls');
+    wx.previewImage({
+      urls: [
+        picUrls['rcmd-star-1']
+        ],
     })
   },
 
@@ -85,12 +118,24 @@ Page({
         showToast: false,
       })
     }
-
   },
 
   onLoad: function () {
     console.log('onLoad')
     var that = this
+    wx.setStorage({
+      key: 'picUrls',
+      data: picUrls,
+    })
+    that.setData({
+      picUrls: picUrls
+    })
+    this.setData({
+      showPic: {
+        url: 'http://i4.bvimg.com/619221/ebb6c675845cdd09.jpg',
+        id: 'enroll',
+      },
+    });
     //调用应用实例的方法获取全局数据
     app.getUserInfo(function (userInfo) {
       //更新数据

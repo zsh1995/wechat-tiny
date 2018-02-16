@@ -7,16 +7,18 @@ var payUtils = require('../../utils/payUtils')
 //
 var passExam = [0,0,0]
 var title_height = 0;
-
+var letter = '<就业推荐信>'
 Page({
     data: {
     motto: 'Hello World',
     color: 'green',
     examUrl:`https://${config.service.host}/ajax/exam/getExamPassTime`,
     passExam:[1,1,1,1],
+    letter: letter,
   },
 
   gotoPractice:function(e){
+    console.log(e)
     var star = e.currentTarget.dataset.option;
     wx.navigateTo({
       //目的页面地址
@@ -45,8 +47,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
+    wx.getStorage({
+      key: 'picUrls',
+      success: function(res) {
+        that.setData({
+          picUrls:res.data,
+        })
+      },
+    })
     console.log("examItems onLoad")
-
   },
 
   bindtouchstart: function(e){
@@ -129,5 +139,28 @@ Page({
     )
     */
   },
+  toSee:function(e){
+    var id = parseInt(e.target.dataset.id);
+   /*
+    console.log('toSee:'+e)
+    
+    this.setData({
+      showToast:true,
+      showPic:{
+        url: this.data.picUrls['rcmd-star-'+id],
+      }
+    })
+    */
+    wx.previewImage({
+      urls: [
+        this.data.picUrls['rcmd-star-' + id]
+      ],
+    })
+  },
+  closePic:function(){
+    this.setData({
+      showToast:false,
+    })
+  }
 
 })

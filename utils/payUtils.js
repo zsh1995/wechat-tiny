@@ -15,6 +15,7 @@ function checkUserRight(star) {
 
 }
 
+
 function _checkUserRight(star, questionId, callback_success, callback_fail, successFunc, whos) {
   return function () {
     whos.checkUserRight(star, questionId, callback_success, callback_fail, successFunc)
