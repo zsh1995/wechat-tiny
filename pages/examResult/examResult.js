@@ -204,6 +204,7 @@ Page({
       })
       examTimesUtil.uploadScore(stars, options.group_id, options.score)
                     .then(p=>{
+                      that.loadCommentDataByScore(options.score);
                       wx.hideLoading();
                     })
     } else {

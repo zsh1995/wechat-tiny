@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "完成"
+  "navigationBarTitleText": "完成",
+    "usingComponents": {
+      "gsy-button": "../../components/gsyButton/gsyButton"
+    }
 }

@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "说明"
+  "navigationBarTitleText": "说明",
+  "usingComponents": {
+    "gsy-button": "../../components/gsyButton/gsyButton"
+  }
 }

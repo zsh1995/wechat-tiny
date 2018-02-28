@@ -23,8 +23,8 @@ Page({
     userInfo: {},
     showPicStyle: '',
     showToast: false,
-    requestUserInfo: `https://${config.service.host}/ajax/user/detailInfo`,
     introdoce: introdoce,
+    requestUserInfo: `https://${config.service.host}//ajax/user/detailInfo`,
   },
 
   //
@@ -38,7 +38,7 @@ Page({
         userName: "test"
       },
       success(result) {
-        if (result.data.data.userChannel != 1) {
+        if (result.data.data.userInfo.userChannel != 1) {
           that.setData({
             showToast: true,
           })

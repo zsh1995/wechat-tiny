@@ -1,0 +1,5 @@
+.gsy-button{
+  box-shadow: 	2px 2px #000;
+  border-radius: 50%;
+  border: 1px solid;
+}
