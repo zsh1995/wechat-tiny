@@ -1,0 +1,8 @@
+<!--components/lightStars/lightStars.wxml-->
+<view>
+  <view class="star-container edge-{{marginStyle}}" wx:for="{{starList}}">
+    <view hidden='{{index>=stars}}' class='base-mask'  style='width:{{sWidth+"rpx"}};height:{{sHeight+"rpx"}};background-size:{{sWidth+"rpx"}} {{sHeight+"rpx"}}'></view>
+    <view hidden='{{index!=stars || !endHalf}}' class='base-mask' style='width:{{sWidth/2+"rpx"}};height:{{sHeight+"rpx"}};background-size:{{sWidth+"rpx"}} {{sHeight+"rpx"}}'></view>
+    <view hidden='{{!sShowRest}}' class='base'  style='width:{{sWidth+"rpx"}};height:{{sHeight+"rpx"}};background-size:{{sWidth+"rpx"}} {{sHeight+"rpx"}}'></view>
+  </view>
+</view>

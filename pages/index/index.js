@@ -38,7 +38,7 @@ Page({
         userName: "test"
       },
       success(result) {
-        if (result.data.data.userInfo.userChannel != 1) {
+        if (result.data.data.userChannel != 1) {
           that.setData({
             showToast: true,
           })

@@ -4,6 +4,11 @@ Component({
    * 组件的属性列表
    */
   properties: {
+    formType:{
+      type: String,
+      value: '',
+      observer: '__onPropChange'
+    },
     fontSize:{
       type: String,
       value: '',
@@ -66,6 +71,10 @@ Component({
   methods: {
     __onPropChange(newVal,oldVal){
       this.setData(this.properties)
+    },
+    click(e){
+      this.triggerEvent('touchstart', e, { bubbles: true, composed: true, capturePhase:true});
+      console.log(e);
     }
 
   }

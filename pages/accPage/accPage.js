@@ -3,6 +3,8 @@ var qcloud = require('../../bower_components/wafer-client-sdk/index');
 var config = require('../../config');
 var internalList = new Array();
 
+var content=['1.填写你毕业后期待加入的企业，我们优先和建立直推渠道','2.在你通过星级测试后，你指定的企业会收到你的推荐邮件','3.推荐信可以和简历一起投递任何公司。']
+
 // pages/accPage/accPage.js
 Page({
 
@@ -15,6 +17,13 @@ Page({
     checkProductUrl: `https://${config.service.host}/product/returnable/checkPurched`,
     isPurched: false,
     state: 1,
+    content:content,
+  },
+  onSubmit(e){
+    console.log(e);
+  },
+  test(e){
+    console.log(e);
   },
 
   onClick: function () {
@@ -27,7 +36,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var button = this.selectComponent('#myButton');
+    
   },
 
   /**

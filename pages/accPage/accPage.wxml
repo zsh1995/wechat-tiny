@@ -5,16 +5,21 @@
      <view class='shade'></view>
     <image class="" mode='aspectFit' src='http://i4.bvimg.com/619221/532e156d607285d7.jpg' bindtap='cancelShow'></image>
   </view>
-  <view hidden="{{state != 1}}">
+  <view class="icontainer" hidden="{{state != 1}}">
+    <view class='info-header'>
+      <view><text>{{content[0]}}</text> - <view class='href' bindtap='onClick'>企业列表</view></view>
+      <view><text>{{content[1]}}</text> - <view class='href' bindtap='onClick'>推荐信</view></view>
+      <view><text>{{content[2]}}</text></view>
+    </view>
+    <view class='m-tips'>确认后如需修改，请给我们留言</view>
     <view class='content'>
       	<form bindsubmit="onSubmit">
           	<view class='input'><input name="wantedCompany1" style="color:black" placeholder="目标企业-1"></input></view>
             <view class='input'><input name="wantedCompany2" style="color:black" placeholder="目标企业-2"></input></view>
             <view class='input'><input name="wantedCompany3" style="color:black" placeholder="目标企业-3"></input></view>
 
-            			<view style="display:flex;margin-top:200rpx;justify-content:center"><button class="weui-btn mbutton pass" plain="true" data-option="2" style="width:90%;padding:1rpx 42rpx 1rpx 42rpx; align-self:center" form-type="submit">填完了，不改了</button></view>
+            			<view style='margin:64rpx' hover-class="none"><gsy-button id='myButton' form-type="submit" text-content='确认，不再修改了' default-type='white-style' font-size='38rpx' bindtouchstart='test'>123</gsy-button></view>
         </form>
     </view>
   </view>
-  <view class='bottom-view' bindtap='onClick'><view><text>查看企业列表</text></view></view>
 </view>

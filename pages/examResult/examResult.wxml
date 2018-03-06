@@ -23,18 +23,17 @@
     <view style="color:{{scoreColor}}">{{passTimes}}</view>次，还需
     <view style="color:{{scoreColor}}">{{needTimes}}</view>次</view>
   <view class="flex-item button">
-    <!--<button wx:if="{{type == 'practice'}}" class="mbutton" plain="true" style="color: #BBBBBB;border-color:#BBBBBB;margin:20rpx;align-self: center; width:250rpx" bindtap="reWatch">← 回 看</button> -->
     <view wx:if="{{type == 'practice'}}" style='margin:20rpx;width:250rpx'>
       <gsy-button bindtap="reWatch" text-content='← 回 看' default-type='white-style' font-size='32rpx'></gsy-button>
     </view>
     <view wx:if="{{type == 'practice'}}" style='margin:20rpx;width:250rpx'>
-      <gsy-button bindtap="endExam" text-content='下 一 组 →' font-size='32rpx'></gsy-button>
+      <gsy-button bindtap="endExam" text-content='下 一 组 →' font-size='32rpx' background='{{scoreColor}}'></gsy-button>
     </view>
     <view wx:if="{{type == 'exam'}}" style='margin:20rpx;width:250rpx' hidden="{{ remainTimes < needTimes || passExam}}">
       <gsy-button bindtap="gobacktoMain" text-content='← 返 回'  default-type='white-style' font-size='32rpx'></gsy-button>
     </view>
     <view wx:if="{{type == 'exam'}}" style='margin:20rpx;width:250rpx' hidden="{{ remainTimes < needTimes || passExam}}">
-      <gsy-button bindtap="endExam" text-content='继 续 认 证' font-size='32rpx'></gsy-button>
+      <gsy-button bindtap="endExam" text-content='继 续 认 证' font-size='32rpx' background='{{scoreColor}}'></gsy-button>
     </view>
         <view wx:if="{{type == 'enroll'}}" style='margin:20rpx;width:550rpx'>
       <gsy-button bindtap="nextStep" text-content='下一步：填写目标企业' font-size='32rpx'></gsy-button>

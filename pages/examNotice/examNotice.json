@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "说明",
   "usingComponents": {
-    "gsy-button": "../../components/gsyButton/gsyButton"
+    "gsy-button": "../../components/gsyButton/gsyButton",
+    "light-star":"../../components/lightStars/lightStars"
   }
 }

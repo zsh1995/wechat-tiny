@@ -1,21 +1,9 @@
 /* userInformation.wxss */
+@import '/style/gsy-common/menu.wxss';
 page{
   height:100%;
-  background: #FFFFFF;
+  background: #eee;
   max-width: 100%;
-}
-.mycontainer{
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  margin-top: 20rpx;
-  background: #ffffff;
-}
-.userinfo {
-  display: flex;
-  flex-direction: row;
-  align-items:baseline;
-  width: 100%;
 }
 
 .userinfo-avatar {
@@ -26,174 +14,19 @@ page{
   border-radius: 50%;
 }
 
-.userinfo-childcontain{
-  display: flex;
-  flex-wrap:wrap;
-  align-self: center;
-  flex-direction: column;
-  height: auto;
-  margin-top: 50rpx;
-  flex:1;
-}
-
 .userinfo-nickname{
   font-size: 36rpx;
 }
 
-.userinfo-userinfo{
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  font-size: 25rpx;
-  align-self: center;
-}
-.userinfo-button{
-  font-size:25rpx;
-  position: relative;
-  bottom: 15rpx;
-  align-self: flex-end;
-}
-
-.mycontainer-listitem{
-  background-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASYAAAAoCAYAAABTuVceAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAI/SURBVHhe7d0tb1RBFIfxc254qUBUIIAgEAgEBo+o5CMgME1KypJWbAIJCSENgiC6riTdYjBIRCWCD4BEIhAVhCARCEKW+2fucrLpsm8V3Zkrnl9ys3N2/ZOZ2bTr0oEMAE6RZEexHL66W8d98/PwnROo4hUATk0K0bV41ponhWo/PjoRwgRg6Zo41XV/I8aFCBOAXHalg4uxnoswAcjC3VclvYxxLsIEIJsUp420a7od40yECUBWzUW4tHMmxqkIE4Cs3O2mdHkrxqkIE4ASdqRXl2I9gTAByO7fRfjZ3RgnECYARaQj3T1pfy3GMYQJQDGST70IJ0wAiklHuhtmVx7FOEKYABQl2dO6fn01xiHCBKAod7tgVo9dhBMmAMWlI93duu7fiZEwAWiNPenNSrMgTABaIe2arpv9fjJc8x8sAbSFpF8pULfYMQFojRSllRSnPcIEoGV8lTABaA3JBmZ/tgkTgBZRv6oefiRMAFoh7Za+u59/1qwJE4CW0GP39R/NijABKE7Sh6p68DZGwgSgrObC2923YxwiTAAKU+//nw8nTACKSUe4r+6DFzGOECYABanrvvUzhhHCBKAIyd5XVeddjGMIE4Dsmj/WTfkZu/A+jjABKMB7VXX/SwwTCBOArNIR7sj93MSF93GECUBW7tZ1X09HudkIE4BsJB26bx7GOBNhApBFc+Htrm6McxEmAFm4+3P3zlGMcxEmAEuXdkufzL71YlyIMAFYmuYbuOYxqztpwzSItxcw+wvliZRqO4+j9AAAAABJRU5ErkJggg==');
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  text-align: center;
-  padding-top: 20rpx;
-  padding-bottom: 20rpx;
-
-}
-.userinfo-info{
-  padding-left: 20rpx;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width:80%;
-  flex:2;
-}
-
-.item_list{
-    height:100%;
-    display: flex;
-    flex-direction: column;
-    max-width: 100%;
-    align-items: center;
-    padding-left: 30rpx;
-    padding-right: 30rpx;
-
-}
 
 .itemcontainer {
   height:100%;
   max-width: 100%;
   display: flex;
-  background: #ffffff;
+  background: #eee;
   flex-direction: column;
-  justify-content: space-between;
   box-sizing: border-box;
 } 
-
-.item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: #ffffff;
-  padding:50rpx 20rpx 50rpx 20rpx;
-  font-size: 36rpx;
-  justify-content:center;
-  border-top:1px solid #f0f0f0;
-  border-bottom:1px solid #f0f0f0;
-  letter-spacing: 0.1em;
-  line-height:1;
-}
-.item::after{
-	border:0px solid #f0f0f0;
-}
-
-.item_no_border{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: #ffffff;
-  padding:50rpx 80rpx 50rpx 80rpx;
-  font-size: 36rpx;
-  justify-content:center;
-  letter-spacing: 0.1em;
-  line-height:1;
-  font-weight: 600;
-}
-.item_no_border::after{
-	border:0px solid #f0f0f0;
-}
-
-
-.item_sub_row{
-  margin-top:10rpx;
-  display: flex;
-  font-size:32rpx;
-  flex-direction: row;
-  align-items:center;
-}
-.zsh_input{
-  flex:1;
-}
-.mybutton{
-  margin-left:30rpx;
-  margin-right:30rpx;
-}
-.card-container{
-  width:87%;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
-.gslm-cardbox{
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  margin-top:100rpx;
-  border:1px solid #343B41;
-  width:100%;
-  border-radius:25rpx;
-  background:#ffffff;
-  padding:10rpx 30rpx 10rpx 30rpx;
-  transform-style:preserve-3d;
-  backface-visibility:hidden;
-  height:50vw;
-  
- /* box-shadow: 3px 3px 1px #A8A8A8;*/
-}
-
-.gslm-cardbox-back{
-  display: flex;
-  
-  opacity:0;
-  flex-direction: column;
-  margin-top:80rpx;
-  border:1px solid #343B41;
-  width:100%;
-  border-radius:25rpx;
-  background:#ffffff;
-  padding:10rpx 30rpx 10rpx 30rpx;
-  transform-style:preserve-3d;
-  transform:rotateX(-180deg);
-  backface-visibility:hidden;
-  height:50vw;
- /* box-shadow: 3px 3px 1px #A8A8A8;*/
-}
-@-webkit-keyframes turnover {
-    100% {
-    opacity:0;
-    transform: rotateX(180deg);
-    }
-}
-@-webkit-keyframes turnback {
-    100% {
-    opacity: 1;
-    transform: rotateX(0);
-    }
-}
 
 .gslm-cardbox_name{
 	display:flex;
@@ -208,75 +41,12 @@ page{
   border-radius: 50%;
 }
 
-.userinfo-rightbox{
-	display:flex;
-	flex-direction:column;
-	align-self:center;
-	align-items:flex-start;
-	margin-left:20rpx;
-}
-.userinfo-bottombox{
-	display:flex;
-	flex-direction:row;
-	margin-top:6rpx;
-}
-.userinfo-major{
-	font-size:26rpx;
-	margin-left:20rpx;
-}
-.userinfo-school{
-	font-size:26rpx;
-}
-.gslm-cardbox_userinfo{
-	display:flex;
-	flex-direction:column;
-	margin-top:50rpx;
-}
 .gslm-cardbox_id{
 	margin-top:15rpx;
   margin-left:6rpx;
   font-weight: bold;
   letter-spacing: 1px;
 }
-.gslm-cardbox_confirm{
-  margin-top:15rpx;
-	margin-left:auto;
-}
-.usermobile{
-  display: flex;
-	margin:6rpx;
-  font-size: 30rpx;
-}
-.usermail{
-  display: flex;
-	margin:6rpx;
-  font-size: 30rpx;
-}
-.userinfo-editor{
-  display: flex;
-  align-content: center;
-  justify-content: center;
-  font-size: 26rpx;
-  text-align: center;
-	width:80rpx;
-	height:40rpx;
-	margin-left:auto;
-  border-radius: 50px;
-  border: 1px solid #7A7A7A;
-  background: #7A7A7A;
-  color: white;
-}
-.bottom-box{
-  display:flex;
-  flex-direction: column;
-  width: auto;
-}
-
-.cellinput{
-	word-break:keep-all;
-	white-space:nowrap;
-}
-
 .title-content{
   display: block;
   position: fixed;
@@ -295,15 +65,45 @@ page{
   /* 动画部分 */
   transition: all 0.4s ease;
 }
-
-.content--disappear{
-  -webkit-transform: translateZ(0) translateY(0);
+/*=========================*/
+.user-pannel{
+	width:100%;
+	background:#fff;
+	display:flex;
+  align-items:center;
+  margin-top:1px;
 }
-.column-p{
-  display: flex;
-  flex-basis:100%;
+.user-pannel #left{
+  padding: 40rpx;
 }
-.bottom-hold{
-  margin-top:108rpx;
 
+.menus-pannel{
+	display:flex;
+	flex-direction:column;
+	margin-top:10rpx;
+}
+
+
+.inline-views{
+	display:flex;
+  align-items:center;
+}
+button{
+  position: static;
+  padding-left:60rpx;
+  text-align:left;
+  background:#fff;
+  border:0 solid #fff;
+  border-radius:0;
+  line-height:100rpx;
+  font-size: 40rpx;
+}
+button::after{
+  border: none;
+}
+button::active{
+  background: ''
+}
+.light-star{
+  margin-left:32rpx;
 }

@@ -42,7 +42,7 @@ function getPassedTimes(star) {
 function getExamStatus(star) {
   return getPassedTimes(star)
           .then(p => {
-            return Promise.resolve((getExamNeedTimes(star) - p)>0);
+            return Promise.resolve(p.data.data-(getExamNeedTimes(star))>=0);
           })
 }
 

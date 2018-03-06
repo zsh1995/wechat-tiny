@@ -1,0 +1,42 @@
+.menu-group:first-child{
+  margin-top: 40rpx;
+}
+.menu-group{
+	margin:20rpx 0;
+	width:100%;
+}
+.menu-item:first-child{
+  margin-top: 0rpx;
+}
+.menu-item:last-child{
+  margin-bottom: 0rpx;
+}
+
+.menu-item{
+  margin:3rpx 0 3rpx 0;
+  background: #fff;
+  position:relative;
+  font-size: 40rpx;
+  height: 100rpx;
+  padding-left:60rpx;
+  line-height: 100rpx;
+}
+.menu-item:active{
+  background: #e1e1e1;
+}
+.menu-item::after{
+	position: absolute;
+	top: 50%;
+	right: 32rpx;
+	content: " ";
+	display: inline-block;
+	height: 6px;
+	width: 6px;
+	border-width: 2px 2px 0 0;
+	border-color: #c8c8c8;
+	border-style: solid;
+	transform: translateY(-50%) matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+}
+.clear-padding{
+  padding: 0;
+}

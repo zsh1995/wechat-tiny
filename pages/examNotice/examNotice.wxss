@@ -1,4 +1,5 @@
 /* examNotice.wxss */
+@import '/style/gsy-common/button.wxss';
 .item_title {
   background: #ffffff;
   font-size: 46rpx;

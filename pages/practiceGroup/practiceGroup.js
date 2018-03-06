@@ -141,9 +141,12 @@ Page({
           isPassed: (payUtil.getExamNeedTimes(star) - p.data.data) <= 0,
         })
       })
-    if(star > 1){
+    if(parseInt(star) > 1){
       payUtil.getExamStatus(star-1)
-        .then(p => (p ? that.setData({ preExamPass: true }) : 0))
+        .then(p => {
+          console.log(p);
+           p ? that.setData({ preExamPass: true }) : 0
+        } )
     }else{
       that.setData({ preExamPass: true })
     }

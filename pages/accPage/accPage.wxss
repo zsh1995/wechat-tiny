@@ -1,44 +1,89 @@
 /* pages/accPage/accPage.wxss */
 @import '/style/float-pic.wxss';
-.input{
+
+page {
+  background: #eee;
+}
+
+.input {
   border-bottom: 1px solid #999;
 }
-.content{
+
+.content {
   display: flex;
   justify-content: center;
+  background: #fff;
 }
-.input{
+
+.input {
   margin: 76rpx;
   font-size: 38rpx;
 }
-form{
+
+form {
   width: 88%;
 }
-.pass{
-	color:#00C775 !important;
-	border:1px solid #00C775 !important;
-  background:#FFFFFF;
+
+.pass {
+  color: #00c775 !important;
+  border: 1px solid #00c775 !important;
+  background: #fff;
 }
-.mbutton{
-margin-right:10rpx;
-margin-left:10rpx;
-color:black;
-border:1px solid #000000;
-line-height:2.00000006;
-border-radius:6px;
-padding-left:15px;
-padding-right:15px;
-font-size:17px;
+
+.mbutton {
+  margin-right: 10rpx;
+  margin-left: 10rpx;
+  color: black;
+  border: 1px solid #000;
+  line-height: 2.00000006;
+  border-radius: 6px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-size: 17px;
 }
-.bottom-view{
+
+.bottom-view {
   display: flex;
   font-size: 38rpx;
   flex-direction: column-reverse;
-  width:88%;
+  width: 88%;
   position: fixed;
   bottom: 20px;
 }
-.bottom-view>view{
+
+.bottom-view>view {
   width: auto;
   margin-left: auto;
 }
+
+.href {
+  display: inline-block;
+  text-decoration: underline;
+  color: #2bb675;
+  width: auto;
+  margin-left: auto;
+}
+
+.icontainer {
+  height: 100%;
+  width: 100%;
+}
+
+.info-header {
+  background: #fff;
+  padding: 80rpx 90rpx;
+  letter-spacing: 0.2em;
+  line-height: 1.6;
+}
+
+.info-header>view {
+  margin: 5rpx 0;
+}
+
+.m-tips {
+  height: 60rpx;
+  line-height: 60rpx;
+  padding: 0 90rpx;
+  color: #999;
+}
+
