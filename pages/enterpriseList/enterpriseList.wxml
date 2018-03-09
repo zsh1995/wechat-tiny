@@ -1,9 +1,18 @@
 <!--schoolChoose.wxml-->
-<view class="page">
+<view class="page" bindtouchstart='touchstar' bindtouchmove='touchmove' bindtouchend='touchend'>
   <image class="floatImg" mode='aspectFit' src='{{pictureUrl}}' wx:if="{{enableShowPic}}" bindtap='cancelShow'></image>
   <view class="shade" wx:if="{{enableShowPic}}" bindtap='cancelShow'></view>
+  <upper-slider id='us' u-position="top">
+    <view class='head-tips'>
+      <text>
+      关注“已确定”企业，如有适合的岗位，星级学员可和我们联系！
+      </text>
+      <text style='float:right;margin-bottom:40rpx;color:#999999;'>上滑收起</text>
+      <text></text>
+    </view>
+  </upper-slider>
   <view class="maincontain">
-    <view style="position:absolute;top:0;bottom:0;width:100%;">
+    <view style="width:100%;">
       <view class="page__bd">
         <view class="weui-search-bar">
           <view class="weui-search-bar__form">
@@ -33,11 +42,11 @@
               <view class="weui-cell__bd" style="display:flex;align-items:center">
                 <view style="margin-left:20rpx">{{item.enterpriseName}}</view>
                 <view class="iconArray">
-                <view wx:for="{{item.iconArray}}" >
-                  <view id="state" class="normalIcon" wx:if="{{item.labelText !='' &&item.labelText != undefine }}" style="border-color:{{item.labelBorderColor}};color:{{item.labelColor}};background-color:{{item.labelBackgroundcolor}}" data-set="{{index}}" >{{item.labelText}}</view>
-                </view>
-                <view wx:if="{{item.state == 1}}" class="successIcon">已签约</view>
-                <view wx:if="{{item.state == 0}}" class="waitIcon">跟进中</view>
+                  <!--<view wx:for="{{item.iconArray}}">
+                    <view id="state" class="normalIcon" wx:if="{{item.labelText !='' &&item.labelText != undefine }}" style="border-color:{{item.labelBorderColor}};color:{{item.labelColor}};background-color:{{item.labelBackgroundcolor}}" data-set="{{index}}">{{item.labelText}}</view>
+                  </view>-->
+                  <view wx:if="{{item.state == 1}}" class="successIcon">已确认</view>
+                  <view wx:if="{{item.state == 0}}" class="waitIcon">跟进中</view>
                 </view>
 
 

@@ -3,12 +3,11 @@
   <form bindsubmit="onSubmit">
     <view class="contain_gslm">
       <view class="detail-head">
-        <picker name="type" mode="selector" range="{{recordTypes}}" value="{{typeId}}" bindchange="chooseType">记录类型 - {{recordTypes[typeId]}}</picker>
+        <picker name="type" mode="selector" range="{{recordTypes}}" value="{{typeId}}" bindchange="chooseType">{{recordTypes[typeId]}}</picker>
       </view>
       <view class="weui-cells weui-cells_after-title">
         <view class="wholecontainer">
           <view class="zui-column">
-            <view class="item_style">项目名称</view>
             <view wx:for="{{purchList}}">
               <view wx:if="{{typeId==0}}">
                 <view class="item_style" style='text-align:left;'>{{item.product_name}}</view>
@@ -26,7 +25,6 @@
             </view>
           </view>
           <view class="zui-column">
-            <view class="item_style">金额</view>
             <view wx:for="{{purchList}}">
               <view wx:if="{{typeId==0}}">
                 <view class="item_style" style="color:#ED662C">{{item.price}}</view>
@@ -43,7 +41,6 @@
             </view>
           </view>
           <view class="zui-column">
-            <view class="item_style">购买日期</view>
             <view wx:for="{{purchList}}">
               <view wx:if="{{typeId==0}}">
                 <view class="item_style" style="color:#aaa">{{item.date}}</view>

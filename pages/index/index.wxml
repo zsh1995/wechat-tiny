@@ -17,6 +17,6 @@
 点击“我 - 企业直推”指定目标企业，我们帮你建立直推或内推渠道！ 
 3）打造优秀人才品牌形象！ 
 向企业宣传“高商苑学员，值得优先面试”。</text></view>
-    <view class='slogan gray' bindtap='navToSmr'>查看完整介绍→</view>
+    <view class='slogan gray' bindtap='navToSmr'>现在报名→</view>
   </view>
 </view>

@@ -12,6 +12,12 @@ let urlMap = {
   'getInvitor': `https://${config.service.host}/ajax/user/invitor/getInvitor`,
   'getUserInfoById': `https://${config.service.host}/ajax/user//invitor/getUserInfo`,
   'uploadUserInfoUrl': `https://${config.service.host}/ajax/user/uploadUserInfo`,
+  'setInvitorUrl': `https://${config.service.host}/ajax/user/invitor/setInvitor`
+}
+function setInvitor(id){
+  return util.ajax_promise(urlMap.setInvitorUrl,{
+    invitorId:id
+  })
 }
 function getExercise(){
     return util.ajax_promise(urlMap.exerciseUrl)
@@ -54,5 +60,6 @@ module.exports = {
     getInvitedUser:getInvitedUser,
     getUserInfoById:getUserInfoById,
     uploadUserInfo:uploadUserInfo,
+    setInvitor: setInvitor,
 
   }

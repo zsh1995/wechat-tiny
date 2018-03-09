@@ -8,7 +8,7 @@
   <view class="icontainer" hidden="{{state != 1}}">
     <view class='info-header'>
       <view><text>{{content[0]}}</text> - <view class='href' bindtap='onClick'>企业列表</view></view>
-      <view><text>{{content[1]}}</text> - <view class='href' bindtap='onClick'>推荐信</view></view>
+      <view><text>{{content[1]}}</text><!-- - <view class='href' bindtap='onClick'>推荐信</view>--></view>
       <view><text>{{content[2]}}</text></view>
     </view>
     <view class='m-tips'>确认后如需修改，请给我们留言</view>

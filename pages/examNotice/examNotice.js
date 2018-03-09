@@ -6,7 +6,7 @@ var qcloud = require('../../bower_components/wafer-client-sdk/index');
 // 引入配置
 var config = require('../../config');
 var payUtils = require('../../utils/payUtils')
-
+var examUtils= require('../../utils/exam.js')
 var couponUtil = require('../../utils/coupon.js');
 var userRightUtil = require('../../utils/userRight')
 
@@ -34,15 +34,15 @@ Page({
       {},
       {
         examTitle: "一 星 级 · 考 试",
-        examContent: "一道沟通训练思考题都由一个案例、一个观点，以及对此观点的五个选项组成，\n沟通训练思考题有如下作用：\n 1.     用于人们相互沟通，每一道题，大家都发表自己意见，听取别人意见，尽量达成积极共识。\n2.     可以作为企业面试题，用于考察应聘者的思维方式积极程度。\n3.     可以作为各类求职招聘平台和交友平台考察求职者（会员）潜力指数的考试题。"
+        examContent: "1.测试共6组题，每组6题。\n\n随机抽题；\n为检验稳定性，6组中，其中的3次结果超过90%，即通过星级测试；不要求连续。\n\n2.点击开始即记为1次测试。\n\n30分钟内完成即可，中途退出也可以，再次进入即可，题目不变。\n30分钟后再次进入，题目会改变，并计入新一次测试。"
       },
       {
         examTitle: "二 星 级 · 考 试",
-        examContent: "一道沟通训练思考题都由一个案例、一个观点，以及对此观点的五个选项组成，\n沟通训练思考题有如下作用：\n 1.     用于人们相互沟通，每一道题，大家都发表自己意见，听取别人意见，尽量达成积极共识。\n2.     可以作为企业面试题，用于考察应聘者的思维方式积极程度。\n3.     可以作为各类求职招聘平台和交友平台考察求职者（会员）潜力指数的考试题。"
+        examContent: "1.测试共6组题，每组6题。\n\n随机抽题；\n为检验稳定性，6组中，其中的3次结果超过90%，即通过星级测试；不要求连续。\n\n2.点击开始即记为1次测试。\n\n30分钟内完成即可，中途退出也可以，再次进入即可，题目不变。\n30分钟后再次进入，题目会改变，并计入新一次测试。"
       },
       {
         examTitle: "三 星 级 · 考 试",
-        examContent: "一道沟通训练思考题都由一个案例、一个观点，以及对此观点的五个选项组成，\n沟通训练思考题有如下作用：\n 1.     用于人们相互沟通，每一道题，大家都发表自己意见，听取别人意见，尽量达成积极共识。\n2.     可以作为企业面试题，用于考察应聘者的思维方式积极程度。\n3.     可以作为各类求职招聘平台和交友平台考察求职者（会员）潜力指数的考试题。"
+        examContent: "1.测试共6组题，每组6题。\n\n随机抽题；\n为检验稳定性，6组中，其中的3次结果超过90%，即通过星级测试；不要求连续。\n\n2.点击开始即记为1次测试。\n\n30分钟内完成即可，中途退出也可以，再次进入即可，题目不变。\n30分钟后再次进入，题目会改变，并计入新一次测试。"
       }
     ]
   },
@@ -58,7 +58,8 @@ Page({
     } else {
       payUtils.doPayExam(star)
         .then(p => {
-          that.requestPayment(result.data);
+          p.data.package=p.data.repay_id
+          that.requestPayment(p.data);
         })
     }
   },
@@ -271,7 +272,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that= this;
     star = parseInt(options.examNum);
+    examUtils.checkExamProcess(star)
+    .then(p=>{
+      console.log(p.data.data)
+      that.setData({
+        inExam: p.data.data
+      })
+    })
+
     var that = this;
     this.data.examNumber = options.examNum;
     this.data.isPassed = options.isPassed == 'true' ? true : false;

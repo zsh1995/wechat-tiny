@@ -1,5 +1,7 @@
 <import src="../template/template.wxml" />
-<view class='top-tips'><text>与朋友交流，达成共识， 知其所以然！</text></view>
+<view class='top-tips'>
+  <text>与朋友交流，达成共识， 知其所以然！</text>
+</view>
 <view class='swiper-lists' bindtouchend='touchEnd' bindtouchstart='setEvent' bindtap="touchViewStart" bindtouchmove='onmove'>
   <view class="count">
     <view wx:for="{{chooseList}}" wx:for-item="chooseItem">
@@ -12,12 +14,12 @@
     </view>
   </view>
 
-  <upper-slider id='us'>
+  <upper-slider u-position='bottom' id='us'>
     <view style='padding:20rpx 32rpx 20rpx 32rpx;'>
       <view style='margin: 10px 18px 10px 18px;'>
-        <text class="">{{answers.allLists[currentPage].tips}}</text>
+        <text class="">{{answers.allLists[currentPage].tips||answers.allLists[currentPage].tip}}</text>
       </view>
-      <view wx:if="{{type != 'exam' && answers.allLists[currentPage].analyse != '' && type !='enroll'}}" class="tips" bindtap="bindAnalyse" style="color:{{answers.allLists[currentPage].isPurchAnalyse > 0 ? '#00C775':'#aaa'}};border-color:{{answers.allLists[currentPage].isPurchAnalyse > 0 ? '#00C775':'#aaa'}}">
+      <view wx:if="{{type !='exam' && answers.allLists[currentPage].analysis!='' && answers.allLists[currentPage].analyse != '' && type !='enroll'}}" class="tips" bindtap="bindAnalyse" style="color:{{answers.allLists[currentPage].isPurchAnalyse > 0 ? '#00C775':'#aaa'}};border-color:{{answers.allLists[currentPage].isPurchAnalyse > 0 ? '#00C775':'#aaa'}}">
         <view>解析</view>
       </view>
     </view>
@@ -48,7 +50,14 @@
           </view>
         </view>
       </view>
-      <view class='tip-tip'><text class='tip-tip'>上滑查看提示</text></view>
+      <view class='tip-tip'>
+        <text>上滑查看提示或解析</text>
+        <view style='display:none;'>
+          <text>对话题有疑问？</text>
+          <text style='text-decoration:underline'>看不懂</text>
+          <text style='text-decoration:underline;margin-left:32rpx'>没兴趣</text>
+        </view>
+      </view>
     </view>
 
   </view>

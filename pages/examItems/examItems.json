@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "星级认证"
+  "navigationBarTitleText": "高商训练",
+  "usingComponents":{
+    "light-star":"/components/lightStars/lightStars"
+  }
 }

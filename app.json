@@ -32,13 +32,13 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "高商苑",
+        "text": "就业优势",
         "iconPath": "iconSource/index-default.png",
         "selectedIconPath": "iconSource/index-selected.png"
       },
       {
         "pagePath": "pages/examItems/examItems",
-        "text": "星级认证",
+        "text": "高商训练",
         "iconPath": "iconSource/training-default.png",
         "selectedIconPath": "iconSource/training-selected.png"
       },

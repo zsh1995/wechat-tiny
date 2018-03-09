@@ -1,6 +1,6 @@
 <view class="itemcontainer" bindtouchstart='bindtouchstart' bindtouchmove='bindtouchmove'>
-<view class="floatImg" hidden='{{!showToast}}' bindtap='closePic'>
-     <view class='shade'></view>
+  <view class="floatImg" hidden='{{!showToast}}' bindtap='closePic'>
+    <view class='shade'></view>
     <view class='close'></view>
     <image class="" mode='aspectFit' src='{{showPic.url}}' bindtap='cancelShow'></image>
   </view>
@@ -10,35 +10,41 @@
 
   <view class="item_list">
     <view class="item" bindtap="gotoPractice" data-option="1">
-      <text style="font-size:46rpx;font-weight:900;">一 星 级</text>
-      <view class="item_sub_row">
-        <view class='subTitle'>
-          <text class='iconfont'>人际关系 · 团队协作 · 恋爱观</text>
-        </view>
-        <view class='subTitle'>
-          <text class='iconfont' catchtap='toSee' data-id='1'>{{letter}}</text>
+      <view>
+        <light-star s-rest='{{false}}' icon-size='big' s-stars='1'></light-star>
+        <view class="item_sub_row">
+          <text style="font-size:46rpx;font-weight:900;">一 星 级</text>
+          <view >
+            <view class='subTitle'>
+              <text class='iconfont'>人际关系 · 团队协作</text>
+            </view>
+          </view>
         </view>
       </view>
     </view>
     <view class="item" bindtap="gotoPractice" data-option="2">
-      <text style="font-size:46rpx;font-weight:900;">二 星 级</text>
-      <view class="item_sub_row">
-        <view class='subTitle'>
-          <text>新闻现象 · 社会现象</text>
-        </view>
-        <view class='subTitle'>
-          <text class='iconfont' catchtap='toSee' data-id='2'>{{letter}}</text>
+      <view>
+        <light-star s-rest='{{false}}' icon-size='big' s-stars='2'></light-star>
+        <view class="item_sub_row">
+          <text style="font-size:46rpx;font-weight:900;">二 星 级</text>
+          <view>
+            <view class='subTitle'>
+              <text>新闻现象 · 社会现象</text>
+            </view>
+          </view>
         </view>
       </view>
     </view>
     <view class="item" bindtap="gotoPractice" data-option="3">
-      <text style="font-size:46rpx;font-weight:900;">三 星 级</text>
-      <view class="item_sub_row">
-        <view class='subTitle'>
-          <text>职场案例 · 工作思维</text>
-        </view>
-        <view class='subTitle'>
-          <text class='iconfont' catchtap='toSee' data-id='3'>{{letter}}</text>
+      <view>
+        <light-star s-rest='{{false}}' icon-size='big' s-stars='3'></light-star>
+        <view class="item_sub_row">
+          <text style="font-size:46rpx;font-weight:900;">三 星 级</text>
+          <view>
+            <view class='subTitle'>
+              <text>职场案例 · 工作思维</text>
+            </view>
+          </view>
         </view>
       </view>
     </view>

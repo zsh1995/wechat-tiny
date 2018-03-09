@@ -6,6 +6,7 @@ var qcloud = require('../../bower_components/wafer-client-sdk/index');
 // 引入配置
 var config = require('../../config');
 
+var userUtil = require('../../utils/user.js')
 
 Page({
 
@@ -15,9 +16,9 @@ Page({
   data: {
     inputShowed: false,
     inputVal: "",
-    invitor_avator:"",
-    updataUserInfo: `https://${config.service.host}/userInfo/setInvitor`,
-    requestUserInfo: `https://${config.service.host}/userInfo/getInvitor`
+    invitor_avator: "",
+    updataUserInfo: `https://${config.service.host}/ajax/user/invitor/setInvitor`,
+    requestUserInfo: `https://${config.service.host}/ajax/invitor/getUserInfo`
 
   },
   showInput: function () {
@@ -38,62 +39,29 @@ Page({
   },
 
   chooseInvitor:function(){
-
     var that = this;
-    qcloud.request({
-      url: this.data.updataUserInfo,
-      login: true,
-      method: 'POST',
-      data: {
-        invitorId: this.data.inputVal
-      },
-      success(result) {
-        console.log("success:" + result);
-        if (result.data.code == 0) { 
-          wx.navigateBack({})
-        }else{
-          wx.showToast({
-            title: result.data.message,
-            icon: 'loading',
-            mask:true
-          })
-        }
-        
-        
-      },
-      fail(error) {
-        that.data.ourUserInfo = { userName: "未获取到数据" };
-        that.setData(that.data);
-      },
-      complete() {
+    userUtil.setInvitor(this.data.inputVal)
+    .then(p=>{
+      console.log("success:" + result);
+      if (p.data.code == 0) {
+        wx.navigateBack({})
+      } else {
+        wx.showToast({
+          title: p.data.message,
+          icon: 'loading',
+          mask: true
+        })
       }
-
-    });
-
+    })
   },
   inputTyping: function (e) {
     var that = this;
-    qcloud.request({
-      url: this.data.requestUserInfo,
-      login: true,
-      method: 'POST',
-      data: {
-        invitorId: e.detail.value
-      },
-      success(result) {
-        console.log("success:" + result);
-        that.data.invitor_avator = result.data.data.avatar_url;
-        that.data.invitor_name = result.data.data.name
-        that.setData(that.data);
-      },
-      fail(error) {
-        that.data.ourUserInfo = { userName: "未获取到数据" };
-        that.setData(that.data);
-      },
-      complete() {
-      }
-
-    });
+    userUtil.getUserInfoById(e.detail.value)
+    .then(p=>{
+      that.data.invitor_avator = p.data.data.avatarUrl;
+      that.data.invitor_name = p.data.data.nickName
+      that.setData(that.data);
+    })
     this.setData({
       inputVal: e.detail.value
     });

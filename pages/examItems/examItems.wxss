@@ -16,13 +16,14 @@ page{
 .item {
   display: flex;
   flex-direction: column;
-  align-items: center;
   background: #ffffff;
   height: 33%;
   width:100%;
   margin-top: 3rpx;
   margin-bottom: 3rpx;
   justify-content:center;
+  padding:0 80rpx;
+  box-sizing:border-box;
 }
 
 .item_head{
@@ -33,10 +34,10 @@ page{
 }
 
 .item_sub_row{
-  margin-top:40rpx;
+  align-items:baseline;
+  justify-content:space-between;
   display: flex;
-  flex-direction: column;
-  margin-bottom:10px;
+  margin:0 10rpx;
 }
 
 .item_icon {
@@ -106,6 +107,7 @@ font-size:17px;
   }
 }
 .subTitle{
+  margin:0 32rpx;
   color:#999999;
   font-size: 36rpx;
   display: flex;

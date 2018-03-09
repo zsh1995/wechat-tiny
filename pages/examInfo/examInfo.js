@@ -249,7 +249,7 @@ Page({
     var that = this;
     var currentPage = this.data.currentPage;
     var currentItem = this.data.answers.allLists[currentPage];
-    var questionId = currentItem.questionId
+    var questionId = currentItem.questionId || currentItem.id
     console.log('is checking UserRight')
     examAjax.checkAnalysePurched(star,questionId)
       .then(result=>{
@@ -333,7 +333,7 @@ Page({
     var currentPage = this.data.currentPage;
     var currentItem = this.data.answers.allLists[currentPage];
     if (currentItem.isPurchAnalyse == null) currentItem.isPurchAnalyse = 0
-    var questionId = currentItem.questionId
+    var questionId = currentItem.questionId || currentItem.id
     var that = this;
     if (currentItem.isPurchAnalyse != 0) {
       wx.navigateTo({
@@ -481,6 +481,12 @@ Page({
     return temp;
 
   },
+  checkAna(){
+    var that= this;
+    var currentPage = swipperPage.getCurrentPageId();
+    that.data.answers.allLists[currentPage].isPurchAnalyse=100
+    that.setData(that.data)
+  },
 
   onLoad(params) {
     var that = this;
@@ -503,6 +509,7 @@ Page({
     });
     swipperPage.setOnLoadPage(p => {
       that.getFields();
+//      that.checkAna();
     })
 
     chooseList = params.chooseList == null ? [-1, -1, -1, -1, -1, -1] : this.strToArray(params.chooseList);
@@ -511,7 +518,6 @@ Page({
     this.data.selectdata.selectedId = chooseList[0];
     this.getCoupons();
     stars = parseInt(params.item);
-
     type = params.type;
     this.data.type = params.type;
 

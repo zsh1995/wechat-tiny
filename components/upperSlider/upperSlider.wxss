@@ -1,13 +1,19 @@
 /* components/upperSlider/upperSlider.wxss */
 .bottom-card{
   position: fixed;
-  bottom: 0;
   width: 100%;
   height: auto;
-  box-shadow: 0 -3px 10px #DDD;
   z-index: 101;
   background-color: #FEFEFE;
   transform: translateY(0%);
+}
+.bottom{
+  bottom:0;
+  box-shadow: 0 -3px 10px #DDD;
+}
+.top{
+  top:0;
+  box-shadow: 0 3px 10px #DDD;
 }
 .bottom-card text{
   letter-spacing:0.1em;

@@ -10,25 +10,25 @@
     <view class="zan-form column" hidden="{{steps != 1}}">
       <view class="zan-cell zan-form__item">
         <text class="zan-form__title">企业1</text>
-        <input name='wanted_company1' class="zan-form__input zan-cell__bd" placeholder="第一个企业" />
+        <input name='wantedCompany1' class="zan-form__input zan-cell__bd" placeholder="第一个企业" />
       </view>
       <view class="zan-cell zan-form__item">
         <text class="zan-form__title">企业2</text>
-        <input name='wanted_company2' class="zan-form__input zan-cell__bd" placeholder="第二个企业" />
+        <input name='wantedCompany2' class="zan-form__input zan-cell__bd" placeholder="第二个企业" />
       </view>
       <view class="zan-cell zan-form__item">
         <text class="zan-form__title">企业3</text>
-        <input name='wanted_company3' class="zan-form__input zan-cell__bd" placeholder="第三个企业" />
+        <input name='wantedCompany3' class="zan-form__input zan-cell__bd" placeholder="第三个企业" />
       </view>
     </view>
     <view class="zan-form column" hidden="{{steps != 2}}">
       <view class="zan-cell zan-form__item">
         <text class="zan-form__title">姓名</text>
-        <input name='userName' class="zan-form__input zan-cell__bd" placeholder="名字" />
+        <input name='studentName' class="zan-form__input zan-cell__bd" placeholder="名字" />
       </view>
       <view class="zan-cell zan-form__item">
         <text class="zan-form__title">手机号</text>
-        <input name='userMobile' class="zan-form__input zan-cell__bd" type="number" maxlength="20" placeholder="手机" />
+        <input name='phoneNumber' class="zan-form__input zan-cell__bd" type="number" maxlength="20" placeholder="手机" />
       </view>
       <view class="zan-cell zan-form__item">
         <view class="zan-form__title">学校</view>
@@ -42,7 +42,7 @@
       </view>
     </view>
     <view class='column' style='display:flex;align-items:center;flex-direction:column;'>
-      <button class="weui-btn mbutton pass" plain="true" style="align-self: center; width:550rpx" bindtap="nextStep" form-type='submit'>{{nextStepText}}</button>
+      <button class="gsy-default-button gsy-button-genenal" style="align-self: center; width:550rpx" bindtap="nextStep" form-type='submit'>{{nextStepText}}</button>
     </view>
   </form>
 

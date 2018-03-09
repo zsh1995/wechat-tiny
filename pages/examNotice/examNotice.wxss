@@ -12,7 +12,7 @@
   background: #ffffff;
   padding: 80rpx 110rpx 110rpx 110rpx;
   line-height: 1.8;
-  height:520rpx;
+  height:820rpx;
   letter-spacing: 0.1em;
   width: auto;
 }

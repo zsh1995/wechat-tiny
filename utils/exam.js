@@ -7,6 +7,13 @@ let urlMap = {
   'getExam': `https://${config.service.host}/ajax/exam/getExamQuestions`,
   'checkAnalysePurched':`https://${config.service.host}/ajax/user/checkPurchedAnalyse`,
   'getAnalyseUrl':`https://${config.service.host}/ajax/exam/getAnalyse`,
+  'checkExamProcess': `https://${config.service.host}/ajax/exam/examProcess`
+}
+
+function checkExamProcess(star){
+  return util.ajax_promise(urlMap.checkExamProcess,{
+    star:star,
+  })
 }
 
 function getPraciceQuestions(star,groupId){
@@ -40,4 +47,5 @@ module.exports = {
   getExamQuestions:getExamQuestions,
   getAnalyse:getAnalyse,
   checkAnalysePurched:checkAnalysePurched,
+  checkExamProcess: checkExamProcess,
 }

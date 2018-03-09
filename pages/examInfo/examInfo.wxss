@@ -263,16 +263,14 @@ page{
   line-height:26rpx;
 }
 .tip-tip{
-
-  /*height: 100%;*/
-  text-align:center;
-  display:block;
-  line-height:26rpx;
-}
-.tip-tip{
+  display:flex;
+  justify-content:space-between;
+  padding:0 36rpx;
+  color:#999999;
   height: 120rpx;
   line-height: 120rpx;
-  font-size: 36rpx;
+  font-size: 32rpx;
+  box-sizing:border-box;
 }
 .top-tips{
   position: absolute;

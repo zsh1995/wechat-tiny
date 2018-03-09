@@ -1,13 +1,23 @@
 <!--invitorList.wxml-->
 <view class="listContainer">
+  <view class='recomman-tips'>
+    <view class='oneline'>
+      <view id='uid'>ID:{{userId}}</view>
+      <view id='to-copy' bindtap='copyAction'>点击复制</view>
+    </view>
+    <view>告知好友，填写确认即可</view>
+  </view>
   <view class="detail-head">
-    <view>邀请我的朋友</view>
+    <view>我的推荐人</view>
   </view>
   <view class="weui-cells weui-cells_after-title">
     <view class="weui-cell">
-      <view wx:if="{{myInvitor.avatar_url != null}}"><image class="schoolAva" src="{{myInvitor.avatar_url}}"></image></view>
-      <view wx:if="{{myInvitor.avatar_url == null}}" style="margin-left:auto;margin-right:auto;color:#7A7A7A">{{myInvitor.name}}</view>
+      <view wx:if="{{myInvitor.avatar_url != null}}">
+        <image class="schoolAva" src="{{myInvitor.avatar_url}}"></image>
+      </view>
+      <!--<view wx:if="{{myInvitor.avatar_url == null}}" style="margin-left:auto;margin-right:auto;color:#7A7A7A">{{myInvitor.name}}</view>-->
       <view wx:if="{{myInvitor.avatar_url != null}}" style="margin-left:20rpx">{{myInvitor.name}}</view>
+      <gsy-button wx:if="{{myInvitor.avatar_url == null}}" style="margin:auto;" background='#ED662C' text-content='现在填写邀请人' bindtap='nav2Invitor'></gsy-button>
     </view>
   </view>
   <view class="detail-head">

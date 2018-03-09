@@ -7,7 +7,7 @@ var userUtils = require('../../utils/user')
 
 // 引入配置
 var config = require('../../config');
-var product = ['', '解析', '认证', '认证', '认证','加急押金'];
+var product = ['', '解析', '思维测试', '思维测试', '思维测试','加急押金'];
 var toCN = ['', '一星级','二星级','三星级']
 
 function ge_time_format(timestamp = false) {
@@ -38,7 +38,7 @@ function ge_time_format(timestamp = false) {
     s = '0' + s;
   }
   //var t = Y + '-' + m + '-' + d + ' ' + H + ':' + i + ':' + s;
-  var t = Y + '-' + m + '-' + d;
+  var t = Y + '/' + m + '/' + d;
 
   return t;
 }
@@ -72,7 +72,7 @@ Page({
   data: {
     payrecordurl: `https://${config.service.host}/pay/getPurchRecord`,
     purchList:[],
-    recordTypes:['全部','认证','解析','押金'],
+    recordTypes:['全部','思维测试','解析','押金'],
     typeId:0
   },
 
@@ -87,6 +87,7 @@ Page({
         for (var cnt = 0; cnt < that.data.purchList.length; cnt++) {
           var item = that.data.purchList[cnt]
           if (item.channel != 1) item.price = 0;
+          item.price+='.00'
           item.product_name = product[item.product_id];
           if (item.product_id != 5) {
             item.product_name += '·' + toCN[parseInt(item.star)];

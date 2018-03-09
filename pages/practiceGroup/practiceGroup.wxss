@@ -1,3 +1,6 @@
+page{
+  background:#eee;
+}
 .icontainer {
   background: #FFFFFF;
   overflow: hidden;
@@ -40,8 +43,8 @@
   border-radius: 8px;
 }
 .doc-title>text {
-  font-size: 40rpx;
-  line-height: 40rpx;
+  font-size: 36rpx;
+  line-height: 36rpx;
   color: black;
   text-align:center;
   font-weight: 900;
@@ -105,6 +108,7 @@
   line-height:40rpx;
   color: #999999;
   margin-bottom: 10px;
+  margin-left:24rpx;
   text-align:center;
 }
 .examFlag{
@@ -163,8 +167,14 @@
 }
 .column-flex{
 	display:flex;
-	margin:12rpx 70rpx 12rpx 70rpx;
-	
+	margin:20rpx 0rpx;
+	align-items: center;
+}
+.column-flex:first-child{
+  margin-top:0;
+}
+.column-flex:last-child{
+  margin-bottom:0;
 }
 .box-hint{
   font-size:32rpx;
@@ -179,4 +189,57 @@
   padding: 25px 15px 20px 15px;
   justify-content:center;
   max-height:14vh;
+}
+#container{
+  background: #eee;
+  min-height:100vh;
+}
+.title{
+  background: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content:center;
+  align-items:center;
+  padding:32rpx;
+}
+.column-content{
+  background: #fff;
+  padding:50rpx 70rpx;
+}
+.column-name{
+  padding-left:70rpx;
+}
+.practice-group{
+  display: flex;
+  flex-direction: column;
+}
+
+.group-item{
+  border:1px solid #6A6869;
+  border-radius: 1000px;
+  padding: 16rpx;
+  display: flex;
+}
+
+.practice-group>view{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top:16rpx;
+  margin-bottom:16rpx
+}
+.practice-group>view:first-child{
+  margin-top:0;
+}
+.practice-group>view:last-child{
+  margin-bottom:0;
+}
+.top-tips{
+  padding:40rpx 60rpx;
+  font-size: 36rpx;
+}
+.top-tips > .top-tips-title{
+  display: block;
+  font-weight: bold;
+  margin:32rpx 0;
 }

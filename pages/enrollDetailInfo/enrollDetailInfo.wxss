@@ -1,5 +1,6 @@
 /* pages/enrollDetailInfo/enrollDetailInfo.wxss */
 @import '/style/float-pic.wxss';
+@import '/style/gsy-common/button.wxss';
 .icontainer{
     overflow:hidden;
     min-height:100vh;

@@ -4,6 +4,7 @@ var qcloud = require('../../bower_components/wafer-client-sdk/index');
 
 // 引入配置
 var config = require('../../config');
+var userUtil = require('../../utils/user.js')
 Page({
 
   /**
@@ -36,26 +37,19 @@ Page({
     var mSchool = this.data.schoolName
     mSchool = mSchool == '选择您的学校' ? '' : mSchool
     userInfo.school = mSchool
-    userInfo.user_channel = 1;
+    userInfo.userChannel = 1;
     var that = this;
-    qcloud.request({
-      url: this.data.updataUserInfo,
-      login: true,
-      data: userInfo,
-      method: 'POST',
-      success(result) {
-        //that.requestUserInfo();
-        that.setData(that.data);
-        showSuccess('提交成功！');
-      },
-      fail(error) {
-        showModel('提交失败', error);
-        console.log('request fail', error);
-      },
-      complete() {
-        console.log('request complete');
-      }
-    });
+    userUtil.uploadUserInfo(userInfo)
+    .then(p=>{
+      wx.showToast({
+        title: '成功',
+      })
+      setTimeout(p=>{
+        wx.redirectTo({
+          url: '/pages/practiceGroup/practiceGroup?star=1',
+        })
+      }, 1200)
+    })
   },
 
   /**
@@ -120,9 +114,7 @@ Page({
   },
   nextStep:function(){
     if(this.data.steps == 2){
-      this.setData({
-        showToast: false,
-      })  
+
     }else{
       wx.setTopBarText({
         text: '报名·基本信息',

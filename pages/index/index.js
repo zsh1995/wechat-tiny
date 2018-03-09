@@ -6,12 +6,13 @@ var qcloud = require('../../bower_components/wafer-client-sdk/index');
 
 // 引入配置
 var config = require('../../config');
+var utils= require('../../utils/util.js')
 
 var picUrls = {
-  'rcmd-star-1':'http://i4.bvimg.com/619221/05a8288729dc6aed.jpg',
-  'rcmd-star-2':'http://i4.bvimg.com/619221/5d7e385849879e1f.jpg',
-  'rcmd-star-3':'http://i4.bvimg.com/619221/ebd6874393f02a4a.jpg',
-  'index-icon':'https://s1.ax1x.com/2018/02/14/9YGa59.jpg',
+  'rcmd-star-1': 'http://i4.bvimg.com/619221/05a8288729dc6aed.jpg',
+  'rcmd-star-2': 'http://i4.bvimg.com/619221/5d7e385849879e1f.jpg',
+  'rcmd-star-3': 'http://i4.bvimg.com/619221/ebd6874393f02a4a.jpg',
+  'index-icon': 'https://s1.ax1x.com/2018/02/14/9YGa59.jpg',
 }
 
 //
@@ -38,6 +39,14 @@ Page({
         userName: "test"
       },
       success(result) {
+        wx.setStorage({
+          key: 'userId',
+          data: utils.formateId(result.data.data.id.toString()),
+        })
+        that.setData({
+          isEnroll: result.data.data.userChannel == 1
+        })
+        /*
         if (result.data.data.userChannel != 1) {
           that.setData({
             showToast: true,
@@ -48,6 +57,8 @@ Page({
             })
           }, 1000)
         }
+        */
+
       },
       fail(error) {
         that.data.ourUserInfo = { userName: "未获取到数据" };
@@ -68,7 +79,7 @@ Page({
 
   cancelShow: function (e) {
     console.log(e)
-    if(e.target.id!='enroll'){
+    if (e.target.id != 'enroll') {
       return;
     }
     this.setData({
@@ -78,7 +89,7 @@ Page({
       url: '../examInfo/examInfo?type=enroll&item=1&group=1',
     })
   },
-  toSee:function(){
+  toSee: function () {
     /*
     this.setData({
       showPic: {
@@ -93,7 +104,7 @@ Page({
     wx.previewImage({
       urls: [
         picUrls['rcmd-star-1']
-        ],
+      ],
     })
   },
 
@@ -102,9 +113,16 @@ Page({
       url: '../enterpriseList/enterpriseList',
     })
   },
-  navToSmr:function(){
+  navToSmr: function () {
+    if (this.data.isEnroll) {
+      wx.showToast({
+        title: '您已报名！',
+        icon: 'none'
+      })
+      return;
+    }
     wx.navigateTo({
-      url: '../summaryPage/summaryPage',
+      url: '../examInfo/examInfo?type=enroll&item=1&group=1',
     })
   },
 

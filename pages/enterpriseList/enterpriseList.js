@@ -11,6 +11,7 @@ var currentPage = 0;
 var searchName = null;
 var allCount = 0;
 var lockPull = false;
+var upperSlider = null
 var scrollTop = 0;
 var lockOfPull = {
   lockPull: false,
@@ -25,9 +26,6 @@ var lockOfPull = {
   }
 };
 
-var schoolList = [{ "id": 1, "enterpriseName": "华为集团", "state": 0, "imgUrl": "http://img3.imgtn.bdimg.com/it/u=724439046,647125257&fm=27&gp=0.jpg", "iconArray": [0, 1, 1] }, { "id": 2, "enterpriseName": "小米集团", "state": 1, "imgUrl": "http://img3.imgtn.bdimg.com/it/u=724439046,647125257&fm=27&gp=0.jpg", "iconArray": [0, 1, 1] }, { "id": 1, "enterpriseName": "华为集团", "state": 0, "imgUrl": "http://img3.imgtn.bdimg.com/it/u=724439046,647125257&fm=27&gp=0.jpg", "iconArray": [0, 1, 1] }, { "id": 1, "enterpriseName": "华为集团", "state": 0, "imgUrl": "http://img3.imgtn.bdimg.com/it/u=724439046,647125257&fm=27&gp=0.jpg", "iconArray": [0, 1, 1] }];
-
-var schoolList2 = [{ "id": 1, "enterpriseName": "华为集团", "state": 0, "normalFlag": 0, "imgUrl": "http://img3.imgtn.bdimg.com/it/u=724439046,647125257&fm=27&gp=0.jpg", "hrFlag": 1, "managerFlag": 1 }, { "id": 1, "enterpriseName": "小米科技", "state": 1, "normalFlag": 1, "imgUrl": "http://img3.imgtn.bdimg.com/it/u=724439046,647125257&fm=27&gp=0.jpg", "hrFlag": 1, "managerFlag": 1 }, { "id": 1, "enterpriseName": "华为集团", "state": 0, "normalFlag": 0, "imgUrl": "http://img3.imgtn.bdimg.com/it/u=724439046,647125257&fm=27&gp=0.jpg", "hrFlag": 1, "managerFlag": 1 }, { "id": 1, "enterpriseName": "华为集团", "state": 1, "normalFlag": 1, "imgUrl": "http://img3.imgtn.bdimg.com/it/u=724439046,647125257&fm=27&gp=0.jpg", "hrFlag": 0, "managerFlag": 1 }, { "id": 1, "enterpriseName": "华为集团", "state": 0, "normalFlag": 0, "imgUrl": "http://img3.imgtn.bdimg.com/it/u=724439046,647125257&fm=27&gp=0.jpg", "hrFlag": 1, "managerFlag": 0 }, { "id": 1, "enterpriseName": "华为集团", "state": 0, "normalFlag": 0, "imgUrl": "http://img3.imgtn.bdimg.com/it/u=724439046,647125257&fm=27&gp=0.jpg", "hrFlag": 1, "managerFlag": 0 }, { "id": 1, "enterpriseName": "华为集团", "state": 0, "normalFlag": 0, "imgUrl": "http://img3.imgtn.bdimg.com/it/u=724439046,647125257&fm=27&gp=0.jpg", "hrFlag": 1, "managerFlag": 0 }, { "id": 1, "enterpriseName": "华为集团", "state": 0, "normalFlag": 0, "imgUrl": "http://img3.imgtn.bdimg.com/it/u=724439046,647125257&fm=27&gp=0.jpg", "hrFlag": 1, "managerFlag": 0 }, { "id": 1, "enterpriseName": "华为集团", "state": 0, "normalFlag": 0, "imgUrl": "http://img3.imgtn.bdimg.com/it/u=724439046,647125257&fm=27&gp=0.jpg", "hrFlag": 1, "managerFlag": 0 }, { "id": 1, "enterpriseName": "华为集团", "state": 0, "normalFlag": 0, "imgUrl": "http://img3.imgtn.bdimg.com/it/u=724439046,647125257&fm=27&gp=0.jpg", "hrFlag": 1, "managerFlag": 0 }, { "id": 1, "enterpriseName": "华为集团", "state": 0, "normalFlag": 0, "imgUrl": "http://img3.imgtn.bdimg.com/it/u=724439046,647125257&fm=27&gp=0.jpg", "hrFlag": 1, "managerFlag": 0 }, { "id": 1, "enterpriseName": "华为集团", "state": 0, "normalFlag": 0, "imgUrl": "http://img3.imgtn.bdimg.com/it/u=724439046,647125257&fm=27&gp=0.jpg", "hrFlag": 1, "managerFlag": 0 }, { "id": 1, "enterpriseName": "华为集团", "state": 0, "normalFlag": 0, "imgUrl": "http://img3.imgtn.bdimg.com/it/u=724439046,647125257&fm=27&gp=0.jpg", "hrFlag": 1, "managerFlag": 0 }, { "id": 1, "enterpriseName": "华为集团", "state": 0, "normalFlag": 0, "imgUrl": "http://img3.imgtn.bdimg.com/it/u=724439046,647125257&fm=27&gp=0.jpg", "hrFlag": 1, "managerFlag": 0 }, { "id": 1, "enterpriseName": "华为集团", "state": 0, "normalFlag": 0, "imgUrl": "http://img3.imgtn.bdimg.com/it/u=724439046,647125257&fm=27&gp=0.jpg", "hrFlag": 1, "managerFlag": 0 }, { "id": 1, "enterpriseName": "华为集团", "state": 0, "normalFlag": 0, "imgUrl": "http://img3.imgtn.bdimg.com/it/u=724439046,647125257&fm=27&gp=0.jpg", "hrFlag": 1, "managerFlag": 0 }, { "id": 1, "enterpriseName": "华为集团", "state": 0, "normalFlag": 0, "imgUrl": "http://img3.imgtn.bdimg.com/it/u=724439046,647125257&fm=27&gp=0.jpg", "hrFlag": 1, "managerFlag": 0 }, { "id": 1, "enterpriseName": "华为集团", "state": 0, "normalFlag": 0, "imgUrl": "http://img3.imgtn.bdimg.com/it/u=724439046,647125257&fm=27&gp=0.jpg", "hrFlag": 1, "managerFlag": 0 }, { "id": 1, "enterpriseName": "华为集团", "state": 0, "normalFlag": 0, "imgUrl": "http://img3.imgtn.bdimg.com/it/u=724439046,647125257&fm=27&gp=0.jpg", "hrFlag": 1, "managerFlag": 0 }, { "id": 1, "enterpriseName": "华为集团", "state": 0, "normalFlag": 0, "imgUrl": "http://img3.imgtn.bdimg.com/it/u=724439046,647125257&fm=27&gp=0.jpg", "hrFlag": 1, "managerFlag": 0 }];
 
 
 Page({
@@ -61,6 +59,15 @@ Page({
       this.searchAction('')
     }
     
+  },
+  touchstar(e) {
+    upperSlider.ontouch(e);
+  },
+  touchmove(e) {
+    upperSlider.onmove(e);
+  },
+  touchend(e) {
+    upperSlider.onend(e);
   },
   showSelfPic: function (e) {
     var index = e.target.dataset.set;
@@ -217,6 +224,8 @@ Page({
   onLoad: function (options) {
     currentPage = 0;
     searchName = null;
+    upperSlider = this.selectComponent('#us');
+    setTimeout(p => (upperSlider.show()),500)
   },
 
   /**

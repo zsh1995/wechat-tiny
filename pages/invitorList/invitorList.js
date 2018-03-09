@@ -23,12 +23,35 @@ Page({
   },
 
   /**
+   * 复制到剪贴板
+   */
+  copyAction(){
+    var data = parseInt(this.data.userId)
+    wx.setClipboardData({
+      data: data.toString(),
+      success: function (res) {
+        wx.showToast({
+          title: '成功',
+        })
+      }
+    })
+  },
+
+  /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     var that = this;
     wx.showLoading({
       title: '正在加载',
+    })
+    wx.getStorage({
+      key: 'userId',
+      success: function(res) {
+        that.setData({
+          userId:res.data,
+        })
+      },
     })
     userUtils.getInvitor()
       .then(result=>{
@@ -55,6 +78,11 @@ Page({
         })
       })
     
+  },
+  nav2Invitor(){
+    wx.navigateTo({
+      url: '../invitorPage/invitorPage',
+    })
   },
 
   /**

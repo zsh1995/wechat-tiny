@@ -13,12 +13,13 @@ var scoreUtils =require('../../utils/score.js');
 
 var payUtil = require('..//../utils/payUtils');
 var userUtils = require('../../utils/user')
+var examUtils=require('../../utils/exam.js')
 var requireCdt = ['','无要求','指定机构200H志愿者','100H实习证明']
 
-
+var upperSlider = null
 var star = 0
 var optionsTitle = ['', '一 星 级', '二 星 级', '三 星 级']
-var describeTitle = ['', '人际关系、团队协作、恋爱观', '社会现象、社会热点', '职场案例、工作思维']
+var describeTitle = ['', '人际关系、团队协作', '社会现象、社会热点', '职场案例、工作思维']
 Page({
   data: {
     checkPurched: `https://${config.service.host}/ajax/user/checkPurchedReturnable`,
@@ -87,12 +88,17 @@ Page({
     var that = this;
     userRightUtils.getPracticeScores(star).then(result=>{
       var recordList = result.data.data;
+      let defaultLen = star==1?9:6
+      that.data.scoreList = new Array(defaultLen+1);
       for (var cnt = 0; cnt < recordList.length; cnt++) {
         var record = recordList[cnt];
         var showRecord = scoreUtils.getCommentByScore(record.score);
-        that.data.score[record.questionGroup] = showRecord.titleScore;
-        that.data.color[record.questionGroup] = showRecord.color;
+        that.data.scoreList[record.questionGroup]={
+          score: showRecord.titleScore,
+          color: showRecord.color,
+        }
       }
+      that.data.scoreL = new Array(defaultLen/3)
       that.setData(that.data);
       console.log(result);
     });
@@ -118,11 +124,28 @@ Page({
 
     });
   },
+  touchstar(e){
+    upperSlider.ontouch(e);
+  },
+  touchmove(e){
+    upperSlider.onmove(e);
+  },
+  touchend(e){
+    upperSlider.onend(e);
+  },
 
   onLoad: function (opt) {
     star = parseInt(opt.star);
     console.log("star" + star);
+    examUtils.checkExamProcess(star)
+      .then(p => {
+        console.log(p.data.data)
+        that.setData({
+          inExam: p.data.data
+        })
+      })
     var that = this;
+    upperSlider = this.selectComponent('#us');
     //从后端拉取分数
     this.getScore();
     //this.checkIsPurched();
@@ -141,6 +164,7 @@ Page({
           isPassed: (payUtil.getExamNeedTimes(star) - p.data.data) <= 0,
         })
       })
+    this.getStar();
     if(parseInt(star) > 1){
       payUtil.getExamStatus(star-1)
         .then(p => {
@@ -167,7 +191,7 @@ Page({
   clickExercise:function(e){
     wx.showModal({
       title: '坚持跑步',
-      content: '下载“悦跑圈”， 搜素并加入“高商苑”跑团！',
+      content: '下载“悦跑圈”， 搜素并加入“高商苑”跑团！\n坚持3个月，每月8次，每次1600米，每次1000米配速3-8分钟',
       showCancel:false,
     })
   },
@@ -191,6 +215,16 @@ Page({
       content: '在校生：{0}\n往届生： 需工作表现证明'.format(requireCdt[star]),
       showCancel:false,
     })
+  },
+  getStar(){
+    var that = this;
+    userUtils.getRank()
+      .then(p => {
+        var rank = p.data.data;
+        that.setData({
+          rank: rank,
+        })
+      })
   },
   gotoExam: function (e) {
     var star = e.currentTarget.dataset.option;

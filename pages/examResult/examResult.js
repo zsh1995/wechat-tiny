@@ -211,6 +211,7 @@ Page({
       wx.setNavigationBarTitle({
         title: '报名·基础测试'
       })
+      that.loadCommentDataByScore(options.score);
       return;
     }
   },

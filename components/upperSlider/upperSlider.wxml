@@ -1,4 +1,4 @@
 <!--components/upperSlider/upperSlider.wxml-->
-  <view class='bottom-card' style='transition: {{animation?"all 0.4s ease":""}};-webkit-transform:translateY({{move_offset}}%)'>
-    <slot style="padding:20rpx 32rpx 20rpx 32rpx;"></slot>
+  <view class='bottom-card {{uPosition}}' style='transition: {{animation?"all 0.4s ease":""}};-webkit-transform:translateY({{move_offset}}%)' bindtouchstart='ontouch' bindtouchmove='onmove' bindtouchend='onend'>
+    <slot ></slot>
   </view>

@@ -132,7 +132,6 @@ Page({
   onShow: function () {
     var that = this;
     this.requestUserInfo('invitor', function (userdata) {
-      console.log("debugger_userInformation:userdata.invitor" + userdata.invitor)
       if (userdata.invitor == null || userdata.invitor == '') {
         that.setData({
           showTips: true,
@@ -233,6 +232,10 @@ Page({
           tempZero = tempZero.concat('0');
         }
         that.data.ourUserInfo.id = tempZero.concat(that.data.ourUserInfo.id)
+        wx.setStorage({
+          key: 'userId',
+          data: that.data.ourUserInfo.id,
+        })
         that.setData(that.data);
         if (callback) {
           callback(result.data.data);

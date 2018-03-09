@@ -42,7 +42,7 @@ function formatNumber(n) {
   return n[1] ? n : '0' + n
 }
 
-function Format (data,fmt) { //author: meizz 
+function Format(data, fmt) { //author: meizz 
   var o = {
     "M+": data.getMonth() + 1, //月份 
     "d+": data.getDate(), //日 
@@ -58,15 +58,15 @@ function Format (data,fmt) { //author: meizz
   return fmt;
 }
 
-function ajax_promise(url,data,){
-  return new Promise((resolve,reject)=>{
+function ajax_promise(url, data, ) {
+  return new Promise((resolve, reject) => {
     qcloud.request({
       url: url,
       login: true,
       data: urlEncode(data),
       method: 'POST',
-      header:{
-        'Content-Type':'application/x-www-form-urlencoded',
+      header: {
+        'Content-Type': 'application/x-www-form-urlencoded',
       },
       success(result) {
         resolve(result);
@@ -82,8 +82,8 @@ function ajax_promise(url,data,){
   })
 }
 
-function ajax_promise_json(url,data,){
-  return new Promise((resolve,reject)=>{
+function ajax_promise_json(url, data, ) {
+  return new Promise((resolve, reject) => {
     qcloud.request({
       url: url,
       login: true,
@@ -103,17 +103,28 @@ function ajax_promise_json(url,data,){
   })
 }
 
-function urlEncode(data){
+function urlEncode(data) {
   var urlencode = '';
   for (var key in data) {
-    if(data[key]==null) data[key] = '';
+    if (data[key] == null) data[key] = '';
     urlencode += '&{0}={1}'.format(key, data[key])
   }
   return urlencode.substr(1);
 }
+function formateId(id) {
+  var tempZero = '';
+  id = id.toString();
+  var len = id.length;
+  for (var cnt = 0; cnt < 8 - len; cnt++) {
+    tempZero = tempZero.concat('0');
+  }
+  return tempZero.concat(id)
+}
+
 module.exports = {
   formatTime: formatTime,
   Format: Format,
   ajax_promise: ajax_promise,
-  ajax_promise_json:ajax_promise_json,
+  ajax_promise_json: ajax_promise_json,
+  formateId: formateId,
 }

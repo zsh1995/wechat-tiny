@@ -1,1 +1,5 @@
-{}
+{
+  "usingComponents":{
+    "gsy-button":"/components/gsyButton/gsyButton"
+  }
+}

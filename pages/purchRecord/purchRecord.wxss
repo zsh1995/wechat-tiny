@@ -1,6 +1,7 @@
 /* purchRecord.wxss *//* detailInformation.wxss */
 page{
   max-height: 100%;
+  background: #eee;
 }
 .contain_gslm{
   height: 100%;

@@ -1,10 +1,10 @@
 // pages/summaryPage/summaryPage.js
 var picList = [
-  'http://i4.bvimg.com/619221/b7398458bcbe0701.jpg',
-  'http://i4.bvimg.com/619221/51aba9c82a4e7dab.jpg',
-  'http://i4.bvimg.com/619221/fa82b04ab47b15bd.jpg',
-  'http://i4.bvimg.com/619221/b930c3aed74aeecf.jpg',
-  'http://i4.bvimg.com/619221/3dba5891f52358b5.jpg',
+  'https://s1.ax1x.com/2018/03/08/92lpgP.jpg',
+  'https://s1.ax1x.com/2018/03/08/92Qv4A.jpg',
+  'https://s1.ax1x.com/2018/03/08/92Qz9I.jpg',
+  'https://s1.ax1x.com/2018/03/08/92lS3t.jpg',
+  'https://s1.ax1x.com/2018/03/08/92l9jf.jpg',
 ]
 Page({
 
