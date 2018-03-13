@@ -102,6 +102,11 @@ Page({
       url: '../../pages/practiceGroup/practiceGroup?star=' + rank,
     })
   },
+  bindNavCoupon(){
+    wx.navigateTo({
+      url: '../couponPage/couponPage',
+    })
+  },
 
 
   /**

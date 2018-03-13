@@ -19,13 +19,19 @@ Page({
     region: ['', '广州市', ''],
     identities:["在职","学生"],
     genders:['女生','男生'],
+    enrollment: [['2014', '2015', '2016','2017','2018'],['本科','硕士','博士']],
     mIdentity:"",
     identityId:0,
     genderId:0,
+    enrollmentId:[0,0],
     schoolName:"选择您的学校",
     subUserInfo:{name:''},
   },
-
+  chooseEnrollment(e){
+    this.setData({
+      enrollmentId: e.detail.value
+    })
+  },
   bindRegionChange: function (e) {
     this.setData({
       region: e.detail.value

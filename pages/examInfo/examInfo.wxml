@@ -44,11 +44,11 @@
       <view class="container" hidden="{{false}}">
         <view wx:for="{{answers.allLists[0].options}}" wx:for-index="idx">
           <view wx:if="{{false}}" class="list" style="background:{{item.color}}" data-option="{{idx}}" catchtap="tapCheckbox"></view>
-          <view class="list_border" style="box-shadow:{{ selectdata.selectedId == idx && isSelect? '0 0 10rpx'+item.color : ''}};background:{{selectdata.selectedId == idx && isSelect? item.color : ''}};border-color:{{item.color}};color:{{selectdata.selectedId == idx && isSelect? item.font : '#BBBBBB'}}"
+          <view hidden="{{selectdata.selectedId!=-1 && isSelect}}" class="list {{clickItem[idx]}}-item" 
             data-option="{{idx}}" catchtap="tapCheckbox">
-            <text>{{item.text}}</text>
           </view>
         </view>
+          <button class="gsy-default-button" hidden="{{selectdata.selectedId==-1 || !isSelect}}" style="margin:0 40rpx;box-shadow:{{ selectdata.selectedId == idx && isSelect? '0 0 10rpx'+item.color : ''}};background:{{answers.allLists[0].options[selectdata.selectedId].color}};color:{{answers.allLists[0].options[selectdata.selectedId].font}}"><text>{{answers.allLists[0].options[selectdata.selectedId].text}}</text></button>
       </view>
       <view class='tip-tip'>
         <text>上滑查看提示或解析</text>

@@ -1,4 +1,6 @@
 @import "../../style/top-toast.wxss";
+@import "../../style/gsy-common/click-icon.wxss";
+@import "../../style/gsy-common/button.wxss";
 page{
   display: block;
   height:100%;

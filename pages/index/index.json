@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "就业优势"
+  "navigationBarTitleText": "就业优势",
+  "usingComponents":{
+    "gsy-button":"/components/gsyButton/gsyButton"
+  }
 }

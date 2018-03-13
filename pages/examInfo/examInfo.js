@@ -71,6 +71,7 @@ Page({
     currentPage: 0,
     commBaseMessage: "以下交流基地在每周一至六14:00 – 15:30都有交流会，建议你一周来一次，可以认识很多高质量朋友（含异性朋友）。需喝一瓶水或一杯茶（咖啡）\n 参加六次可申请教育部“职业沟通能力证书”（详情请看高商联盟简介 – 加盟训练）。 \n 1、北京 \n 1）学院路地区：清华大学观畴园地下一层紫荆书咖 \n 2）回龙观地区：（待定）",
     showPullTips: false,
+    clickItem:['white','green','yellow','red','black'],
     loginUrl: config.service.loginUrl,
     requestUrl: config.service.requestUrl,
     questionUrl: `https://${config.service.host}/ajax/exam/getQuestions`,
@@ -427,7 +428,7 @@ Page({
     var resultData = data;
     var cnt = 0;
     var colors = ["#999999", "#2BB675", "#FFE51A", "#ED662C", "#6A6869"]
-    var mOptions = [{ color: "#999999", font: "black", text: '非常\n支持' }, { color: "#2BB675", font: "white", text: '比较\n支持' }, { color: "#FFE51A", font: "black", text: '中立' }, { color: "#ED662C", font: "white", text: '比较\n反对' }, { color: "#6A6869", font: "white", text: '非常\n反对' }]
+    var mOptions = [{ color: "#999999", font: "black", text: '非常支持' }, { color: "#2BB675", font: "white", text: '比较支持' }, { color: "#FFE51A", font: "black", text: '中立' }, { color: "#ED662C", font: "white", text: '比较反对' }, { color: "#6A6869", font: "white", text: '非常反对' }]
     for (var i = 0; i < resultData.length; i++) {
       resultData[i].content = resultData[i].content.replace(/\\n/, "\n");
       resultData[i].index = i;

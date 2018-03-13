@@ -17,7 +17,8 @@
     "pages/enterpriseList/enterpriseList",
     "pages/enrollDetailInfo/enrollDetailInfo",
     "pages/accPage/accPage",
-    "pages/summaryPage/summaryPage"
+    "pages/summaryPage/summaryPage",
+    "pages/couponPage/couponPage"
   ],
   "window": {
     "backgroundTextStyle": "light",

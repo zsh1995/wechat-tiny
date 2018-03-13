@@ -1,4 +1,5 @@
 <!--index.wxml-->
+<!--
 <view class="icontainer">
   <view class="floatImg" hidden='{{!showToast}}' bindtap='closePic'>
     <view class='shade'></view>
@@ -19,4 +20,9 @@
 向企业宣传“高商苑学员，值得优先面试”。</text></view>
     <view class='slogan gray' bindtap='navToSmr'>现在报名→</view>
   </view>
+</view>
+-->
+<view class='icontainer'>
+  <image bindtap='toSee' mode="widthFix" src='https://s1.ax1x.com/2018/03/09/9Rk1oV.jpg'></image>
+  <view class="button-view"><gsy-button bindtap='navToSmr' text-content="报名申请推荐信"></gsy-button></view>
 </view>

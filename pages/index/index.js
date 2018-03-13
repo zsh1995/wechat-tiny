@@ -9,9 +9,9 @@ var config = require('../../config');
 var utils= require('../../utils/util.js')
 
 var picUrls = {
-  'rcmd-star-1': 'http://i4.bvimg.com/619221/05a8288729dc6aed.jpg',
-  'rcmd-star-2': 'http://i4.bvimg.com/619221/5d7e385849879e1f.jpg',
-  'rcmd-star-3': 'http://i4.bvimg.com/619221/ebd6874393f02a4a.jpg',
+  'rcmd-star-1': 'https://s1.ax1x.com/2018/03/09/9Rk1oV.jpg',
+  'rcmd-star-2': 'https://s1.ax1x.com/2018/03/09/9RkGJU.jpg',
+  'rcmd-star-3': 'https://s1.ax1x.com/2018/03/09/9Rk8iT.jpg',
   'index-icon': 'https://s1.ax1x.com/2018/02/14/9YGa59.jpg',
 }
 
