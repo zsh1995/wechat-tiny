@@ -43,8 +43,8 @@ page{
   border-radius: 8px;
 }
 .doc-title>text {
-  font-size: 36rpx;
-  line-height: 36rpx;
+  line-height: 50rpx;
+  height: 50rpx;
   color: black;
   text-align:center;
   font-weight: 900;
@@ -104,12 +104,11 @@ page{
   margin-top: 15px !important;
 }
 .sub-title>text{
-  font-size: 32rpx;
-  line-height:40rpx;
+  line-height: 50rpx;
+  height: 50rpx;
   color: #999999;
-  margin-bottom: 10px;
-  margin-left:24rpx;
-  text-align:center;
+  margin-left: 30rpx;
+  text-align: center;
 }
 .examFlag{
   position:absolute;
@@ -199,8 +198,8 @@ page{
   display: flex;
   flex-direction: row;
   justify-content:center;
-  align-items:center;
-  padding:32rpx;
+  align-items:flex-end;
+  padding:40rpx;
 }
 .column-content{
   background: #fff;
@@ -242,4 +241,9 @@ page{
   display: block;
   font-weight: bold;
   margin:32rpx 0;
+}
+.sub-item{
+  display: flex;
+  flex-direction: row;
+  margin-left:30rpx;
 }

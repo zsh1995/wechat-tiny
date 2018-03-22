@@ -12,6 +12,7 @@ var examAjax = require('../../utils/exam')
 
 var internalList = new Array();
 var upperSlider = null;
+var upperSliderTop = null;
 var swipperPage = null;
 
 // 显示繁忙提示
@@ -63,7 +64,26 @@ var showModel = (title, content) => {
     showCancel: false
   });
 };
+let enrollTips = [
+  {
+    title: "1.这里没有老师\n\n",
 
+    content: "提示和解析，屏幕上滑即可；\n"
+  },
+
+  {
+    title: "\n2.对话题和观点进行思考和交流\n\n",
+
+    content: "我们推荐线下交流，朋友、同学是最高效的老师；\n百度、知乎、微博… 方式不限！\n"
+  },
+
+  {
+    title: "\n3.对我们提供的「观点」选择态度\n\n",
+
+    content: "话题由「案例+观点」组成，你需要对观点选择态度，而不是案例本身。\n"
+  }
+
+]
 
 Page({
   data: {
@@ -71,7 +91,8 @@ Page({
     currentPage: 0,
     commBaseMessage: "以下交流基地在每周一至六14:00 – 15:30都有交流会，建议你一周来一次，可以认识很多高质量朋友（含异性朋友）。需喝一瓶水或一杯茶（咖啡）\n 参加六次可申请教育部“职业沟通能力证书”（详情请看高商联盟简介 – 加盟训练）。 \n 1、北京 \n 1）学院路地区：清华大学观畴园地下一层紫荆书咖 \n 2）回龙观地区：（待定）",
     showPullTips: false,
-    clickItem:['white','green','yellow','red','black'],
+    enrollTips: enrollTips,
+    clickItem: ['white', 'green', 'yellow', 'red', 'black'],
     loginUrl: config.service.loginUrl,
     requestUrl: config.service.requestUrl,
     questionUrl: `https://${config.service.host}/ajax/exam/getQuestions`,
@@ -117,17 +138,29 @@ Page({
   setEvent: function (e) {
     console.log('setEvent');
     upperSlider.ontouch(e);
+    upperSliderTop.ontouch(e);
     this.setData(this.data);
     return false;
   },
   onmove: function (e) {
     console.log('onmove')
+    
+    console.log('up=' + upperSlider.isActive() + ',too=' + upperSliderTop.isActive())
+    if(upperSlider.isActive()){
+      upperSlider.onmove(e);
+      return;
+    } else if (upperSliderTop.isActive()){
+      upperSliderTop.onmove(e);
+      return;
+    }
     upperSlider.onmove(e);
+    upperSliderTop.onmove(e);    
   },
   //滑动结束
   touchEnd: function (e) {
     console.log('touchEnd');
     upperSlider.onend(e);
+    upperSliderTop.onend(e);
     return false;
   },
 
@@ -252,8 +285,8 @@ Page({
     var currentItem = this.data.answers.allLists[currentPage];
     var questionId = currentItem.questionId || currentItem.id
     console.log('is checking UserRight')
-    examAjax.checkAnalysePurched(star,questionId)
-      .then(result=>{
+    examAjax.checkAnalysePurched(star, questionId)
+      .then(result => {
         that.data.isPurched = result.data.data.isPurched;
         that.setData(that.data)
         if (result.data.data.isPurched)
@@ -352,7 +385,7 @@ Page({
 
       var countString = ""
       var url;
-  
+
 
       wx.showModal({
         title: '温馨提示',
@@ -375,10 +408,10 @@ Page({
             } else {
               //countString = '点击确定进行购买'
               payUtils.doPayAnalyse(stars, questionId, currentPage + 1, groupId)
-                .then(p=>{
+                .then(p => {
                   that.requestPayment(p.data)
                 })
-            }          
+            }
           }
         }
       })
@@ -482,10 +515,10 @@ Page({
     return temp;
 
   },
-  checkAna(){
-    var that= this;
+  checkAna() {
+    var that = this;
     var currentPage = swipperPage.getCurrentPageId();
-    that.data.answers.allLists[currentPage].isPurchAnalyse=100
+    that.data.answers.allLists[currentPage].isPurchAnalyse = 100
     that.setData(that.data)
   },
 
@@ -499,6 +532,7 @@ Page({
     })
     upperSlider = this.selectComponent('#us');
     swipperPage = this.selectComponent('#swipper-page');
+    upperSliderTop = this.selectComponent('#topUs');
     swipperPage.setPageChangeCallback(p => {
       that.data.isSelect = true;
       that.data.showPullTips = false;
@@ -510,7 +544,7 @@ Page({
     });
     swipperPage.setOnLoadPage(p => {
       that.getFields();
-//      that.checkAna();
+      //      that.checkAna();
     })
 
     chooseList = params.chooseList == null ? [-1, -1, -1, -1, -1, -1] : this.strToArray(params.chooseList);
@@ -550,6 +584,7 @@ Page({
 
   onShow: function (e) {
     score = 0;
+    setTimeout(p => upperSliderTop.show(),500);
   },
   onReady: function () {
 

@@ -1,4 +1,12 @@
 <import src="../template/template.wxml" />
+<upper-slider hidden='{{type!="enroll"}}' u-position='top' id='topUs'>
+  <view class='up-top font-32'>
+    <view wx:for="{{enrollTips}}">
+      <text class='font-bold'>{{item.title}}</text>
+      <text>{{item.content}}</text>
+    </view>
+  </view>
+</upper-slider>
 <view class='top-tips'>
   <text>与朋友交流，达成共识， 知其所以然！</text>
 </view>

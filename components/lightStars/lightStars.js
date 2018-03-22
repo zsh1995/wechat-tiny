@@ -48,7 +48,7 @@ Component({
     this.data.stars = parseInt(this.properties.sStars);
     switch(this.properties.iconSize){
       case 'small': this.data.sWidth = 30; this.data.sHeight = 30;break;
-      case 'medium': this.data.sWidth = 50; this.data.sHeight = 50;break;
+      case 'medium': this.data.sWidth = 60; this.data.sHeight = 60;break;
       case 'big': this.data.sWidth = 80; this.data.sHeight = 80;break;
     }
     this.setData(this.data);

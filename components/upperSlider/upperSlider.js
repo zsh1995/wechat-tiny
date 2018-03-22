@@ -8,13 +8,13 @@ Component({
     this.setData(this.properties)
     if (this.properties.uPosition == 'top') {
       this.setData({
-        full_offset: -100,
-        move_offset: -100,
+        full_offset: -110,
+        move_offset: -110,
       })
     } else {
       this.setData({
-        full_offset: 100,
-        move_offset: 100,
+        full_offset: 110,
+        move_offset: 110,
       })
     }
   },
@@ -37,6 +37,7 @@ Component({
     full_offset: 100,
     animation: false,
     uPosition: 'bottom',
+    active:false,
   },
 
   /**
@@ -46,16 +47,21 @@ Component({
     __onPropChange(newVal, oldVal) {
       this.setData(this.properties)
     },
+    isActive() {
+      return this.data.active;
+    },
     show:function(e){
       this.setData({
         animation:true,
         move_offset:0,
+        active:true,
       })
     },
     hide: function (e) {
       this.setData({
         animation: true,
         move_offset: this.data.full_offset,
+        active:flase,
       })
     },
     ontouch: function (e) {
@@ -91,12 +97,14 @@ Component({
       if (this.data.old_offset == 0 && flag * move_offset >= 10) {
         this.setData({
           move_offset: this.data.full_offset,
+          active:false,
         })
         return;
       }
       if (flag * this.data.old_offset > 0 && flag * move_offset <= 60) {
         this.setData({
           move_offset: 0,
+          active:true,
         })
         return;
       }

@@ -1,208 +1,13 @@
-<!--
-<view class="icontainer">
-  <view class='top-title'>
-    <view class="doc-title">
-      <text>{{title}}</text>
-    </view>
-
-    <view class="sub-title" style='margin-left:12rpx;'>
-      <text>{{detailTitle}}</text>
-    </view>
-  </view>
-
-  <view style="display:flex;justify-content:center;flex-direction:column;max-height:40vh;">
-    <view class='process-column'>
-      <view>思维测试</view>
-      <view>·</view>
-      <view>模拟（免费）</view>
-      <view class='d-push-link' wx:if='{{isCompleteConfirm}}'>企业直推</view>
-    </view>
-    <view class="demo">
-      <view class="oneline">
-        <view class="demo__item">
-          <view class="demo__icon zan-badge cynsytle group-bar" bindtap="groupOntap" data-option="1">
-            <view>01组</view>
-            <view class='score-bar' style="color:{{color[1]}}">{{score[1]}}</view>
-
-          </view>
-        </view>
-        <view class="demo__item">
-          <view class="demo__icon zan-badge cynsytle group-bar" bindtap="groupOntap" data-option="2">
-            <view>02组</view>
-            <view class='score-bar' style="color:{{color[2]}}">{{score[2]}}</view>
-
-          </view>
-        </view>
-        <view class="demo__item">
-          <view class="demo__icon zan-badge cynsytle group-bar" bindtap="groupOntap" data-option="3">
-            <view>03组</view>
-            <view class='score-bar' style="color:{{color[3]}}">{{score[3]}}</view>
-
-          </view>
-        </view>
-      </view>
-      <view class="oneline">
-        <view class="demo__item">
-          <view class="demo__icon zan-badge cynsytle group-bar" bindtap="groupOntap" data-option="4">
-            <view>04组</view>
-            <view class='score-bar' style="color:{{color[4]}}">{{score[4]}}</view>
-
-          </view>
-        </view>
-        <view class="demo__item">
-          <view class="demo__icon zan-badge cynsytle group-bar" bindtap="groupOntap" data-option="5">
-            <view>05组</view>
-            <view class='score-bar' style="color:{{color[5]}}">{{score[5]}}</view>
-
-          </view>
-        </view>
-        <view class="demo__item">
-          <view class="demo__icon zan-badge cynsytle group-bar" bindtap="groupOntap" data-option="6">
-            <view>06组</view>
-            <view class='score-bar' style="color:{{color[6]}}">{{score[6]}}</view>
-
-          </view>
-        </view>
-      </view>
-      <view class="oneline" wx:if="{{star == 1}}">
-        <view class="demo__item">
-          <view class="demo__icon zan-badge cynsytle group-bar" bindtap="groupOntap" data-option="7">
-            <view>07组</view>
-            <view class='score-bar' style="color:{{color[7]}}">{{score[7]}}</view>
-
-          </view>
-        </view>
-        <view class="demo__item">
-          <view class="demo__icon zan-badge cynsytle group-bar" bindtap="groupOntap" data-option="8">
-            <view>08组</view>
-            <view class='score-bar' style="color:{{color[8]}}">{{score[8]}}</view>
-
-          </view>
-        </view>
-        <view class="demo__item">
-          <view class="demo__icon zan-badge cynsytle group-bar" bindtap="groupOntap" data-option="9">
-            <view>09组</view>
-            <view class='score-bar' style="color:{{color[9]}}">{{score[9]}}</view>
-
-          </view>
-        </view>
-      </view>
-
-    </view>
-  </view>
-
-  <view class=''>
-
-    <view style='display:flex;flex-direction:column;max-height:25vh;'>
-      <view class='process-column'>
-        <view>星级认证</view>
-        <view>·</view>
-        <view class="{{isCompleteConfirm?'complete-style':'no-complete-style'}}">未完成</view>
-        <view class='d-push-link' wx:if='{{isCompleteConfirm}}'>企业直推</view>
-      </view>
-      <view class='column-flex'>
-        <view class="{{isPassed?'green-box':'gray-box'}}" data-option="{{star}}" bindtap="gotoExam">
-          <text>思维测试</text>
-        </view>
-        <view wx:if='{{remainTimes == 0 && !isPassed && preExamPass}}' class='box-hint'>
-          <text>未过关(点击开始）</text>
-        </view>
-        <view wx:if='{{remainTimes == 0 && !isPassed && !preExamPass}}' class='box-hint'>
-          <text>请先完成上一星级测试</text>
-        </view>
-        <view wx:if='{{remainTimes >0 && !isPassed}}' class='box-hint'>
-          <text>剩余{{remainTimes}}次，已通过{{passedTimes}}/{{needTimes}}次</text>
-        </view>
-        <view wx:if='{{isPassed}}' class='box-hint'>
-          已完成（点击开始）
-        </view>
-      </view>
-      <view class='column-flex'>
-        <view class="{{invitor.count>invitor.needInvitor?'green-box':'gray-box'}}" bindtap="navigatoInvitor">
-          <text>邀请好友交流</text>
-        </view>
-        <view class='box-hint'>
-          已邀请
-          <view style='color:#2BB675'> {{invitor.count}}/{{invitor.needInvitor}}</view>位好友交流
-        </view>
-      </view>
-    </view>
-  </view>
-
-
-  <view class=''>
-
-    <view style='display:flex;flex-direction:column;max-height:25vh;'>
-      <view class='process-column' style='padding-top:34rpx;'>
-        <view>附加项</view>
-        <view>·</view>
-        <view wx:if="{{!practiceFlag||!exerciseFlag}}" class='no-complete-style'>
-          <text>未完成</text>
-          <view style='letter-space:0rpx;font-size:28rpx'>
-            <text>（完成后为1.5星级）</text>
-          </view>
-        </view>
-        <view wx:if='{{practiceFlag&&exerciseFlag}}' class='complete-style'>已完成</view>
-      </view>
-      <view class='column-flex'>
-        <view class="{{exerciseFlag?'green-box':'gray-box'}}" bindtap="clickExercise">
-          <text>坚持跑步</text>
-        </view>
-        <view class='box-hint'>
-          {{exerciseFlag ? '已达标':'未达标'}}
-        </view>
-      </view>
-      <view class='column-flex'>
-        <view class="{{practiceFlag?'green-box':'gray-box'}}" bindtap="clickPractice">
-          <text>实践情况</text>
-        </view>
-        <view class='box-hint'>
-          {{exerciseFlag ? '已达标':'未达标'}}
-        </view>
-      </view>
-    </view>
-  </view>
-
-
-  <view class="alarm">
-    <view class="demo__icon zan-badge cynsytle" bindtap="groupOntap" style="margin:0;border:1px solid #DDDDDD" data-option="1">
-      <view></view>
-      <view style="color:{{color[1]}}"></view>
-    </view>
-    <view class="alarmTips">
-      <view class="">
-        ←组号
-      </view>
-      <view style="visibility:hidden">test</view>
-      <view class="">
-        ←最后一次成绩
-      </view>
-    </view>
-  </view>
-
-</view>
--->
 <view id='container' bindtouchstart='touchstar' bindtouchmove='touchmove' bindtouchend='touchend'>
-  <uppser-slider id='us' u-position='top'>
-    <view class='top-tips'>
-      <view class='top-tips-title'>完成星级认证有什么用?</view>
-      <view>
-        <text> 1.获得推荐信，附在简历后投递更有可能得到回应；\n
-      2.指定3家企业，星级认证完成后，企业会通过高商苑专属渠道收到你的简历；\r\n
-      部分企业可以安排你的企业员工线下见面交流，建立良好的关系，比面试更有价值；
-    </text>
-      </view>
-      <view class='top-tips-title'>不同星级的区别？</view>
-      <text>星级越高，你的「优秀」越值得相信</text>
-    </view>
-  </uppser-slider>
   <view class='title'>
     <light-stars marginStyle="small" s-stars="{{star}}"></light-stars>
-    <view class="doc-title">
-      <text>{{title}}</text>
-    </view>
-    <view class="sub-title">
-      <text>{{detailTitle}}</text>
+    <view class='sub-item'>
+      <view class="doc-title font-28 font-bold">
+        <text>{{title}}</text>
+      </view>
+      <view class="sub-title font-28 font-bold">
+        <text>{{detailTitle}}</text>
+      </view>
     </view>
   </view>
   <view class='column-name'>
@@ -213,7 +18,7 @@
       <view clas='one-line' wx:for="{{scoreL}}" wx:for-index='lIdx' wx:for-item='lItem'>
         <view class='group-item' wx:for='{{[1,2,3]}}' wx:for-index='rIdx' bindtap="groupOntap" data-option="{{lIdx*3+rIdx + 1}}">
           <view>0{{lIdx*3+rIdx + 1}}组</view>
-          <view class='score-bar' style="opacity:{{scoreList[lIdx*3+rIdx +1].score==null?0:1}};color:{{scoreList[lIdx*3+rIdx +1].color}}">{{scoreList[lIdx*3+rIdx +1].score==null?'<70':scoreList[lIdx*3+rIdx +1].score}}</view>
+          <view class='score-bar' style="opacity:{{scoreList[lIdx*3+rIdx +1].score==null?0:1}};color:{{scoreList[lIdx*3+rIdx +1].color}}">{{scoreList[lIdx*3+rIdx +1].score==null?"<70 ":scoreList[lIdx*3+rIdx +1].score}}</view>
         </view>
       </view>
     </view>
@@ -223,7 +28,7 @@
   </view>
   <view class='column-content'>
     <view class='column-flex'>
-      <gsy-button default-type='{{isPassed?"genenal":"white-style"}}' font-size='32rpx' textContent="思维测试" bindtap="gotoExam" data-option="{{star}}"></gsy-button>
+      <gsy-button default-type='{{isPassed?"genenal ":"white-style "}}' font-size='32rpx' textContent="思维测试 " bindtap="gotoExam " data-option="{{star}} "></gsy-button>
       <view wx:if='{{remainTimes == 0 && !isPassed && preExamPass&&!inExam}}' class='box-hint'>
         <text>未过关(点击开始）</text>
       </view>
@@ -238,7 +43,7 @@
       </view>
     </view>
     <view class='column-flex'>
-      <gsy-button default-type='{{invitor.count>invitor.needInvitor?"genenal":"white-style"}}' font-size='32rpx' textContent="邀请好友" bindtap="navigatoInvitor"></gsy-button>
+      <gsy-button default-type='{{invitor.count>invitor.needInvitor?"genenal ":"white-style "}}' font-size='32rpx' textContent="邀请好友 " bindtap="navigatoInvitor "></gsy-button>
       <view class='box-hint'>
         已邀请
         <view style='color:#2BB675'> {{invitor.count}}/{{invitor.needInvitor}}</view>位好友交流
@@ -250,13 +55,13 @@
   </view>
   <view class='column-content'>
     <view class='column-flex'>
-      <gsy-button default-type='{{exerciseFlag?"genenal":"white-style"}}' font-size='32rpx' textContent="坚持跑步" bindtap="clickExercise"></gsy-button>
+      <gsy-button default-type='{{exerciseFlag?"genenal ":"white-style "}}' font-size='32rpx' textContent="坚持跑步 " bindtap="clickExercise "></gsy-button>
       <view class='box-hint'>
         {{exerciseFlag ? '已达标':'未达标'}}
       </view>
     </view>
     <view class='column-flex'>
-      <gsy-button default-type='{{practiceFlag?"genenal":"white-style"}}' font-size='32rpx' textContent="实践情况" bindtap="clickPractice"></gsy-button>
+      <gsy-button default-type='{{practiceFlag?"genenal ":"white-style "}}' font-size='32rpx' textContent="实践情况 " bindtap="clickPractice "></gsy-button>
       <view class='box-hint'>
         {{exerciseFlag ? '已达标':'点击查看'}}
       </view>

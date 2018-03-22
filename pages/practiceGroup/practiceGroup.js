@@ -16,10 +16,9 @@ var userUtils = require('../../utils/user')
 var examUtils=require('../../utils/exam.js')
 var requireCdt = ['','无要求','指定机构200H志愿者','100H实习证明']
 
-var upperSlider = null
 var star = 0
-var optionsTitle = ['', '一 星 级', '二 星 级', '三 星 级']
-var describeTitle = ['', '人际关系、团队协作', '社会现象、社会热点', '职场案例、工作思维']
+var optionsTitle = ['', '1 星级', '2 星级', '3 星级']
+var describeTitle = ['', '人际关系 · 团队协作', '社会现象 · 社会热点', '职场案例 · 工作思维']
 Page({
   data: {
     checkPurched: `https://${config.service.host}/ajax/user/checkPurchedReturnable`,
@@ -125,13 +124,13 @@ Page({
     });
   },
   touchstar(e){
-    upperSlider.ontouch(e);
+    
   },
   touchmove(e){
-    upperSlider.onmove(e);
+    
   },
   touchend(e){
-    upperSlider.onend(e);
+    
   },
 
   onLoad: function (opt) {
@@ -145,7 +144,6 @@ Page({
         })
       })
     var that = this;
-    upperSlider = this.selectComponent('#us');
     //从后端拉取分数
     this.getScore();
     //this.checkIsPurched();

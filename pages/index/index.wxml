@@ -22,7 +22,8 @@
   </view>
 </view>
 -->
+<!--<float-image img-src='https://s1.ax1x.com/2018/03/09/9Rk1oV.jpg'></float-image> -->
 <view class='icontainer'>
   <image bindtap='toSee' mode="widthFix" src='https://s1.ax1x.com/2018/03/09/9Rk1oV.jpg'></image>
-  <view class="button-view"><gsy-button bindtap='navToSmr' text-content="报名申请推荐信"></gsy-button></view>
+  <view class="button-view"><gsy-button font-size='36rpx' bindtap='navToSmr' text-content="报名申请推荐信"></gsy-button></view>
 </view>

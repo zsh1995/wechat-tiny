@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "就业优势",
   "usingComponents":{
-    "gsy-button":"/components/gsyButton/gsyButton"
+    "gsy-button":"/components/gsyButton/gsyButton",
+    "float-image":"/components/floatImage/floatImage"
   }
 }

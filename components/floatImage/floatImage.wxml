@@ -1,0 +1,8 @@
+<!--components/floatImage/flaotImage.wxml-->
+<view hidden='{{hideMe}}' class="all-wrap" catchtap='toSee'>
+  <view class='f-shade'></view>
+  <view class='close' bindtap='closeIt'></view>
+  <view class='image-view pic-hidden {{appear?"pic-show":""}}'>
+    <image mode='aspectFit' src='{{imgSrc}}'></image>
+  </view>
+</view>

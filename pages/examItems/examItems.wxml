@@ -4,46 +4,36 @@
     <view class='close'></view>
     <image class="" mode='aspectFit' src='{{showPic.url}}' bindtap='cancelShow'></image>
   </view>
-  <view class="item title-content {{}}" style="{{}}" id='title-tips'>
-    <text class="item_head">以下练习、考试话题供交流思考，可提高实用智商、情商、逆商。考试结果反映实用智商。</text>
-  </view>
-
   <view class="item_list">
     <view class="item" bindtap="gotoPractice" data-option="1">
       <view>
-        <light-star s-rest='{{false}}' icon-size='big' s-stars='1'></light-star>
-        <view class="item_sub_row">
-          <text style="font-size:46rpx;font-weight:900;">一 星 级</text>
-          <view >
-            <view class='subTitle'>
-              <text class='iconfont'>人际关系 · 团队协作</text>
-            </view>
+        <light-star s-rest='{{false}}' icon-size='big' s-stars='1' margin-style='small'></light-star>
+        <view class="item_sub_row font-28 font-bold">
+          <text style="font-weight:900;">1 星级</text>
+          <view class='subTitle font-28 font-bold'>
+            <text class='iconfont'>人际关系 · 团队协作</text>
           </view>
         </view>
       </view>
     </view>
     <view class="item" bindtap="gotoPractice" data-option="2">
       <view>
-        <light-star s-rest='{{false}}' icon-size='big' s-stars='2'></light-star>
-        <view class="item_sub_row">
-          <text style="font-size:46rpx;font-weight:900;">二 星 级</text>
-          <view>
-            <view class='subTitle'>
-              <text>新闻现象 · 社会现象</text>
-            </view>
+        <light-star s-rest='{{false}}' icon-size='big' s-stars='2' margin-style='small'></light-star>
+        <view class="item_sub_row font-28 font-bold">
+          <text style="font-weight:900;">2 星级</text>
+          <view class='subTitle font-28 font-bold'>
+            <text>新闻现象 · 社会现象</text>
           </view>
         </view>
       </view>
     </view>
     <view class="item" bindtap="gotoPractice" data-option="3">
       <view>
-        <light-star s-rest='{{false}}' icon-size='big' s-stars='3'></light-star>
-        <view class="item_sub_row">
-          <text style="font-size:46rpx;font-weight:900;">三 星 级</text>
-          <view>
-            <view class='subTitle'>
-              <text>职场案例 · 工作思维</text>
-            </view>
+        <light-star s-rest='{{false}}' icon-size='big' s-stars='3' margin-style='small'></light-star>
+        <view class="item_sub_row font-28 font-bold">
+          <text style="font-weight:900;">3 星级</text>
+          <view class='subTitle font-28 font-bold'>
+            <text>职场案例 · 工作思维</text>
           </view>
         </view>
       </view>

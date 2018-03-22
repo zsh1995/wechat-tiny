@@ -1,0 +1,20 @@
+.font-32{
+  font-size: 32rpx;
+}
+.font-32-bold{
+  font-size: 32rpx;
+  font-weight: 700;
+}
+.font-36{
+  font-size: 36rpx;
+}
+.font-36-bold{
+  font-weight: 700;
+  font-size: 36rpx;
+}
+.font-28{
+  font-size:28rpx;
+}
+.font-bold{
+  font-weight: 700;
+}
