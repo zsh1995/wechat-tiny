@@ -107,7 +107,7 @@ function getCommentByScore(score) {
     return { comment: '如果你很清楚为什么作出这样的选择，说明你的判断和解决问题的思维能力优于一般人！\n\n不过，也还有提升的空间。和更多的人交流，总会有更好的想法出现！', score: '91-94%', titleScore: '91+', realScore: score, color: gsy_green};
   }
   if (score > 56) {
-    return { comment: '如果你很清楚为什么作出这样的选择，说明你的判断和解决问题的思维能力优于一般人！\n\n如果你还有些疑问，可以购买解析，知其所以然。\n\n去挑战下一组话题吧！', score: '95%+', titleScore: '95+', realScore: score, color:gsy_green};
+    return { comment: '如果你很清楚为什么作出这样的选择，说明你的判断和解决问题的思维能力优于一般人！\n\n如果你还有些疑问，可以看看解析，帮助你深入思考。\n\n去挑战下一组话题吧！', score: '95%+', titleScore: '95+', realScore: score, color:gsy_green};
   }
 }
 

@@ -50,8 +50,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-    borderCorlor:'',
-    fontCorlor: '',
+    fontColor: '#6A6869',
     bacground: '',
     plain:true,
   },

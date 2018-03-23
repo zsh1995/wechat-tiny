@@ -9,14 +9,16 @@
  }
  .flex-item{
     width: 100%;
-
+}
+.flex-item:last-child{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
 }
 .flex-item.head{
     text-align: center;
     margin-top: 80rpx;
     width:100%;
-    font-size:34rpx;
-    letter-spacing:0.1em;
     color: #999999;
 }
 .flex-item.score{
@@ -48,7 +50,7 @@
     width: auto;
     justify-content: center;
     align-self:center;
-    color:#CCCCCC;
+    color:#999;
     display: flex;
     margin-top:30rpx;
     letter-spacing: 0.1em;
@@ -73,10 +75,14 @@ font-size:32rpx;
   width:504rpx;
 }
 .bottom-text{
-  margin-top:100rpx;
+  margin-top:50rpx;
   margin-bottom:100rpx;
   text-align:center;
-  font-size:36rpx;
+  color: #2BB675;
+  line-height: 2;
+}
+.gray{
+  color: #999;
 }
 .pass-flag{
   position: relative;
@@ -103,6 +109,10 @@ font-size:32rpx;
 .bottom-text>view{
   font-size:30rpx;
 }
+.button-wrap{
+  width: 74%;
+}
+
 /*
 .pass-flag:after{
     display: inline-block;

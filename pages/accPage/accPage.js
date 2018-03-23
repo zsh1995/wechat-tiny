@@ -3,7 +3,7 @@ var qcloud = require('../../bower_components/wafer-client-sdk/index');
 var config = require('../../config');
 var internalList = new Array();
 
-var content = ['你指定目标企业，我们建立内推渠道，达到星级即可内推。他人指定的企业也可以。如需内推就请与我们联系。','加急需要捐善款五百元，保证一家企业安排面试，未安排面试随时退款。','']
+var content = ['1.填写你毕业后期待加入的企业,我们优先和建立直推渠道', '2.在你通过星级测试后，你指定的企业会收到你的推荐邮件','3.推荐信可以和简历一起投递任何企业。']
 
 // pages/accPage/accPage.js
 Page({
@@ -24,6 +24,11 @@ Page({
   },
   test(e){
     console.log(e);
+  },
+  toSee () {
+    wx.previewImage({
+      urls: [`https://s1.ax1x.com/2018/03/09/9Rk1oV.jpg`],
+    })
   },
 
   onClick: function () {

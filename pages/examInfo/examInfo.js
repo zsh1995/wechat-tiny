@@ -144,8 +144,6 @@ Page({
   },
   onmove: function (e) {
     console.log('onmove')
-    
-    console.log('up=' + upperSlider.isActive() + ',too=' + upperSliderTop.isActive())
     if(upperSlider.isActive()){
       upperSlider.onmove(e);
       return;
@@ -229,6 +227,7 @@ Page({
   },
   touchInsure: function (e) {
     console.log("tapInsure");
+    var that =this;
     this.data.isSelect = true;
     //更新选项表
     var allLists = this.data.answers.allLists;
@@ -239,13 +238,26 @@ Page({
     //检查未做题目
     var itemNoChoose = this.checkIsAllChoose(chooseList)
     if (itemNoChoose.length == 0) {
-      var mScore = 0;
-      for (var index in chooseList) {
-        mScore += util.calculateScore(allLists[index].type, chooseList[index]);
-      }
-      wx.redirectTo({
-        url: '../examResult/examResult?score=' + mScore + '&group_id=' + groupId + '&stars=' + stars + '&type=' + type + '&chooseList=' + chooseList
-      });
+      wx.showModal({
+        content: '确认提交？',
+        showCancel: true,
+        success(res) {
+          let confirm = res.confirm
+          let cancel = res.cancel
+          if (confirm) {
+            var mScore = 0;
+            for (var index in chooseList) {
+              mScore += util.calculateScore(allLists[index].type, chooseList[index]);
+            }
+            wx.redirectTo({
+              url: '../examResult/examResult?score=' + mScore + '&group_id=' + groupId + '&stars=' + stars + '&type=' + type + '&chooseList=' + chooseList
+            });
+          } else if (cancel) {
+            that.touchViewStart();
+            return
+          }
+        }
+      })
     }
 
     if (swipperPage.isOnLast()) {
@@ -461,7 +473,7 @@ Page({
     var resultData = data;
     var cnt = 0;
     var colors = ["#999999", "#2BB675", "#FFE51A", "#ED662C", "#6A6869"]
-    var mOptions = [{ color: "#999999", font: "black", text: '非常支持' }, { color: "#2BB675", font: "white", text: '比较支持' }, { color: "#FFE51A", font: "black", text: '中立' }, { color: "#ED662C", font: "white", text: '比较反对' }, { color: "#6A6869", font: "white", text: '非常反对' }]
+    var mOptions = [{ borderColor: '#6A6869', color: "#fff", font: "#6A6869", text: '非常支持' }, { color: "#2BB675", font: "white", text: '比较支持' }, { color: "#FFE51A", font: "#6A6869", text: '中立/不必讨论' }, { color: "#ED662C", font: "white", text: '比较反对' }, { color: "#6A6869", font: "white", text: '非常反对' }]
     for (var i = 0; i < resultData.length; i++) {
       resultData[i].content = resultData[i].content.replace(/\\n/, "\n");
       resultData[i].index = i;

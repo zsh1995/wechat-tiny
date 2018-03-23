@@ -7,19 +7,23 @@
     display: none;
 }
 .schoolAva{
-	height:40px;
-	width:40px;
+	height:80rpx;
+	width:80rpx;
   border-radius: 50%;
 }
 .detail-head{
 	display:flex;
+  text-align: center;
+  justify-content: center;
   padding-left:10px;	
   font-size:32rpx;
 	margin:20rpx 0rpx;
 	color:#7A7A7A;
 }
 .weui-cell {
-    margin:0rpx 15px 0rpx 15px;
+    margin:0rpx 40rpx 0rpx 40rpx;
+    padding-left:0;
+    padding-right:0;
 }
 .listContainer{
   display: flex;
@@ -36,6 +40,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding:40rpx 0;
 }
 .recomman-tips #to-copy{
   margin-left:16rpx;
@@ -43,4 +48,7 @@
 }
 .oneline{
   display: flex;
+}
+.weui-cell:last-child{
+  border:0;
 }

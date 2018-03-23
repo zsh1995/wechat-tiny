@@ -1,16 +1,13 @@
 <!--userInformation.wxml-->
 <view class="itemcontainer">
-  <view class='title-content' wx:if="{{showTips}}" bindtap="fillInvitor">
-    <text>您尚未填写邀请人！</text>
-  </view>
 <view class='user-pannel' catchtap="bindEdit">
 	<view id='left'>
 		<image class="userinfo-avatarshow" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
 	</view>
 	<view id='right'>
-		<view class="userinfo-nickname">{{ourUserInfo.studentName==""||ourUserInfo.studentName==null?userInfo.nickName:ourUserInfo.studentName}}</view>
+		<view class="userinfo-nickname font-bold">{{ourUserInfo.studentName==""||ourUserInfo.studentName==null?userInfo.nickName:ourUserInfo.studentName}}</view>
 		<view class='inline-views'>
-			<view class="gslm-cardbox_id">
+			<view class="gslm-cardbox_id font-28">
 				ID : {{ourUserInfo.id}}
 			</view>
 			<view class='light-star'><light-star margin-style='small' s-stars='{{rank}}'></light-star></view>
@@ -19,9 +16,9 @@
 	
 </view>
 
-<view class='menus-pannel'>
+<view class='menus-pannel font-36'>
 	<view class='menu-group'>
-		<view class='menu-item' bindtap="doAccelarate">企业直推</view>
+		<view class='menu-item gsy-green' bindtap="doAccelarate">企业直推</view>
 	</view>
 
 	<view class='menu-group'>
@@ -32,7 +29,7 @@
 
 	<view class='menu-group'>
 		<!--<view class='menu-item'>关于我们</view>-->
-		<view class='menu-item clear-padding' ><button open-type="contact">遇到问题？给我们留言</button></view>
+		<view class='menu-item clear-padding' ><button class='font-36' open-type="contact">遇到问题？给我们留言</button></view>
 	</view>
 </view>
 

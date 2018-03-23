@@ -122,6 +122,14 @@ Page({
     });
 
   },
+  nav2Push () {
+    wx.redirectTo({
+      url: '../../pages/accPage/accPage',
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
+  },
   reWatch: function () {
     var options = this.data.groudId;
     var star = this.data.star;

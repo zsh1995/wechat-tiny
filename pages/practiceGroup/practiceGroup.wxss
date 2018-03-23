@@ -125,7 +125,7 @@ page{
   padding:10rpx;
 }
 .score-bar{
-  margin-left: 10px;
+  margin-left: 15rpx;
 }
 .process-column{
 	margin:0rpx 70rpx 25rpx 70rpx;
@@ -176,7 +176,6 @@ page{
   margin-bottom:0;
 }
 .box-hint{
-  font-size:32rpx;
 	margin-left:27rpx;
 	height:66rpx;
   line-height:66rpx;
@@ -206,7 +205,10 @@ page{
   padding:50rpx 70rpx;
 }
 .column-name{
-  padding-left:70rpx;
+  text-align: center;
+  color: #999;
+  line-height:56rpx;
+  height:56rpx;
 }
 .practice-group{
   display: flex;
@@ -218,6 +220,8 @@ page{
   border-radius: 1000px;
   padding: 16rpx;
   display: flex;
+  width:142rpx;
+  justify-content:center;
 }
 
 .practice-group>view{

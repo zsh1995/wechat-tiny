@@ -45,7 +45,6 @@ page{
 	margin-top:15rpx;
   margin-left:6rpx;
   font-weight: bold;
-  letter-spacing: 1px;
 }
 .title-content{
   display: block;
@@ -106,4 +105,7 @@ button::active{
 }
 .light-star{
   margin-left:32rpx;
+}
+.gsy-green{
+  color: #2BB675;
 }

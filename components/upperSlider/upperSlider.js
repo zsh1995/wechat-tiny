@@ -61,7 +61,7 @@ Component({
       this.setData({
         animation: true,
         move_offset: this.data.full_offset,
-        active:flase,
+        active:false,
       })
     },
     ontouch: function (e) {

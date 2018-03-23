@@ -1,8 +1,8 @@
 <!--invitorList.wxml-->
 <view class="listContainer">
-  <view class='recomman-tips'>
+  <view class='recomman-tips font-28'>
     <view class='oneline'>
-      <view id='uid'>ID:{{userId}}</view>
+      <view id='uid' class='font-bold'>ID:{{userId}}</view>
       <view id='to-copy' bindtap='copyAction'>点击复制</view>
     </view>
     <view>告知好友，填写确认即可</view>
@@ -16,8 +16,8 @@
         <image class="schoolAva" src="{{myInvitor.avatar_url}}"></image>
       </view>
       <!--<view wx:if="{{myInvitor.avatar_url == null}}" style="margin-left:auto;margin-right:auto;color:#7A7A7A">{{myInvitor.name}}</view>-->
-      <view wx:if="{{myInvitor.avatar_url != null}}" style="margin-left:20rpx">{{myInvitor.name}}</view>
-      <gsy-button wx:if="{{myInvitor.avatar_url == null}}" style="margin:auto;" background='#ED662C' text-content='现在填写邀请人' bindtap='nav2Invitor'></gsy-button>
+      <view class='font-28' wx:if="{{myInvitor.avatar_url != null}}" style="margin-left:20rpx">{{myInvitor.name}}</view>
+      <gsy-button wx:if="{{myInvitor.avatar_url == null}}" style="margin:auto;width:60%;padding:40rpx 0;" background='#ED662C' font-size='36rpx' text-content='现在填写' bindtap='nav2Invitor'></gsy-button>
     </view>
   </view>
   <view class="detail-head">
@@ -30,7 +30,7 @@
     </view>
     <view wx:for="{{invitorList}}" class="weui-cell">
       <image class="schoolAva" src="{{item.avatarUrl}}"></image>
-      <view style="margin-left:20rpx">{{item.nickName}}</view>
+      <view class='font-28' style="margin-left:20rpx">{{item.nickName}}</view>
       <view class='date-set'>{{item.createTime}}</view>
     </view>
   </view>

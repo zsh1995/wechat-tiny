@@ -97,7 +97,6 @@ Page({
           color: showRecord.color,
         }
       }
-      that.data.scoreL = new Array(defaultLen/3)
       that.setData(that.data);
       console.log(result);
     });
@@ -136,6 +135,7 @@ Page({
   onLoad: function (opt) {
     star = parseInt(opt.star);
     console.log("star" + star);
+    
     examUtils.checkExamProcess(star)
       .then(p => {
         console.log(p.data.data)
@@ -175,6 +175,8 @@ Page({
     this.data.title = optionsTitle[star];
     this.data.detailTitle = describeTitle[star];
     this.data.star = star;
+    this.data.scoreL = new Array(star == 1 ? 3 : 2);
+    this.data.scoreList = new Array(star == 1 ? 9 : 6);
     this.setData(this.data);
   },
 
@@ -188,9 +190,9 @@ Page({
   },
   clickExercise:function(e){
     wx.showModal({
-      title: '坚持跑步',
       content: '下载“悦跑圈”， 搜素并加入“高商苑”跑团！\n坚持3个月，每月8次，每次1600米，每次1000米配速3-8分钟',
       showCancel:false,
+      confirmText:'知道了'
     })
   },
   clickPractice:function(e){
@@ -209,7 +211,6 @@ Page({
     }
 
     wx.showModal({
-      title: '完成标准',
       content: '在校生：{0}\n往届生： 需工作表现证明'.format(requireCdt[star]),
       showCancel:false,
     })

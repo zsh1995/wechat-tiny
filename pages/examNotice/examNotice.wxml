@@ -1,17 +1,20 @@
 <!--examNotice.wxml-->
 <view class="itemcontainer" wx:if='{{!isPassed}}'>
   <scroll-view scroll-y class="item_content">
-    <text>{{examData[examNumber].examContent}}</text>
+    <view wx:for="{{examData}}">
+      <text class='font-bold'>{{item.title}}</text>
+      <text>{{item.content}}</text>
+    </view>
   </scroll-view>
   <view class="button-item">
     <view style='padding:0 110rpx' hidden="{{ remainTimes<= 0 && !inExam }}">
-      <gsy-button  text-content='继 续 考 试' bindtap="gotoExam" data-option="goExam">继 续 考 试</gsy-button>
+      <gsy-button  font-size='36rpx' text-content='继续测试' bindtap="gotoExam" data-option="goExam">继续测试</gsy-button>
     </view>
     <view style='padding:0 110rpx' hidden="{{ inExam||examTimes > 0 || remainTimes > 0 }}">
-      <gsy-button  text-content='购 买 6 次 测 试 机 会' bindtap="gotoExam" data-option="pay">购 买 6 次 测 试 机 会</gsy-button>
+      <gsy-button font-size='36rpx' text-content='购买6次测试机会' bindtap="gotoExam" data-option="pay">购 买 6 次 测 试 机 会</gsy-button>
     </view>
     <view style='padding:0 110rpx' hidden="{{ inExam||examTimes <= 0 || remainTimes > 0 }}">
-      <gsy-button  text-content='可使用{{examTimes}}次优惠券' bindtap="useCoupon" data-option="pay">可使用{{examTimes}}次优惠券</gsy-button>
+      <gsy-button font-size='36rpx' text-content='可使用{{examTimes}}次优惠券' bindtap="useCoupon" data-option="pay">可使用{{examTimes}}次优惠券</gsy-button>
     </view>
 
 

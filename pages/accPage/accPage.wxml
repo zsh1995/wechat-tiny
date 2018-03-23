@@ -6,9 +6,9 @@
     <image class="" mode='aspectFit' src='http://i4.bvimg.com/619221/532e156d607285d7.jpg' bindtap='cancelShow'></image>
   </view>
   <view class="icontainer" hidden="{{state != 1}}">
-    <view class='info-header'>
+    <view class='info-header font-28'>
       <view><text>{{content[0]}}</text> - <view class='href' bindtap='onClick'>企业列表</view></view>
-      <view><text>{{content[1]}}</text><!-- - <view class='href' bindtap='onClick'>推荐信</view>--></view>
+      <view><text>{{content[1]}}</text> - <view class='href' bindtap='toSee'>推荐信</view></view>
       <view><text>{{content[2]}}</text></view>
     </view>
     <view class='m-tips'>确认后如需修改，请给我们留言</view>
@@ -18,7 +18,7 @@
             <view class='input'><input name="wantedCompany2" style="color:black" placeholder="目标企业-2"></input></view>
             <view class='input'><input name="wantedCompany3" style="color:black" placeholder="目标企业-3"></input></view>
 
-            			<view style='margin:64rpx' hover-class="none"><gsy-button id='myButton' form-type="submit" text-content='确认，不再修改了' default-type='white-style' font-size='38rpx' bindtouchstart='test'>123</gsy-button></view>
+            			<view style='margin:64rpx' hover-class="none"><gsy-button id='myButton' form-type="submit" text-content='确认 · 不再修改' default-type='white-style' font-size='38rpx' bindtouchstart='test'>123</gsy-button></view>
         </form>
     </view>
   </view>

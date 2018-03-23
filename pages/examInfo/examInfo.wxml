@@ -1,5 +1,5 @@
 <import src="../template/template.wxml" />
-<upper-slider hidden='{{type!="enroll"}}' u-position='top' id='topUs'>
+<upper-slider style='display:{{type!="enroll"?"none":""}}' u-position='top' id='topUs'>
   <view class='up-top font-32'>
     <view wx:for="{{enrollTips}}">
       <text class='font-bold'>{{item.title}}</text>
@@ -24,7 +24,7 @@
 
   <upper-slider u-position='bottom' id='us'>
     <view style='padding:20rpx 32rpx 20rpx 32rpx;'>
-      <view style='margin: 10px 18px 10px 18px;'>
+      <view style='margin: 20rpx 55rpx 20rpx 55rpx;'>
         <text class="">{{answers.allLists[currentPage].tips||answers.allLists[currentPage].tip}}</text>
       </view>
       <view wx:if="{{type !='exam' && answers.allLists[currentPage].analysis!='' && answers.allLists[currentPage].analyse != '' && type !='enroll'}}" class="tips" bindtap="bindAnalyse" style="color:{{answers.allLists[currentPage].isPurchAnalyse > 0 ? '#00C775':'#aaa'}};border-color:{{answers.allLists[currentPage].isPurchAnalyse > 0 ? '#00C775':'#aaa'}}">
@@ -56,10 +56,10 @@
             data-option="{{idx}}" catchtap="tapCheckbox">
           </view>
         </view>
-          <button class="gsy-default-button" hidden="{{selectdata.selectedId==-1 || !isSelect}}" style="margin:0 40rpx;box-shadow:{{ selectdata.selectedId == idx && isSelect? '0 0 10rpx'+item.color : ''}};background:{{answers.allLists[0].options[selectdata.selectedId].color}};color:{{answers.allLists[0].options[selectdata.selectedId].font}}"><text>{{answers.allLists[0].options[selectdata.selectedId].text}}</text></button>
+          <button class="gsy-default-button" hidden="{{selectdata.selectedId==-1 || !isSelect}}" style="margin:0 40rpx;box-shadow:{{ selectdata.selectedId == idx && isSelect? '0 0 10rpx'+item.color : ''}};border-color:{{answers.allLists[0].options[selectdata.selectedId].borderColor||answers.allLists[0].options[selectdata.selectedId].color}};background:{{answers.allLists[0].options[selectdata.selectedId].color}};color:{{answers.allLists[0].options[selectdata.selectedId].font}}"><text class='font-36 font-bold'>已选择：{{answers.allLists[0].options[selectdata.selectedId].text}}</text></button>
       </view>
       <view class='tip-tip'>
-        <text>上滑查看提示或解析</text>
+        <text>屏幕上滑查看提示或解析</text>
         <view style='display:none;'>
           <text>对话题有疑问？</text>
           <text style='text-decoration:underline'>看不懂</text>

@@ -1,2 +1,2 @@
 <!--components/gsyButton/gsyButton.wxml-->
-<button class='{{plain?"with-border":""}} default-button {{defaultType}}' style='color:{{fontCorlor}};border-color:{{borderCorlor}};background:{{background}};font-size:{{fontSize}}' form-type="{{formType}}" bindtouchstart='click'>{{textContent}}</button>
+<button class='{{plain?"with-border":""}} default-button {{defaultType}}' style='color:{{fontColor}};border-color:{{borderCorlor}};background:{{background}};font-size:{{fontSize}}' form-type="{{formType}}" bindtouchstart='click'>{{textContent}}</button>
