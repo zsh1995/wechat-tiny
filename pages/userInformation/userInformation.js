@@ -50,39 +50,6 @@ Page({
     ourUserInfo:{},
     showTips:false,
   },
-  turnOver: function(event){
-    // 暂不启用
-
-    /*
-    setTimeout((function () {
-      this.setData({
-        cardboxStyle: 'opacity:0;transform: rotateX(180deg);',
-        cardboxStyleAnti: 'opacity: 1;transform: rotateX(0);'
-      })
-    }).bind(this), 600)
-
-    this.setData({
-      cardboxStyle: 'animation:turnover .5s ease-in-out;animation-fill-mode:forwards;',
-      cardboxStyleAnti: 'animation:turnback .5s ease-in-out;animation-fill-mode:forwards;'
-    })
-
-    //====
-    */
-  },
-  turnBack: function (event) {
-    /*
-    this.setData({
-      cardboxStyle: this.data.cardboxStyle+'animation:turnback .5s ease-in-out;animation-fill-mode:forwards;',
-      cardboxStyleAnti: this.data.cardboxStyleAnti+'animation:turnover .5s ease-in-out;animation-fill-mode:forwards;'
-    })
-    setTimeout((function () {
-      this.setData({
-        cardboxStyle: '',
-        cardboxStyleAnti: ''
-      })
-    }).bind(this), 600)
-    */
-  },
   getStarRank:function(){
     var that = this;
     userUtil.getRank()

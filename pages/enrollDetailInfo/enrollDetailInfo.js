@@ -37,7 +37,7 @@ Page({
     var mSchool = this.data.schoolName
     mSchool = mSchool == '选择您的学校' ? '' : mSchool
     userInfo.school = mSchool
-    userInfo.userChannel = 1;
+    userInfo.userChannel = '1';
     var that = this;
     userUtil.uploadUserInfo(userInfo)
     .then(p=>{

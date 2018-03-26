@@ -42,7 +42,6 @@ Page({
     var that = this;
     userUtil.setInvitor(this.data.inputVal)
     .then(p=>{
-      console.log("success:" + result);
       if (p.data.code == 0) {
         wx.navigateBack({})
       } else {

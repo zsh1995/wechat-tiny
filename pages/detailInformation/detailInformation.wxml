@@ -1,69 +1,67 @@
 <!--detailInformation.wxml-->
-<page>
-  <form bindsubmit="onSubmit">
-    <view class="contain_gslm">
-      <view class="detail-head">
-        <picker name="type" mode="selector" range="{{identities}}" value="{{identityId}}" bindchange="chooseIdentity">当前身份 - {{identities[identityId]}}</picker>
-      </view>
-      <scroll-view scroll-y="true" class="weui-cells_after-title input-pannel">
-        <view class='section-block'>
-          <view class="weui-cell">
-            <view class="weui-cell__bd cellinput">姓名</view>
-            <view class="weui-cell__ft">
-              <input name="studentName" style="color:black" placeholder="{{subUserInfo.studentName ==''?'请输入你的姓名':subUserInfo.studentName}}"></input>
-            </view>
-          </view>
-
-          <view class="weui-cell weui-cell_access">
-            <view class="weui-cell__bd ">性别</view>
-            <picker name="gender" mode="selector" class="weui-cell__ft weui-cell__ft_in-access" bindchange="chooseGender" range="{{genders}}" value="{{genderId}}">{{genders[genderId]}}</picker>
-          </view>
-        </view>
-        <view class='section-block'>
-
-
-          <view hidden="{{identityId==1}}" class="weui-cell">
-            <view class="weui-cell__bd cellinput">企业</view>
-            <input name="company" class="weui-cell__ft" style="color:black" placeholder="{{subUserInfo.company==''?'请填写你所在企业':subUserInfo.company}}">说明文字</input>
-          </view>
-
-
-          <view hidden="{{identityId==0}}" class="weui-cell weui-cell_access">
-            <view class="weui-cell__bd">学校</view>
-            <view class="weui-cell__ft weui-cell__ft_in-access" bindtap="chooseSchool">{{schoolName}}</view>
-            <input name="school" style="display:none"></input>
-          </view>
-          <view hidden="{{identityId==0}}" class="weui-cell weui-cell_access">
-            <view class="weui-cell__bd ">入学年份</view>
-            <picker name="enrollmentYear" mode="multiSelector" class="weui-cell__ft weui-cell__ft_in-access" bindchange="chooseEnrollment" range="{{enrollment}}" value="{{enrollmentId}}">{{enrollment[0][enrollmentId[0]]+' · '+enrollment[1][enrollmentId[1]]}}</picker>
-          </view>
-
-          <view hidden="{{identityId==1}}" class="weui-cell">
-            <view class="weui-cell__bd cellinput">岗位</view>
-            <input name="post" class="weui-cell__ft" style="color:black" placeholder="{{subUserInfo.post == ''?'请填写你的岗位':subUserInfo.post}}">说明文字</input>
-          </view>
-          <view hidden="{{identityId==0}}" class="weui-cell">
-            <view class="weui-cell__bd cellinput">专业</view>
-            <input name="major" class="weui-cell__ft" style="color:black" placeholder="{{subUserInfo.major == ''?'请填写你所学专业':subUserInfo.major}}">说明文字</input>
-          </view>
-        </view>
-        <view class='section-block'>
-
-          <view class="weui-cell">
-            <view class="weui-cell__bd cellinput">手机号</view>
-            <input name="phoneNumber" class="weui-cell__ft" style="color:black" type="number" placeholder="{{subUserInfo.phoneNumber ==''?'请填写你的手机号' : subUserInfo.phoneNumber}}">说明文字</input>
-          </view>
-
-          <view class="weui-cell">
-            <view class="weui-cell__bd cellinput">邮箱</view>
-            <input name="emailAddr" class="weui-cell__ft" style="color:black" placeholder="{{subUserInfo.emailAddr ==''?'请填写你的邮箱':subUserInfo.emailAddr}}">说明文字</input>
-          </view>
-        </view>
-
-      </scroll-view>
-      <view style="display:flex;margin-top:40rpx;justify-content:center">
-        <button class="gsy-default-button gsy-button-genenal"  data-option="2" style="width:70%;padding:1rpx 42rpx 1rpx 42rpx; align-self:center" form-type="submit">提　交</button>
-      </view>
+<form bindsubmit="onSubmit">
+  <view class="contain_gslm">
+    <view class="detail-head">
+      <picker name="type" mode="selector" range="{{identities}}" value="{{identityId}}" bindchange="chooseIdentity">当前身份 - {{identities[identityId]}}</picker>
     </view>
-  </form>
-</page>
+    <scroll-view scroll-y="true" class="weui-cells_after-title input-pannel">
+      <view class='section-block'>
+        <view class="weui-cell">
+          <view class="weui-cell__bd cellinput">姓名</view>
+          <view class="weui-cell__ft">
+            <input name="studentName" style="color:black" placeholder="{{subUserInfo.studentName ==''?'请输入你的姓名':subUserInfo.studentName}}"></input>
+          </view>
+        </view>
+
+        <view class="weui-cell weui-cell_access">
+          <view class="weui-cell__bd ">性别</view>
+          <picker name="gender" mode="selector" class="weui-cell__ft weui-cell__ft_in-access" bindchange="chooseGender" range="{{genders}}" value="{{genderId}}">{{genders[genderId]}}</picker>
+        </view>
+      </view>
+      <view class='section-block'>
+
+
+        <view hidden="{{identityId==1}}" class="weui-cell">
+          <view class="weui-cell__bd cellinput">企业</view>
+          <input name="company" class="weui-cell__ft" style="color:black" placeholder="{{subUserInfo.company==''?'请填写你所在企业':subUserInfo.company}}">说明文字</input>
+        </view>
+
+
+        <view hidden="{{identityId==0}}" class="weui-cell weui-cell_access">
+          <view class="weui-cell__bd">学校</view>
+          <view class="weui-cell__ft weui-cell__ft_in-access" bindtap="chooseSchool">{{schoolName}}</view>
+          <input name="school" style="display:none"></input>
+        </view>
+        <view hidden="{{identityId==0}}" class="weui-cell weui-cell_access">
+          <view class="weui-cell__bd ">入学年份</view>
+          <picker name="enrollmentYear" mode="multiSelector" class="weui-cell__ft weui-cell__ft_in-access" bindchange="chooseEnrollment" range="{{enrollment}}" value="{{enrollmentId}}">{{enrollment[0][enrollmentId[0]]+' · '+enrollment[1][enrollmentId[1]]}}</picker>
+        </view>
+
+        <view hidden="{{identityId==1}}" class="weui-cell">
+          <view class="weui-cell__bd cellinput">岗位</view>
+          <input name="post" class="weui-cell__ft" style="color:black" placeholder="{{subUserInfo.post == ''?'请填写你的岗位':subUserInfo.post}}">说明文字</input>
+        </view>
+        <view hidden="{{identityId==0}}" class="weui-cell">
+          <view class="weui-cell__bd cellinput">专业</view>
+          <input name="major" class="weui-cell__ft" style="color:black" placeholder="{{subUserInfo.major == ''?'请填写你所学专业':subUserInfo.major}}">说明文字</input>
+        </view>
+      </view>
+      <view class='section-block'>
+
+        <view class="weui-cell">
+          <view class="weui-cell__bd cellinput">手机号</view>
+          <input name="phoneNumber" class="weui-cell__ft" style="color:black" type="number" placeholder="{{subUserInfo.phoneNumber ==''?'请填写你的手机号' : subUserInfo.phoneNumber}}">说明文字</input>
+        </view>
+
+        <view class="weui-cell">
+          <view class="weui-cell__bd cellinput">邮箱</view>
+          <input name="emailAddr" class="weui-cell__ft" style="color:black" placeholder="{{subUserInfo.emailAddr ==''?'请填写你的邮箱':subUserInfo.emailAddr}}">说明文字</input>
+        </view>
+      </view>
+
+    </scroll-view>
+    <view style="display:flex;margin-top:40rpx;justify-content:center">
+      <button class="gsy-default-button gsy-button-genenal" data-option="2" style="width:70%;padding:1rpx 42rpx 1rpx 42rpx; align-self:center" form-type="submit">提　交</button>
+    </view>
+  </view>
+</form>

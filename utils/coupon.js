@@ -11,8 +11,8 @@ function calculateAnalyseTimes(dataList) {
   var base = {
     analyTime: 0,
     calcTimes: function (item) {
-      if (item.couponId == 1) {
-        this.analyTime = this.analyTime + item.remainTimes;
+      if (item.couponId == 1 && item.usedFlag != 1) {
+        this.analyTime++
       }
     }
   }
@@ -21,12 +21,11 @@ function calculateAnalyseTimes(dataList) {
 }
 
 function calculateExamTimes(dataList) {
-
   var base = {
     examTime: 0,
     calcTimes: function (item) {
-      if (item.couponId == 2) {
-        this.examTime = this.examTime + item.remainTimes;
+      if (item.couponId == 2 && item.usedFlag != 1) {
+        this.examTime++
       }
     }
   }
@@ -71,20 +70,20 @@ function ajaxCouponsSync(callback) {
 }
 
 function useExamCoupon(star) {
-  return utils.ajax_promise(`https://${config.service.host}/ajax/coupon/useExam`,{
-            star:star
-          })
+  return utils.ajax_promise(`https://${config.service.host}/ajax/coupon/useExam`, {
+    star: star
+  })
 }
-function useAnalyseCoupon(star,questionId,feQuestionId,groupId){
-  return utils.ajax_promise(`https://${config.service.host}/ajax/coupon/useAnalyse`,{
-    star:star,
-    questionId:questionId,
-    feQuestionId:feQuestionId,
-    groupId:groupId,
+function useAnalyseCoupon(star, questionId, feQuestionId, groupId) {
+  return utils.ajax_promise(`https://${config.service.host}/ajax/coupon/useAnalyse`, {
+    star: star,
+    questionId: questionId,
+    feQuestionId: feQuestionId,
+    groupId: groupId,
   })
 }
 
-function getTimes(couponType,callback) {
+function getTimes(couponType, callback) {
   var map = {
     'analyse': getAnalyseTimes,
     'exam': getExamTimes,
@@ -124,7 +123,6 @@ function storeCoupons() {
 }
 
 function storeCouponSync(callback) {
-
   ajaxCouponsSync(p => {
     wx.setStorageSync({
       key: COUPON_KEY,
@@ -143,6 +141,6 @@ module.exports = {
   storeCoupons: storeCoupons,
   ajaxCoupons: ajaxCoupons,
   useExamCoupon: useExamCoupon,
-  useAnalyseCoupon:useAnalyseCoupon,
+  useAnalyseCoupon: useAnalyseCoupon,
   getTimes: getTimes,
 }

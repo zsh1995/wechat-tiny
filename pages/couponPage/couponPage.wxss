@@ -53,3 +53,16 @@ font-size:17px;
   padding:10px 0px;
   text-align: center;
 }
+.zui-column{
+  flex-grow:1;
+}
+.item_style{
+  border-bottom: 1px solid #eee;
+}
+.zui-column .item_style:last-child{
+  border: none;
+}
+.no-data{
+  color: #999;
+  margin: auto;
+}

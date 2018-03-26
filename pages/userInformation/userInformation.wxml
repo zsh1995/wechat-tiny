@@ -7,9 +7,7 @@
 	<view id='right'>
 		<view class="userinfo-nickname font-bold">{{ourUserInfo.studentName==""||ourUserInfo.studentName==null?userInfo.nickName:ourUserInfo.studentName}}</view>
 		<view class='inline-views'>
-			<view class="gslm-cardbox_id font-28">
-				ID : {{ourUserInfo.id}}
-			</view>
+			<view class="gslm-cardbox_id font-28">ID : {{ourUserInfo.id}}</view>
 			<view class='light-star'><light-star margin-style='small' s-stars='{{rank}}'></light-star></view>
 		</view>
 	</view>

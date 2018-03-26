@@ -12,8 +12,19 @@ Page({
   },
 
   chooseType(e){
+    var that = this;
+    let couponList
+    let typeId = e.detail.value
+    if (typeId == 0) {
+      couponList = that.data.realcouponList
+    } else if (typeId == 1) {
+      couponList = that.data.realcouponList.filter(item => item.couponId == 1)
+    } else if (typeId == 2) {
+      couponList = that.data.realcouponList.filter(item => item.couponId == 2)
+    }
     this.setData({
-      typeId: e.detail.value
+      typeId: e.detail.value,
+      couponList: couponList,
     })
   },
 
@@ -21,8 +32,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    //var analyseList = couponUtil.ajaxCoupons()
-    //var examList = couponUtil.getExamCoupon()
     couponUtil.ajaxCoupons(p=>{
       for(var cnt in p){
         if(p[cnt].couponId == 1){
@@ -32,9 +41,16 @@ Page({
           console.log('2')
           p[cnt].name='测试券'
         }
+        if(p[cnt].source == 0){
+          p[cnt].name +='·报名赠送'
+        }
+        if(p[cnt].usedFlag == 1){
+          p[cnt].name += '（已使用）'
+        }
       }
       this.setData({
         couponList: p,
+        realcouponList: p,
       })
     });
 

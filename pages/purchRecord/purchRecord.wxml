@@ -7,52 +7,53 @@
       </view>
       <view class="weui-cells weui-cells_after-title">
         <view class="wholecontainer">
-          <view class="zui-column">
-            <view wx:for="{{purchList}}">
+          <view class='no-data' hidden='{{purchList.length != 0 && purchList != null}}'>无数据</view>
+          <view class="zui-column" hidden='{{purchList.length == 0 || purchList == null}}'>
+            <view class="item_style" wx:for="{{purchList}}">
               <view wx:if="{{typeId==0}}">
-                <view class="item_style" style='text-align:left;'>{{item.product_name}}</view>
+                <view style='text-align:left;'>{{item.product_name}}</view>
               </view>
               <view wx:if="{{typeId==1}}">
-                <view wx:if='{{item.product_id>1 && item.product_id<5}}' class="item_style" style='text-align:left;'>{{item.product_name}}</view>
+                <view wx:if='{{item.product_id>1 && item.product_id<5}}' style='text-align:left;'>{{item.product_name}}</view>
               </view>
               <view wx:if="{{typeId==2}}">
-                <view wx:if='{{item.product_id == 1}}' class="item_style" style='text-align:left;'>{{item.product_name}}</view>
+                <view wx:if='{{item.product_id == 1}}' style='text-align:left;'>{{item.product_name}}</view>
               </view>
               <view wx:if="{{typeId==3}}">
-                <view wx:if='{{item.product_id == 5}}' class="item_style" style='text-align:left;'>{{item.product_name}}</view>
+                <view wx:if='{{item.product_id == 5}}' style='text-align:left;'>{{item.product_name}}</view>
               </view>
 
             </view>
           </view>
-          <view class="zui-column">
-            <view wx:for="{{purchList}}">
+          <view class="zui-column" hidden='{{purchList.length == 0 || purchList == null}}'>
+            <view class="item_style" wx:for="{{purchList}}">
               <view wx:if="{{typeId==0}}">
-                <view class="item_style" style="color:#ED662C">{{item.price}}</view>
+                <view style="color:#ED662C">{{item.price}}</view>
               </view>
               <view wx:if="{{typeId==2 &&(item.product_id == 1)}}">
-                <view class="item_style" style="color:#ED662C">{{item.price}}</view>
+                <view style="color:#ED662C">{{item.price}}</view>
               </view>
               <view wx:if="{{typeId==1 &&(item.product_id>1 && item.product_id<5)}}">
-                <view class="item_style" style="color:#ED662C">{{item.price}}</view>
+                <view style="color:#ED662C">{{item.price}}</view>
               </view>
               <view wx:if="{{typeId==3 &&(item.product_id == 5)}}">
-                <view class="item_style" style="color:#ED662C">{{item.price}}</view>
+                <view style="color:#ED662C">{{item.price}}</view>
               </view>
             </view>
           </view>
-          <view class="zui-column">
-            <view wx:for="{{purchList}}">
+          <view class="zui-column" hidden='{{purchList.length == 0 || purchList == null}}'>
+            <view class="item_style" wx:for="{{purchList}}">
               <view wx:if="{{typeId==0}}">
-                <view class="item_style" style="color:#aaa">{{item.date}}</view>
+                <view style="color:#aaa">{{item.date}}</view>
               </view>
               <view wx:if="{{typeId==2 &&(item.product_id == 1)}}">
-                <view class="item_style" style="color:#aaa">{{item.date}}</view>
+                <view style="color:#aaa">{{item.date}}</view>
               </view>
               <view wx:if="{{typeId==1 &&(item.product_id>1 && item.product_id<5)}}">
-                <view class="item_style" style="color:#aaa">{{item.date}}</view>
+                <view style="color:#aaa">{{item.date}}</view>
               </view>
               <view wx:if="{{typeId==3 &&(item.product_id == 5)}}">
-                <view class="item_style" style="color:#aaa">{{item.date}}</view>
+                <view style="color:#aaa">{{item.date}}</view>
               </view>
             </view>
           </view>

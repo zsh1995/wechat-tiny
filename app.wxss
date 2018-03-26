@@ -35,3 +35,6 @@ page{
 .gsy-gray-color{
   color:#999999;
 }
+button::after{
+  border: none;
+}

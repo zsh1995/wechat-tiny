@@ -7,49 +7,30 @@
   <view class="weui-cells weui-cells_after-title">
     <view class="wholecontainer">
       <view class="zui-column">
-        <view wx:for="{{couponList}}">
+        <view  class='item_style' wx:for="{{couponList}}">
           <view wx:if="{{typeId==0}}">
-            <view class="item_style" style='text-align:left;'>{{item.name+'·报名赠送'}}</view>
+            <view style='text-align:left;'>{{item.name}}</view>
           </view>
           <view wx:if="{{typeId==1}}">
-            <view wx:if='{{item.couponId == 1}}' class="item_style" style='text-align:left;'>{{item.name+'·报名赠送'}}</view>
+            <view wx:if='{{item.couponId == 1}}' style='text-align:left;'>{{item.name}}</view>
           </view>
           <view wx:if="{{typeId==2}}">
-            <view wx:if='{{item.couponId == 2}}' class="item_style" style='text-align:left;'>{{item.name+'·报名赠送'}}</view>
+            <view wx:if='{{item.couponId == 2}}' style='text-align:left;'>{{item.name}}</view>
           </view>
 
 
         </view>
       </view>
       <view class="zui-column">
-        <view wx:for="{{purchList}}">
+        <view class='item_style' wx:for="{{couponList}}">
           <view wx:if="{{typeId==0}}">
-            <view class="item_style" style="color:#ED662C">{{item.price}}</view>
+            <view style="color:#aaa">{{item.createTime}}</view>
           </view>
-          <view wx:if="{{typeId==2 &&(item.product_id == 1)}}">
-            <view class="item_style" style="color:#ED662C">{{item.price}}</view>
+          <view wx:if="{{typeId==1 &&(item.couponId == 1)}}">
+            <view style="color:#aaa">{{item.createTime}}</view>
           </view>
-          <view wx:if="{{typeId==1 &&(item.product_id>1 && item.product_id<5)}}">
-            <view class="item_style" style="color:#ED662C">{{item.price}}</view>
-          </view>
-          <view wx:if="{{typeId==3 &&(item.product_id == 5)}}">
-            <view class="item_style" style="color:#ED662C">{{item.price}}</view>
-          </view>
-        </view>
-      </view>
-      <view class="zui-column">
-        <view wx:for="{{couponList}}">
-          <view wx:if="{{typeId==0}}">
-            <view class="item_style" style="color:#aaa">{{item.createTime}}</view>
-          </view>
-          <view wx:if="{{typeId==2 &&(item.couponId == 2)}}">
-            <view class="item_style" style="color:#aaa">{{item.createTime}}</view>
-          </view>
-          <view wx:if="{{typeId==1 &&item.couponId == 1}}">
-            <view class="item_style" style="color:#aaa">{{item.createTime}}</view>
-          </view>
-          <view wx:if="{{typeId==3 &&(item.product_id == 5)}}">
-            <view class="item_style" style="color:#aaa">{{item.createTime}}</view>
+          <view wx:if="{{typeId==2 &&item.couponId == 2}}">
+            <view style="color:#aaa">{{item.createTime}}</view>
           </view>
         </view>
       </view>

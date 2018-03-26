@@ -97,13 +97,27 @@ Page({
           }
           item.date = ge_time_format(parseInt(item.date) * 1000)
         }
+        that.data.realPurchList = that.data.purchList
         that.setData(that.data);
       })
 
   },
   chooseType: function (e) {
+    let that = this
+    let purchList = that.data.realPurchList.filter(item => item.product_id)
+    let typeId = e.detail.value
+    if (typeId == 0) {
+      purchList = that.data.realPurchList
+    } else if (typeId == 1) {
+      purchList = that.data.realPurchList.filter(item => item.product_id > 1 && item.product_id < 5 )
+    } else if (typeId == 2){
+      purchList = that.data.realPurchList.filter(item => item.product_id == 1)
+    } else if (typeId == 3) {
+      purchList = that.data.realPurchList.filter(item => item.product_id == 5)
+    }
     this.setData({
-      typeId: e.detail.value
+      typeId: e.detail.value,
+      purchList: purchList
     })
   },
 
