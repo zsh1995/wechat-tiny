@@ -49,9 +49,6 @@ font-size:17px;
   margin:32rpx 0;
   background: #fff;
 }
-<<<<<<< HEAD
-=======
 .section-block:first-child{
   margin-top: 0;
 }
->>>>>>> 修改

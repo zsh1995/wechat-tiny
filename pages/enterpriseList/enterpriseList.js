@@ -11,10 +11,6 @@ var currentPage = 0;
 var searchName = null;
 var allCount = 0;
 var lockPull = false;
-<<<<<<< HEAD
-var upperSlider = null
-=======
->>>>>>> 修改
 var scrollTop = 0;
 var lockOfPull = {
   lockPull: false,
@@ -64,22 +60,12 @@ Page({
     
   },
   touchstar(e) {
-<<<<<<< HEAD
-    upperSlider.ontouch(e);
-  },
-  touchmove(e) {
-    upperSlider.onmove(e);
-  },
-  touchend(e) {
-    upperSlider.onend(e);
-=======
   },
   touchmove(e) {
     
   },
   touchend(e) {
     
->>>>>>> 修改
   },
   showSelfPic: function (e) {
     var index = e.target.dataset.set;
@@ -236,11 +222,6 @@ Page({
   onLoad: function (options) {
     currentPage = 0;
     searchName = null;
-<<<<<<< HEAD
-    upperSlider = this.selectComponent('#us');
-    setTimeout(p => (upperSlider.show()),500)
-=======
->>>>>>> 修改
   },
 
   /**

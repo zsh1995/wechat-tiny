@@ -61,11 +61,7 @@
 
     </scroll-view>
     <view style="display:flex;margin-top:40rpx;justify-content:center">
-<<<<<<< HEAD
-      <button class="gsy-default-button gsy-button-genenal" data-option="2" style="width:70%;padding:1rpx 42rpx 1rpx 42rpx; align-self:center" form-type="submit">提　交</button>
-=======
       <button class="gsy-default-button gsy-button-genenal" data-option="2" style="width:70%;padding:1rpx 42rpx 1rpx 42rpx; align-self:center" form-type="submit">保存</button>
->>>>>>> 修改
     </view>
   </view>
 </form>

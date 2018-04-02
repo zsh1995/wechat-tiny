@@ -137,11 +137,6 @@ Page({
       })
     }
   },
-<<<<<<< HEAD
-
-  onLoad: function () {
-    console.log('onLoad')
-=======
   chooseId(){
     var that = this
     wx.showActionSheet({
@@ -162,7 +157,6 @@ Page({
   onLoad: function () {
     console.log('onLoad')
     this.chooseId()
->>>>>>> 修改
     var that = this
     wx.setStorage({
       key: 'picUrls',

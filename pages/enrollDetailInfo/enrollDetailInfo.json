@@ -1,10 +1,6 @@
 {
-<<<<<<< HEAD
-    "navigationBarTitleText": "报名·填写企业"
-=======
     "navigationBarTitleText": "报名·填写企业",
     "usingComponents": {
       "upper-slider": "../../components/upperSlider/upperSlider"
     }
->>>>>>> 修改
 }

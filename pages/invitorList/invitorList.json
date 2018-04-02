@@ -1,8 +1,5 @@
 {
-<<<<<<< HEAD
-=======
   "navigationBarTitleText": "邀请好友",
->>>>>>> 修改
   "usingComponents":{
     "gsy-button":"/components/gsyButton/gsyButton"
   }

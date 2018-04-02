@@ -114,8 +114,6 @@ Page({
     },
     color: 'green'
   },
-<<<<<<< HEAD
-=======
   onShareAppMessage: function (res) {
     let chooseList = this.data.chooseList
     if (res.from === 'button') {
@@ -133,7 +131,6 @@ Page({
       }
     }
   },
->>>>>>> 修改
   bindCommBase: function (e) {
     wx.showModal({
       title: ' ',
@@ -422,13 +419,6 @@ Page({
 
       var countString = ""
       var url;
-<<<<<<< HEAD
-
-
-      wx.showModal({
-        title: '温馨提示',
-        content: '前三个解析免费（您当前还有' + analyseTimes + '次免费机会），之后收费5元/个，鼓励共享！此收入捐赠给佛山启智和北京美新路公益机构。你本人或身边的人需要资助，也可以联系我们！',
-=======
       let content = ""
       if (analyseTimes > 0 ) {
         content = "使用 1 张解析券（剩余 " + analyseTimes + " 张）"
@@ -439,7 +429,6 @@ Page({
 
       wx.showModal({
         content: content,
->>>>>>> 修改
         success: function (res) {
           if (res.confirm) {
             if (analyseTimes > 0) {
@@ -575,13 +564,10 @@ Page({
 
   onLoad(params) {
     var that = this;
-<<<<<<< HEAD
-=======
     let pageNum = 0;
     wx.showShareMenu({
       withShareTicket: true
     })
->>>>>>> 修改
     wx.getSystemInfo({
       success: function (res) {
         screenWidth = res.screenWidth;
@@ -623,20 +609,14 @@ Page({
       this.getExam();
     } else if (params.type == 'practice') {
       groupId = params.group;
-<<<<<<< HEAD
-=======
       if (params.page != null) pageNum = params.page
->>>>>>> 修改
       wx.setNavigationBarTitle({
         title: this.getStarString(stars) + '·0' + params.group + '组'
       })
       this.pullQuestions();
-<<<<<<< HEAD
-=======
       setTimeout(()=>{
         swipperPage.givenPage(pageNum)
       },800)
->>>>>>> 修改
     } else if (params.type == 'enroll') {
       groupId = params.group;
       wx.setNavigationBarTitle({

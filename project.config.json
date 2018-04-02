@@ -36,15 +36,12 @@
 					"name": "test",
 					"pathName": "pages/enrollDetailInfo/enrollDetailInfo",
 					"query": ""
-<<<<<<< HEAD
-=======
 				},
 				{
 					"id": -1,
 					"name": "t",
 					"pathName": "pages/enrollDetailInfo/enrollDetailInfo",
 					"query": ""
->>>>>>> 修改
 				}
 			]
 		}

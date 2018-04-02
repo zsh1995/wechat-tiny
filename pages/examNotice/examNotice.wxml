@@ -1,9 +1,5 @@
 <!--examNotice.wxml-->
-<<<<<<< HEAD
-<view class="itemcontainer" wx:if='{{!isPassed}}'>
-=======
 <view class="itemcontainer">
->>>>>>> 修改
   <scroll-view scroll-y class="item_content">
     <view wx:for="{{examData}}">
       <text class='font-bold'>{{item.title}}</text>
@@ -12,29 +8,6 @@
   </scroll-view>
   <view class="button-item">
     <view style='padding:0 110rpx' hidden="{{ remainTimes<= 0 && !inExam }}">
-<<<<<<< HEAD
-      <gsy-button  font-size='36rpx' text-content='继续测试' bindtap="gotoExam" data-option="goExam">继续测试</gsy-button>
-    </view>
-    <view style='padding:0 110rpx' hidden="{{ inExam||examTimes > 0 || remainTimes > 0 }}">
-      <gsy-button font-size='36rpx' text-content='购买6次测试机会' bindtap="gotoExam" data-option="pay">购 买 6 次 测 试 机 会</gsy-button>
-    </view>
-    <view style='padding:0 110rpx' hidden="{{ inExam||examTimes <= 0 || remainTimes > 0 }}">
-      <gsy-button font-size='36rpx' text-content='可使用{{examTimes}}次优惠券' bindtap="useCoupon" data-option="pay">可使用{{examTimes}}次优惠券</gsy-button>
-    </view>
-
-
-  </view>
-</view>
-<view class="itemcontainer" wx:if='{{isPassed}}'>
-  <view class="item_title">
-    <text>标题文字</text>
-  </view>
-  <scroll-view scroll-y class="item_content">
-    <text wx:if='{{!isPurched}}'>我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容</text>
-    <text wx:if='{{isPurched}}'>你已加急了加急了你已加急了加急了你已加急了加急了你已加急了加急了你已加急了加急了你已加急了加急了</text>
-  </scroll-view>
-  <view bindtap='payHurry' class='navigator' wx:if='{{!isPurched}}'>付押金可加急 >>></view>
-=======
       <gsy-button font-size='36rpx' text-content='继续测试' bindtap="gotoExam" data-option="goExam">继续测试</gsy-button>
     </view>
     <view style='padding:0 110rpx' hidden="{{ inExam||examTimes > 0 || remainTimes > 0 }}">
@@ -44,5 +17,4 @@
       <gsy-button font-size='36rpx' text-content='使用 1 张测试券' bindtap="useCoupon" data-option="pay"></gsy-button>
     </view>
   </view>
->>>>>>> 修改
 </view>

@@ -75,16 +75,9 @@
   font-size: 11px;
   line-height: 16px;
   height: 16px;
-<<<<<<< HEAD
-  border: 1rpx #aaa solid;
-  padding: 0 1px;
-  border-radius: 2px;
-  color: #aaa;
-=======
   padding: 0 1px;
   color: #fff;
   background: #999;
->>>>>>> 修改
 }
 
 .successIcon {
@@ -92,16 +85,9 @@
   font-size: 11px;
   line-height: 16px;
   height: 16px;
-<<<<<<< HEAD
-  border: 1rpx #343b41 solid;
-  padding: 0 1px;
-  border-radius: 2px;
-  color: #343b41;
-=======
   padding: 0 1px;
   color: #fff;
   background: #2BB675;
->>>>>>> 修改
 }
 
 #state {
