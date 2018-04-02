@@ -47,7 +47,11 @@ font-size:17px;
   display:flex;
   flex-direction: row;
   justify-content: space-between;
+<<<<<<< HEAD
   padding:10px 30px;
+=======
+  padding:0px 10px;
+>>>>>>> 修改
 }
 .item_style{
   padding:10px 0px;

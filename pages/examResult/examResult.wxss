@@ -126,4 +126,13 @@ font-size:32rpx;
     border: 2px solid #fff;
 
 }
+<<<<<<< HEAD
 */
+=======
+*/
+
+.up-top{
+  margin:80rpx;
+  letter-spacing:0.1em;
+}
+>>>>>>> 修改

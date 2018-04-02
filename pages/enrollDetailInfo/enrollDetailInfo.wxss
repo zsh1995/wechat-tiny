@@ -149,4 +149,17 @@ border:1px solid #000000;
 line-height:2.00000006;
 border-radius:6px;
 font-size:32rpx;
+<<<<<<< HEAD
+=======
+}
+.no-shadow{
+  box-shadow: none;
+}
+.content,.content text{
+  letter-spacing:0.1em;
+}
+.up-top{
+  margin:80rpx;
+  letter-spacing:0.1em;
+>>>>>>> 修改
 }

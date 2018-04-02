@@ -7,7 +7,11 @@
   <view class="weui-cells weui-cells_after-title">
     <view class="wholecontainer">
       <view class="zui-column">
+<<<<<<< HEAD
         <view  class='item_style' wx:for="{{couponList}}">
+=======
+        <view  class='item_style inner-padding' wx:for="{{couponList}}">
+>>>>>>> 修改
           <view wx:if="{{typeId==0}}">
             <view style='text-align:left;'>{{item.name}}</view>
           </view>
@@ -24,6 +28,7 @@
       <view class="zui-column">
         <view class='item_style' wx:for="{{couponList}}">
           <view wx:if="{{typeId==0}}">
+<<<<<<< HEAD
             <view style="color:#aaa">{{item.createTime}}</view>
           </view>
           <view wx:if="{{typeId==1 &&(item.couponId == 1)}}">
@@ -31,6 +36,15 @@
           </view>
           <view wx:if="{{typeId==2 &&item.couponId == 2}}">
             <view style="color:#aaa">{{item.createTime}}</view>
+=======
+            <view style="color:#aaa;text-align:right;">{{item.createTime}}</view>
+          </view>
+          <view wx:if="{{typeId==1 &&(item.couponId == 1)}}">
+            <view style="color:#aaa;text-align:right;">{{item.createTime}}</view>
+          </view>
+          <view wx:if="{{typeId==2 &&item.couponId == 2}}">
+            <view style="color:#aaa;text-align:right;">{{item.createTime}}</view>
+>>>>>>> 修改
           </view>
         </view>
       </view>

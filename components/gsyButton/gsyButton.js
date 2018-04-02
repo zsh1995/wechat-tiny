@@ -9,6 +9,14 @@ Component({
       value: '',
       observer: '__onPropChange'
     },
+<<<<<<< HEAD
+=======
+    withShadow: {
+      type:Boolean,
+      value: true,
+      observer: '__onPropChange'
+    },
+>>>>>>> 修改
     fontSize:{
       type: String,
       value: '',

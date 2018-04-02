@@ -1,5 +1,17 @@
 <!--examResult.wxml-->
+<<<<<<< HEAD
 <view class="flex-wrp">
+=======
+<upper-slider style='display:{{type!="enroll"?"none":""}}' u-position='top' id='us'>
+  <view class='up-top font-32'>
+    <view wx:for="{{enrollTips}}">
+      <text class='font-bold'>{{item.title}}</text>
+      <text>{{item.content}}</text>
+    </view>
+  </view>
+</upper-slider>
+<view class="flex-wrp" bindtouchstart='onstart' bindtouchmove='onmove' bindtouchend='onend'>
+>>>>>>> 修改
   <view class="exam-title" wx:if="{{type == 'exam' && !passExam}}">思维测试为「开卷」形式，可以和朋友交流、或在线搜索，了解更多人的不同意见，尽可能作出最好的选择。</view>
   <view class="flex-item head font-28">你看待这6个问题的积极程度</view>
 
@@ -30,13 +42,22 @@
       <gsy-button bindtap="endExam" text-content='继续' font-size='36rpx' background='{{scoreColor}}' font-color='{{scoreColor=="#FFE51A"?"#6A6869":""}}'></gsy-button>
     </view>
     <view wx:if="{{type == 'exam'}}" style='margin:30rpx;width:250rpx' hidden="{{passExam}}">
+<<<<<<< HEAD
       <gsy-button bindtap="gobacktoMain" text-content='返回'   font-color='#6A6869' default-type='white-style' font-size='36rpx'></gsy-button>
+=======
+      <gsy-button bindtap="gobacktoMain" text-content='返回' font-color='#6A6869' default-type='white-style' font-size='36rpx'></gsy-button>
+>>>>>>> 修改
     </view>
     <view wx:if="{{type == 'exam'}}" style='margin:30rpx;width:250rpx' hidden="{{passExam}}">
       <gsy-button bindtap="endExam" text-content='继续测试' font-size='36rpx' background='{{scoreColor}}' font-color='{{scoreColor=="#FFE51A"?"#6A6869":""}}'></gsy-button>
     </view>
+<<<<<<< HEAD
         <view wx:if="{{type == 'enroll'}}" style='margin:30rpx;width:550rpx'>
       <gsy-button bindtap="nextStep" text-content='下一步：填写目标企业' font-size='36rpx'></gsy-button>
+=======
+    <view wx:if="{{type == 'enroll'}}" style='margin:30rpx;width:550rpx'>
+      <gsy-button default-type='white-style' font-color='#6A6869' bindtap="nextStep" text-content='下一步：填写企业' font-size='36rpx'></gsy-button>
+>>>>>>> 修改
     </view>
   </view>
   <view wx:if="{{ type == 'exam' && remainTimes < needTimes && false}}" class="flex-item" style="color:{{scoreColor}}">
@@ -49,8 +70,17 @@
   </view>
   <view wx:if="{{ type == 'exam' && passExam}}" class="flex-item" style="color:{{scoreColor}}">
     <view style="margin-bottom:0" class='bottom-text font-36-bold'>星级测试通过!</view>
+<<<<<<< HEAD
     <view class='bottom-text gray font-28'><text>剩余次数仍然可以测试\n多思考、多交流，不断成长！</text></view>
     <view class='button-wrap'><gsy-button bindtap="nextStep" text-content='企业直推' font-size='36rpx' bindtap='nav2Push'></gsy-button></view>
+=======
+    <view class='bottom-text gray font-28'>
+      <text>剩余次数仍然可以测试\n多思考、多交流，不断成长！</text>
+    </view>
+    <view class='button-wrap'>
+      <gsy-button bindtap="nextStep" text-content='企业直推' font-size='36rpx' bindtap='nav2Push'></gsy-button>
+    </view>
+>>>>>>> 修改
   </view>
 
 </view>

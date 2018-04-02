@@ -2,6 +2,7 @@
 <view class="page" bindtouchstart='touchstar' bindtouchmove='touchmove' bindtouchend='touchend'>
   <image class="floatImg" mode='aspectFit' src='{{pictureUrl}}' wx:if="{{enableShowPic}}" bindtap='cancelShow'></image>
   <view class="shade" wx:if="{{enableShowPic}}" bindtap='cancelShow'></view>
+<<<<<<< HEAD
   <upper-slider id='us' u-position="top">
     <view class='head-tips'>
       <text>
@@ -11,6 +12,8 @@
       <text></text>
     </view>
   </upper-slider>
+=======
+>>>>>>> 修改
   <view class="maincontain">
     <view style="width:100%;">
       <view class="page__bd">
@@ -45,8 +48,13 @@
                   <!--<view wx:for="{{item.iconArray}}">
                     <view id="state" class="normalIcon" wx:if="{{item.labelText !='' &&item.labelText != undefine }}" style="border-color:{{item.labelBorderColor}};color:{{item.labelColor}};background-color:{{item.labelBackgroundcolor}}" data-set="{{index}}">{{item.labelText}}</view>
                   </view>-->
+<<<<<<< HEAD
                   <view wx:if="{{item.state == 1}}" class="successIcon">已确认</view>
                   <view wx:if="{{item.state == 0}}" class="waitIcon">跟进中</view>
+=======
+                  <view wx:if="{{item.state == 1}}" class="successIcon"><text decode='true'>&nbsp;已确定&nbsp;</text></view>
+                  <view wx:if="{{item.state == 0}}" class="waitIcon"><text decode='true'>&nbsp;跟进中</text></view>
+>>>>>>> 修改
                 </view>
 
 
@@ -59,7 +67,11 @@
           <view class="weui-loadmore__tips">正在加载</view>
         </view>
         <view class="weui-loadmore weui-loadmore_line" hidden="{{load || !oneMore}}">
+<<<<<<< HEAD
           <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
+=======
+          <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂时就这么多</view>
+>>>>>>> 修改
         </view>
 
       </scroll-view>

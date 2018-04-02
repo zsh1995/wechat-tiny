@@ -131,7 +131,11 @@ Page({
   touchend(e){
     
   },
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> 修改
   onLoad: function (opt) {
     star = parseInt(opt.star);
     console.log("star" + star);

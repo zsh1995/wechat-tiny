@@ -23,5 +23,9 @@
 }
 .gsy-button-white-style{
   background: #fff;
+<<<<<<< HEAD
   color: #000;
+=======
+  color: #6A6869;
+>>>>>>> 修改
 }

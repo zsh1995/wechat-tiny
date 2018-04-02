@@ -9,6 +9,11 @@ var utils = require('..//../utils/score');
 
 var examTimesUtil = require('../../utils/userRight.js');
 var stars;
+<<<<<<< HEAD
+=======
+var enrollTips = [{ title: "1.我们会给你一个参考意见。\n", content: "\n我们大概有99%的把握，如果有问题，我们会100%负责。\r\n任何意见或疑问，可以给我们留言，我们一定回复。" }, { title: "\n2.思维方式的成长需要一定的时间，希望你可以坚持。"}]
+var upperSlider = null;
+>>>>>>> 修改
 
 // 当前操作类型
 
@@ -27,6 +32,10 @@ Page({
     remainTimes: 10,
     passTimes: 0,
     needTimes: 0,
+<<<<<<< HEAD
+=======
+    enrollTips: enrollTips,
+>>>>>>> 修改
     updateExamStatus: `https://${config.service.host}/exam/uploadStatus`,
     uploadScore: `https://${config.service.host}/uploadScore`,
     examUrl: `https://${config.service.host}/exam/getExamStatus`,
@@ -50,7 +59,20 @@ Page({
       url: '../../pages/examItems/examItems'
     })
   },
+<<<<<<< HEAD
 
+=======
+  onstart(e){
+    upperSlider.ontouch(e)
+  },
+
+  onmove(e){
+    upperSlider.onmove(e)
+  },
+  onend(e){
+    upperSlider.onend(e)
+  },
+>>>>>>> 修改
   getExamStatus: function () {
     var that = this;
     qcloud.request({
@@ -174,6 +196,10 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+<<<<<<< HEAD
+=======
+    upperSlider = this.selectComponent('#us');
+>>>>>>> 修改
     stars = parseInt(options.stars);
     wx.setNavigationBarTitle({
       title: this.getStarString(stars) + '·0' + options.group_id + '组'
@@ -216,6 +242,12 @@ Page({
                       wx.hideLoading();
                     })
     } else {
+<<<<<<< HEAD
+=======
+      setTimeout(p=>{
+        upperSlider.show()
+      },800)
+>>>>>>> 修改
       wx.setNavigationBarTitle({
         title: '报名·基础测试'
       })

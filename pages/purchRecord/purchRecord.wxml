@@ -44,6 +44,7 @@
           <view class="zui-column" hidden='{{purchList.length == 0 || purchList == null}}'>
             <view class="item_style" wx:for="{{purchList}}">
               <view wx:if="{{typeId==0}}">
+<<<<<<< HEAD
                 <view style="color:#aaa">{{item.date}}</view>
               </view>
               <view wx:if="{{typeId==2 &&(item.product_id == 1)}}">
@@ -54,6 +55,18 @@
               </view>
               <view wx:if="{{typeId==3 &&(item.product_id == 5)}}">
                 <view style="color:#aaa">{{item.date}}</view>
+=======
+                <view style="color:#aaa;text-align:right;">{{item.date}}</view>
+              </view>
+              <view wx:if="{{typeId==2 &&(item.product_id == 1)}}">
+                <view style="color:#aaa;text-align:right;">{{item.date}}</view>
+              </view>
+              <view wx:if="{{typeId==1 &&(item.product_id>1 && item.product_id<5)}}">
+                <view style="color:#aaa;text-align:right;">{{item.date}}</view>
+              </view>
+              <view wx:if="{{typeId==3 &&(item.product_id == 5)}}">
+                <view style="color:#aaa;text-align:right;">{{item.date}}</view>
+>>>>>>> 修改
               </view>
             </view>
           </view>

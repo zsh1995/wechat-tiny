@@ -137,9 +137,32 @@ Page({
       })
     }
   },
+<<<<<<< HEAD
 
   onLoad: function () {
     console.log('onLoad')
+=======
+  chooseId(){
+    var that = this
+    wx.showActionSheet({
+      itemList: ['学生', '在职',],
+      success: function (res) {
+        console.log(res.tapIndex)
+      },
+      fail: function (res) {
+        wx.showToast({
+          icon: 'none',
+          title: '必须选择身份！',
+        })
+        that.chooseId()
+      }
+    })
+  },
+
+  onLoad: function () {
+    console.log('onLoad')
+    this.chooseId()
+>>>>>>> 修改
     var that = this
     wx.setStorage({
       key: 'picUrls',

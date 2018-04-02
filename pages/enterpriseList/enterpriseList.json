@@ -1,6 +1,10 @@
 {
+<<<<<<< HEAD
   "navigationBarTitleText": "企业列表",
   "usingComponents":{
     "upper-slider":"/components/upperSlider/upperSlider"
   }
+=======
+  "navigationBarTitleText": "企业列表"
+>>>>>>> 修改
 }

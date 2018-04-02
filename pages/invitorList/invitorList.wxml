@@ -3,9 +3,15 @@
   <view class='recomman-tips font-28'>
     <view class='oneline'>
       <view id='uid' class='font-bold'>ID:{{userId}}</view>
+<<<<<<< HEAD
       <view id='to-copy' bindtap='copyAction'>点击复制</view>
     </view>
     <view>告知好友，填写确认即可</view>
+=======
+      <view id='to-copy' bindtap='copyAction'>（点击复制）</view>
+    </view>
+    <view>告知好友，填写后选中即可</view>
+>>>>>>> 修改
   </view>
   <view class="detail-head">
     <view>我的推荐人</view>
@@ -25,7 +31,11 @@
   </view>
   <view class="weui-cells weui-cells_after-title">
     <view wx:if="{{invitorList.length == 0}}" class="weui-cell">
+<<<<<<< HEAD
       <view style="margin-left:auto;margin-right:auto;color:#7A7A7A">无</view>
+=======
+      <view style="margin-left:auto;margin-right:auto;color:#7A7A7A">——</view>
+>>>>>>> 修改
 
     </view>
     <view wx:for="{{invitorList}}" class="weui-cell">

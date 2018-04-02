@@ -16,10 +16,17 @@
   text-align: center;
   justify-content: center;
   padding-left:10px;	
+<<<<<<< HEAD
   font-size:32rpx;
 	margin:20rpx 0rpx;
 	color:#7A7A7A;
 }
+=======
+  font-size:28rpx;
+	color:#7A7A7A;
+line-height:56rpx;
+  height:56rpx;}
+>>>>>>> 修改
 .weui-cell {
     margin:0rpx 40rpx 0rpx 40rpx;
     padding-left:0;
