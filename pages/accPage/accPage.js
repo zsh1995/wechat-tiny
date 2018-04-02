@@ -1,6 +1,7 @@
 // 引入 QCloud 小程序增强 SDK
 var qcloud = require('../../bower_components/wafer-client-sdk/index');
 var config = require('../../config');
+var companyUtil = require('../../utils/company.js')
 var internalList = new Array();
 
 var content = ['1.填写你毕业后期待加入的企业,我们优先和建立直推渠道', '2.在你通过星级测试后，你指定的企业会收到你的推荐邮件','3.推荐信可以和简历一起投递任何企业。']
@@ -20,7 +21,18 @@ Page({
     content:content,
   },
   onSubmit(e){
-    console.log(e);
+    let companys = [e.detail.value.wantedCompany1, e.detail.value.wantedCompany2, e.detail.value.wantedCompany3]
+    companyUtil.uploadCompanys(companys)
+    .then(p=>{
+      wx.showToast({
+        title: '成功！',
+      })
+    })
+    .catch(p=>{
+      wx.showToast({
+        title: "失败！"+p.message,
+      })
+    })
   },
   test(e){
     console.log(e);

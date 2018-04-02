@@ -14,6 +14,7 @@ App({
     logs.unshift(Date.now());
     wx.setStorageSync('logs', logs);
     qcloud.setLoginUrl(config.service.loginUrl);
+    qcloud.login({ success: function () { console.log('service login') } });
   },
   getUserInfo:function(cb){
     var that = this
@@ -21,7 +22,6 @@ App({
       typeof cb == "function" && cb(this.globalData.userInfo)
     }else{
       //调用登录接口
-      qcloud.login({success:function(){console.log('service login')}});
       wx.login({
         success: function () {
           console.log("login success")

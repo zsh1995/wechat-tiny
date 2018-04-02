@@ -144,15 +144,20 @@ Page({
   },
   onmove: function (e) {
     console.log('onmove')
+    let status = 0;
     if(upperSlider.isActive()){
-      upperSlider.onmove(e);
-      return;
-    } else if (upperSliderTop.isActive()){
-      upperSliderTop.onmove(e);
-      return;
+      status = 1
+    } else if (upperSliderTop.isActive() && this.data.type=='enroll'){
+      status = 2
     }
-    upperSlider.onmove(e);
-    upperSliderTop.onmove(e);    
+    if (status == 0) {  
+      upperSlider.onmove(e);
+      upperSliderTop.onmove(e);    
+    } else if(status == 1) {
+      upperSlider.onmove(e);
+    } else if(status == 2) {
+      upperSliderTop.onmove(e);
+    }
   },
   //滑动结束
   touchEnd: function (e) {
@@ -421,6 +426,7 @@ Page({
               //countString = '点击确定进行购买'
               payUtils.doPayAnalyse(stars, questionId, currentPage + 1, groupId)
                 .then(p => {
+                  console.log(p)
                   that.requestPayment(p.data)
                 })
             }

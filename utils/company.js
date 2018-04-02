@@ -3,7 +3,8 @@ var config = require('../config');
 var utils = require('./util.js');
 
 var urlMap = {
-    'companyUrl':`https://${config.service.host}/company/allList`
+    'companyUrl':`https://${config.service.host}/company/allList`,
+    'uploadUrl': `https://${config.service.host}/ajax/user/uploadCompanys`
 }
 
 function getCompanyList(ambName,page,count){
@@ -13,6 +14,14 @@ function getCompanyList(ambName,page,count){
         name:ambName,
     })
 }
+
+function uploadCompanys(companys){
+  return utils.ajax_promise(urlMap.uploadUrl,{
+    companys: companys,
+  })
+}
+
 module.exports={
-  getCompanyList:getCompanyList,
+  getCompanyList: getCompanyList,
+  uploadCompanys: uploadCompanys,
 }

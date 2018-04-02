@@ -64,6 +64,11 @@ function doPayAnalyse(star,questionId,feQuestionId,groupId){
             feQuestionId:feQuestionId,
             groupId:groupId,
           })
+          .then(p=>{
+            delete p.data.code
+            console.log(p)
+            return p
+          })
 }
 
 

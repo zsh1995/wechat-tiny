@@ -41,7 +41,7 @@ Page({
   },
 
   nextStep: function (e) {
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../../pages/enrollDetailInfo/enrollDetailInfo',
     })
   },

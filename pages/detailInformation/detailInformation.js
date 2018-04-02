@@ -19,7 +19,7 @@ Page({
     region: ['', '广州市', ''],
     identities:["在职","学生"],
     genders:['女生','男生'],
-    enrollment: [['2014', '2015', '2016','2017','2018'],['本科','硕士','博士']],
+    enrollment: [['2014', '2015', '2016','2017','2018'],['专科','本科','硕士','博士']],
     mIdentity:"",
     identityId:0,
     genderId:0,
@@ -58,6 +58,8 @@ Page({
     mSchool = mSchool == '选择您的学校'?'':mSchool
     userInfo.school = mSchool
     userInfo.city = this.data.region[1]
+    userInfo.enrollmentYear = this.data.enrollment[0][this.data.enrollmentId[0]]
+    userInfo.enrollmentType = this.data.enrollment[1][this.data.enrollmentId[1]]
     var that = this;
     //
     console.log(userInfo)
@@ -84,15 +86,31 @@ Page({
     })
   },
 
+  findId (enrollType,array) {
+    console.log("enroll:"+enrollType)
+    for (var tp in array){
+      if (array[tp] == enrollType){
+        console.log('findId:'+tp)
+        return tp;
+      }
+    }
+    return 0;
+  },
+
+
   requestUserInfo: function (a) {
     var that = this;
     userUtils.getUserInfo()
       .then(result=>{
+        let data = result.data.data
         if (result.data.data.type == '学生') {
           that.data.identityId = 1;
         }
         if (result.data.data.gender == '男生')
           that.data.genderId = 1;
+        that.data.enrollmentId[0] = that.findId(data.enrollmentYear,that.data.enrollment[0])
+        that.data.enrollmentId[1] = that.findId(data.enrollmentType, that.data.enrollment[1])
+        if (result.data.data.enrollmentType == '男生')
         that.data.schoolName = result.data.data.school == '' ? '选择您的学校' : result.data.data.school;
         if (result.data.data.city != '') {
           that.data.region[1] = result.data.data.city

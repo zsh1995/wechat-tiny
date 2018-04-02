@@ -1,12 +1,21 @@
 <view class="icontainer">
-  <view class='floatImg central' hidden='{{showToast}}'>
-    <image mode='aspectFit' src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1511256309652&di=d30705546409d2be9a5df2e05c33cf17&imgtype=0&src=http%3A%2F%2Fpic35.nipic.com%2F20131121%2F2531170_145358633000_2.jpg'></image>
-    <view class='navigator' bindtap='navigator'> 现在去练习 >>></view>
+  <view class="content font-36" hidden='{{steps != 3}}'>
+    <view>
+      <view>见面礼，希望你能继续体验</view>
+      <view>
+        <view wx:for="{{giftContext}}">
+          <text class='font-bold'>{{item.title}}</text>
+          <text>{{item.content}}</text>
+        </view>
+      </view>
+      <view class='font-bold'>希望我们可以真正帮到你！</view>
+    </view>
+    <view class='button-line'>
+      <button class='font-36 gsy-default-button gsy-button-white-style' open-type="contact">联系我们</button>
+    </view>
   </view>
-  <view class='shade' hidden='{{showToast}}'></view>
 
-
-  <form bindsubmit="onSubmit">
+  <form hidden='{{steps == 3}}' bindsubmit="onSubmit">
     <view class="zan-form column" hidden="{{steps != 1}}">
       <view class="zan-cell zan-form__item">
         <text class="zan-form__title">企业1</text>

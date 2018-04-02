@@ -43,6 +43,10 @@ Page({
         }
         if(p[cnt].source == 0){
           p[cnt].name +='·报名赠送'
+        } else if (p[cnt].source == 1) {
+          p[cnt].name += '·新用户赠'
+        } else if (p[cnt].source == 2) {
+          p[cnt].name += '·填邀请人赠'
         }
         if(p[cnt].usedFlag == 1){
           p[cnt].name += '（已使用）'

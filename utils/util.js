@@ -69,10 +69,23 @@ function ajax_promise(url, data, ) {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
       success(result) {
-        resolve(result);
+        let code = parseInt(result.data.code)
+        if (0 == code) {
+          resolve(result);
+        } else if(1 == code){
+          reject(new Error("已检查异常"))
+        } else if (2 == code) {
+          reject(new Error("权限错误"))
+        } else if (3 == code) {
+          reject(new Error("参数错误，请重新填写"))
+        } else if (-99 == code) {
+          reject(new Error("未知错误，请联系管理员"))
+        } else {
+          reject(new Error("与服务器连接异常"))
+        }
       },
       fail(error) {
-        reject(new Error(error))
+        reject(new Error("与服务器连接异常"))
       },
       complete() {
         console.log('request complete');
@@ -90,10 +103,23 @@ function ajax_promise_json(url, data, ) {
       data: data,
       method: 'POST',
       success(result) {
-        resolve(result);
+        let code = parseInt(result.data.code)
+        if (0 == code) {
+          resolve(result);
+        } else if (1 == code) {
+          reject(new Error("已检查异常"))
+        } else if (2 == code) {
+          reject(new Error("权限错误"))
+        } else if (3 == code) {
+          reject(new Error("参数错误，请重新填写"))
+        } else if (-99 == code) {
+          reject(new Error("未知错误，请联系管理员"))
+        } else {
+          reject(new Error("与服务器连接异常"))
+        }
       },
       fail(error) {
-        reject(new Error(error))
+        reject(new Error("与服务器连接异常"))
       },
       complete() {
         console.log('request complete');

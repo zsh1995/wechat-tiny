@@ -1,6 +1,6 @@
 /* pages/accPage/accPage.wxss */
 @import '/style/float-pic.wxss';
-
+@import '/style/gsy-common/button.wxss';
 page {
   background: #eee;
 }
@@ -87,3 +87,6 @@ form {
   color: #999;
 }
 
+button{
+  font-size: 36rpx;
+}
