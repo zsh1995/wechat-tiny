@@ -1,4 +1,14 @@
 <!--examResult.wxml-->
+<view class='mask' style='display:{{showLeadMask?"":"none"}}'>
+  <view class='mask-content'>
+    <view class='enroll-lead' bindtap='nextEnrollTips'>
+      <view><rich-text style='opacity:0' nodes='{{nodes}}'></rich-text></view>
+    </view>
+    <view class='enroll-block' bindtap='nextEnrollTips'>
+      <view><rich-text nodes='{{nodes}}'></rich-text></view>
+    </view>
+  </view>
+</view>
 <upper-slider style='display:{{type!="enroll"?"none":""}}' u-position='top' id='us'>
   <view class='up-top font-32'>
     <view wx:for="{{enrollTips}}">
@@ -44,7 +54,7 @@
       <gsy-button bindtap="endExam" text-content='继续测试' font-size='36rpx' background='{{scoreColor}}' font-color='{{scoreColor=="#FFE51A"?"#6A6869":""}}'></gsy-button>
     </view>
     <view wx:if="{{type == 'enroll'}}" style='margin:30rpx;width:550rpx'>
-      <gsy-button default-type='white-style' font-color='#6A6869' bindtap="nextStep" text-content='下一步：填写企业' font-size='36rpx'></gsy-button>
+      <gsy-button default-type='white-style' font-color='#6A6869' bindtap="nextStep" text-content='下一步·基本信息' font-size='36rpx'></gsy-button>
     </view>
   </view>
   <view wx:if="{{ type == 'exam' && remainTimes < needTimes && false}}" class="flex-item" style="color:{{scoreColor}}">

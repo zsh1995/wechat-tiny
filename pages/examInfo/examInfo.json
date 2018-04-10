@@ -1,7 +1,8 @@
 {
   "navigationBarTitleText": "",
-  "usingComponents":{
-    "upper-slider":"../../components/upperSlider/upperSlider",
-    "swipper-page": "../../components/swipperPage/swipperPage"
+  "usingComponents": {
+    "upper-slider": "../../components/upperSlider/upperSlider",
+    "swipper-page": "../../components/swipperPage/swipperPage",
+    "wxc-mask": "../../dist/packages/@minui/wxc-mask/dist/index"
   }
 }

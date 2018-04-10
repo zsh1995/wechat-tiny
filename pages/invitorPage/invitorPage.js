@@ -52,6 +52,14 @@ Page({
         })
       }
     })
+    .catch(p=>{
+      let message = p.message.match(/[\u4e00-\u9fa5]/g).join("")
+      wx.showToast({
+        title: message,
+        icon: 'loading',
+        mask: true
+      })
+    })
   },
   inputTyping: function (e) {
     var that = this;

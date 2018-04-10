@@ -73,11 +73,11 @@ function ajax_promise(url, data, ) {
         if (0 == code) {
           resolve(result);
         } else if(1 == code){
-          reject(new Error("已检查异常"))
+          reject(new Error("已检查异常" + result.data.message))
         } else if (2 == code) {
-          reject(new Error("权限错误"))
+          reject(new Error( result.data.message))
         } else if (3 == code) {
-          reject(new Error("参数错误，请重新填写"))
+          reject(new Error("参数错误!"))
         } else if (-99 == code) {
           reject(new Error("未知错误，请联系管理员"))
         } else {

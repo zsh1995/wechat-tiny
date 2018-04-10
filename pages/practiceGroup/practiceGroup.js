@@ -167,7 +167,7 @@ Page({
       payUtil.getExamStatus(star-1)
         .then(p => {
           console.log(p);
-           p ? that.setData({ preExamPass: true }) : 0
+          p && this.data.invitor >=5? that.setData({ preExamPass: true }) : 0
         } )
     }else{
       that.setData({ preExamPass: true })

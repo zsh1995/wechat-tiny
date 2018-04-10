@@ -5,12 +5,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top:200rpx;
+  margin-top:20rpx;
 }
 .button-line{
   display: flex;
   width: 74%;
-  margin-top:200rpx;
+  margin-top:100rpx;
   justify-content: space-between;
 }
 .icontainer{
@@ -139,7 +139,9 @@
   background-color: #000;
 }
 image{
-  height: 70% !important;
+  width: 100px;
+  height: 100px;
+  margin-top:100rpx;
 }
 .mbutton{
 margin-right:5rpx;
@@ -159,4 +161,10 @@ font-size:32rpx;
 .up-top{
   margin:80rpx;
   letter-spacing:0.1em;
+}
+.content view{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
 }

@@ -8,6 +8,7 @@
 </upper-slider>
 <view class="icontainer" bindtouchstart='onstart' bindtouchmove='onmove' bindtouchend='onend'>
   <view class="content font-36" hidden='{{steps != 3}}'>
+    <image src='https://s1.ax1x.com/2018/02/14/9YGa59.jpg'></image>
     <view>
       <view>见面礼，希望你能继续体验</view>
       <view>
@@ -19,7 +20,7 @@
       <view class='font-bold'>希望我们可以真正帮到你！</view>
     </view>
     <view class='button-line'>
-      <button class='font-36 gsy-default-button gsy-button-white-style' open-type="contact">联系我们</button>
+      <button class='font-36 gsy-default-button gsy-button-white-style' open-type="contact">有什么想问的？</button>
     </view>
   </view>
 
@@ -39,6 +40,10 @@
       </view>
     </view>
     <view class="zan-form column" hidden="{{steps != 2}}">
+      <view class="zan-cell zan-form__item">
+        <text class="zan-form__title">{{idf}}</text>
+        <switch class="zan-form__input zan-cell__bd" bindchange='chooseIdf' color='#ED662C' />
+      </view>
       <view class="zan-cell zan-form__item">
         <text class="zan-form__title">姓名</text>
         <input name='studentName' class="zan-form__input zan-cell__bd" placeholder="名字" />

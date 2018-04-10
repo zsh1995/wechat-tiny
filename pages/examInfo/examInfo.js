@@ -14,7 +14,101 @@ var internalList = new Array();
 var upperSlider = null;
 var upperSliderTop = null;
 var swipperPage = null;
-
+var nodes = [{
+  name: 'div',
+  attrs: {
+    class: 'div_class',
+    style: ''
+  },
+  children: [{
+    type: 'text',
+    text: '这里有很多话题'
+  },
+  {
+    type: 'node',
+    name: 'br'
+  },
+  {
+    type: 'text',
+    text: '每个话题都有一个',
+  },
+  {
+    name: 'a',
+    attrs: {
+      style: 'color:#ED662C;'
+    },
+    children: [{
+      type: 'text',
+      text: '观点'
+    }]
+  },
+  {
+    type: 'node',
+    name: 'br'
+  },
+  {
+    type: 'text',
+    text: '大部分由'
+  },
+  {
+    name: 'a',
+    attrs: {
+      style: 'color:#ED662C;'
+    },
+    children: [{
+      type: 'text',
+      text: '案例'
+    }]
+  },
+  {
+    type: 'text',
+    text: '引出'
+  }]
+}]
+var nextNode = [{
+  name: 'div',
+  attrs: {
+    class: 'div_class',
+    style: ''
+  },
+  children: [{
+    type: 'text',
+    text: '选择对'
+  }, {
+    name: 'a',
+    attrs: {
+      style: 'color:#ED662C'
+    },
+    children: [{
+      type: 'text',
+      text: '观点'
+    }]
+  }, {
+    type: 'text',
+    text: '的态度'
+  }]
+}]
+var endNode = [{
+  name: 'div',
+  attrs: {
+    class: 'div_class',
+  },
+  children: [{
+    type: 'text',
+    text: '每组只有6个话题'
+  }, {
+    name: 'br',
+  }, {
+    type: 'text',
+    text: '不过，可能会让你纠结'
+  }, {
+    name: 'br',
+  }, {
+    type: 'text',
+    text: '试试吧！'
+  }]
+}]
+var nodeList = [nodes, nextNode,endNode]
 // 显示繁忙提示
 var showBusy = text => wx.showToast({
   title: text,
@@ -52,7 +146,7 @@ var screenWidth = 360;
 var screenHeight = 0;
 
 var intervalList = [];
-
+var enrollLeadTxt = "这里有很多话题\n每个话题都有一个观点\n大部分由案例引出"
 
 // 显示失败提示
 var showModel = (title, content) => {
@@ -95,6 +189,10 @@ Page({
     clickItem: ['white', 'green', 'yellow', 'red', 'black'],
     loginUrl: config.service.loginUrl,
     requestUrl: config.service.requestUrl,
+    enrollLeadTxt: enrollLeadTxt,
+    nodes: nodeList,
+    steps: 0,
+    showLeaderMask:false,
     questionUrl: `https://${config.service.host}/ajax/exam/getQuestions`,
     examUrl: `https://${config.service.host}/exam/getExamQuestions`,
     paymentUrl: `https://${config.service.host}/pay/payEncap`,
@@ -113,6 +211,19 @@ Page({
       isShowTip: false//默认是否显示提示
     },
     color: 'green'
+  },
+  nextEnrollTips() {
+    if (this.data.steps < 2){
+      this.data.steps += 1
+      this.setData(this.data)
+    }else{
+      this.setData({
+        showLeaderMask:false,
+      })
+    }
+      
+
+    
   },
   onShareAppMessage: function (res) {
     let chooseList = this.data.chooseList
@@ -162,17 +273,17 @@ Page({
   onmove: function (e) {
     console.log('onmove')
     let status = 0;
-    if(upperSlider.isActive()){
+    if (upperSlider.isActive()) {
       status = 1
-    } else if (upperSliderTop.isActive() && this.data.type=='enroll'){
+    } else if (upperSliderTop.isActive() && this.data.type == 'enroll') {
       status = 2
     }
-    if (status == 0) {  
+    if (status == 0) {
       upperSlider.onmove(e);
-      upperSliderTop.onmove(e);    
-    } else if(status == 1) {
+      upperSliderTop.onmove(e);
+    } else if (status == 1) {
       upperSlider.onmove(e);
-    } else if(status == 2) {
+    } else if (status == 2) {
       upperSliderTop.onmove(e);
     }
   },
@@ -249,7 +360,7 @@ Page({
   },
   touchInsure: function (e) {
     console.log("tapInsure");
-    var that =this;
+    var that = this;
     this.data.isSelect = true;
     //更新选项表
     var allLists = this.data.answers.allLists;
@@ -420,7 +531,7 @@ Page({
       var countString = ""
       var url;
       let content = ""
-      if (analyseTimes > 0 ) {
+      if (analyseTimes > 0) {
         content = "使用 1 张解析券（剩余 " + analyseTimes + " 张）"
       } else {
         content = "需支付 5 元"
@@ -614,25 +725,51 @@ Page({
         title: this.getStarString(stars) + '·0' + params.group + '组'
       })
       this.pullQuestions();
-      setTimeout(()=>{
+      setTimeout(() => {
         swipperPage.givenPage(pageNum)
-      },800)
+      }, 800)
     } else if (params.type == 'enroll') {
       groupId = params.group;
       wx.setNavigationBarTitle({
         title: '报名·基础测试'
       })
       this.pullQuestions(this.data.questionUrl);
-
+      this.setData({
+        showLeaderMask:true,
+      })
     }
     var res = wx.getSystemInfoSync()
     screenWidth = res.screenWidth;
     this.setData(this.data)
   },
 
+  getItemPosition(id) {
+    let that = this
+    let name = this._propNameChange(id + '')
+    wx.createSelectorQuery().select('#' + id).boundingClientRect(function (rect) {
+      that.data[name] = {
+        left: 0,
+        top: 0,
+        width: 0,
+        height: 0,
+      }
+      that.data[name].left = rect.left
+      that.data[name].top = rect.top
+      that.data[name].width = rect.width
+      that.data[name].height = rect.height
+      that.setData(that.data)
+    }).exec()
+  },
+  _propNameChange(stringName) {
+    return stringName.replace(/\-/, '')
+  },
   onShow: function (e) {
     score = 0;
-    setTimeout(p => upperSliderTop.show(),500);
+    setTimeout(() => {
+      this.getItemPosition("choose-list")
+      this.getItemPosition("bottom-tips")
+    }, 1000)
+    setTimeout(p => upperSliderTop.show(), 500);
   },
   onReady: function () {
 

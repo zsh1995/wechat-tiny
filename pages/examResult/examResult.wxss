@@ -1,97 +1,110 @@
 /* examResult.wxss */
-.flex-wrp{
-    display:flex;
-    justify-content:center;
-    background-color: #FFFFFF;
-    flex-direction: column;
-    align-items:center;
 
- }
- .flex-item{
-    width: 100%;
-}
-.flex-item:last-child{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-}
-.flex-item.head{
-    text-align: center;
-    margin-top: 80rpx;
-    width:100%;
-    color: #999999;
-}
-.flex-item.score{
-    text-align: center;
-    margin-top: 30rpx;
-    font-size: 100rpx;
-    color:#DDDDDD;
-    width:100%;
-}
-.flex-item.comment{
-    margin: 50rpx 110rpx 50rpx 110rpx;
-    height:auto;
-    width: auto;
-    align-self:center;
-    line-height:1.8;
-    letter-spacing: 0.1em;
-    font-size:34rpx;
-    color: #999999;
-}
-.flex-item.button{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding-top:36rpx;
-}
-.flex-item.examInfo{
-    width: auto;
-    justify-content: center;
-    align-self:center;
-    color:#999;
-    display: flex;
-    margin-top:30rpx;
-    letter-spacing: 0.1em;
+.flex-wrp {
+  display: flex;
+  justify-content: center;
+  background-color: #fff;
+  flex-direction: column;
+  align-items: center;
 }
 
-.mbutton{
-margin-right:5rpx;
-margin-left:5rpx;
-color:black;
-border:1px solid #000000;
-line-height:2.00000006;
-border-radius:6px;
-font-size:32rpx;
+.flex-item {
+  width: 100%;
 }
-.pass{
-	color:#00C775 !important;
-	border:1px solid #00C775 !important;
+
+.flex-item:last-child {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.exam-title{
-  color:#AAA;
-  margin-top:50rpx;
-  width:504rpx;
-}
-.bottom-text{
-  margin-top:50rpx;
-  margin-bottom:100rpx;
-  text-align:center;
-  color: #2BB675;
-  line-height: 2;
-}
-.gray{
+
+.flex-item.head {
+  text-align: center;
+  margin-top: 80rpx;
+  width: 100%;
   color: #999;
 }
-.pass-flag{
+
+.flex-item.score {
+  text-align: center;
+  margin-top: 30rpx;
+  font-size: 100rpx;
+  color: #ddd;
+  width: 100%;
+}
+
+.flex-item.comment {
+  margin: 50rpx 110rpx 50rpx 110rpx;
+  height: auto;
+  width: auto;
+  align-self: center;
+  line-height: 1.8;
+  letter-spacing: 0.1em;
+  font-size: 34rpx;
+  color: #999;
+}
+
+.flex-item.button {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding-top: 36rpx;
+}
+
+.flex-item.examInfo {
+  width: auto;
+  justify-content: center;
+  align-self: center;
+  color: #999;
+  display: flex;
+  margin-top: 30rpx;
+  letter-spacing: 0.1em;
+}
+
+.mbutton {
+  margin-right: 5rpx;
+  margin-left: 5rpx;
+  color: black;
+  border: 1px solid #000;
+  line-height: 2.00000006;
+  border-radius: 6px;
+  font-size: 32rpx;
+}
+
+.pass {
+  color: #00c775 !important;
+  border: 1px solid #00c775 !important;
+}
+
+.exam-title {
+  color: #aaa;
+  margin-top: 50rpx;
+  width: 504rpx;
+}
+
+.bottom-text {
+  margin-top: 50rpx;
+  margin-bottom: 100rpx;
+  text-align: center;
+  color: #2bb675;
+  line-height: 2;
+}
+
+.gray {
+  color: #999;
+}
+
+.pass-flag {
   position: relative;
   text-align: center;
-  width:100%;
-  font-size:32rpx;
-  padding:32rpx 0 32rpx 0;
+  width: 100%;
+  font-size: 32rpx;
+  padding: 32rpx 0 32rpx 0;
 }
-.vertical-before,.vertical-after{
+
+.vertical-before, .vertical-after {
   position: absolute;
   display: inline-block;
   top: 50%;
@@ -99,17 +112,20 @@ font-size:32rpx;
   height: 1px;
   background: red;
 }
-.vertical-before{
-  left:28%;
-}
-.vertical-after{
-  right:28%;
+
+.vertical-before {
+  left: 28%;
 }
 
-.bottom-text>view{
-  font-size:30rpx;
+.vertical-after {
+  right: 28%;
 }
-.button-wrap{
+
+.bottom-text>view {
+  font-size: 30rpx;
+}
+
+.button-wrap {
   width: 74%;
 }
 
@@ -128,7 +144,58 @@ font-size:32rpx;
 }
 */
 
-.up-top{
-  margin:80rpx;
-  letter-spacing:0.1em;
+.up-top {
+  margin: 80rpx;
+  letter-spacing: 0.1em;
+}
+
+.mask-content {
+  width: 100vw;
+  height: 100vh;
+  z-index: 1001;
+}
+
+#enroll-lead-choose {
+  top: 0;
+  border: 1px solid #000;
+  opacity: 0.6;
+  position: absolute;
+}
+
+.enroll-lead, .enroll-block {
+  position: absolute;
+  width: 100%;
+}
+
+.enroll-lead {
+  border: 1px solid #000;
+  border-width: 300px 0 1000px 0;
+  opacity: 0.6;
+}
+
+.enroll-block {
+  top: 300px;
+  background: #fff;
+}
+.enroll-block view{
+  padding-left:100px;
+}
+.enroll-block:after,.enroll-lead:after {
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  content: " ";
+  width: 7px;
+  height: 7px;
+  border-top: 2px solid #999;
+  border-right: 2px solid #999;
+  transform: rotate(45deg) translateY(-50%);
+}
+
+.mask {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999;
+  transition: all 0.5s linear;
 }

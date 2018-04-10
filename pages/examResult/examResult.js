@@ -15,6 +15,52 @@ var upperSlider = null;
 // 当前操作类型
 
 var curType = '';
+var nodes = [{
+  name: 'div',
+  attrs: {
+    class: 'div_class',
+    style: ''
+  },
+  children: [{
+    type: 'text',
+    text: '数值体现思维方式的'
+  }, {
+    name: 'a',
+    attrs: {
+      style: 'color:#ED662C;'
+    },
+    children: [{
+      type: 'text',
+      text: '积极程度'
+    }]
+  },
+  {
+    type: 'node',
+    name: 'br'
+  },
+  {
+    type: 'text',
+    text: '独立思考总会有局限性',
+  },{
+    type: 'node',
+    name: 'br'
+  },{
+    type: 'text',
+    text: '尝试'
+  },{
+    name: 'a',
+    attrs: {
+      style: 'color:#ED662C;'
+    },
+    children: [{
+      type: 'text',
+      text: '交流'
+    }]
+  },{
+    type: 'text',
+    text: '会有明显的提升'
+  }]
+}]
 // examResult.js
 Page({
 
@@ -26,10 +72,12 @@ Page({
     score: '',
     scoreColor: '#DDDDDD',
     type: '',
+    nodes:nodes,
     remainTimes: 10,
     passTimes: 0,
     needTimes: 0,
     enrollTips: enrollTips,
+    showLeadMask:false,
     updateExamStatus: `https://${config.service.host}/exam/uploadStatus`,
     uploadScore: `https://${config.service.host}/uploadScore`,
     examUrl: `https://${config.service.host}/exam/getExamStatus`,
@@ -51,6 +99,11 @@ Page({
   gobacktoMain: function (e) {
     wx.switchTab({
       url: '../../pages/examItems/examItems'
+    })
+  },
+  nextEnrollTips(){
+    this.setData({
+      showLeadMask:false,
     })
   },
   onstart(e){
@@ -234,6 +287,9 @@ Page({
       },800)
       wx.setNavigationBarTitle({
         title: '报名·基础测试'
+      })
+      that.setData({
+        showLeadMask:true,
       })
       that.loadCommentDataByScore(options.score);
       return;

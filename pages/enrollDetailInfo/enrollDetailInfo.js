@@ -12,19 +12,20 @@ let giftContext = [
   { title: '\n1个星级测试券\n', content: '免费进行1次星级测试；\n\n' },
 ]
 var enrollTips = [{ content: "可以暂时空缺\n\n" }, {
-  content: "之后在“我 - 企业直推”中填写" }]
+  content: "之后在“我 - 企业直推”中填写"
+}]
 
 var oInformation = [{ content: "我们希望了解你的学校，年级\n\n" }, {
   content: "我们优先向企业的正式岗位推荐应届毕业生;\n\n"
 }, {
-    content: "需要实习推荐的同学也可以给我们留言\n\n"
-  }]
+  content: "需要实习推荐的同学也可以给我们留言\n\n"
+}]
 Page({
 
-  onstart (e) {
+  onstart(e) {
     upperSlider.ontouch(e)
   },
-  onmove (e) {
+  onmove(e) {
     upperSlider.onmove(e)
   },
   onend(e) {
@@ -41,6 +42,7 @@ Page({
     nextStepText: '下一步：基本信息',
     giftContext: giftContext,
     enrollTips: enrollTips,
+    idf: '职员',
   },
 
   chooseSchool: function (e) {
@@ -51,11 +53,21 @@ Page({
       complete: function (res) { },
     })
   },
-
+  chooseIdf(e) {
+    if (e.detail.value) {
+      this.setData({
+        idf: '学生'
+      })
+    } else {
+      this.setData({
+        idf: '职员'
+      })
+    }
+  },
   onSubmit: function (e) {
     console.log(e)
   },
-  toPublicAccount(){
+  toPublicAccount() {
     wx.previewImage({
       urls: ['https://s1.ax1x.com/2018/03/27/9OWcJe.png'],
     })
@@ -79,7 +91,7 @@ Page({
             text: '报名完成！',
           })
           that.setData({
-            steps:3,
+            steps: 3,
           })
         }, 1200)
       })
@@ -156,10 +168,12 @@ Page({
   },
   nextStep: function () {
     if (this.data.steps == 2) {
-
+      wx.setNavigationBarTitle({
+        title: '欢迎',
+      })
     } else {
       wx.setNavigationBarTitle({
-        title: '报名·基本信息',
+        title: '可以认识一下吗？',
       })
       upperSlider.show()
       this.setData({

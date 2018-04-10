@@ -123,9 +123,6 @@ Page({
   onShow: function () {
     var that = this;
     console.log("examItems onShow")
-    for (var cnt = 0; cnt < 3; cnt++) {
-      this.getExamStatus(cnt + 1);
-    }
     setTimeout(function(){
       that.getFields(true);
     },1000);
