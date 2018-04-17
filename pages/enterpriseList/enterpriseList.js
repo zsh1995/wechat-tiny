@@ -158,7 +158,6 @@ Page({
   onBottom: function (e) {
     console.log("onBottom")
     var that = this;
-    
     if (lockOfPull.isLocked()) return;
     lockOfPull.lock();
     this.getNextPage();
@@ -252,7 +251,6 @@ Page({
         var dataList = result.data.data.list;
         doSome(dataList)
       })
-    
   },
 
   /**

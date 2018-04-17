@@ -16,7 +16,9 @@ var picUrls = {
 }
 
 //
-var introdoce = "";
+var introdoce = "提供值得思考和交流的话题\n帮助年轻人提高情商、逆商\n提升恋爱满意度、就业竞争力";
+var slogan = '致力于积极教育\n（Positiveness Education）\n的社会企业';
+
 
 Page({
   data: {
@@ -26,6 +28,8 @@ Page({
     showToast: false,
     introdoce: introdoce,
     requestUserInfo: `https://${config.service.host}//ajax/user/detailInfo`,
+    slogan: slogan,
+    introdoce: introdoce,
   },
 
   //
@@ -137,26 +141,9 @@ Page({
       })
     }
   },
-  chooseId(){
-    var that = this
-    wx.showActionSheet({
-      itemList: ['学生', '在职',],
-      success: function (res) {
-        console.log(res.tapIndex)
-      },
-      fail: function (res) {
-        wx.showToast({
-          icon: 'none',
-          title: '必须选择身份！',
-        })
-        that.chooseId()
-      }
-    })
-  },
 
   onLoad: function () {
     console.log('onLoad')
-    this.chooseId()
     var that = this
     wx.setStorage({
       key: 'picUrls',

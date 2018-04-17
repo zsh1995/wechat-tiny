@@ -4,7 +4,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
   height: 100vh;
   width:100%;
 }
@@ -24,14 +23,13 @@
   letter-spacing: 0.1em;
 }
 .slogan{
-  font-size: 36rpx;
+  font-size: 32rpx;
   font-weight: 900;
   text-align: center;
   letter-spacing: 0.1em;
-  margin-top: 20rpx;
-  padding-bottom:120rpx;
-  margin-left:auto;
-  margin-right: 110rpx;
+  margin-top: 40rpx;
+  padding-bottom:60rpx;
+
 }
 
 .userinfo-avatar {
@@ -83,16 +81,23 @@
 .gray{
 	color:#999999;
 }
-#introduce{
-  color:#999999;
-  margin: 80rpx 110rpx 0 110rpx;
+.introduce{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.introduce text{
+  text-align: center;
 }
 .button-view{
+  position: absolute;
   margin-top:32rpx;
   margin-bottom: 30rpx;
   width: 74%;
+  bottom: 20rpx;
 }
 image{
-  margin-top: 30rpx;
-  width: 78%;
+  margin-top: 60rpx;
+  width: 100px;
+  height: 100px;
 }

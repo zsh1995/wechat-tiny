@@ -1,7 +1,7 @@
 <import src="../template/template.wxml" />
 <view class='mask' style='display:{{!showLeaderMask?"none":""}}'>
   <view class='mask-content'>
-    <view class='enroll-lead' bindtap='nextEnrollTips'>
+    <view style="opacity:{{steps >= 0 ? 1:0}};"class='enroll-lead' bindtap='nextEnrollTips'>
       <view>
         <rich-text nodes='{{nodes[steps]}}'></rich-text>
       </view>
@@ -13,11 +13,11 @@
       <view>→</view>
       <view>非常反对</view>
     </view>
-    <view id='enroll-lead-choose' style="border-width:{{chooselist.top}}px 17px 0 17px;width:{{chooselist.width-34}}px;height:{{chooselist.height}}px;"></view>
-    <view class='{{steps!=0?"enroll-lead-tips-move":"enroll-lead-tips"}}' style="top:{{chooselist.top+chooselist.height}}px;border-width: {{steps != 1 ? bottomtips.height/2+2:bottomtips.height*0.325 + 2}}px {{steps != 1?750:0.3*750+3}}rpx;width:{{steps != 1?0:0.4*750}}rpx;height:{{steps != 1?0:bottomtips.height*0.35}}px;"></view>
+    <view id='enroll-lead-choose' style="border-width:{{chooselist.top}}px 1000px 0 1000px;width:0px;height:{{chooselist.height}}px;"></view>
+    <view class='{{steps>0?"enroll-lead-tips-move":"enroll-lead-tips"}}' style="top:{{chooselist.top+chooselist.height}}px;border-width: {{steps != 1 ? bottomtips.height/2+2:bottomtips.height*0.325 + 2}}px {{steps != 1?750:0.3*750+3}}rpx;width:{{steps != 1?0:0.4*750}}rpx;height:{{steps != 1?0:bottomtips.height*0.35}}px;"></view>
   </view>
 </view>
-<upper-slider style='display:{{type!="enroll"?"none":""}}' u-position='top' id='topUs'>
+<upper-slider style='display:none' u-position='top' id='topUs'>
   <view class='up-top font-32'>
     <view wx:for="{{enrollTips}}">
       <text class='font-bold'>{{item.title}}</text>

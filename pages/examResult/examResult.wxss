@@ -174,13 +174,27 @@
 }
 
 .enroll-block {
-  top: 300px;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  width: 90%;
+  height: 220rpx;
+  border-color: #000;
   background: #fff;
+  line-height: 2;
+  transition: all 0.8s linear;
+  z-index: 101;
 }
-.enroll-block view{
-  padding-left:100px;
+
+.enroll-block view {
+  margin-left: 100rpx;
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
-.enroll-block:after,.enroll-lead:after {
+
+.enroll-block:after, .enroll-lead:after {
   position: absolute;
   right: 30px;
   top: 50%;
@@ -198,4 +212,5 @@
   height: 100vh;
   z-index: 999;
   transition: all 0.5s linear;
-}
+  background-color:rgba(0,0,0,0.6);
+  }

@@ -1,4 +1,4 @@
-<upper-slider u-position='top' id='us'>
+<upper-slider style='display:none' u-position='top' id='us'>
   <view class='up-top font-32'>
     <view wx:for="{{enrollTips}}">
       <text class='font-bold'>{{item.title}}</text>
@@ -7,7 +7,7 @@
   </view>
 </upper-slider>
 <view class="icontainer" bindtouchstart='onstart' bindtouchmove='onmove' bindtouchend='onend'>
-  <view class="content font-36" hidden='{{steps != 3}}'>
+  <view class="content font-36" hidden='{{steps != 2}}'>
     <image src='https://s1.ax1x.com/2018/02/14/9YGa59.jpg'></image>
     <view>
       <view>见面礼，希望你能继续体验</view>
@@ -24,8 +24,8 @@
     </view>
   </view>
 
-  <form hidden='{{steps == 3}}' bindsubmit="onSubmit">
-    <view class="zan-form column" hidden="{{steps != 1}}">
+  <form hidden='{{steps == 2}}' bindsubmit="onSubmit">
+    <view class="zan-form column" hidden="true">
       <view class="zan-cell zan-form__item">
         <text class="zan-form__title">企业1</text>
         <input name='wantedCompany1' class="zan-form__input zan-cell__bd" placeholder="第一个企业" />
@@ -39,28 +39,36 @@
         <input name='wantedCompany3' class="zan-form__input zan-cell__bd" placeholder="第三个企业" />
       </view>
     </view>
-    <view class="zan-form column" hidden="{{steps != 2}}">
+    <view class="zan-form column" hidden="{{steps != 1}}">
       <view class="zan-cell zan-form__item">
         <text class="zan-form__title">{{idf}}</text>
         <switch class="zan-form__input zan-cell__bd" bindchange='chooseIdf' color='#ED662C' />
       </view>
-      <view class="zan-cell zan-form__item">
-        <text class="zan-form__title">姓名</text>
-        <input name='studentName' class="zan-form__input zan-cell__bd" placeholder="名字" />
+      <view style='display:{{idf=="学生"?"":"none"}}' class="zan-cell zan-form__item">
+        <view class="zan-form__title">学校</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access" bindtap="chooseSchool">{{schoolName}}</view>
+        <input name="school" style="display:none"></input>
+      </view>
+      <view style='display:{{idf=="在职"?"":"none"}}' class="zan-cell zan-form__item">
+        <view class="zan-form__title">企业</view>
+        <input name="company" placeholder="企业"></input>
+      </view>
+      <view style='display:{{idf=="学生"?"":"none"}}' class="zan-cell zan-form__item">
+        <text class="zan-form__title">入学年份</text>
+        <picker name="enrollmentYear" mode="multiSelector" class="weui-cell__ft weui-cell__ft_in-access" bindchange="chooseEnrollment" range="{{enrollment}}" value="{{enrollmentId}}">{{enrollment[0][enrollmentId[0]]+' · '+enrollment[1][enrollmentId[1]]}}</picker>
+
+      </view>
+      <view style='display:{{idf=="在职"?"":"none"}}' class="zan-cell zan-form__item">
+        <text class="zan-form__title">职位</text>
+        <input name='post' class="zan-form__input zan-cell__bd" placeholder="职位" />
       </view>
       <view class="zan-cell zan-form__item">
         <text class="zan-form__title">手机号</text>
         <input name='phoneNumber' class="zan-form__input zan-cell__bd" type="number" maxlength="20" placeholder="手机" />
       </view>
-      <view class="zan-cell zan-form__item">
-        <view class="zan-form__title">学校</view>
-        <view class="weui-cell__ft weui-cell__ft_in-access" bindtap="chooseSchool">{{schoolName}}</view>
-        <input name="school" style="display:none"></input>
-      </view>
-
-      <view class="zan-cell zan-form__item">
-        <text class="zan-form__title">专业</text>
-        <input name='major' class="zan-form__input zan-cell__bd" placeholder="所学专业" />
+      <view style='display:{{idf=="在职"?"none":""}}' class="zan-cell zan-form__item">
+        <text class="zan-form__title">邮箱</text>
+        <input name='emailAddr' class="zan-form__input zan-cell__bd" placeholder="接受推荐信等文件" />
       </view>
     </view>
     <view class='column' style='display:flex;align-items:center;flex-direction:column;'>

@@ -8,8 +8,8 @@ var userUtil = require('../../utils/user.js')
 var companyUtil = require('../../utils/company.js')
 let upperSlider = null;
 let giftContext = [
-  { title: '\n3个解析券\n', content: '免费查看三个解析;\n' },
-  { title: '\n1个星级测试券\n', content: '免费进行1次星级测试；\n\n' },
+  { title: '\n解析券 × 3\n', content: '免费查看3个解析\n' },
+  { title: '\n星级测试券 × 1\n', content: '免费进行1次星级测试\n\n' },
 ]
 var enrollTips = [{ content: "可以暂时空缺\n\n" }, {
   content: "之后在“我 - 企业直推”中填写"
@@ -39,10 +39,17 @@ Page({
     steps: 1,
     schoolName: '选择您的学校',
     updataUserInfo: `https://${config.service.host}/userInfo/updateUserInfo`,
-    nextStepText: '下一步：基本信息',
+    nextStepText: '见面礼！',
     giftContext: giftContext,
     enrollTips: enrollTips,
-    idf: '职员',
+    idf: '在职',
+    enrollment: [['2014', '2015', '2016', '2017', '2018'], ['专科', '本科', '硕士', '博士']],
+    enrollmentId: [2, 1],
+  },
+  chooseEnrollment(e) {
+    this.setData({
+      enrollmentId: e.detail.value
+    })
   },
 
   chooseSchool: function (e) {
@@ -60,7 +67,7 @@ Page({
       })
     } else {
       this.setData({
-        idf: '职员'
+        idf: '在职'
       })
     }
   },
@@ -73,13 +80,15 @@ Page({
     })
   },
   onSubmit: function (e) {
-    if (this.data.steps == 1) return;
     var userInfo = e.detail.value;
     var mSchool = this.data.schoolName
     mSchool = mSchool == '选择您的学校' ? '' : mSchool
     userInfo.school = mSchool
     userInfo.userChannel = '1';
+    userInfo.type = this.idf
     var that = this;
+    userInfo.enrollmentYear = this.data.enrollment[0][this.data.enrollmentId[0]]
+    userInfo.enrollmentType = this.data.enrollment[1][this.data.enrollmentId[1]]
     let companys = [userInfo.wantedCompany1, userInfo.wantedCompany2, userInfo.wantedCompany3]
     Promise.all([userUtil.uploadUserInfo(userInfo), companyUtil.uploadCompanys(companys)])
       .then(p => {
@@ -91,7 +100,7 @@ Page({
             text: '报名完成！',
           })
           that.setData({
-            steps: 3,
+            steps: 2,
           })
         }, 1200)
       })
@@ -167,22 +176,13 @@ Page({
     })
   },
   nextStep: function () {
-    if (this.data.steps == 2) {
-      wx.setNavigationBarTitle({
-        title: '欢迎',
-      })
-    } else {
-      wx.setNavigationBarTitle({
-        title: '可以认识一下吗？',
-      })
-      upperSlider.show()
-      this.setData({
-        steps: this.data.steps + 1,
-        nextStepText: '最后一步·见面礼！',
-        enrollTips: oInformation,
-      })
-    }
-
+    upperSlider.show()
+    wx.setNavigationBarTitle({
+      title: '欢迎',
+    })
+    this.setData({
+      enrollTips: oInformation,
+    })
   }
 
 })

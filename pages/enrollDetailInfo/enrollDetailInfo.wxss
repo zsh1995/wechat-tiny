@@ -147,8 +147,7 @@ image{
 margin-right:5rpx;
 margin-left:5rpx;
 color:black;
-border:1px solid #000000;
-line-height:2.00000006;
+border:1px solid #000000;ine-height:2.00000006;
 border-radius:6px;
 font-size:32rpx;
 }

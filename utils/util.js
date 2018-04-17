@@ -58,7 +58,44 @@ function Format(data, fmt) { //author: meizz
   return fmt;
 }
 
+function get_promise(url, data) {
+  return new Promise((resolve, reject) => {
+    qcloud.request({
+      url: url + '?' + urlEncode(data),
+      login: true,
+      method: 'GET',
+      header: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      success(result) {
+        let code = parseInt(result.data.code)
+        if (0 == code) {
+          resolve(result);
+        } else if (1 == code) {
+          reject(new Error("已检查异常" + result.data.message))
+        } else if (2 == code) {
+          reject(new Error(result.data.message))
+        } else if (3 == code) {
+          reject(new Error("参数错误!"))
+        } else if (-99 == code) {
+          reject(new Error("未知错误，请联系管理员"))
+        } else {
+          reject(new Error("与服务器连接异常"))
+        }
+      },
+      fail(error) {
+        reject(new Error("与服务器连接异常"))
+      },
+      complete() {
+        console.log('request complete');
+      }
+
+    });
+  })
+}
+
 function ajax_promise(url, data, ) {
+  console.log(this)
   return new Promise((resolve, reject) => {
     qcloud.request({
       url: url,
@@ -72,10 +109,10 @@ function ajax_promise(url, data, ) {
         let code = parseInt(result.data.code)
         if (0 == code) {
           resolve(result);
-        } else if(1 == code){
+        } else if (1 == code) {
           reject(new Error("已检查异常" + result.data.message))
         } else if (2 == code) {
-          reject(new Error( result.data.message))
+          reject(new Error(result.data.message))
         } else if (3 == code) {
           reject(new Error("参数错误!"))
         } else if (-99 == code) {
@@ -146,6 +183,15 @@ function formateId(id) {
   }
   return tempZero.concat(id)
 }
+function debounce(delay, action) {
+  let flag
+  return function () {
+    clearTimeout(flag)
+    flag = setTimeout(() => {
+      action.apply(this, arguments)
+    }, delay)
+  }
+}
 
 module.exports = {
   formatTime: formatTime,
@@ -153,4 +199,6 @@ module.exports = {
   ajax_promise: ajax_promise,
   ajax_promise_json: ajax_promise_json,
   formateId: formateId,
+  get_promise: get_promise,
+  debounce: debounce,
 }

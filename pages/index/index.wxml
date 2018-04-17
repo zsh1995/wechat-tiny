@@ -1,29 +1,6 @@
-<!--index.wxml-->
-<!--
-<view class="icontainer">
-  <view class="floatImg" hidden='{{!showToast}}' bindtap='closePic'>
-    <view class='shade'></view>
-    <view id="closePic" class='close'></view>
-    <image id="{{showPic.id}}" class="pic {{showPicStyle}}" mode='aspectFit' src='{{showPic.url}}' bindtap='cancelShow'></image>
-  </view>
-  <view class="textcontent">
-    <view class='company-icom'>
-      <image src='{{picUrls["index-icon"]}}' mode='aspectFit'></image>
-    </view>
-    <view id="introduce"><text>就业优势
-1、提高智商、情商、逆商，提高工作业绩和满意度
-2、如果求职，有以下优势！ 
-1）获得推荐信，面试有的说！</text><view style='display:inline-block;text-decoration:underline;' bindtap='toSee'>（ 点击查看推荐信）</view> <text>
-2）向名企优企直推内推！ 
-点击“我 - 企业直推”指定目标企业，我们帮你建立直推或内推渠道！ 
-3）打造优秀人才品牌形象！ 
-向企业宣传“高商苑学员，值得优先面试”。</text></view>
-    <view class='slogan gray' bindtap='navToSmr'>现在报名→</view>
-  </view>
-</view>
--->
-<!--<float-image img-src='https://s1.ax1x.com/2018/03/09/9Rk1oV.jpg'></float-image> -->
 <view class='icontainer'>
-  <image bindtap='toSee' mode="widthFix" src='https://s1.ax1x.com/2018/03/09/9Rk1oV.jpg'></image>
-  <view class="button-view"><gsy-button font-size='36rpx' bindtap='navToSmr' text-content="报名申请推荐信"></gsy-button></view>
+  <image mode="widthFix" src='https://s1.ax1x.com/2018/02/14/9YGa59.jpg'></image>
+  <view class='slogan'><text>{{slogan}}</text></view>
+  <view class='introduce'><text>{{introdoce}}</text></view>
+  <view class="button-view"><gsy-button font-size='36rpx' bindtap='navToSmr' text-content="了解一下"></gsy-button></view>
 </view>

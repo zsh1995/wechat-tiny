@@ -147,7 +147,7 @@ Page({
     var intFunction = setInterval(
       that._checkUserRight(star,
         function () {
-          if(internalStop) return;
+          // if(internalStop) return;
           console.log('ss')
           wx.hideLoading()
           clearInterval(internalList.pop())

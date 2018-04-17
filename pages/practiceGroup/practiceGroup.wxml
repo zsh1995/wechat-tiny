@@ -41,7 +41,7 @@
       <view wx:if='{{isPassed && remainTimes == 0 && !inExam}}' class='box-hint'>已完成（可以继续测试）</view>
     </view>
     <view class='column-flex'>
-      <gsy-button default-type='{{invitor.count>=invitor.needInvitor?"genenal ":"white-style "}}' with-shadow='{{invitor.count<invitor.needInvitor}}' font-size='28rpx' textContent="邀请好友 " bindtap="navigatoInvitor"></gsy-button>
+      <gsy-button default-type='{{inviteEnough?"genenal ":"white-style "}}' with-shadow='{{!inviteEnough}}' font-size='28rpx' textContent="邀请好友 " bindtap="navigatoInvitor"></gsy-button>
       <view class='box-hint'>已邀请
         <text decode="{{true}}" class='font-bold' style='color:#2BB675'>&nbsp;{{invitor.count}}/{{invitor.needInvitor}}&nbsp;</text>位好友交流
       </view>

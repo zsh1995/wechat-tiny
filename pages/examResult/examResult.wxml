@@ -1,15 +1,12 @@
 <!--examResult.wxml-->
 <view class='mask' style='display:{{showLeadMask?"":"none"}}'>
   <view class='mask-content'>
-    <view class='enroll-lead' bindtap='nextEnrollTips'>
-      <view><rich-text style='opacity:0' nodes='{{nodes}}'></rich-text></view>
-    </view>
     <view class='enroll-block' bindtap='nextEnrollTips'>
       <view><rich-text nodes='{{nodes}}'></rich-text></view>
     </view>
   </view>
 </view>
-<upper-slider style='display:{{type!="enroll"?"none":""}}' u-position='top' id='us'>
+<upper-slider style='display:none' u-position='top' id='us'>
   <view class='up-top font-32'>
     <view wx:for="{{enrollTips}}">
       <text class='font-bold'>{{item.title}}</text>

@@ -33,7 +33,7 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "就业优势",
+        "text": "首页",
         "iconPath": "iconSource/index-default.png",
         "selectedIconPath": "iconSource/index-selected.png"
       },

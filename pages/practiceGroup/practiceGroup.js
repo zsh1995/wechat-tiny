@@ -30,7 +30,8 @@ Page({
     preExamPass:false,
     passedTimes:0,
     remainTimes:0,
-
+    inviteEnough: false,
+    inExam: false,
   },
 
   groupOntap: function (e) {
@@ -79,6 +80,7 @@ Page({
       var invitor = result.data.data;
       that.setData({
         invitor: invitor,
+        inviteEnough: invitor.count >= invitor.needInvitor,
       });
     })
   },
@@ -152,7 +154,9 @@ Page({
     this.getInvitorCount();
     payUtil.checkUserRight(star)
       .then(p=>{
-        that.data.remainTimes = p.data.data;
+        that.setData({
+          remainTimes: p.data.data
+        })
       })
     payUtil.getPassedTimes(star)
       .then(p => {
@@ -167,7 +171,7 @@ Page({
       payUtil.getExamStatus(star-1)
         .then(p => {
           console.log(p);
-          p && this.data.invitor >=5? that.setData({ preExamPass: true }) : 0
+          p && this.data.invitor.count >= this.data.invitor.needInvitor? that.setData({ preExamPass: true }) : 0
         } )
     }else{
       that.setData({ preExamPass: true })

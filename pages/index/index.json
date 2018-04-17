@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "就业优势",
+  "navigationBarTitleText": "首页",
   "usingComponents":{
     "gsy-button":"/components/gsyButton/gsyButton",
     "float-image":"/components/floatImage/floatImage"

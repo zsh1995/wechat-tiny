@@ -1,33 +1,48 @@
-<!--schoolChoose.wxml-->
-<view class="page">
-	<scroll-view scroll-y="true" scroll-top="{{scrollTop}}" style="position:absolute;top:0;bottom:0;">
-		<view class="page__bd">
-			<view class="weui-search-bar">
-				<view class="weui-search-bar__form">
-					<view class="weui-search-bar__box">
-						<icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-						<input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed&&isSearch}}" bindinput="inputTyping"></input>
-						<view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
-							<icon type="clear" size="14"></icon>
-						</view>
-					</view>
-					<label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
-						<icon class="weui-icon-search" type="search" size="14"></icon>
-						<view class="weui-search-bar__text">搜索</view>
-					</label>
-				</view>
-				<view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="saveInput">保存</view>
-			</view>
-				<view wx:for="{{schoolInfoList}}">
-					<view class="weui-cells searchbar-result" >
-						<navigator url="" class="weui-cell" hover-class="weui-cell_active" bindtap="inputSchool" data-options="{{item.school}}">
-							<view class="weui-cell__bd" style="display:flex;align-items:center">
-								<image class="schoolAva"src="{{item.avaUrl}}"></image>
-								<view style="margin-left:20rpx">{{item.school}}</view>
-							</view>
-						</navigator>
-					</view>
-				</view>
-		</view>
-	</scroll-view>
+<view class="page" bindtouchstart='touchstar' bindtouchmove='touchmove' bindtouchend='touchend'>
+  <image class="floatImg" mode='aspectFit' src='{{pictureUrl}}' wx:if="{{enableShowPic}}" bindtap='cancelShow'></image>
+  <view class="shade" wx:if="{{enableShowPic}}" bindtap='cancelShow'></view>
+  <view class="maincontain">
+    <view style="width:100%;">
+      <view class="page__bd">
+        <view class="weui-search-bar">
+          <view class="weui-search-bar__form">
+            <view class="weui-search-bar__box">
+              <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+              <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed&&isSearch}}" bindblur="bindblur" bindinput="inputTyping" bindfocus="onFocus"></input>
+              <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+                <icon type="clear" size="14"></icon>
+              </view>
+            </view>
+            <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+              <icon class="weui-icon-search" type="search" size="14"></icon>
+              <view class="weui-search-bar__text">搜索</view>
+            </label>
+          </view>
+          <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="saveInput">搜索</view>
+        </view>
+
+      </view>
+    </view>
+
+    <view class="bottom-item">
+      <scroll-view scroll-y="true" scroll-top="{{}}" bindscrolltolower="onBottom" bindscrolltoupper="" style="position:absolute;top:48px;bottom:0;" scroll-into-view="{{lastItem}}" bindscroll="onScroll" lower-threshold="60">
+        <view wx:for="{{schoolInfoList}}">
+          <view class="weui-cells searchbar-result" bindtap="inputSchool" data-options="{{item.schoolName}}">
+            <view url="" class="weui-cell" hover-class="weui-cell_active">
+              <view class="weui-cell__bd" style="display:flex;align-items:center">
+                <view style="margin-left:20rpx">{{item.schoolName}}</view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="weui-loadmore" hidden="{{!load || !oneMore}}">
+          <view class="weui-loading"></view>
+          <view class="weui-loadmore__tips">正在加载</view>
+        </view>
+        <view class="weui-loadmore weui-loadmore_line" hidden="{{load || !oneMore}}">
+          <view class="weui-loadmore__tips weui-loadmore__tips_in-line">到底啦O(∩_∩)O</view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
 </view>

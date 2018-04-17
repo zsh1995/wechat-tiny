@@ -326,11 +326,15 @@ page {
 
 .enroll-lead {
   position: relative;
-  top: 300px;
-  width: 100%;
-  height: 150rpx;
+  top: 50%;
+  left:50%;
+  transform: translateY(-50%) translateX(-50%);
+  width: 90%;
+  height: 220rpx;
   border-color: #000;
   background: #fff;
+  line-height: 2;
+  transition: all .8s linear;
   z-index: 101;
 }
 
@@ -386,7 +390,7 @@ page {
 
 #enroll-lead-choose-txt {
   position: absolute;
-  font-size: 36rpx;
+  font-size: 32rpx;
   color: #fff;
   display: flex;
   justify-content: space-around;

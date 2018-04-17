@@ -108,7 +108,7 @@ var endNode = [{
     text: '试试吧！'
   }]
 }]
-var nodeList = [nodes, nextNode,endNode]
+var nodeList = [nodes, nextNode, endNode]
 // 显示繁忙提示
 var showBusy = text => wx.showToast({
   title: text,
@@ -191,8 +191,8 @@ Page({
     requestUrl: config.service.requestUrl,
     enrollLeadTxt: enrollLeadTxt,
     nodes: nodeList,
-    steps: 0,
-    showLeaderMask:false,
+    steps: -1,
+    showLeaderMask: false,
     questionUrl: `https://${config.service.host}/ajax/exam/getQuestions`,
     examUrl: `https://${config.service.host}/exam/getExamQuestions`,
     paymentUrl: `https://${config.service.host}/pay/payEncap`,
@@ -213,17 +213,17 @@ Page({
     color: 'green'
   },
   nextEnrollTips() {
-    if (this.data.steps < 2){
+    if (this.data.steps < 2) {
       this.data.steps += 1
       this.setData(this.data)
-    }else{
+    } else {
       this.setData({
-        showLeaderMask:false,
+        showLeaderMask: false,
       })
     }
-      
 
-    
+
+
   },
   onShareAppMessage: function (res) {
     let chooseList = this.data.chooseList
@@ -731,11 +731,11 @@ Page({
     } else if (params.type == 'enroll') {
       groupId = params.group;
       wx.setNavigationBarTitle({
-        title: '报名·基础测试'
+        title: '思维测试'
       })
       this.pullQuestions(this.data.questionUrl);
       this.setData({
-        showLeaderMask:true,
+        showLeaderMask: true,
       })
     }
     var res = wx.getSystemInfoSync()
@@ -768,7 +768,13 @@ Page({
     setTimeout(() => {
       this.getItemPosition("choose-list")
       this.getItemPosition("bottom-tips")
+      setTimeout(() => {
+        this.setData({
+          steps: 0,
+        })
+      }, 500)
     }, 1000)
+
     setTimeout(p => upperSliderTop.show(), 500);
   },
   onReady: function () {
