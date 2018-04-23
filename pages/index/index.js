@@ -16,7 +16,7 @@ var picUrls = {
 }
 
 //
-var introdoce = "提供值得思考和交流的话题\n帮助年轻人提高情商、逆商\n提升恋爱满意度、就业竞争力";
+var introdoce = "提供值得思考和交流的话题\n帮助年轻人提高情商、逆商\n协调恋爱婚姻中的常见问题\n提高就业竞争力（仅大学生）";
 var slogan = '致力于积极教育\n（Positiveness Education）\n的社会企业';
 
 
