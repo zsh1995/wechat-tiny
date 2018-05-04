@@ -42,6 +42,25 @@
 					"name": "t",
 					"pathName": "pages/enrollDetailInfo/enrollDetailInfo",
 					"query": ""
+				},
+				{
+					"id": 2,
+					"name": "logintest",
+					"pathName": "pages/practiceGroup/practiceGroup",
+					"query": "star=1"
+				},
+				{
+					"id": -1,
+					"name": "logintest",
+					"pathName": "pages/userInformation/userInformation",
+					"query": "star=1",
+					"scene": "1007"
+				},
+				{
+					"id": -1,
+					"name": "loginPage",
+					"pathName": "pages/loginPage/loginPage",
+					"query": ""
 				}
 			]
 		}

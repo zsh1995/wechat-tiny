@@ -23,7 +23,7 @@
 .menu-item:active{
   background: #e1e1e1;
 }
-.menu-item::after{
+.menu-item:after{
 	position: absolute;
 	top: 50%;
 	right: 32rpx;

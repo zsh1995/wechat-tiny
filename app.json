@@ -18,7 +18,8 @@
     "pages/enrollDetailInfo/enrollDetailInfo",
     "pages/accPage/accPage",
     "pages/summaryPage/summaryPage",
-    "pages/couponPage/couponPage"
+    "pages/couponPage/couponPage",
+    "pages/loginPage/loginPage"
   ],
   "window": {
     "backgroundTextStyle": "light",

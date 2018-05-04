@@ -52,3 +52,8 @@ font-size:17px;
 .section-block:first-child{
   margin-top: 0;
 }
+.hint-tip{
+  padding: 10rpx 40rpx;
+  background: #eee;
+  color:#999;
+}

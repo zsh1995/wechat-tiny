@@ -25,3 +25,7 @@
   background: #fff;
   color: #6A6869;
 }
+.gsy-small-button{
+  width: 200rpx;
+  line-height: 80rpx;
+}

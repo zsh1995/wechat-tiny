@@ -1,6 +1,13 @@
 <view class='icontainer'>
   <image mode="widthFix" src='https://s1.ax1x.com/2018/02/14/9YGa59.jpg'></image>
-  <view class='slogan'><text>{{slogan}}</text></view>
-  <view class='introduce'><text>{{introdoce}}</text></view>
-  <view class="button-view"><gsy-button font-size='36rpx' bindtap='navToSmr' text-content="了解一下"></gsy-button></view>
+  <view class='slogan'>
+    <text>{{slogan}}</text>
+  </view>
+  <view class='introduce'>
+    <text>{{introdoce}}</text>
+  </view>
+  <view class="button-view">
+    <view>{{floatText}}</view>
+  <gsy-button font-size='36rpx' bindtap='navToSmr' text-content="了解一下"></gsy-button>
+</view>
 </view>

@@ -7,6 +7,8 @@ var config = require('../../config');
 
 var userUtils = require('../../utils/user')
 
+var hintTip = '在校招平台「梧桐果」绑定同一手机号，可通过手机号获取你的星级，向全国优质企业展示！'
+
 
 Page({
 
@@ -14,6 +16,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    hintTip:hintTip,
     updataUserInfo: `https://${config.service.host}/userInfo/updateUserInfo`,
     requestUserInfoURL: `https://${config.service.host}/userInfo/getUserInfo`,
     region: ['', '广州市', ''],

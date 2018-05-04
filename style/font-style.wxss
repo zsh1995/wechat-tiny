@@ -1,6 +1,9 @@
 .font-32{
   font-size: 32rpx;
 }
+.font-30{
+  font-size: 30rpx;
+}
 .font-32-bold{
   font-size: 32rpx;
   font-weight: 700;

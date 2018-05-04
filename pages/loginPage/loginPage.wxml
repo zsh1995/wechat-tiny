@@ -1,0 +1,21 @@
+<!--pages/loginPage/loginPage.wxml-->
+<view class='grayHolder'>
+  <view class='tips'>
+    <view class='title font-36'>微信授权</view>
+    <view class='box'>
+      <view class='font-30 message'>
+        <image></image>
+        <text>{{message}}</text>
+      </view>
+      <view class='line'></view>
+      <view class='font-30 info-list'>
+        <dot></dot>
+        <text>{{rightInfo}}</text>
+      </view>
+    </view>
+    <view class='options'>
+      <button>拒绝</button>
+      <button class='active' open-type='getUserInfo' bindgetuserinfo='bindgetuserinfo'>允许</button>
+    </view>
+  </view>
+</view>

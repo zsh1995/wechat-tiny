@@ -52,7 +52,7 @@
           <view class="weui-cell__bd cellinput">手机号</view>
           <input name="phoneNumber" class="weui-cell__ft" style="color:black" type="number" placeholder="{{subUserInfo.phoneNumber ==''?'请填写你的手机号' : subUserInfo.phoneNumber}}">说明文字</input>
         </view>
-
+        <view class='hint-tip font-32'>{{hintTip}}</view>
         <view class="weui-cell">
           <view class="weui-cell__bd cellinput">邮箱</view>
           <input name="emailAddr" class="weui-cell__ft" style="color:black" placeholder="{{subUserInfo.emailAddr ==''?'请填写你的邮箱':subUserInfo.emailAddr}}">说明文字</input>

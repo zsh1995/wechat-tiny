@@ -95,7 +95,6 @@ function get_promise(url, data) {
 }
 
 function ajax_promise(url, data, ) {
-  console.log(this)
   return new Promise((resolve, reject) => {
     qcloud.request({
       url: url,
@@ -192,6 +191,16 @@ function debounce(delay, action) {
     }, delay)
   }
 }
+let intervalList = []
+function promise_qcloud_login() {
+  return new Promise((resolve, rejct) => {
+    qcloud.login({
+      success(){
+        resolve('login success')
+      }
+    })
+  })
+}
 
 module.exports = {
   formatTime: formatTime,
@@ -201,4 +210,5 @@ module.exports = {
   formateId: formateId,
   get_promise: get_promise,
   debounce: debounce,
+  qcloulogin: promise_qcloud_login
 }
