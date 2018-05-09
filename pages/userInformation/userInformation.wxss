@@ -1,5 +1,6 @@
 /* userInformation.wxss */
 @import '/style/gsy-common/menu.wxss';
+@import '/style/gsy-common/button';
 page{
   height:100%;
   background: #eee;
@@ -97,10 +98,10 @@ button{
   line-height:100rpx;
   font-size: 40rpx;
 }
-button::after{
+button:after{
   border: none;
 }
-button::active{
+button:active{
   background: ''
 }
 .light-star{
