@@ -16,9 +16,9 @@ var picUrls = {
 }
 
 //
-var introdoce = "提供值得思考和交流的话题\n帮助年轻人提高情商、逆商\n协调恋爱婚姻中的常见问题\n为大学生提高就业竞争力";
+var introdoce = "• 帮助广大青年提高情商和逆商、团队协作、工作和恋爱、婚姻质量；\n• 帮助大学生提高就业竞争力；\n• LG电子新员工培训，做出“很实用”的结论；\n• 清华土木系学生会建议学生认真体验！";
 var slogan = '致力于积极教育\n（Positiveness Education）\n的社会企业';
-var floatText = '清华x-lab培育，启迪之星孵化'
+var floatText = '清华x-lab培育'
 
 Page({
   data: {

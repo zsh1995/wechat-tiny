@@ -85,9 +85,11 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 .introduce text{
-  text-align: center;
+  text-align: left;
+  width: 74%;
 }
 .button-view{
   position: absolute;
@@ -107,7 +109,7 @@
   padding: 20rpx;
 }
 image{
-  margin-top: 60rpx;
+  margin-top: 1vh;
   width: 100px;
   height: 100px;
 }

@@ -16,18 +16,19 @@
 
 <view class='menus-pannel font-36'>
 	<view class='menu-group'>
-		<view class='menu-item gsy-green' bindtap="doAccelarate">企业直推</view>
+		<view class='menu-item gsy-green' bindtap="navitoWuTong">梧桐果向企业推荐</view>
+    <view after class='menu-item menu-item-after' bindtap="doAccelarate">企业直推</view>
 	</view>
 
 	<view class='menu-group'>
-		<view class='menu-item' bindtap="bindInvitor">邀请好友</view>
-		<view class='menu-item' bindtap="getPayRecord">付费记录</view>
-		<view class='menu-item' bindtap="bindNavCoupon">学习券</view>
+		<view class='menu-item menu-item-after' bindtap="bindInvitor">邀请好友</view>
+		<view class='menu-item menu-item-after' bindtap="getPayRecord">付费记录</view>
+		<view class='menu-item menu-item-after' bindtap="bindNavCoupon">学习券</view>
 	</view>
 
 	<view class='menu-group'>
 		<!--<view class='menu-item'>关于我们</view>-->
-		<view class='menu-item clear-padding' ><button class='font-36' open-type="contact">遇到问题？给我们留言</button></view>
+		<view class='menu-item menu-item-after clear-padding' ><button class='font-36' open-type="contact">遇到问题？给我们留言</button></view>
 	</view>
 </view>
 

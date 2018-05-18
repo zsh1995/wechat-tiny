@@ -1,10 +1,6 @@
 // pages/summaryPage/summaryPage.js
 var picList = [
-  'https://s1.ax1x.com/2018/03/08/92lpgP.jpg',
-  'https://s1.ax1x.com/2018/03/08/92Qv4A.jpg',
-  'https://s1.ax1x.com/2018/03/08/92Qz9I.jpg',
-  'https://s1.ax1x.com/2018/03/08/92lS3t.jpg',
-  'https://s1.ax1x.com/2018/03/08/92l9jf.jpg',
+  'https://s1.ax1x.com/2018/05/17/C69pCT.jpg',
 ]
 Page({
 

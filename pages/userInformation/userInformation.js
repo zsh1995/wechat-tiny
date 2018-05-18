@@ -259,6 +259,11 @@ Page({
       complete: function (res) { },
     })
   },
+  navitoWuTong(){
+    wx.navigateTo({
+      url: '../summaryPage/summaryPage',
+    })
+  },
 
   onSubmit: function (event) {
     showBusy('正在提交');
