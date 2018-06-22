@@ -23,7 +23,7 @@
   </view>
   <view wx:if="{{type!='exam'}}" class="flex-item comment">
     <scroll-view scroll-y style="height:100%;width:auto">
-      <text>{{comment}}</text>
+      <rich-text nodes='{{comment}}'></rich-text>
     </scroll-view>
   </view>
   <view class='pass-flag' wx:if="{{type == 'exam'}}">

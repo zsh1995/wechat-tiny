@@ -1,4 +1,3 @@
-
 // 引入 QCloud 小程序增强 SDK
 var qcloud = require('../../bower_components/wafer-client-sdk/index');
 
@@ -8,6 +7,9 @@ var config = require('../../config');
 var utils = require('..//../utils/score');
 
 var examTimesUtil = require('../../utils/userRight.js');
+
+let parseHtml = require('../../utils/richTextParse/richText.js')
+
 var stars;
 var enrollTips = [{ title: "1.我们会给你一个参考意见。\n", content: "\n我们大概有99%的把握，如果有问题，我们会100%负责。\r\n任何意见或疑问，可以给我们留言，我们一定回复。" }, { title: "\n2.思维方式的成长需要一定的时间，希望你可以坚持。"}]
 var upperSlider = null;
@@ -227,7 +229,7 @@ Page({
 
   loadCommentDataByScore:function(score){
     var result = utils.getCommentByScore(score);
-    this.data.comment = result.comment;
+    this.data.comment = parseHtml.go(result.comment);
     this.data.score = result.score;
     this.data.scoreColor = result.color;
     this.data.passed = score >= 54;

@@ -1,10 +1,11 @@
 <!--examNotice.wxml-->
 <view class="itemcontainer">
   <scroll-view scroll-y class="item_content">
-    <view wx:for="{{examData}}">
-      <text class='font-bold'>{{item.title}}</text>
-      <text>{{item.content}}</text>
-    </view>
+    <rich-text nodes="{{examData[0]}}"></rich-text>
+    <image id="0" bindtap="preview" mode='widthFix' src='{{examPic[0]}}'></image>
+    <rich-text nodes="{{examData[1]}}"></rich-text>
+    <image id="1" bindtap="preview" mode='widthFix' src='{{examPic[1]}}'></image>
+    <rich-text nodes="{{examData[2]}}"></rich-text>
   </scroll-view>
   <view class="button-item">
     <view style='padding:0 110rpx' hidden="{{ remainTimes<= 0 && !inExam }}">

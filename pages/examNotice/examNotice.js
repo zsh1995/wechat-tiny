@@ -9,12 +9,20 @@ var payUtils = require('../../utils/payUtils')
 var examUtils= require('../../utils/exam.js')
 var couponUtil = require('../../utils/coupon.js');
 var userRightUtil = require('../../utils/userRight')
+let parseHtml = require('../../utils/richTextParse/richText.js')
 
 var intFunction = null;
 var execCount = 0;
 var star = 0;
 var internalList = new Array();
 var internalStop = false;
+let pic1Src ='https://s1.ax1x.com/2018/06/05/C7y929.jpg'
+let pic2Src = 'https://s1.ax1x.com/2018/06/05/C7yp8J.jpg'
+let examTips1 = parseHtml.go('<p>1、测试过关的价值</p><br /><p>在梧桐果求职会有很大的优势。</p><p>梧桐果（www.wutongguo.com）向企业宣传“高商苑星级学员，值得优先面试”</p><br />')
+let examTips2 = parseHtml.go('<br /><p>企业搜索简历在同等条件下优先展示高商苑星级学员。</p><br />')
+let examTips3 = parseHtml.go('<br /><p>梧桐果是覆盖全国各地各类名优企的综合型校招平台，与百度百聘、支付宝合作。</p><br /><p>给你求职推荐信，适用任何企业（点击“我”）</p><br /><p>还有一个重要优势</p><br /><p>目前很多名企明示不招应届生，我们会去找这些企业介绍高商苑星级学员和往届生不会有明显的差别，甚至比毕业一两年的往届生更好，然后邀请他们在梧桐果发布招聘信息。</p><br /><br /><p>2、过关标准及时限</p><br /><p>随机抽题，每次6组，其中3组结果超过90%。</p><br /><p>一组测试要在30分钟内完成，中途可退出再进，题不变。</p>')
+
+
 Page({
 
   /**
@@ -30,16 +38,8 @@ Page({
     remainTimes: 0,
     isPurched: false,
     examTimes:0,
-    examData: [
-      {
-        title: "1、测试过关的价值\n\n",
-        content: "在梧桐果求职会有很大的优势。\n梧桐果（www.wutongguo.com）向企业宣传“高商苑星级学员，值得优先面试”，企业搜索简历在同等条件下优先展示高商苑星级学员。\n梧桐果是覆盖全国各地各类名优企的综合型校招平台。\n\n给你求职推荐信，适用任何企业（点击“我”）"
-      },
-      {
-        title: "\n2、过关标准及时限\n\n",
-        content: "随机抽题，每次6组，其中3组结果超过90%。\n\n一组测试要在30分钟内完成，中途可退出再进，题不变。",
-      }
-    ]
+    examData: [examTips1, examTips2, examTips3],
+    examPic: [pic1Src, pic2Src]
   },
   gotoExam: function (e) {
     var that = this;
@@ -127,6 +127,12 @@ Page({
         callback_success();
       else
         callback_fail();
+    })
+  },
+  preview(ev){
+    let id = parseInt(ev.target.id)
+    wx.previewImage({
+      urls: [this.data.examPic[id]],
     })
   },
 
