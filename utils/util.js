@@ -84,7 +84,7 @@ function get_promise(url, data) {
         }
       },
       fail(error) {
-        reject(new Error("与服务器连接异常"))
+        reject(new Error(erro))
       },
       complete() {
         console.log('request complete');
