@@ -40,7 +40,7 @@
       },
       {
         "pagePath": "pages/examItems/examItems",
-        "text": "高商训练",
+        "text": "思维训练",
         "iconPath": "iconSource/training-default.png",
         "selectedIconPath": "iconSource/training-selected.png"
       },
