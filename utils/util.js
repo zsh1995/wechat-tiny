@@ -62,12 +62,17 @@ function get_promise(url, data) {
   return new Promise((resolve, reject) => {
     qcloud.request({
       url: url + '?' + urlEncode(data),
-      login: true,
+      login: false,
       method: 'GET',
       header: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
       success(result) {
+        if (typeof result.data == 'string') {
+          reject(new Error("登陆态失效"))
+          _relogin()
+          return
+        }
         let code = parseInt(result.data.code)
         if (0 == code) {
           resolve(result);
@@ -98,13 +103,18 @@ function ajax_promise(url, data, ) {
   return new Promise((resolve, reject) => {
     qcloud.request({
       url: url,
-      login: true,
+      login: false,
       data: urlEncode(data),
       method: 'POST',
       header: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
       success(result) {
+        if (typeof result.data == 'string') {
+          reject(new Error("登陆态失效"))
+          _relogin()
+          return
+        }
         let code = parseInt(result.data.code)
         if (0 == code) {
           resolve(result);
@@ -130,15 +140,30 @@ function ajax_promise(url, data, ) {
     });
   })
 }
-
+var _relogin = debounce(1000, () => {
+  qcloud.clearSession()
+  qcloud.login({
+    success: function (userInfo) {
+      console.log('登录成功', userInfo);
+    },
+    fail: function (err) {
+      console.log('登录失败', err);
+    }
+  });
+})
 function ajax_promise_json(url, data, ) {
   return new Promise((resolve, reject) => {
     qcloud.request({
       url: url,
-      login: true,
+      login: false,
       data: data,
       method: 'POST',
       success(result) {
+        if (typeof result.data == 'string') {
+          reject(new Error("登陆态失效"))
+          _relogin()
+          return
+        }
         let code = parseInt(result.data.code)
         if (0 == code) {
           resolve(result);
@@ -182,6 +207,22 @@ function formateId(id) {
   }
   return tempZero.concat(id)
 }
+/*
+ * 限流函数 
+ */
+function throttle(delay, action) {
+  let last = 0
+  return function () {
+    let delta = new Date() - last
+    if (delta > delay) {
+      last = new Date()
+      action.apply(this, arguments)
+    }
+  }
+}
+/*
+ * 去抖函数
+ */
 function debounce(delay, action) {
   let flag
   return function () {
@@ -195,7 +236,7 @@ let intervalList = []
 function promise_qcloud_login() {
   return new Promise((resolve, rejct) => {
     qcloud.login({
-      success(){
+      success() {
         resolve('login success')
       }
     })
