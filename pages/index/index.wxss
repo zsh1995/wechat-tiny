@@ -87,7 +87,7 @@
   justify-content: center;
   align-items: center;
 }
-.introduce text{
+.introduce scroll-view{
   text-align: left;
   width: 74%;
 }

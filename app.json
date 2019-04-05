@@ -40,7 +40,7 @@
       },
       {
         "pagePath": "pages/examItems/examItems",
-        "text": "思维训练",
+        "text": "思维与沟通训练",
         "iconPath": "iconSource/training-default.png",
         "selectedIconPath": "iconSource/training-selected.png"
       },
@@ -51,5 +51,6 @@
         "selectedIconPath": "iconSource/user-selected.png"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }
