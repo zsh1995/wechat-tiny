@@ -16,8 +16,7 @@
 
 <view class='menus-pannel font-36'>
 	<view class='menu-group'>
-		<view class='menu-item gsy-green' bindtap="navitoWuTong">梧桐果向企业推荐</view>
-    <view after class='menu-item menu-item-after' bindtap="doAccelarate">企业直推</view>
+    <view after class='menu-item menu-item-after' bindtap="doAccelarate">名优企内推</view>
 	</view>
 
 	<view class='menu-group'>

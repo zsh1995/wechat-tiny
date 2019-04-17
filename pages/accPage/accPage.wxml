@@ -7,9 +7,8 @@
   </view>
   <view class="icontainer" hidden="{{state != 1}}">
     <view class='info-header font-28'>
-      <view><text>{{content[0]}}</text> - <view class='href' bindtap='onClick'>企业列表</view></view>
-      <view><text>{{content[1]}}</text> - <view class='href' bindtap='toSee'>推荐信</view></view>
-      <view><text>{{content[2]}}</text></view>
+      <view><rich-text nodes="{{content[0]}}"></rich-text> <view class="em1-margin"> - <view class='href' bindtap='onClick'> 企业列表</view></view></view>
+      <view><rich-text nodes="{{content[1]}}"></rich-text></view>
     </view>
     <view class='m-tips'>确认后如需修改，请给我们留言</view>
     <view class='content'>

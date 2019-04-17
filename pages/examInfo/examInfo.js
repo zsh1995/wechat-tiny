@@ -10,10 +10,14 @@ var config = require('../../config');
 //exam
 var examAjax = require('../../utils/exam')
 
+var userUtils = require('../../utils/user')
+
+
 var internalList = new Array();
 var upperSlider = null;
 var upperSliderTop = null;
 var swipperPage = null;
+let invitor = null;
 var nodes = [{
   name: 'div',
   attrs: {
@@ -533,8 +537,10 @@ Page({
       let content = ""
       if (analyseTimes > 0) {
         content = "使用 1 张解析券（剩余 " + analyseTimes + " 张）"
+      } else if (!invitor){
+        content = "需支付 5 元 \r\n(填写邀请人 ID 可免费 3 个)"
       } else {
-        content = "需支付 5 元"
+        content = "需支付 5 元 \r\n(建议和朋友交流、共享免费的)"
       }
 
 
@@ -684,6 +690,10 @@ Page({
         screenWidth = res.screenWidth;
         screenHeight = res.screenHeight;
       }
+    })
+    userUtils.getInvitor()
+    .then((result)=>{
+      invitor = result.data.data
     })
     upperSlider = this.selectComponent('#us');
     swipperPage = this.selectComponent('#swipper-page');

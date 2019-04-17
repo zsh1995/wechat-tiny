@@ -2,9 +2,6 @@
 <view class="itemcontainer">
   <scroll-view scroll-y class="item_content">
     <rich-text nodes="{{examData[0]}}"></rich-text>
-    <image id="0" bindtap="preview" mode='widthFix' src='{{examPic[0]}}'></image>
-    <rich-text nodes="{{examData[1]}}"></rich-text>
-    <image id="1" bindtap="preview" mode='widthFix' src='{{examPic[1]}}'></image>
     <rich-text nodes="{{examData[2]}}"></rich-text>
   </scroll-view>
   <view class="button-item">

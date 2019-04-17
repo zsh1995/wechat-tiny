@@ -16,7 +16,8 @@
 </upper-slider>
 <view class="flex-wrp" bindtouchstart='onstart' bindtouchmove='onmove' bindtouchend='onend'>
   <view class="exam-title" wx:if="{{type == 'exam' && !passExam}}">思维测试为「开卷」形式，可以和朋友交流、或在线搜索，了解更多人的不同意见，尽可能作出最好的选择。</view>
-  <view class="flex-item head font-28">你看待这6个问题的积极程度</view>
+  <view class="flex-item head font-28"><text>你看待此组观点的思维积极程度
+（实现各类事情共赢的思维能力）</text></view>
 
   <view class="flex-item score font-bold" style="color:{{scoreColor}}">
     {{score}}

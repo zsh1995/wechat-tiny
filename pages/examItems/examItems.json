@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "高商训练",
+  "navigationBarTitleText": "思维与沟通训练",
   "usingComponents":{
     "light-star":"/components/lightStars/lightStars"
   }

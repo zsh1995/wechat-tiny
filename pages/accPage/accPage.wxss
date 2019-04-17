@@ -55,13 +55,17 @@ form {
   width: auto;
   margin-left: auto;
 }
-
+.float-right{
+  text-align: right;
+  margin: 0 auto 0 auto;
+}
+.em1-margin{
+  margin-left: 1.2em;
+}
 .href {
   display: inline-block;
   text-decoration: underline;
   color: #2bb675;
-  width: auto;
-  margin-left: auto;
 }
 
 .icontainer {
@@ -91,4 +95,9 @@ form {
 
 button{
   font-size: 36rpx;
+}
+/* for rich text*/
+.ul{
+  padding: 0;
+  margin-left: 2em;
 }

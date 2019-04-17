@@ -3,8 +3,8 @@ var qcloud = require('../../bower_components/wafer-client-sdk/index');
 var config = require('../../config');
 var companyUtil = require('../../utils/company.js')
 var internalList = new Array();
-
-var content = ['1.填写你毕业后期待加入的企业,我们优先和建立直推渠道', '2.在你通过星级测试后，你指定的企业会收到你的推荐邮件','3.推荐信可以和简历一起投递任何企业。']
+var richTextParse = require('../../utils/richTextParse/richText.js')
+var content = [richTextParse.go("<p>1、名优企</p><ul class='ul'><li>500强、上市公司、高新等</li>"), "<p>2、直推并安排面试的理由</p><ul class='ul'><li>思维和沟通能力比较好</li></ul><p>3、实际操作</p><ul class='ul'><li>关注上述企业招聘需求</li><li>有自己符合要求的岗位就将该岗位要求和简历发给我们zhitui@gaoshangyuan.com（需注明高商苑ID号）</li><li>我们确认后安排面试</li><li>我们可以提供推荐信，做为面试开始自我介绍的工具。</li></ul><p>4、收费</p><ul class='ul'><li>先交押金（一周薪资），持续安排面试</li><li>确定入职后收费</li><li>入职前可随时要求退还押金</li></ul><p>5、你指定企业，我们安排面试</p><ul class='ul'><li>步骤同上，押金上调20%！</li></ul>"]
 
 // pages/accPage/accPage.js
 Page({

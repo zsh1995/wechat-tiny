@@ -11,7 +11,7 @@
         <view class="item_sub_row font-28 font-bold">
           <text style="font-weight:900;">1 星级</text>
           <view class='subTitle font-28 font-bold'>
-            <text class='iconfont'>人际关系 · 团队协作</text>
+            <text class='iconfont'>日常案例 · 团队协作</text>
           </view>
         </view>
       </view>
@@ -22,7 +22,7 @@
         <view class="item_sub_row font-28 font-bold">
           <text style="font-weight:900;">2 星级</text>
           <view class='subTitle font-28 font-bold'>
-            <text>新闻现象 · 社会现象</text>
+            <text>社会案例 · 法律常识</text>
           </view>
         </view>
       </view>
