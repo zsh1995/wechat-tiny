@@ -11,7 +11,7 @@
     </view>
   </view>
   <view class='column-name'>
-    思维测试
+    免费练习（9组54题）
   </view>
   <view class='column-content'>
     <view class='practice-group'>
@@ -28,7 +28,7 @@
   </view>
   <view class='column-content'>
     <view class='column-flex'>
-      <gsy-button default-type='{{isPassed?"genenal":"white-style"}}' font-size='28rpx' with-shadow='{{!isPassed}}' textContent="思维测试 " bindtap="gotoExam" data-option="{{star}}"></gsy-button>
+      <gsy-button default-type='{{isPassed?"genenal":"white-style"}}' font-size='28rpx' with-shadow='{{!isPassed}}' textContent="更多题（收费测试）" bindtap="gotoExam" data-option="{{star}}"></gsy-button>
       <view wx:if='{{remainTimes == 0 && !isPassed && preExamPass&&!inExam}}' class='box-hint'>
         <text>未完成(点击开始）</text>
       </view>

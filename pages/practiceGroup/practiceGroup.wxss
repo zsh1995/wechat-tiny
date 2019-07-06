@@ -177,8 +177,8 @@ page{
 }
 .box-hint{
 	margin-left:27rpx;
-	height:66rpx;
-  line-height:66rpx;
+	/* height:66rpx; */
+  line-height:1.2em;
   display: flex;
 
 }
